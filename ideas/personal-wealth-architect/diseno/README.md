@@ -1,4 +1,4 @@
-# Diseño: El Arquitecto del Siguiente Peso · v1
+# Diseño: Personal Wealth Architect · v2
 
 **17 de octubre de 2026 · Especialista: diseñador de la fábrica** · Parte del brief v3.2 (`../brief.md`). Todos los datos son ficticios.
 
@@ -89,7 +89,7 @@ Nadie que trabaje en el sector financiero.
   - Una pantalla de metas separada: las metas viven dentro del plan.
 
 ## 7. Prototipo
-- **Lienzo de diseño editable** en Claude: "Arquitecto del Siguiente Peso · Prototipo", con 10 pantallas.
+- **Lienzo de diseño editable** en Claude: "Personal Wealth Architect · Prototipo" (antes "Arquitecto del Siguiente Peso"), con 10 pantallas.
 - **Copia de las fuentes** en `prototipo/`.
 - **Pantallas interactivas:**
   - L3: deslizador de la prima y montos mensuales, con proyección.

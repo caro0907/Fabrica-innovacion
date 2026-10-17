@@ -1,9 +1,11 @@
 # Personal Wealth Architect: la mejor asesoría integral, para todos
 
-**Rentas medias y masivas · Documento de concepto v5 · 17 de octubre de 2026**
+**Rentas medias y masivas · Documento de concepto v5.1 · 17 de octubre de 2026**
 
 Idea de trabajo para el rol actual de Carolina en una AFP colombiana. Se construye solo con fuentes públicas y datos simulados. Las cifras de empresas son las que ellas reportan y no fueron verificadas de forma independiente. Referentes completos y matriz en `referentes.md`; beneficios tributarios en `../../empresa/beneficios-tributarios.md`.
 
+> **Cambios en v5.1 (revisión contra "Forma de trabajo y contexto de Carolina"):** la sección 2 todavía traía los rasgos y promesas de v3 ("el siguiente peso"); ahora usa los cinco rasgos y las cinco promesas del concepto. El motor responde las cinco preguntas (incluida quién actúa: agente, consultor general o el mejor consultor). Pilotos escritos como "si…, entonces…" con fase, objetivo, línea base y grupo de control; OKR con métrica, plazo, retorno temprano y referente; horizontes con la capacidad que dejan. Estado explícito: todo es diseño.
+>
 > **Cambios en v5 (alineación con el método de Carolina, `empresa/forma-de-trabajo.md`):**
 > 1. **Arquitectura del concepto en cuatro capas** y la fórmula Entender × Guiar × Resolver × Confiar (sección 1).
 > 2. **Puntaje con la pensión y la protección dentro**: seis pilares, no cinco. Es la primera versión visible del arquitecto (horizonte H1).
@@ -74,23 +76,27 @@ Idea de trabajo para el rol actual de Carolina en una AFP colombiana. Se constru
 ### Rasgos
 | Rasgo | Qué significa | Referente que lo valida |
 |---|---|---|
-| **1. Conoce tu flujo de dinero** | Parte del ingreso y de los momentos en que llega dinero extra, no de un cuestionario. | nuFormer de Nubank y PRAGMA de Revolut: la "película" del cliente predice mejor que la foto |
-| **2. Parte de tus metas** | Primero la meta (fondo de emergencia, viaje, vivienda, tranquilidad); los productos llegan después y solo si la resuelven. | DBS NAV Planner, Wealthsimple + Conquest |
-| **3. Asesora de verdad, y lo dice** | Recomendación profesional completa, con idoneidad, explicación, costo y conflicto de interés visibles. | Origin (asesor con IA regulado por la SEC), BBVA (comisión explícita) |
-| **4. Ejecuta y cumple reglas** | Ejecuta en un toque y cumple mandatos que el afiliado deja una vez, con tope, vigencia y revocación. | AP2 de Google (mandatos firmados), Wealthfront Autopilot, Cleo Autopilot |
-| **5. Tiene dos caras** | El afiliado y el asesor ven el mismo plan. El humano entra donde más valor aporta. | Morgan Stanley (Debrief y derivación a asesores) |
+| **1. Ve el patrimonio completo** | Pensión, cesantías, ahorro e inversión, vivienda, deudas, protección, impuestos y legado, incluido lo que el afiliado tiene en otras entidades. No sesga la captura hacia los productos propios. | Origin (patrimonio agregado), finanzas abiertas obligatorias en Colombia |
+| **2. Parte de las metas** | Primero la meta (colchón, vivienda, educación, pensión, tranquilidad); los productos llegan después y solo si la resuelven. | DBS NAV Planner, Wealthsimple + Conquest |
+| **3. Mantiene un plan vivo** | El plan se recalcula con cada evento de vida y de dinero (la prima, un aumento, un hijo, un cambio de empleo): de la foto a la película. | nuFormer de Nubank y PRAGMA de Revolut |
+| **4. Propone un siguiente paso concreto** | Una recomendación profesional con idoneidad, porqué, riesgo en pesos, costo y conflicto de interés visibles. | Origin (asesor con IA regulado), BBVA (comisión explícita), Nu Smart Invest (recomendación explicada) |
+| **5. Actúa a favor de la persona** | Ejecuta en un toque y cumple mandatos con tope, vigencia, nivel de control y revocación. | AP2 de Google, Wealthfront Autopilot, Cleo Autopilot |
+| **Y tiene dos caras** | El afiliado, el consultor y el equipo de servicio ven el mismo plan; el humano entra donde más valor aporta. | Morgan Stanley (copiloto del asesor) |
 
 ### Las promesas al afiliado
-1. **Sé cuánto tengo y cuánto puedo ahorrar**, sin llenar formularios.
-2. **Sé para qué estoy ahorrando**, con un plan por meta y en números.
-3. **Sé qué hacer con mi siguiente peso**, antes de que se me vaya.
-4. **Lo hago en un toque, o lo dejo andando solo**, y lo puedo deshacer cuando quiera.
-5. **Sé quién me asesora, cuánto cuesta y por qué me lo recomienda.**
-6. **Sé cuánto me ahorra mi impuesto, si me aplica**, y cuál es mi punto óptimo de aporte (renta media).
+Son las cinco de la sección 1, dichas por el afiliado:
+1. **Sé dónde estoy:** todo mi patrimonio en un solo lugar, sin llenar formularios.
+2. **Sé a dónde voy:** cuándo y con cuánto me pensiono, y cuánto me falta para cada meta.
+3. **Sé qué hacer hoy:** un paso concreto que me conviene a mí, en el momento justo (la prima, el cierre del año).
+4. **Lo hago en un toque, o lo dejo andando solo**, y lo deshago cuando quiera.
+5. **Nunca estoy solo:** el plan cambia cuando mi vida cambia, y un consultor que lo conoce está a una frase.
+
+Dos garantías las atraviesan: **sé quién me asesora, cuánto cuesta y por qué me lo recomienda**, y **sé cuánto me ahorra mi impuesto, si me aplica** (renta media).
 
 ### El cambio
-| Hasta hoy | Con el Arquitecto del Siguiente Peso |
+| Hasta hoy | Con el Personal Wealth Architect |
 |---|---|
+| La asesoría integral (patrimonio completo, plan de vida, seguimiento) es solo para los grandes patrimonios. | Cada afiliado de renta media o masiva tiene su plan de vida con números y un arquitecto que lo acompaña. |
 | La prima llega, se gasta y en marzo nadie sabe en qué. | Dos semanas antes de la prima, el afiliado ya sabe cuánto llega y a qué meta va; si dejó una regla, se cumple sola. |
 | La asesoría de inversión es para clientes de alto patrimonio o pasa por un asesor con agenda. | Asesoría profesional completa, disponible todos los días en WhatsApp y la app. |
 | El afiliado ve 50 o más alternativas y no sabe cuál le sirve. | El afiliado ve una recomendación, por qué, cuánto cuesta y qué otras opciones hay. |
@@ -258,6 +264,8 @@ El recorrido del arquitecto sigue el proceso de una asesoría integral. Se model
 | **6. Activación** | Afiliado (muestra, recomienda, ejecuta, mandatos), consultor con el mismo plan, journeys de varios toques | Prototipo |
 | **7. Medición y aprendizaje** | Cada contacto registra su **ángulo** (beneficio tributario, meta de pensión, prima), canal, momento y resultado, para aprender por afiliado y no por segmento. El contenido lo genera la IA para cada persona, pero solo dentro de un **catálogo de lo que se puede decir** (beneficios, cifras y condiciones aprobados por cumplimiento). El resultado vuelve al motor; impacto por acción y escenario frente a control; se retira lo que no mueve el objetivo; freno si cae la calidad del servicio | Plan de prueba y métricas |
 
+**Las cinco preguntas que el motor responde en cada caso:** ¿a quién actuar hoy?, ¿cuándo?, ¿cómo? (canal, tono y mensaje), **¿quién lo hace?** (el agente, un consultor general o el mejor consultor, según el valor y la complejidad de la decisión) y ¿qué aprendí? En las tres dimensiones de conocimiento, el **segmento** define qué superficies y qué tipo de asesor tiene disponibles el afiliado, el **arquetipo** cómo se le habla y el **momento** cuándo y qué se activa. El arquetipo sirve para arrancar el MVP; el destino es la decisión individual por afiliado, no por grupo.
+
 ### Catálogo inicial de escenarios y acciones (MVP de ahorro e inversión)
 | Escenario | Disparador | Acción elegible | Meta del afiliado | Objetivo de negocio |
 |---|---|---|---|---|
@@ -306,6 +314,7 @@ Algunas necesidades del patrimonio completo piden otro tipo de respuesta. Se dej
 | Ingreso para el retiro y longevidad ("¿cuánto recibo al mes y por cuánto tiempo?") | Producto nuevo y servicios con aliados, más capacidad del plan | Fuera del MVP (rentas medias y masivas de 30 a 45 años); el plan muestra el ingreso esperado |
 | Familia: educación de los hijos, beneficiarios | Producto y servicio, más capacidad | La meta de educación entra al plan; el producto queda como oportunidad |
 | Hábitos de ahorro | Programa (rachas, reconocimiento) y capacidad (escalador) | Constancia como pilar del puntaje; rachas sin tokens ni cripto, medidas contra grupo de control |
+| Atraer a quien aún no es afiliado | Capacidad y marketing: el diagnóstico con puntaje abierto como calculadora, con clic a la conversación | Fuera del MVP; el puntaje se diseña para que también funcione como puerta de entrada |
 | Agentes de IA de los propios clientes | Capacidad: APIs con identidad y consentimiento | Principio de diseño desde el inicio; consulta de solo lectura en H3 |
 
 ## 5. Cómo lo vive un afiliado (journey ilustrativo)
@@ -335,6 +344,8 @@ Algunas necesidades del patrimonio completo piden otro tipo de respuesta. Se dej
 ---
 
 ## 6. Las piezas y lo que falta (lectura honesta)
+
+**Estado:** nada de este concepto está en operación. Todo es diseño, probado con un prototipo y datos simulados; la columna "existe" se refiere al mercado, no a una entidad en particular.
 
 | Pieza | Existe hoy en el mercado o es público | Habría que construir | Depende de terceros o de regulación |
 |---|---|---|---|
@@ -367,20 +378,23 @@ Algunas necesidades del patrimonio completo piden otro tipo de respuesta. Se dej
 
 ## 8. Ruta y puertas de decisión
 
-| Horizonte | Qué incluye | Puerta para avanzar |
-|---|---|---|
-| **H0 · Prototipo (semanas 1 a 4)** | Web y WhatsApp simulados: journey de Laura completo con datos ficticios | H1, H2, H3 y H5 cumplen umbral con 5 a 10 usuarios |
-| **H1 · Diagnóstico con puntaje, la versión visible (meses 2 a 6)** | Puntaje de 6 pilares, plan y calendario del dinero con datos de un grupo pequeño, sin ejecución. Responde a que un competidor regional ya lanzó su diagnóstico: mejor algo visible en seis meses que todo en dos años | Intención de ahorro frente a grupo de control; cero incidentes de datos |
-| **H2 · Piloto de asesoría y ejecución (meses 4 a 8)** | Asesoría completa automatizada y ejecución, sujeta a la validación con el AMV y la SFC | Aporte nuevo por usuario frente a grupo de control; quejas por asesoría en cero |
-| **H3 · Mandatos y escala (meses 8 a 18)** | Mandatos sobre la prima y las cesantías, vista del asesor, patrimonio externo vía finanzas abiertas | Mandatos activos y tasa de revocación menor al 15%; activos administrados por usuario |
+| Horizonte | Qué incluye y pilotos | Capacidad que deja construida | Por qué va en este orden | Puerta para avanzar |
+|---|---|---|---|---|
+| **H0 · Prototipo (semanas 1 a 4)** | Chat y app simulados: recorrido de Laura y de Juliana con datos ficticios | Concepto probado con usuarios y textos revisados por el experto financiero | Es lo más barato y rápido para saber si la idea funciona | H1, H2, H3, H5 y H11 cumplen umbral con 5 a 10 usuarios |
+| **H1 · Diagnóstico con puntaje, la versión visible (meses 2 a 6)** | P5 y P3. Puntaje de 6 pilares, plan y calendario del dinero con un grupo pequeño, sin ejecución | Registro de eventos, puntaje, plan y catálogo de lo que se puede decir | No mueve dinero, usa datos y simuladores que ya existen en el mercado, y responde a que un competidor regional ya lanzó su diagnóstico | Vuelta e intención de ahorro frente a grupo de control; cero incidentes de datos |
+| **H2 · Asesoría y ejecución (meses 4 a 8)** | P1, P2 y P4. Asesoría completa automatizada y ejecución en la conversación | Motor con priorización por impacto incremental y control de cumplimiento | Necesita la validación con el Autorregulador del Mercado de Valores y la Superintendencia Financiera; los datos de H1 alimentan el motor | Aporte nuevo por usuario frente a grupo de control; quejas por asesoría en cero |
+| **H3 · Mandatos y escala (meses 8 a 18)** | Mandatos que ejecutan dentro de límites, vista del consultor a escala, patrimonio externo con finanzas abiertas, consulta de agentes externos | Mandatos, memoria del afiliado entre superficies y APIs listas para agentes | Delegar exige la confianza ganada en H1 y H2 | Mandatos activos con revocación menor al 15%; activos administrados por usuario |
 
 ### Pilotos y OKR
-| Piloto | Hipótesis | OKR |
-|---|---|---|
-| P1 · Prima con destino | H1 y H2 | 15% de los contactados ejecuta antes de la prima; 5% deja mandato |
-| P2 · Asesoría en el chat | H3 y H4 | 20% de quienes reciben asesoría ejecuta en 7 días |
-| P3 · Colchón primero | H6 | NPS de la recomendación de 60 o más |
-| P4 · Diciembre de oro (renta media) | H7 y H8 | 20% de los contactados aporta antes del 31 de diciembre; aporte promedio de al menos 50% del faltante a su punto óptimo |
+Cada piloto se escribe como "si [cambio], entonces [resultado]", con la fase del recorrido, el objetivo que mueve, la línea base y el grupo de control.
+
+| Piloto | Si… entonces… | Fase | Objetivo y OKR (métrica, plazo, retorno temprano) | Línea base y control | Referente |
+|---|---|---|---|---|---|
+| **P1 · Prima con rumbo** (H1, H2) | Si el afiliado recibe su plan de la prima 14 días antes, entonces ejecuta antes de la prima y deja el mandato | Momentos de vida | Depósito neto: 15% de los contactados ejecuta antes de la prima de junio; 5% deja mandato. Retorno temprano: intención de ejecutar en la primera semana | Tasa de aporte en primas anteriores; 10% sin contacto | Save More Tomorrow, Wealthfront Autopilot |
+| **P2 · Asesoría en la conversación** (H3, H4, H11) | Si al terminar un servicio el agente recomienda con su porqué y su costo, entonces el afiliado ejecuta sin pedir un humano y su satisfacción no baja | Relación activa | Depósito neto: 20% de quienes reciben la recomendación ejecuta en 7 días, con satisfacción igual o mayor, en el primer trimestre del piloto | Conversaciones de servicio sin recomendación; grupo de control aleatorio | Origin, Nu Smart Invest |
+| **P3 · Colchón primero** (H6) | Si el plan prioriza el colchón sobre la inversión cuando falta, entonces sube la confianza y la conservación aunque baje la venta inmediata | Relación activa | Conservación y NPS: recomendación con NPS de 60 o más y menor fuga a 6 meses | Afiliados con colchón bajo que reciben la oferta habitual | Vanguard (valor del acompañamiento) |
+| **P4 · Diciembre de oro** (H7, H8) | Si el afiliado de renta media ve en noviembre su faltante exacto al punto óptimo, entonces aporta antes del 31 de diciembre | Momentos de vida | Depósito neto: 20% de los contactados aporta, con al menos 50% del faltante. Retorno temprano: aportes en la primera quincena de diciembre | Mensaje genérico de beneficio tributario | Nu Smart Invest (señala ineficiencias tributarias) |
+| **P5 · Diagnóstico con puntaje** (H10) | Si el afiliado ve su puntaje de 6 pilares con la acción que más lo mueve, entonces vuelve y actúa más que con un extracto | Relación activa | Satisfacción y depósito neto: 30% vuelve en 30 días y 10% ejecuta la acción sugerida en el primer trimestre | Extracto o simulador sin puntaje | Nu Smart Invest, WHOOP |
 
 *Los OKR son metas iniciales para discutir, no benchmarks verificados.*
 

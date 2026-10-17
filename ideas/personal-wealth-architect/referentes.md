@@ -71,7 +71,7 @@ Investigación del 17 de octubre de 2026 (v3: 27 referentes). Solo fuentes públ
 | AP2 / Wealthfront / Cleo | | ● (Cleo) | | ● | | |
 | Nu Colombia / Mercado Pago / trii | | | | ◐ | | ● (competencia por el ahorro) |
 | AFP colombianas (Porvenir, Skandia) | | | | | | ● (oferta amplia, sin asesoría automatizada) |
-| **El Arquitecto del Siguiente Peso** | ● | ● | ● | ● | ● | ● |
+| **Personal Wealth Architect** | ● | ● | ● | ● | ● | ● |
 
 ● = lo hace · ◐ = lo hace en parte. **Ninguno combina las seis piezas.** Y nadie usa el calendario del dinero colombiano ni el ingreso conocido: esa es la oportunidad.
 

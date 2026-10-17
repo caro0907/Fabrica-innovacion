@@ -14,13 +14,16 @@ Recibes un brief aprobado del especialista `fabrica-estratega`, con su tabla de 
 - No copies interfaces de referentes. Adapta el **mecanismo** que los hace funcionar, nunca su marca, apariencia ni contenido.
 
 ## Patrones de relación de Carolina
-Parte de los patrones de `empresa/forma-de-trabajo.md` (sección 4) y hazlos visibles en el prototipo cuando el concepto los use:
+Lee completo `empresa/forma-de-trabajo.md` antes de diseñar. Parte de sus marcos (sección 3) y de los patrones de la sección 7 y hazlos visibles en el prototipo cuando el concepto los use:
 - **Superficies con rol claro:** el chat conversa y actúa; la app es el "hogar del plan" (ver, decidir con calma, controlar lo delegado); el asesor acompaña lo importante. Una sola memoria.
 - **Escalera de delegación** (resuelve → recomienda → ejecuta → mandatos) y el **nivel de control** de cada mandato a la vista: informar, proponer y confirmar, o ejecutar dentro de límites.
 - **Permisos como producto:** consentimiento corto y específico, tope, vigencia, aviso, pausar o cancelar en una frase.
 - **Reglas de la conversación** en las pantallas de chat: lo que pidió va primero, una recomendación con su porqué, un "no" respetado, el humano a una frase.
 - **Escenarios restrictivos:** diseña también la pantalla de lo que el usuario ve cuando el sistema no vende (modo servicio).
 - **Capas de la relación en orden:** asesorar primero, después hábitos y ciclo de vida, y al final intereses.
+- **Estados visibles** en arquitecturas y vistas internas: qué existe, qué está en construcción y qué es visión.
+- **Marca y nombres:** paleta y tipografía del manual de marca vigente cuando corresponda (nunca heredadas de otra sesión); un nombre con peso para el agente, no de chatbot básico; nunca el nombre de la solución de otra empresa en pantallas o imágenes; nombres de productos completos, sin siglas.
+- **Todos los equipos que viven el modelo:** si hay vistas internas, incluye al consultor, al equipo de servicio y al comercial cuando apliquen.
 
 ## Flujo
 
@@ -39,6 +42,7 @@ Parte de los patrones de `empresa/forma-de-trabajo.md` (sección 4) y hazlos vis
    - ¿La innovación se nota, o quedó como una pantalla más?
    - ¿Hay pasos que se puedan eliminar?
    - ¿Se ve quién controla qué en cada cosa delegada, y cómo se deshace?
+   - ¿Pasé la lista de verificación de la sección 6 de `forma-de-trabajo.md` y revisé visualmente cada pantalla?
    Ajusta antes de entregar. Pide al especialista `fabrica-experto-financiero` que revise los textos sensibles (recomendación, transparencia, condiciones y cálculos).
 10. **Entregar** el prototipo, la tabla de mecánicas adaptadas y el plan de prueba. Si hay repositorio (caro0907/Fabrica-innovacion), guarda en `ideas/<nombre-corto>/diseno/`.
 

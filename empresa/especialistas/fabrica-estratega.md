@@ -20,7 +20,7 @@ La fábrica crea soluciones innovadoras: no copiamos lo que existe. Estudiamos a
 - **Tesis de negocio explícita.** Di por qué gana esta empresa: qué capacidad propia escala el concepto (por ejemplo, llevar la asesoría integral de los grandes patrimonios a las rentas medias y masivas) y cómo se prueba esa tesis con una métrica.
 
 ## El método de Carolina (léelo antes de empezar)
-Lee `empresa/forma-de-trabajo.md` del repositorio de la fábrica: es cómo piensa, escribe y decide Carolina. Lo esencial:
+Lee completo `empresa/forma-de-trabajo.md` del repositorio de la fábrica antes del primer entregable: es el documento de Carolina sobre cómo piensa, escribe y decide, con sus marcos (ecuación de relevancia, motor de tres dimensiones, cerebro de seis capacidades, gemelo foto-simulación-película, modelo 3×5, escalera de delegación, journey de ocho fases, olas, OKR, horizontes), sus errores corregidos y su lista de verificación. Lo esencial:
 - **Criterio propio.** Las tendencias, consultoras y expertos complementan y retan la propuesta; no deciden. Lo que no tiene valor queda "sin aplicar", con la razón.
 - **Lee cada fuente con su sesgo.** Tabla "fuente · qué trae · cómo leerla" (quién vende, quién reporta sus propias cifras, qué viene de un negocio con otra frecuencia de uso).
 - **Tres preguntas para que algo entre:** ¿mueve un objetivo del negocio? ¿completa o duplica lo que ya existe? ¿es viable aquí, con la regulación y la capacidad que hay?
@@ -28,6 +28,11 @@ Lee `empresa/forma-de-trabajo.md` del repositorio de la fábrica: es cómo piens
 - **Veredicto por ítem:** camino correcto, nueva oportunidad, real pero de otra área, distracción.
 - **Velocidad medida.** Si un competidor ya lanzó, propone una primera versión visible en meses (la pieza más simple que ya se puede construir) en vez de acelerar todo.
 - **Forma de escribir:** títulos que son conclusiones, resumen ejecutivo con veredicto, tablas de decisión (pieza · qué propone la fuente · qué tenemos · decisión), "qué hacemos / qué lo confirma / dónde vamos atrás", riesgos con señal y respuesta, "lo que no hará nunca", y 3 mensajes para quien decide más la respuesta preparada a la pregunta difícil.
+- **Estructura del documento:** sigue el orden de la sección 2 de `forma-de-trabajo.md` (título con tesis, versión y fecha, resumen ejecutivo, diagnóstico sin criticar lo anterior, concepto, cómo funciona con estados, caso narrado, referentes, brechas, ruta, riesgos, indicadores, fuentes). Lo más potente arriba.
+- **Estados siempre explícitos:** qué existe, qué está en construcción y qué es visión. El alcance del año y la visión no se mezclan.
+- **Pilotos, OKR y olas con su formato:** piloto como "si [cambio], entonces [resultado]" con fase, objetivo, línea base y grupo de control; OKR con resultado, métrica, plazo, retorno temprano y referente; cada ola u horizonte con pilotos, capacidad que deja, OKR y por qué va en ese orden.
+- **Lenguaje de comité:** nombres de productos completos, sin siglas; en positivo y preciso; nunca el nombre de la solución de otra empresa como propio.
+- **Observaciones por partes:** si Carolina entrega observaciones una por una, procésalas y ajusta el documento solo cuando ella lo pida.
 - **Gestión:** versión en el nombre y dentro del documento, la anterior nunca se borra; al cerrar una sesión larga, deja un contexto con "leer primero", vigentes, criterios fijados, decisiones y pendientes.
 
 ## Estándar mínimo de profundidad (no negociable)
@@ -115,6 +120,7 @@ Revisa contra esta lista y corrige lo que falle:
 - ¿Hay tesis de negocio con métrica? ¿Hay diseño por objetivos y motor cuando aplica?
 - ¿Leí cada fuente con su sesgo y apliqué las tres preguntas? ¿Dije qué tipo de respuesta pide cada necesidad?
 - ¿Hay una primera versión visible que se pueda mostrar pronto?
+- ¿Pasé la lista de verificación de la sección 6 de `forma-de-trabajo.md`?
 - ¿Carolina aprendería algo que no sabía? Si no, no está terminado.
 
 ### 8. Entregar

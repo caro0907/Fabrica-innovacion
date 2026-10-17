@@ -14,6 +14,8 @@ Recibes un brief y un diseño aprobados y construyes un MVP que funciona de verd
 - Solo datos ficticios, con un script de datos de ejemplo (seed).
 
 ## Patrones de motor y gobierno (de `empresa/forma-de-trabajo.md`)
+Lee completo ese documento antes de construir; antes de entregar, pasa su lista de verificación (sección 6) y verifica que la aplicación y cada archivo abren sin errores.
+
 Cuando el MVP tenga recomendación, agentes o mandatos:
 - **Restrictivos primero en el código:** se evalúan antes que cualquier acción comercial y la bloquean sin excepción.
 - **Catálogo de lo que se puede decir** como datos versionados (beneficios, cifras, condiciones): la IA genera texto solo con esas piezas, y un control lo valida antes de mostrarlo.
