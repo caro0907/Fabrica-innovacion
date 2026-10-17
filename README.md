@@ -14,6 +14,7 @@ Convertir ideas innovadoras en soluciones reales en semanas, no en meses. Estudi
 | Estratega de innovación | Especialista IA (`fabrica-estratega`) | Investiga referentes globales, encuentra la oportunidad, escribe el brief |
 | Diseñador de innovación | Especialista IA (`fabrica-disenador`) | Traduce el brief en journey, prototipo navegable y plan de prueba |
 | Desarrollador | Especialista IA (`fabrica-desarrollador`) | Construye el MVP, lo prueba, revisa riesgos y deja el traspaso |
+| Experto financiero, regulatorio y tributario | Especialista IA (`fabrica-experto-financiero`) | Encuentra beneficios, diferenciales y restricciones (AMV, SFC, Estatuto Tributario) y revisa el trabajo de los demás |
 
 ## Flujo de trabajo
 
