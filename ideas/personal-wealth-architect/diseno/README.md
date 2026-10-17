@@ -99,3 +99,10 @@ Nadie que trabaje en el sector financiero.
   - J4: confirmación y regla mensual.
 - **Costos de las alternativas:** quedan como marcadores `[X]%` hasta tener tarifas públicas.
 - **Beneficios de la pensión voluntaria más allá de la renta:** menos retención mensual (J2) y abono a la hipoteca (J1 y J3), según `empresa/beneficios-tributarios.md`.
+
+## 8. Versión 2 del prototipo (17 de octubre de 2026)
+Ajustes a partir de las observaciones de Carolina (ver `../concepto.md`, v4):
+- **Laura recorre la asesoría integral completa:** aviso → diagnóstico conversacional (L2) → mi patrimonio en 8 dimensiones (L3) → mi plan de vida con la pensión como ancla (L4) → siguiente paso: la prima (L5) → recomendación (L6) → mis reglas (L7).
+- **Nueva vista para negocio, "el motor por dentro" (M1):** conocimiento, plan, escenarios (con los restrictivos), acciones elegibles, priorización, activación y medición.
+- **Juliana y la vista del consultor** se mantienen como el escenario tributario de renta media.
+- **Nuevas hipótesis:** H9 (paridad de calidad con consultor senior) y H10 (integral frente a transaccional), en el concepto.

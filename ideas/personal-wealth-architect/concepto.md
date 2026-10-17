@@ -1,29 +1,36 @@
-# El Arquitecto del Siguiente Peso
+# Personal Wealth Architect: la mejor asesoría integral, para todos
 
-**Personal Wealth Architect para ahorro e inversión · Rentas medias y masivas · Documento de concepto v3.1 · 17 de octubre de 2026**
+**Rentas medias y masivas · Documento de concepto v4 · 17 de octubre de 2026**
 
-Idea de trabajo para el rol actual de Carolina en una AFP colombiana. Se construye solo con fuentes públicas y datos simulados. Las cifras de empresas son las que ellas reportan y no fueron verificadas de forma independiente. Referentes completos y matriz en `referentes.md`.
+Idea de trabajo para el rol actual de Carolina en una AFP colombiana. Se construye solo con fuentes públicas y datos simulados. Las cifras de empresas son las que ellas reportan y no fueron verificadas de forma independiente. Referentes completos y matriz en `referentes.md`; beneficios tributarios en `../../empresa/beneficios-tributarios.md`.
 
-> **Cambios frente a v2:** se rehízo desde la visión de Carolina (plan vivo, mandatos, dos caras, plan primero) y con 27 referentes. Aparecen tres diferenciales que v2 no tenía: el **ingreso conocido**, el **calendario del dinero colombiano** y los **mandatos sobre ese calendario**.
+> **Cambios en v4 (observaciones de Carolina):**
+> 1. **Volvimos al concepto de Personal Wealth Architect.** En v3, un mecanismo (el "siguiente peso") se había vuelto el producto. Ahora el producto es el arquitecto integral: ve el patrimonio completo, diseña el plan de vida con números (con la pensión como ancla) y da el siguiente paso. El calendario del dinero, los vehículos tributarios y los mandatos quedan como **escenarios y acciones del motor**.
+> 2. **Nueva tesis:** llevar con tecnología la asesoría integral que hoy solo reciben los grandes patrimonios a las rentas medias y masivas.
+> 3. **Diseño por objetivos y motor de recomendación por capas**, tomados del trabajo previo de Carolina y escritos en términos genéricos (sección 4B).
 >
-> **Cambios en v3.1:** el segmento son **rentas medias y masivas**, y la renta media gana entre $8 y $9 millones al mes. Con esa cifra, el **beneficio tributario de la pensión voluntaria sí es un diferencial** para la renta media (cálculo en la sección 3). Para la renta masiva no aplica, así que el concepto tiene dos propuestas de valor. Se suma un cuarto diferencial: **diciembre de oro**, cuando coinciden la prima de diciembre y el cierre del año gravable.
+> **Historia:** v2 sumó retadores y el foco en ahorro e inversión; v3 sumó 27 referentes, el ingreso conocido, el calendario del dinero y los mandatos; v3.1 calculó el gancho tributario por segmento y sumó diciembre de oro.
 
 ---
 
 ## 1. La tesis en una página
 
-**El problema real no es invertir: es decidir qué hacer con el siguiente peso.** Y en Colombia, el siguiente peso de un asalariado llega en fechas conocidas: la prima de junio, la de diciembre, los intereses de cesantías en enero y la consignación de cesantías en febrero. Hoy ese dinero llega, se diluye en la cuenta y nadie le propone un destino en el momento exacto.
+**El diferencial de una AFP es la asesoría integral, pero hoy no escala.** Sus consultores más expertos alcanzan a cubrir solo a los clientes de grandes patrimonios. Las rentas medias y masivas reciben productos, trámites y, con suerte, una asesoría puntual. En el mercado pasa lo mismo: la planeación integral por metas (Wealthsimple con Conquest) se reserva para clientes de más de US$500.000.
 
-**La oportunidad:** una AFP sabe algo que ningún neobanco sabe: el ingreso de cotización y el empleador de su afiliado. Puede anticipar cuánto llega y cuándo, proponer un plan antes de que el dinero se diluya y ejecutarlo con una regla que el afiliado deja una sola vez.
+**La tesis: llevar con tecnología la mejor asesoría integral a las rentas medias y masivas.** Es el método de los mejores consultores, convertido en un arquitecto digital y humano disponible todos los días. Ant Group demostró que la asesoría con IA llega a 70 millones de usuarios, 45% de ellos fuera de las grandes ciudades. DBS abrió la planeación digital a toda su base y 300.000 clientes la usaron en el primer mes.
 
-**El concepto:** un arquitecto de ahorro e inversión, digital y humano, que:
-1. ve el patrimonio del afiliado y su capacidad real de ahorro;
-2. diseña con él un plan por metas, con números;
-3. lo asesora de forma completa y transparente cuando hay que decidir;
-4. ejecuta en un toque y, si el afiliado quiere, cumple reglas sobre su calendario del dinero;
-5. le pasa el mismo plan a un asesor humano cuando la decisión lo pide.
+**El Personal Wealth Architect** (las cinco promesas de la visión de Carolina):
+1. **Sabes dónde estás:** todo tu patrimonio en un solo lugar (pensión, cesantías, ahorro e inversión, vivienda, deudas, protección de tu familia, impuestos y legado), con lo que sabemos y lo que tú completas.
+2. **Sabes a dónde vas:** un plan de vida con números para cada meta, empezando por cuándo y con cuánto te pensionas, y qué te falta.
+3. **Sabes qué hacer hoy:** un siguiente paso concreto, elegido por lo que te conviene a ti. Aquí entran la prima, diciembre de oro y cada peso a su vehículo tributario.
+4. **Lo haces en un toque, o lo delegas:** ejecución en la conversación y reglas sobre tu calendario del dinero.
+5. **Nunca estás solo:** el plan se ajusta con cada cambio de vida, y un consultor que ve el mismo plan está a una frase.
 
-**Principio rector: el plan primero, el producto después.** El arquitecto recomienda lo que le conviene al afiliado aunque no sea un producto de la AFP: armar primero un fondo de emergencia, pagar una deuda cara o no invertir todavía. Por eso el afiliado confía, vuelve y delega.
+**Principio rector: el plan primero, el producto después.** El motor elige solo entre las acciones que el plan considera buenas para el afiliado; el objetivo de negocio prioriza entre ellas, nunca define el plan. A veces lo correcto es armar el colchón, pagar una deuda cara o no invertir todavía. Por eso el afiliado confía, vuelve y delega.
+
+**Por qué gana:** el neobanco tiene la app y el saldo; el banco privado tiene el consultor. La AFP tiene el método de asesoría integral, la historia laboral y el ingreso del afiliado, el producto con beneficio tributario y la relación de toda la vida laboral. Le faltaba escalarlo: eso hace el arquitecto.
+
+**La métrica que prueba la tesis: paridad de calidad.** Qué porcentaje de los planes y recomendaciones del arquitecto aprobaría sin cambios un consultor senior, y a qué costo por asesoría integral frente al modelo presencial.
 
 **Dos segmentos, dos propuestas de valor, un mismo arquitecto:**
 
@@ -188,7 +195,57 @@ Siguiendo el modelo de Origin:
 
 ---
 
+## 4B. Diseño por objetivos y motor de recomendación
+
+### El método: la asesoría integral del mejor consultor, en seis momentos
+El recorrido del arquitecto sigue el proceso de una asesoría integral. Se modela con prácticas públicas de planeación financiera (como el proceso de planeación de los planificadores certificados CFP), y Carolina lo valida contra lo que hacen sus mejores consultores.
+
+| Momento | Lo que hace el mejor consultor | Lo que hace el arquitecto |
+|---|---|---|
+| 1. Conocer | Pregunta por la vida antes que por los productos | Diagnóstico conversacional: metas, familia, vivienda, deudas, horizonte |
+| 2. Diagnosticar | Arma la foto completa del patrimonio | Mapa del patrimonio en 8 dimensiones, con lo que sabemos y lo que falta |
+| 3. Planear | Traduce metas en números y brechas | Plan de vida con metas, la pensión como ancla y la brecha de cada meta |
+| 4. Recomendar | Propone y explica, con idoneidad | Siguiente paso elegido por el motor, con porqué, riesgo en pesos, costo y transparencia |
+| 5. Implementar | Ayuda a ejecutar | Ejecución en un toque o mandato |
+| 6. Acompañar | Revisa cuando la vida cambia | Plan vivo: eventos de vida y del dinero, y escala al consultor cuando hace falta |
+
+### Diseño por objetivos, de dos lados
+- **Objetivos del afiliado** (sus metas de vida): colchón, vivienda, educación, pensión, tranquilidad, legado. Definen las **acciones elegibles**.
+- **Objetivos del negocio** (ahorro e inversión): depósito neto en ahorro voluntario, activos administrados por afiliado, conservación (menos fuga), recaudo y NPS. Definen la **prioridad** entre acciones elegibles.
+
+**La regla que los une:** una acción solo es elegible si mejora una meta del afiliado o cierra una brecha de su plan. Entre las elegibles, el motor prioriza por el impacto incremental en el objetivo de negocio y por el valor para el afiliado.
+
+### El motor por capas
+| Capa | Qué hace | En el MVP (simulado) |
+|---|---|---|
+| **1. Conocimiento** | Señales, perfil, eventos de vida, la "película" del afiliado. Clasifica **segmento × arquetipo × momento** | Perfiles ficticios con arquetipo (ahorrador, inversor, pragmático, aspiracional) y momento (prima, cierre del año, cambio de salario) |
+| **2. Plan** | Metas, brechas y avance por dimensión | Calculado con reglas deterministas |
+| **3. Escenarios** | **Restrictivos**, que frenan o filtran: coyuntura, evento de vida sensible, no contacto, deuda cara sin colchón. **De oportunidad**: atracción, crecimiento, venta cruzada, reactivación, conservación, adecuación, experiencia | Catálogo de reglas explícitas |
+| **4. Acciones** | Catálogo escenario → acción, con mensaje, canal y contenido | Ver catálogo abajo |
+| **5. Priorización** | Impacto incremental de cada acción (modelos de uplift frente a grupo de control), más canal, tono, vigencia, momento y límite de contactos | Puntaje simulado y explicado |
+| **6. Activación** | Afiliado (muestra, recomienda, ejecuta, mandatos), consultor con el mismo plan, journeys de varios toques | Prototipo |
+| **7. Medición y aprendizaje** | El resultado vuelve al motor; impacto por acción y escenario frente a control; se retira lo que no mueve el objetivo; freno si cae la calidad del servicio | Plan de prueba y métricas |
+
+### Catálogo inicial de escenarios y acciones (MVP de ahorro e inversión)
+| Escenario | Disparador | Acción elegible | Meta del afiliado | Objetivo de negocio |
+|---|---|---|---|---|
+| Colchón insuficiente | Colchón menor a 3 meses | Dirigir dinero extra al colchón con liquidez diaria | Tranquilidad | Experiencia, conservación |
+| Prima con rumbo | Prima en 2 semanas | Plan de la prima por metas y mandato | Metas de mediano y largo plazo | Depósito neto |
+| Diciembre de oro | Renta media, noviembre, faltante al punto óptimo | Completar el punto óptimo de pensión voluntaria | Vivienda o largo plazo, con ahorro de impuesto | Depósito neto |
+| Hipoteca con beneficio | Renta media con crédito de vivienda | Aporte a pensión voluntaria y abono al crédito | Vivienda | Depósito neto, relación |
+| Brecha pensional | Pensión estimada por debajo de la meta | Aporte voluntario a la obligatoria (renta media) o ahorro de largo plazo | Pensión | Activos administrados |
+| Aumento de salario | Cambio de ingreso de cotización | Subir el aporte en la misma proporción ("escalador") | Todas | Depósito neto |
+| Riesgo de fuga | Retiros o señales de traslado | Conversación de conservación con el plan a la vista | Continuidad del plan | Conservación |
+| **Restrictivo:** deuda cara sin colchón | Tarjeta o crédito de consumo y colchón bajo | **No recomendar inversión**; priorizar deuda y colchón | Tranquilidad | Confianza, NPS |
+| **Restrictivo:** evento sensible | Licencia, desempleo, calamidad | Pausar contactos comerciales; solo servicio | — | Experiencia |
+
+### Arquetipos del MVP
+- **Laura, "pragmática" de renta masiva:** quiere tranquilidad y una casa. Su momento es la prima de junio. Escenarios: colchón insuficiente, prima con rumbo y brecha pensional (ahorro de largo plazo).
+- **Juliana, "inversora" de renta media:** quiere optimizar. Su momento es el cierre del año. Escenarios: diciembre de oro, hipoteca con beneficio y brecha pensional (aporte voluntario a la obligatoria).
+
 ## 5. Cómo lo vive un afiliado (journey ilustrativo)
+
+> **v4:** el recorrido completo ahora empieza por la asesoría integral: aviso → diagnóstico conversacional → mapa del patrimonio → plan de vida (con la pensión) → siguiente paso → ejecutar o delegar → consultor. La prima y diciembre de oro son el momento que lo activa, no el producto. Ver el prototipo v2.
 
 **Laura, 36 años, contadora en Medellín, salario de $5.200.000. Tiene $3.000.000 en una cuenta de Nu y nunca ha invertido. (Usuaria ficticia.)**
 
@@ -237,6 +294,8 @@ Siguiendo el modelo de Origin:
 | H6 | **Plan primero:** recomendar el colchón antes que la inversión aumenta la confianza, aunque reduzca la venta inmediata. | Prueba de usuario | Al menos 4 de 5 lo valoran explícitamente |
 | H7 | **Gancho tributario (renta media):** ver su ahorro de impuesto en pesos y su punto óptimo mueve a aportar más, aun con la permanencia de 10 años. | Prueba con 5 usuarios de renta media | Al menos 3 de 5 elevan su aporte simulado hacia el punto óptimo y explican la condición de permanencia |
 | H8 | **Diciembre de oro:** el aviso de fin de año con el faltante exacto convierte más que un mensaje genérico de beneficio tributario. | A/B en el prototipo | Intención de aportar al menos 30% mayor con el faltante personalizado |
+| H9 | **Paridad de calidad:** el plan y la recomendación del arquitecto son los que haría un consultor senior. | 3 consultores senior revisan 20 planes simulados a ciegas, mezclados con planes hechos por consultores | Al menos 80% aprobados sin cambios de fondo; sin diferencia significativa frente a los planes humanos |
+| H10 | **Integral antes que transaccional:** ver el patrimonio y el plan completo aumenta la intención de actuar frente a recibir solo la recomendación. | A/B en el prototipo | Intención de actuar al menos 20% mayor con mapa y plan |
 
 ---
 

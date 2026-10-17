@@ -1,51 +1,48 @@
-# Brief táctico para el diseñador: El Arquitecto del Siguiente Peso
+# Brief táctico para el diseñador: Personal Wealth Architect
 
-**v3.1 · 17 de octubre de 2026 · Veredicto del estratega: AVANZAR** · Concepto completo en `concepto.md`, referentes en `referentes.md`.
+**v4 · 17 de octubre de 2026 · Veredicto del estratega: AVANZAR** · Concepto completo en `concepto.md` (ver secciones 1 y 4B), referentes en `referentes.md` y beneficios tributarios en `../../empresa/beneficios-tributarios.md`.
 
-## Necesidad, usuario y principio
-- **Usuarios:** asalariados de 30 a 45 años afiliados a la AFP, en dos segmentos:
-  - **Renta masiva** (hasta unos $6 millones al mes): no paga renta; tiene algo ahorrado en un neobanco y nunca ha invertido con un plan.
-  - **Renta media** ($8 a $9 millones al mes): paga entre $2,7 y $4,4 millones de renta al año y no sabe cuánto podría ahorrar con la pensión voluntaria.
-- **Necesidad:** saber qué hacer con el siguiente peso, sobre todo con el dinero extra que llega en fechas conocidas (prima de junio y diciembre, intereses y consignación de cesantías), antes de que se diluya.
-- **Principio rector:** el plan primero, el producto después. Si no hay colchón o hay deuda cara, el arquitecto no recomienda invertir.
+## La tesis y el principio
+- **Tesis:** llevar con tecnología la mejor asesoría integral, la que hoy solo reciben los grandes patrimonios, a las rentas medias y masivas.
+- **Principio rector:** el plan primero, el producto después. El motor elige solo entre acciones que mejoran una meta del afiliado; el objetivo de negocio prioriza entre ellas.
 
-## Propuesta de valor
-Tu arquitecto de ahorro e inversión sabe cuándo te llega dinero extra, te propone un destino antes de que se te vaya, te asesora con transparencia y lo hace por ti si se lo pides. Si pagas renta, además te muestra cuánto te ahorra tu impuesto y cuál es tu punto óptimo de aporte.
+## Usuarios (arquetipo × segmento × momento)
+- **Laura, pragmática de renta masiva** ($5,2 millones al mes, 36 años): quiere tranquilidad y una casa. Su momento es la prima de junio.
+- **Juliana, inversora de renta media** ($8,5 millones al mes, 41 años): quiere optimizar. Su momento es el cierre del año, con su gancho tributario.
 
-> **Renta media:** "Juliana, ganas $8,5 millones y este año pagarías unos $3,6 millones de renta. Si aportas $1.000.000 al mes a tu pensión voluntaria, pagas unos $1,7 millones menos: de cada 100 pesos que ahorras, 14 los pone tu impuesto."
->
-> **Renta masiva:** "Laura, si separas $200.000 al mes y el 30% de cada prima, en 20 años habrás puesto $79 millones y podrías tener entre $108 y $167 millones en pesos de hoy."
+## Lo que el prototipo debe hacer sentir
+Que se sentó con el mejor consultor. El orden importa: **conocer → diagnosticar → planear → recomendar → implementar → acompañar**. La transacción llega al final, no al principio.
 
-*Ilustrativos y simplificados; cálculo tributario a validar con un experto.*
+## MVP (prototipo v2, datos ficticios)
+**Journey de Laura (integral, de principio a fin):**
+1. **Aviso:** la prima como momento, con la oferta de armar su plan.
+2. **Diagnóstico conversacional:** metas, familia, vivienda y deudas.
+3. **Mi patrimonio:** 8 dimensiones, con lo que sabemos, lo que nos contó y lo que falta.
+4. **Mi plan de vida:** metas con números y brechas, con la pensión como ancla.
+5. **Siguiente paso:** plan de la prima.
+6. **Recomendación** con transparencia y huella.
+7. **Mis reglas.**
 
-## MVP (H0: prototipo de 4 semanas, datos ficticios)
-**Incluye dos journeys, en WhatsApp simulado y app web móvil:**
-- **Laura (renta masiva), prima de junio:** aviso anticipado con el monto, foto con puntaje y colchón, metas con proyección, asesoría con perfil de 6 preguntas, ejecución simulada con biometría y mandato para la prima de diciembre.
-- **Juliana (renta media), diciembre de oro:** impuesto estimado del año, aporte acumulado, faltante para su punto óptimo de pensión voluntaria, explicación de la permanencia conectada a una meta, ejecución antes del 31 de diciembre, mandato mensual para el año siguiente y el segundo vehículo (aportes voluntarios a la obligatoria) explicado según la meta.
+**Journey de Juliana:** diciembre de oro, "tu impuesto paga parte de tu ahorro", cada peso a su vehículo y confirmación con regla mensual.
 
-**Comunes a ambos:** puntaje de 0 a 1.000 con 5 pilares (colchón, rumbo, riesgo a la medida, costo y eficiencia, constancia), tarjeta de transparencia, "Mis reglas", botón "hablar con un asesor" y vista del asesor con el mismo plan.
+**Vista del consultor:** el mismo plan, escenarios y guion.
 
-**Calculadora tributaria simplificada y explícita:** salario, aportes del año y supuestos visibles. Nunca se muestra a quien no paga renta.
+**Nueva vista "el motor por dentro"** (para negocio): para un afiliado, qué metas tiene, qué escenarios se activaron (incluidos los restrictivos), qué acciones fueron elegibles, por qué se eligió una y qué objetivo de negocio mueve.
 
-**No incluye:** datos reales, dinero real, integración con sistemas, finanzas abiertas, modelos de IA entrenados (reglas deterministas), pensión obligatoria como eje, ni otras dimensiones (vivienda, seguros).
+**No incluye:** datos reales, dinero real, integración con sistemas, finanzas abiertas, modelos entrenados (reglas y puntajes simulados y explicados).
 
 ## Hipótesis del MVP y umbrales
 | Hipótesis | Umbral |
 |---|---|
-| H1 · Proponer el destino antes de la prima convierte más que después | Intención al menos 30% mayor en la versión "antes" |
-| H2 · El afiliado deja un mandato si tiene tope, aviso y revocación | Al menos 3 de 5 lo activan |
-| H3 · Ejecuta una recomendación automatizada sin pedir un humano | Al menos 3 de 5 |
-| H4 · La transparencia sube la confianza | Confianza igual o mayor con la tarjeta |
-| H7 · El ahorro de impuesto en pesos y el punto óptimo mueven a aportar más (renta media) | Al menos 3 de 5 suben su aporte simulado y explican la permanencia |
-| H8 · El faltante personalizado de diciembre convierte más que un mensaje genérico | Intención al menos 30% mayor |
+| H10 · Ver el patrimonio y el plan completo aumenta la intención de actuar frente a recibir solo la recomendación | Al menos 20% más |
+| H9 · Paridad de calidad: un consultor senior aprobaría el plan y la recomendación | Al menos 80% sin cambios de fondo |
+| H1 · Proponer antes de la prima convierte más que después | Al menos 30% más |
+| H2 · El afiliado deja un mandato con tope, aviso y revocación | Al menos 3 de 5 |
+| H7 · El ahorro de impuesto en pesos y el punto óptimo mueven a aportar (renta media) | Al menos 3 de 5 |
 
 ## Mecánicas que el diseño debe aterrizar
-1. **Aviso anticipado con monto estimado** — calendario del dinero colombiano (diferencial propio).
-2. **"Tu impuesto paga parte de tu ahorro", el punto óptimo y cada peso al vehículo correcto según la meta** — diferencial propio para la renta media (ver `empresa/beneficios-tributarios.md`); la lógica de mostrar el beneficio en pesos se inspira en Robinhood.
-3. **Puntaje con pilares y "qué lo mueve"** — Nu Smart Invest y WHOOP.
-4. **Recomendación con por qué, riesgo en pesos, costo y alternativas** — Origin, BBVA y la lección del Fondo E de Chile.
-5. **Mandato con seis campos y "Mis reglas"** — AP2, Wealthfront Autopilot y Cleo Autopilot.
-
-## Variantes que el diseño debe soportar
-- **Asesoría asistida:** si el AMV o la SFC no habilitan la asesoría completa automatizada, el motor prepara y un asesor certificado firma en un clic.
-- **Caso tributario complejo:** si el afiliado tiene dependientes, otras deducciones o ingresos no laborales, el cálculo se marca como estimado y se ofrece un asesor.
+1. **Diagnóstico conversacional antes que formularios** — método del mejor consultor; Wealthsimple con Conquest.
+2. **Mapa del patrimonio con estado por dimensión** — DBS NAV Planner; visión de Carolina.
+3. **Plan de vida con brechas y la pensión como ancla** — diferencial de la AFP.
+4. **Siguiente paso explicado, con riesgo en pesos, costo y transparencia** — Origin, BBVA, Nu Smart Invest.
+5. **Motor visible para negocio** (escenarios, elegibilidad, prioridad y objetivo) — trabajo previo de Carolina.

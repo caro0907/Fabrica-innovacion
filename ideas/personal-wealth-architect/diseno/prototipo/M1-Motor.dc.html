@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El motor por dentro</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E6A4E}a:hover{color:#09503A}
+</style>
+</helmet>
+<div style="width: 1440px; height: 900px; box-sizing: border-box; background: #F2F4F3; font-family: 'Plus Jakarta Sans', sans-serif; color: #12241F; display: flex; flex-direction: column">
+<div style="background: #12241F; color: #FFFFFF; padding: 16px 28px; display: flex; justify-content: space-between; align-items: center">
+<div style="display: flex; gap: 16px; align-items: baseline"><span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700">El motor por dentro</span><span style="font-size: 13px; color: #B8CCC4">Laura R. · datos y puntajes simulados</span></div>
+<div style="font-size: 13px; color: #B8CCC4">Regla: solo son elegibles las acciones que mejoran una meta de la afiliada. El objetivo de negocio prioriza entre ellas.</div>
+</div>
+<div style="flex-grow: 1; padding: 20px 28px; display: grid; grid-template-columns: 260px 260px minmax(0, 1fr); gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 12px; font-weight: 700; color: #4A5C56">1 · CONOCIMIENTO</div>
+<div style="background: #FFFFFF; border-radius: 16px; padding: 14px; display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 6px 8px; font-size: 13px">
+<span style="color: #4A5C56">Segmento</span><strong>Renta masiva</strong>
+<span style="color: #4A5C56">Arquetipo</span><strong>Pragmática</strong>
+<span style="color: #4A5C56">Momento</span><strong>Prima en 14 días</strong>
+</div>
+<div style="background: #FFFFFF; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; line-height: 1.4">
+<strong>Señales</strong>
+<span>Salario estable, 14 años cotizados</span>
+<span>Cesantías: $9,4 M</span>
+<span>Ahorro externo declarado: $3,0 M</span>
+<span>Hija de 8 años · arriendo</span>
+<span>Sin deudas caras (declarado)</span>
+</div>
+<div style="font-size: 12px; font-weight: 700; color: #4A5C56; margin-top: 4px">2 · PLAN (OBJETIVOS DE LA AFILIADA)</div>
+<div style="background: #FFFFFF; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 8px; font-size: 13px">
+<div style="display: flex; justify-content: space-between"><span>Colchón 3 meses</span><strong>40%</strong></div>
+<div style="display: flex; justify-content: space-between"><span>Casa en 10 años</span><strong>21%</strong></div>
+<div style="display: flex; justify-content: space-between"><span>Pensión (brecha)</span><strong>$0,7 M/mes</strong></div>
+<div style="display: flex; justify-content: space-between"><span>Educación hija</span><strong>Sin definir</strong></div>
+<div style="display: flex; justify-content: space-between"><span>Protección familia</span><strong>Incompleta</strong></div>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px">
+<div style="font-size: 12px; font-weight: 700; color: #4A5C56">3 · ESCENARIOS EVALUADOS</div>
+<div style="background: #FFFFFF; border-radius: 16px; padding: 6px 14px; display: flex; flex-direction: column; font-size: 13px">
+<sc-for list="{{escenarios}}" as="e" hint-placeholder-count="8">
+<div style="display: flex; justify-content: space-between; gap: 8px; padding: 9px 0; border-bottom: 1px solid #EEF1F0">
+<span style="line-height: 1.3">{{e.nombre}}</span>
+<span style="{{e.chip}}">{{e.estado}}</span>
+</div>
+</sc-for>
+</div>
+<div style="font-size: 12px; color: #4A5C56; line-height: 1.4">Los restrictivos se evalúan primero: si uno aplica, frena o filtra las acciones comerciales.</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 12px; min-width: 0">
+<div style="font-size: 12px; font-weight: 700; color: #4A5C56">4 Y 5 · ACCIONES ELEGIBLES Y PRIORIZACIÓN</div>
+<div style="background: #FFFFFF; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column">
+<div style="display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.2fr) minmax(0, 1.3fr) minmax(0, 0.8fr) minmax(0, 0.9fr); gap: 8px; font-size: 12px; font-weight: 700; color: #4A5C56; padding-bottom: 8px; border-bottom: 1px solid #E3E9E6">
+<span>Acción</span><span>Meta de la afiliada</span><span>Objetivo de negocio</span><span>Impacto*</span><span>Resultado</span>
+</div>
+<sc-for list="{{acciones}}" as="a" hint-placeholder-count="5">
+<div style="display: grid; grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.2fr) minmax(0, 1.3fr) minmax(0, 0.8fr) minmax(0, 0.9fr); gap: 8px; font-size: 13px; padding: 10px 0; border-bottom: 1px solid #EEF1F0; align-items: center">
+<span style="font-weight: 600; line-height: 1.35">{{a.accion}}</span><span>{{a.meta}}</span><span>{{a.objetivo}}</span><span>{{a.impacto}}</span><span style="{{a.chip}}">{{a.resultado}}</span>
+</div>
+</sc-for>
+<div style="font-size: 11px; color: #4A5C56; padding-top: 8px">*Impacto incremental estimado frente a grupo de control (modelo de uplift). Valores simulados para el prototipo.</div>
+</div>
+<div style="background: #12241F; color: #FFFFFF; border-radius: 16px; padding: 14px 16px; font-size: 14px; line-height: 1.5"><strong>Por qué ganó "plan de la prima":</strong> cierra la brecha más urgente de Laura (colchón), avanza su casa, y es la de mayor impacto incremental en depósito neto en su momento (la prima). La inversión de largo plazo para la pensión queda bloqueada hasta que el colchón llegue a 3 meses: el plan primero.</div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<div style="background: #FFFFFF; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px; font-size: 13px">
+<div style="font-size: 12px; font-weight: 700; color: #4A5C56">6 · ACTIVACIÓN</div>
+<span>Canal: chat de mensajería → app</span>
+<span>Tono: cercano · vigencia: 14 días</span>
+<span>Límite: 1 contacto comercial por semana</span>
+<span>Consultor: disponible en cada paso</span>
+</div>
+<div style="background: #FFFFFF; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px; font-size: 13px">
+<div style="font-size: 12px; font-weight: 700; color: #4A5C56">7 · MEDICIÓN Y APRENDIZAJE</div>
+<span>Grupo de control: 10% sin contacto</span>
+<span>KPI: depósito neto a 30 días, avance del colchón</span>
+<span>Calidad: paridad con consultor senior, NPS</span>
+<span>Freno: se pausa si suben las quejas</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+chip(kind) {
+var c = {
+act: ['#E3EFEA', '#0E6A4E'],
+no: ['#E6E6E6', '#3F3F3F'],
+blo: ['#FBE3DF', '#8A2416'],
+sel: ['#0E6A4E', '#FFFFFF'],
+alt: ['#FFF4E2', '#7A4A0E']
+}[kind];
+return 'justify-self: start; flex-shrink: 0; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 10px; background: ' + c[0] + '; color: ' + c[1];
+}
+renderVals() {
+var self = this;
+var esc = [
+['Restrictivo · deuda cara sin colchón', 'No aplica', 'no'],
+['Restrictivo · evento de vida sensible', 'No aplica', 'no'],
+['Restrictivo · no contacto', 'No aplica', 'no'],
+['Colchón insuficiente', 'Activo', 'act'],
+['Prima con rumbo', 'Activo', 'act'],
+['Brecha pensional', 'Activo', 'act'],
+['Protección familiar incompleta', 'Activo', 'act'],
+['Diciembre de oro', 'No aplica: no paga renta', 'no']
+];
+var acc = [
+['Plan de la prima: 70% colchón, 30% casa, y mandato', 'Colchón, casa', 'Depósito neto', 'Alto', 'Elegida', 'sel'],
+['Ahorro automático de $200 mil al mes', 'Casa, pensión', 'Depósito neto', 'Medio', 'Siguiente', 'alt'],
+['Confirmar beneficiarios y protección', 'Familia', 'Experiencia', 'Medio', 'Servicio', 'alt'],
+['Inversión de largo plazo para la pensión', 'Pensión', 'Activos administrados', 'Medio', 'Bloqueada', 'blo'],
+['Pensión voluntaria con beneficio tributario', 'Pensión, casa', 'Depósito neto', 'Bajo', 'No elegible', 'no']
+];
+return {
+escenarios: esc.map(function (e) { return { nombre: e[0], estado: e[1], chip: self.chip(e[2]) }; }),
+acciones: acc.map(function (a) { return { accion: a[0], meta: a[1], objetivo: a[2], impacto: a[3], resultado: a[4], chip: self.chip(a[5]) }; })
+};
+}
+}
+</script>
+</body>
+</html>

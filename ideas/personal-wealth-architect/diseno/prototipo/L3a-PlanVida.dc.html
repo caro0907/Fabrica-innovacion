@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Mi plan de vida</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E6A4E}a:hover{color:#09503A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F2F4F3; font-family: 'Plus Jakarta Sans', sans-serif; color: #12241F; padding: 24px 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="L2-Foto.dc.html" aria-label="Volver" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 22px; background: #FFFFFF"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12241F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a>
+<div style="font-size: 13px; color: #4A5C56; font-weight: 600">Paso 3 de 6 · Tu plan</div>
+</div>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 28px; line-height: 1.1">Tu plan de vida, con números</h1>
+<div style="background: #12241F; color: #FFFFFF; border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline"><strong style="font-size: 15px">Tu pensión a los 57</strong><span style="font-size: 12px; color: #B8CCC4">ANCLA DEL PLAN</span></div>
+<div style="font-size: 13px; color: #DCE6E2; line-height: 1.4">Vas para unos <strong style="color: #FFFFFF">$2,3 M al mes</strong>. Para vivir tranquila te gustaría <strong style="color: #FFFFFF">$3,0 M</strong>. Te faltan $0,7 M al mes.</div>
+<div style="height: 8px; border-radius: 4px; background: #2C4A41"><div style="width: 77%; height: 8px; border-radius: 4px; background: #F3C98A"></div></div>
+<div style="font-size: 11px; color: #B8CCC4">Estimado ilustrativo; cambia con tu salario y tus aportes.</div>
+</div>
+<sc-for list="{{metas}}" as="m" hint-placeholder-count="3">
+<div style="background: #FFFFFF; border-radius: 18px; padding: 12px 16px; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; gap: 8px"><strong style="font-size: 15px">{{m.nombre}}</strong><span style="font-size: 12px; font-weight: 700; color: #4A5C56">{{m.orden}}</span></div>
+<div style="font-size: 13px; color: #2E403A">{{m.texto}}</div>
+<div style="height: 8px; border-radius: 4px; background: #E3E9E6"><div style="{{m.barra}}"></div></div>
+</div>
+</sc-for>
+<div style="background: #FFF4E2; border-radius: 16px; padding: 12px 14px; font-size: 13px; line-height: 1.45"><strong>El plan primero:</strong> antes de invertir, tu colchón. Después tu casa y tu pensión. Tu plan se actualiza solo con tu salario, tus primas y tus cesantías.</div>
+<div style="flex-grow: 1"></div>
+<a href="L3-Plan.dc.html" style="display: block; text-align: center; text-decoration: none; background: #0E6A4E; color: #FFFFFF; font-weight: 700; font-size: 16px; padding: 15px; border-radius: 14px">Mi siguiente paso: la prima de junio</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+var raw = [
+['Colchón de 3 meses', 'Prioridad 1', 'Tienes 1,2 meses ($3,0 M de $7,5 M)', 40, '#B9721C'],
+['Tu casa en 10 años', 'Prioridad 2', 'Cuota inicial de $45 M · llevas $9,4 M con tus cesantías', 21, '#0E6A4E'],
+['Educación de tu hija', 'Por definir', 'En 10 años empieza la universidad. ¿La planeamos?', 0, '#0E6A4E']
+];
+var metas = raw.map(function (r) {
+return {
+nombre: r[0],
+orden: r[1],
+texto: r[2],
+barra: 'width: ' + r[3] + '%; height: 8px; border-radius: 4px; background: ' + r[4]
+};
+});
+return { metas: metas };
+}
+}
+</script>
+</body>
+</html>
