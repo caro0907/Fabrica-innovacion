@@ -87,3 +87,15 @@ Nadie que trabaje en el sector financiero.
 - **¿Qué se eliminó?**
   - El onboarding largo: el perfil de idoneidad se resume en 6 preguntas que ya se dan por respondidas en el prototipo, con un enlace para verlas.
   - Una pantalla de metas separada: las metas viven dentro del plan.
+
+## 7. Prototipo
+- **Lienzo de diseño editable** en Claude: "Arquitecto del Siguiente Peso · Prototipo", con 10 pantallas.
+- **Copia de las fuentes** en `prototipo/`.
+- **Pantallas interactivas:**
+  - L3: deslizador de la prima y montos mensuales, con proyección.
+  - L4: confirmación con huella.
+  - L5: pausar la regla.
+  - J3: casilla "tengo crédito de vivienda" y casilla de comprensión de la condición.
+  - J4: confirmación y regla mensual.
+- **Costos de las alternativas:** quedan como marcadores `[X]%` hasta tener tarifas públicas.
+- **Beneficios de la pensión voluntaria más allá de la renta:** menos retención mensual (J2) y abono a la hipoteca (J1 y J3), según `empresa/beneficios-tributarios.md`.

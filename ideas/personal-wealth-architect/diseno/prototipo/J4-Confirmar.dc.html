@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Confirmar y regla mensual</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E6A4E}a:hover{color:#09503A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F2F4F3; font-family: 'Plus Jakarta Sans', sans-serif; color: #12241F; padding: 24px 20px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="J3-Vehiculos.dc.html" aria-label="Volver" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 22px; background: #FFFFFF"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12241F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a>
+<div style="font-size: 13px; color: #4A5C56; font-weight: 600">Paso 3 de 3</div>
+</div>
+<sc-if value="{{paso1}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; line-height: 1.15">Cierra tu año con todo el beneficio</h1>
+<div style="background: #FFFFFF; border-radius: 18px; padding: 6px 16px">
+<div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #E3E9E6; font-size: 14px"><span style="color: #4A5C56">De tu prima (20 de dic.)</span><strong>$4,25 M</strong></div>
+<div style="display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #E3E9E6; font-size: 14px"><span style="color: #4A5C56">De tu cuenta (hoy)</span><strong>$2,45 M</strong></div>
+<div style="display: flex; justify-content: space-between; padding: 12px 0; font-size: 15px"><span style="font-weight: 700">A pensión voluntaria · casa</span><strong>$6,7 M</strong></div>
+</div>
+<div style="background: #E3EFEA; border-radius: 16px; padding: 12px 14px; font-size: 14px; line-height: 1.45">Renta estimada de 2026: de $2,74 M a <strong>$1,79 M</strong>.</div>
+<div style="font-size: 12px; color: #4A5C56; line-height: 1.45">Recomendación profesional automatizada, no independiente. Costo: [X]% al año. Estimado tributario con supuestos visibles en el paso 1.</div>
+<button type="button" onClick="{{confirmar}}" style="min-height: 52px; border: 0; border-radius: 14px; background: #0E6A4E; color: #FFFFFF; font-family: inherit; font-weight: 700; font-size: 16px; cursor: pointer">Confirmar con mi huella</button>
+</div>
+</sc-if>
+<sc-if value="{{paso2}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<div style="width: 64px; height: 64px; border-radius: 32px; background: #E3EFEA; display: flex; align-items: center; justify-content: center"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#0E6A4E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></div>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; line-height: 1.15">Listo, Juliana. Llegas a tu punto óptimo antes del 31.</h1>
+<div style="background: #FFF4E2; border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 15px; line-height: 1.45; font-weight: 600">¿Y si el próximo año no esperas a diciembre?</div>
+<div style="display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 6px 10px; font-size: 13px; line-height: 1.35">
+<span style="color: #7A4A0E">Cuando</span><span>Cada pago de nómina</span>
+<span style="color: #7A4A0E">Qué hago</span><span>$1.060.000 a pensión voluntaria (casa)</span>
+<span style="color: #7A4A0E">Ganas</span><span>Menos retención desde el primer mes</span>
+<span style="color: #7A4A0E">Tope</span><span>Tu punto óptimo; te aviso si tu salario cambia</span>
+</div>
+<button type="button" onClick="{{activar}}" style="min-height: 48px; border: 0; border-radius: 12px; background: #12241F; color: #FFFFFF; font-family: inherit; font-weight: 700; font-size: 15px; cursor: pointer">{{botonRegla}}</button>
+</div>
+<a href="A1-Asesor.dc.html" style="text-align: center; font-size: 14px; font-weight: 700; padding: 10px">Ver el aporte a mi pensión con un asesor</a>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { listo: false, regla: false };
+}
+renderVals() {
+var self = this;
+return {
+paso1: !this.state.listo,
+paso2: this.state.listo,
+confirmar: function () { self.setState({ listo: true }); },
+activar: function () { self.setState({ regla: true }); },
+botonRegla: this.state.regla ? 'Regla activa · la ves en Mis reglas' : 'Dejarlo como regla mensual'
+};
+}
+}
+</script>
+</body>
+</html>
