@@ -1,6 +1,6 @@
 # Referentes globales: Personal Wealth Architect (inversión y portafolio)
 
-Investigación del 17 de octubre de 2026. Solo fuentes públicas. Las cifras son las que reportan las propias empresas o la prensa y no fueron verificadas de forma independiente.
+Investigación del 17 de octubre de 2026 (v3: 27 referentes). Solo fuentes públicas. Las cifras son las que reportan las propias empresas o la prensa y no fueron verificadas de forma independiente.
 
 ## Tabla de referentes
 
@@ -36,6 +36,44 @@ Investigación del 17 de octubre de 2026. Solo fuentes públicas. Las cifras son
 - **Gestión automática con costo explícito** (Revolut, Robinhood): depositar y olvidarse, con comisión clara.
 - **El balance primero** (DBS): mostrarle al cliente su foto completa abre la conversación sobre brechas.
 - **El rendimiento visible es el gancho en LatAm** (Mercado Pago, Nu): la competencia por el ahorro del usuario objetivo está en los neobancos, no solo en las otras AFP.
+
+## Profundización v3: los mecanismos de la visión (17 de octubre de 2026)
+
+| Referente | Qué hace | Cifra | Por qué funciona (mecanismo) | Valida | No aplica aquí | Fuente y fecha |
+|---|---|---|---|---|---|---|
+| **AP2, Agent Payments Protocol** (Google) | Estándar para que agentes de IA compren y paguen en nombre del usuario. | Más de 60 organizaciones (American Express, Mastercard, PayPal, Coinbase, entre otras) | Mandatos firmados criptográficamente: un mandato de intención fija las reglas de antemano y uno de transacción registra la compra. Las compras delegadas exigen reglas detalladas desde el inicio. | Mandatos | Diseñado para comercio, no para inversión; aún no se usa en Colombia | [Constellation Research, 17-sep-2025](https://www.constellationr.com/insights/news/googles-agent-payments-protocol-fleshes-out-ai-agent-commerce) |
+| **PRAGMA** (Revolut y NVIDIA) | Modelo fundacional entrenado con eventos bancarios. | 26 millones de usuarios, unos 24.000 millones de eventos; +163,7% en uplift de comunicaciones, +130,2% en riesgo de crédito y +40,5% en recomendación de productos frente a modelos específicos | Cada evento es una tripleta clave, valor y tiempo: el modelo aprende la "película" del cliente. Un solo modelo sirve para muchas tareas. Bajó 47,1% en antilavado, por mirar historias aisladas. | Conoce tu flujo de dinero; el momento oportuno | Requiere escala de datos e infraestructura que el MVP no necesita | [Philipp Dubach, 26-abr-2026](https://philippdubach.com/posts/inside-pragma-revoluts-foundation-model-for-banking/) (arXiv 2604.08649) |
+| **nuFormer** (Nubank) | Modelo fundacional de comportamiento financiero. | En producción en tarjetas de Brasil y México y en crédito en Brasil; **en pruebas en tarjetas de Colombia**. Agentes de IA atienden más del 60% de las conversaciones de soporte en Brasil. | La nueva generación cuadruplicó el contexto y la velocidad, a menor costo. | Conoce tu flujo; alerta competitiva | Hoy aplicado a crédito, no a inversión | [Nu Holdings, resultados 2T26, 13-ago-2026](https://nu.com/en/newsroom/company/nu-holdings-ltd-reports-second-quarter-2026-financial-results) |
+| **Maxiaocai** (Ant Group, China) | Gestor financiero con IA en Alipay y Ant Fortune: análisis de mercado, explicaciones simples y asesoría de inversión personalizada. | 70 millones de usuarios activos mensuales (45% en ciudades por debajo del tercer nivel); más de 200 instituciones conectadas | Modelo propio más un ecosistema abierto de gestoras. Lleva la asesoría a la mayoría, no a la élite. | Asesoría para todos; IA que explica | Su escala y su modelo de super app | [Business Wire, sep-2024](https://www.businesswire.com/news/home/20240905719583/en/Ant-Group-Unveils-AI-Financial-Manager-at-Shanghais-INCLUSION-Conference) |
+| **Morgan Stanley** (AI @ Morgan Stanley y Debrief) | Debrief graba reuniones y redacta seguimientos; la IA deriva prospectos de los canales a asesores humanos. | Unos 30 minutos ahorrados por reunión (testimonio); referidos exitosos se duplicaron a más de 100.000 en 2024; US$64.000 millones en activos netos nuevos en el 3T24 | La IA libera tiempo y enruta al cliente correcto al humano correcto. | Dos caras; escalar al humano | Su base de clientes de alto patrimonio | [The Daily Upside, 22-oct-2024](https://www.thedailyupside.com/technology/artificial-intelligence/how-morgan-stanleys-ai-helped-close-100k-new-clients-this-year/) |
+| **Wealthfront Autopilot** | Mueve automáticamente el excedente de la cuenta corriente sobre un umbral hacia ahorro o inversión. | Sin cifra pública de uso | El usuario fija la regla una vez; se puede cancelar cada transferencia dentro de 24 horas y apagar cuando quiera. | Mandatos con control | Depende de ver la cuenta corriente, que la AFP no ve | [Wealthfront, 2-sep-2020](https://www.wealthfront.com/blog/meet-autopilot-a-new-service-that-automates-your-savings-strategy/) |
+| **Cleo Autopilot** | Arma un plan financiero de largo plazo y actúa sobre él: aprende patrones de gasto, predice gastos y hace movimientos. | Lista de espera en EE. UU.; sin cifras | El usuario fija las barreras y el sistema solo ejecuta decisiones dentro de un plan ya aprobado. | Plan vivo; mandatos | Por ahora recomienda; la ejecución llega después | [PR Newswire, 5-feb-2026](https://www.streetinsider.com/Press+Releases/Cleo+Launches+Autopilot%3A+Automating+Your+Money+Moves/25951686.html) |
+| **Fondo E de las AFP chilenas** (lección, no modelo) | El fondo más conservador cayó en promedio 10,39% real entre enero y septiembre de 2026; las siete AFP perdieron casi igual. | -9,91% a -10,93% | Concentración de estrategias y una regla de rentabilidad mínima relativa que incentiva seguir al promedio. | Riesgo explicado en pesos | — | [El Clarín de Chile, 16-oct-2026](https://www.elclarin.cl/2026/10/16/efecto-manada-afp-perdidas-fondo-e-2026/) |
+
+*Referente del grupo sin información pública: la hiperpersonalización de AFP Capital (Chile) no tiene fuentes públicas verificables, así que no se incluye en este documento.*
+
+## Matriz: qué pieza del concepto valida cada referente
+
+| Referente | Conoce tu flujo | Metas y plan vivo | Asesoría completa y transparente | Ejecuta y mandatos | Dos caras | Contexto colombiano |
+|---|---|---|---|---|---|---|
+| Nu Smart Invest | | ● | ◐ (promete imparcialidad sin explicar) | | | |
+| Origin | | ● | ● | | | |
+| Betterment | | | ● | | ● | |
+| Revolut (AIR, Robo, Invest) | | | ◐ | ● | | |
+| BBVA (España, México) | | | ● (comisión explícita) | ◐ | ● | |
+| DBS NAV Planner | ◐ | ● | ◐ | | | |
+| Robinhood Strategies | | ● | ● | ● | | |
+| Wealthsimple + Conquest | | ● | ● | | ● | |
+| WHOOP | ● (qué conducta mueve el puntaje) | | | | | |
+| PRAGMA / nuFormer | ● | | | | | ◐ (nuFormer en pruebas en Colombia) |
+| Ant Group Maxiaocai | | | ● (asesoría masiva) | | | |
+| Morgan Stanley | | | | | ● | |
+| AP2 / Wealthfront / Cleo | | ● (Cleo) | | ● | | |
+| Nu Colombia / Mercado Pago / trii | | | | ◐ | | ● (competencia por el ahorro) |
+| AFP colombianas (Porvenir, Skandia) | | | | | | ● (oferta amplia, sin asesoría automatizada) |
+| **El Arquitecto del Siguiente Peso** | ● | ● | ● | ● | ● | ● |
+
+● = lo hace · ◐ = lo hace en parte. **Ninguno combina las seis piezas.** Y nadie usa el calendario del dinero colombiano ni el ingreso conocido: esa es la oportunidad.
 
 ## Contexto habilitador y regulatorio (Colombia)
 
