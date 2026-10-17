@@ -16,7 +16,26 @@
 | **Pensión voluntaria (FPV) y cuentas AFC** | Renta exenta (arts. 126-1 y 126-4 ET) | 30% del ingreso y 3.800 UVT, compartido entre ambos | **Sí** | 10 años de permanencia, o uso para vivienda, o pensión. Si no, el beneficio se devuelve como renta gravable | [Gerencie](https://www.gerencie.com/guia-renta/conceptos/renta-exenta-en-aportes-a-fondos-voluntarios-de-pension) |
 | **Cesantías e intereses de cesantías** | Renta exenta (art. 206 num. 4 ET) | 100% si el salario promedio de los últimos 6 meses es de hasta 350 UVT ($18,3 M al mes); escala decreciente hasta 650 UVT | **Sí** (excepto saldos acumulados hasta 2016) | — | [Gerencie](https://www.gerencie.com/cesantias-exentas-del-impuesto-a-la-renta.html) |
 
-**Pendientes por verificar en el próximo concepto que los use:** si el aporte voluntario por nómina reduce la retención en la fuente del mes; el tratamiento de los rendimientos dentro de cada vehículo; el GMF (4 por mil) en retiros; el efecto de la reforma pensional (Ley 2381 de 2024) en el art. 55; y los aportes del empleador como beneficio para el trabajador (patrocinio).
+## Pensión voluntaria: todos sus beneficios, no solo el de renta
+
+| Beneficio | Qué significa para el afiliado | Fuente |
+|---|---|---|
+| **Renta exenta** | Ver la tabla de vehículos. Según Asofondos, el límite general sube 72 UVT por cada dependiente | [Infobae, 17-ene-2024](https://www.infobae.com/colombia/2024/01/17/reforma-tributaria-cuales-son-los-cambios-en-los-aportes-voluntarios-a-pensiones-y-beneficios-que-rigen-en-2024/) |
+| **Menos retención en la fuente cada mes** | Los aportes no hacen parte de la base de retención. Si aporta por nómina, **ve el beneficio en su siguiente pago**, no un año después | [Asuntos Legales en Accounter, 30-may-2023](https://accounter.co/noticias/actualidad/asuntos-legales-fondos-de-ahorro-voluntario-beneficios-y-como-acceder-a-ellos) |
+| **Vivienda sin perder el beneficio** | Retiro para **comprar vivienda, abonar al crédito hipotecario o pagar leasing habitacional**, sin retención. El fondo gira directamente al vendedor o a la entidad. Si ambos cónyuges aportan, cada uno conserva el beneficio en proporción | [Colfondos: retiro para vivienda](https://www.colfondos.com.co/dxp/personas/pensiones-voluntarias/retiro-para-vivienda) |
+| **Permanencia sin tope** | Puede quedarse el tiempo que quiera. A los 10 años de cada aporte, el retiro es libre de impuesto | Asuntos Legales |
+| **Pensión y beneficiarios** | El beneficio se conserva si se usa para pensión de vejez o invalidez, o para beneficiarios si fallece | Infobae y Asuntos Legales |
+| **Aportes del empleador (planes institucionales)** | El empleador puede aportar por sus trabajadores con tratamiento tributario favorable: **es un canal B2B2C y un beneficio laboral** | Asuntos Legales; *el detalle de la deducción para la empresa está a validar* |
+| **Accesible** | Aportes desde unos $30.000 al mes, variables cada mes. Abierto a afiliados del régimen individual, del régimen de prima media e independientes | Asuntos Legales |
+| **Liquidez** | Se puede retirar en cualquier momento; si no se cumple ninguna condición, se pierde el beneficio | Asuntos Legales |
+
+**Oportunidades de diseño que salen de aquí:**
+1. **"Lo ves en tu próximo pago":** el aporte por nómina reduce la retención del mismo mes. El beneficio deja de ser abstracto.
+2. **Abonar a la hipoteca con beneficio tributario (renta media con crédito de vivienda):** aportar a la pensión voluntaria y usar ese dinero para abonar al crédito hipotecario conserva el beneficio. Cada abono le cuesta al afiliado unos 14% menos. *A validar con un experto: requisitos y si hay restricciones de tiempo entre aporte y retiro.*
+3. **Planes institucionales:** el empleador como canal y la pensión voluntaria como beneficio laboral, conectado con el modelo B2B2C.
+4. **Masiva accesible:** desde $30.000 al mes; para la renta masiva el valor no es tributario sino de disciplina, metas y vivienda.
+
+**Pendientes por verificar en el próximo concepto que los use:** el tratamiento de los rendimientos dentro de cada vehículo; el GMF (4 por mil) en retiros; el efecto de la reforma pensional (Ley 2381 de 2024) en el art. 55; y los aportes del empleador como beneficio para el trabajador (patrocinio).
 
 ## Lo que esto significa para el diseño de productos
 1. **El beneficio depende del segmento.** Por debajo de unos $6,4 M de salario mensual, el asalariado típico no paga renta y el beneficio es cero (cálculo simplificado). Siempre hay que calcularlo por segmento.
