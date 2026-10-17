@@ -21,7 +21,7 @@ Tu arquitecto de ahorro e inversión sabe cuándo te llega dinero extra, te prop
 ## MVP (H0: prototipo de 4 semanas, datos ficticios)
 **Incluye dos journeys, en WhatsApp simulado y app web móvil:**
 - **Laura (renta masiva), prima de junio:** aviso anticipado con el monto, foto con puntaje y colchón, metas con proyección, asesoría con perfil de 6 preguntas, ejecución simulada con biometría y mandato para la prima de diciembre.
-- **Juliana (renta media), diciembre de oro:** impuesto estimado del año, aporte acumulado, faltante para su punto óptimo, explicación de la permanencia de 10 años conectada a una meta, ejecución antes del 31 de diciembre y mandato mensual para el año siguiente.
+- **Juliana (renta media), diciembre de oro:** impuesto estimado del año, aporte acumulado, faltante para su punto óptimo de pensión voluntaria, explicación de la permanencia conectada a una meta, ejecución antes del 31 de diciembre, mandato mensual para el año siguiente y el segundo vehículo (aportes voluntarios a la obligatoria) explicado según la meta.
 
 **Comunes a ambos:** puntaje de 0 a 1.000 con 5 pilares (colchón, rumbo, riesgo a la medida, costo y eficiencia, constancia), tarjeta de transparencia, "Mis reglas", botón "hablar con un asesor" y vista del asesor con el mismo plan.
 
@@ -41,7 +41,7 @@ Tu arquitecto de ahorro e inversión sabe cuándo te llega dinero extra, te prop
 
 ## Mecánicas que el diseño debe aterrizar
 1. **Aviso anticipado con monto estimado** — calendario del dinero colombiano (diferencial propio).
-2. **"Tu impuesto paga parte de tu ahorro" y el punto óptimo** — diferencial propio para la renta media; la lógica de mostrar el beneficio en pesos se inspira en Robinhood.
+2. **"Tu impuesto paga parte de tu ahorro", el punto óptimo y cada peso al vehículo correcto según la meta** — diferencial propio para la renta media (ver `empresa/beneficios-tributarios.md`); la lógica de mostrar el beneficio en pesos se inspira en Robinhood.
 3. **Puntaje con pilares y "qué lo mueve"** — Nu Smart Invest y WHOOP.
 4. **Recomendación con por qué, riesgo en pesos, costo y alternativas** — Origin, BBVA y la lección del Fondo E de Chile.
 5. **Mandato con seis campos y "Mis reglas"** — AP2, Wealthfront Autopilot y Cleo Autopilot.

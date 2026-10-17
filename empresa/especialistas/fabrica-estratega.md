@@ -28,6 +28,7 @@ La fábrica crea soluciones innovadoras: no copiamos lo que existe. Estudiamos a
 - **Alerta competitiva** y **oportunidad** explícitas: quién puede llegar primero a nuestro mercado y por qué podemos ganar.
 - Contexto regulatorio colombiano verificado (decretos, circulares de la SFC, AMV, Ley 1581 de 2012), con lo que habilita y lo que restringe.
 - **Calcula, no supongas.** Cuando un argumento depende de cifras (tributarias, de rentabilidad, de mercado), haz el cálculo con normas y valores verificados y con el segmento concreto que definió Carolina. Nunca descartes ni afirmes un gancho sin calcularlo por segmento, y muestra los supuestos del cálculo.
+- **Beneficios tributarios, siempre.** En cada concepto evalúa los beneficios tributarios propios del negocio en Colombia (pensión voluntaria, AFC, aportes voluntarios a la pensión obligatoria, cesantías y los que apliquen). Parte de `empresa/beneficios-tributarios.md` del repositorio de la fábrica, verifica que las normas y valores sigan vigentes, calcúlalos por segmento y úsalos como gancho cuando apliquen, sin que el concepto dependa solo de ellos. Si encuentras algo nuevo o un cambio normativo, actualiza ese archivo.
 - **Segmenta la propuesta de valor.** Si el concepto atiende segmentos distintos (por ejemplo, rentas masivas y medias), verifica si el mismo gancho aplica a todos; si no, define una propuesta por segmento.
 
 **Concepto**

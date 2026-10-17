@@ -98,21 +98,27 @@ Idea de trabajo para el rol actual de Carolina en una AFP colombiana. Se constru
 - La renta exenta laboral del 25% tiene tope de 790 UVT al año, y junto con las demás rentas exentas y deducciones está limitada al **40% del ingreso neto y a 1.340 UVT** ($70,2 millones en 2026). [Garrigues, reforma tributaria de 2022](https://www.garrigues.com/sites/default/files/noticias/files/20221128_alerta_colombia_reforma_tributaria.pdf)
 - La tarifa marginal es 0% hasta 1.090 UVT de renta gravable ($57,1 millones en 2026), 19% hasta 1.700 UVT y 28% hasta 4.100 UVT. [Estatuto Tributario, art. 241](https://actualicese.com/estatutotributario/241-2/) · [INCP: UVT 2026 = $52.374](https://incp.org.co/agendatributariaincp/noticias/2025/12/dian-fijo-en-52-374-en-valor-de-la-uvt-para-el-ano-gravable-2026/)
 
-**El cálculo por segmento** *(simplificado: asalariado sin dependientes ni otras deducciones, 13 salarios al año contando la prima, aportes obligatorios de 8% a 9%, cesantías exentas; a validar con un experto tributario)*:
+**El segundo vehículo:** los aportes voluntarios a la cuenta de pensión obligatoria son ingreso no constitutivo de renta hasta el 25% del ingreso y 2.500 UVT (art. 55 ET), y quedan por fuera del límite del 40% *(a validar con un experto)*. A cambio, solo sirven para la pensión: si se retiran para otro fin, pagan una retención del 35%. [Tributar Asesores en Accounter, 21-jun-2024](https://accounter.co/noticias/actualidad/editorial-tributar-asesores-sas-ahorros-voluntarios-en-la-reforma-pensional)
 
-| Salario mensual | Renta gravable sin aportes | Impuesto anual sin aportes | Ahorro si aporta $1.000.000 al mes | Aporte anual máximo que aún ahorra impuesto | Ahorro máximo |
-|---|---|---|---|---|---|
-| $4.000.000 | 690 UVT | $0 | $0 | — | $0 |
-| $6.000.000 | 1.024 UVT | $0 | $0 | — | $0 |
-| $8.000.000 | 1.366 UVT | $2,7 millones | $1,7 millones | $19,1 millones | $2,7 millones |
-| $8.500.000 | 1.451 UVT | $3,6 millones | $1,7 millones | $20,3 millones | $2,9 millones |
-| $9.000.000 | 1.536 UVT | $4,4 millones | $1,7 millones | $21,5 millones | $3,1 millones |
+**El tercer elemento:** las cesantías y sus intereses son renta exenta (100% para salarios de hasta 350 UVT), pero **consumen parte del límite del 40%**. [Gerencie](https://www.gerencie.com/cesantias-exentas-del-impuesto-a-la-renta.html)
+
+**El cálculo por segmento** *(simplificado: asalariado sin dependientes ni otras deducciones, 12 salarios más prima, aportes obligatorios de 8% a 9%, cesantías e intereses exentos dentro del límite del 40%; a validar con un experto tributario. Detalle en `empresa/beneficios-tributarios.md`)*:
+
+| Salario mensual | Impuesto anual sin aportes | Ahorro aportando $1 M al mes a pensión voluntaria | Punto óptimo de la pensión voluntaria | Ahorro con $24 M al año en voluntario a la obligatoria |
+|---|---|---|---|---|
+| $4,0 M a $6,0 M | $0 | $0 | — | $0 |
+| $7,0 M | $1,0 M | $1,0 M | $7,4 M/año | $1,0 M |
+| $8,0 M | $2,7 M | $1,7 M | $12,0 M/año | $2,7 M |
+| $8,5 M | $3,6 M | $1,7 M | $12,7 M/año | $3,4 M |
+| $9,0 M | $4,4 M | $1,7 M | $13,4 M/año | $3,4 M |
 
 **Lo que revela el cálculo:**
 1. **El umbral está cerca de $6,4 millones al mes.** Por debajo, el afiliado no paga renta y el beneficio es cero. Para la renta masiva, el gancho es otro.
 2. **Para la renta media, cada peso aportado ahorra cerca de 14 centavos de impuesto** (19% de tarifa marginal × 75%, porque el aporte también reduce la base del 25% exento). Es un rendimiento inmediato que ningún neobanco puede ofrecer con una cuenta de ahorros.
-3. **Hay un punto óptimo, y casi nadie lo conoce.** Por el límite del 40%, para un salario de $8,5 millones el beneficio se agota hacia los $20 millones de aporte al año (unos $1,7 millones al mes). Aportar más ya no ahorra impuesto. **Calcular ese punto para cada afiliado es asesoría de alto valor**, que hoy solo da un contador.
-4. **La permanencia de 10 años es una condición, no letra pequeña.** El arquitecto debe explicarla antes de recomendar y conectar el aporte con metas de largo plazo o de vivienda.
+3. **La pensión voluntaria tiene un punto óptimo, y casi nadie lo conoce.** Como las cesantías ya ocupan parte del límite del 40%, para un salario de $8,5 millones el beneficio se agota hacia los $12,7 millones al año (unos $1,06 millones al mes).
+4. **Más allá de ese punto, el beneficio sigue por otro vehículo.** Los aportes voluntarios a la obligatoria pueden casi eliminar el impuesto de la renta media, pero solo sirven para la pensión.
+5. **La asesoría de alto valor es asignar cada peso al vehículo correcto según la meta:** vivienda o mediano plazo a la pensión voluntaria hasta su punto óptimo; pensión a los aportes voluntarios a la obligatoria; corto plazo a ahorro líquido sin beneficio. Hoy ese cálculo solo lo hace un contador.
+6. **Las condiciones de permanencia no son letra pequeña.** El arquitecto las explica antes de recomendar: 10 años, vivienda o pensión para la pensión voluntaria; solo pensión, con retención del 35% si no, para el aporte a la obligatoria.
 
 **Consecuencia para el diseño:** el arquitecto calcula el beneficio con los datos de cada afiliado y lo muestra solo cuando existe, con su cifra. A la renta masiva no se le promete un beneficio que no tiene.
 
@@ -199,10 +205,10 @@ Siguiendo el modelo de Origin:
 
 | # | Momento | Qué pasa | Nivel |
 |---|---|---|---|
-| 1 | **Finales de noviembre** | *"Juliana, este año pagarías unos $3,6 millones de renta. Llevas $6 millones aportados a pensión voluntaria; te faltan unos $14 millones para tu punto óptimo, que ahorra $2,9 millones de impuesto. Con el 60% de tu prima de diciembre y un aporte extra lo completas. ¿Lo vemos?"* | Muestra |
+| 1 | **Finales de noviembre** | *"Juliana, este año pagarías unos $3,6 millones de renta. Llevas $6 millones aportados a pensión voluntaria; te faltan unos $6,7 millones para tu punto óptimo, que ahorra $1,8 millones de impuesto. Con tu prima de diciembre y $2,5 millones más lo completas. ¿Lo vemos?"* | Muestra |
 | 2 | **Entiende la condición** | *"Este beneficio exige que el dinero se quede 10 años, o que lo uses para comprar vivienda o al pensionarte. ¿Tienes una meta así?"* Juliana define la meta "casa en la costa a los 55". | Recomienda |
 | 3 | **Ejecuta antes del 31 de diciembre** | Recibe la recomendación con portafolio, riesgo en pesos, costo y tarjeta de transparencia. Confirma con su huella el día de la prima. | Ejecuta |
-| 4 | **Deja el año siguiente andando** | *"¿Quieres que el próximo año aporte $1.700.000 al mes para llegar a tu punto óptimo sin esperar a diciembre?"* Juliana deja el mandato. | Cumple mandatos |
+| 4 | **Deja el año siguiente andando** | *"¿Quieres que el próximo año aporte $1.060.000 al mes a tu pensión voluntaria para llegar a tu punto óptimo sin esperar a diciembre? Y si quieres ahorrar más impuesto pensando en tu pensión, hay un segundo vehículo: solo sirve para pensionarte, pero no tiene ese tope."* Juliana deja el mandato y pide ver el segundo vehículo con un asesor. | Cumple mandatos |
 
 ---
 
@@ -267,7 +273,7 @@ Siguiendo el modelo de Origin:
 | 6 | **El cálculo tributario se equivoca** para un afiliado con deducciones o ingresos que el arquitecto no conoce, y la promesa se rompe. | Mostrar siempre el cálculo como estimado, con los supuestos visibles; pedir la información que falta; derivar a un asesor o contador en casos complejos. |
 | 7 | **La permanencia de 10 años genera arrepentimiento** cuando el afiliado necesita el dinero. | Recomendar el aporte tributario solo después del colchón y conectado a metas de largo plazo o vivienda. |
 
-**¿Innovación real o copia?** Las piezas existen por separado. La innovación es la combinación: ingreso conocido + calendario del dinero colombiano + mandatos antes de que el dinero llegue + asesoría completa y transparente + punto óptimo tributario personalizado para la renta media. En la investigación no apareció nadie que la tenga, ni en Colombia ni afuera.
+**¿Innovación real o copia?** Las piezas existen por separado. La innovación es la combinación: ingreso conocido + calendario del dinero colombiano + mandatos antes de que el dinero llegue + asesoría completa y transparente + asignación tributaria de cada peso al vehículo correcto según la meta, para la renta media. En la investigación no apareció nadie que la tenga, ni en Colombia ni afuera.
 
 **¿Alguien puede hacerlo en 12 meses?** Nu puede hacer diagnóstico y rendimiento, pero no conoce el ingreso ni la prima. Un banco con nómina sí podría: es el riesgo a vigilar.
 
@@ -286,6 +292,7 @@ Siguiendo el modelo de Origin:
 - **Mandato:** regla que el afiliado delega al arquitecto, con disparador, acción, tope, vigencia, aviso y revocación.
 - **Modelo fundacional financiero:** modelo de IA entrenado con secuencias de eventos de clientes (PRAGMA, nuFormer).
 - **Plan vivo:** plan que se actualiza con cada evento de la vida y del dinero del afiliado.
-- **Punto óptimo tributario:** aporte voluntario anual a partir del cual aportar más ya no reduce el impuesto, por el límite del 40% del ingreso neto y 1.340 UVT.
+- **Punto óptimo tributario:** aporte anual a pensión voluntaria a partir del cual aportar más ya no reduce el impuesto, por el límite del 40% del ingreso neto y 1.340 UVT (que también consumen las cesantías).
+- **Ingreso no constitutivo de renta:** ingreso que se resta antes de calcular el límite del 40%, como los aportes voluntarios a la pensión obligatoria (art. 55 ET).
 - **Renta exenta:** parte del ingreso que no paga impuesto de renta, como los aportes voluntarios a pensión dentro de los límites legales.
 - **UVT:** Unidad de Valor Tributario; $52.374 en 2026.
