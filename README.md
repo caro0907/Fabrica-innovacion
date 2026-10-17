@@ -62,5 +62,5 @@ ideas/
 
 - **Especialistas:** skills en la cuenta personal de Claude de Carolina (respaldo en `empresa/especialistas/`).
 - **Memoria de trabajo:** este repositorio privado en GitHub personal.
-- **Documentos de negocio para compartir con personas:** Google Drive personal.
+- **Documentos de negocio para compartir con personas:** Google Drive personal, carpeta [Fabrica de diseno y desarrollo](https://drive.google.com/drive/folders/1OkCAbsVsBPeJYCKYoa95wWobkbGfo93l).
 - **Prototipos y MVPs desplegados:** Railway.
