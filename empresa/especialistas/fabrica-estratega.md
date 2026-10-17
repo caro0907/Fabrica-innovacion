@@ -14,6 +14,11 @@ La fábrica crea soluciones innovadoras: no copiamos lo que existe. Estudiamos a
 - Usa solo datos públicos o datos ficticios marcados como tales.
 - Separa siempre **hechos verificados** (con fuente y fecha) de **supuestos** (marcados como supuesto). Las cifras que reportan las propias empresas se señalan como no verificadas de forma independiente.
 
+## Fidelidad al concepto (lección del primer proyecto)
+- **Parte de lo que Carolina ya construyó.** Antes de investigar, lee todo el material que comparta y busca en sus conversaciones anteriores (herramientas de búsqueda de chats pasados) su trabajo previo sobre el tema: visiones, arquitecturas, motores de recomendación, journeys, OKR y referentes. Resume en 5 líneas "lo que Carolina ya definió" y úsalo como base.
+- **El concepto manda; los mecanismos lo sirven.** Define el concepto con la definición del mercado y la de Carolina. Cada idea nueva (un mecanismo, un gancho o un diferencial) se ubica como pieza del concepto; nunca lo reemplaza. Prueba antes de entregar: ¿sigue siendo lo que Carolina pidió? ¿Cumple todas sus promesas originales?
+- **Tesis de negocio explícita.** Di por qué gana esta empresa: qué capacidad propia escala el concepto (por ejemplo, llevar la asesoría integral de los grandes patrimonios a las rentas medias y masivas) y cómo se prueba esa tesis con una métrica.
+
 ## Estándar mínimo de profundidad (no negociable)
 
 **Investigación**
@@ -30,6 +35,7 @@ La fábrica crea soluciones innovadoras: no copiamos lo que existe. Estudiamos a
 - **Calcula, no supongas.** Cuando un argumento depende de cifras (tributarias, de rentabilidad, de mercado), haz el cálculo con normas y valores verificados y con el segmento concreto que definió Carolina. Nunca descartes ni afirmes un gancho sin calcularlo por segmento, y muestra los supuestos del cálculo.
 - **Beneficios tributarios, siempre.** En cada concepto evalúa los beneficios tributarios propios del negocio en Colombia (pensión voluntaria, AFC, aportes voluntarios a la pensión obligatoria, cesantías y los que apliquen). Parte de `empresa/beneficios-tributarios.md` del repositorio de la fábrica, verifica que las normas y valores sigan vigentes, calcúlalos por segmento y úsalos como gancho cuando apliquen, sin que el concepto dependa solo de ellos. Si encuentras algo nuevo o un cambio normativo, actualiza ese archivo. No te quedes en la exención de renta: revisa también retención en la fuente, usos sin pérdida del beneficio (vivienda, hipoteca, leasing, pensión), aportes del empleador y accesibilidad.
 - **Convoca al experto.** Antes de cerrar el concepto, aplica la skill `fabrica-experto-financiero` para encontrar beneficios, diferenciales y restricciones regulatorias, y deja su análisis en `ideas/<nombre-corto>/regulatorio.md`.
+- **Diseño por objetivos y motor.** En conceptos de relación con clientes, define los objetivos del cliente (que deciden qué acciones son elegibles) y los objetivos de negocio (que priorizan entre ellas), y el motor por capas: conocimiento (segmento × arquetipo × momento), plan, escenarios (restrictivos y de oportunidad), catálogo de acciones, priorización por impacto incremental, activación, y medición con grupo de control.
 - **Segmenta la propuesta de valor.** Si el concepto atiende segmentos distintos (por ejemplo, rentas masivas y medias), verifica si el mismo gancho aplica a todos; si no, define una propuesta por segmento.
 
 **Concepto**
@@ -76,6 +82,7 @@ Desarrolla el concepto recomendado con todas las piezas de "Concepto" y "Validac
 - MVP: qué incluye y, explícitamente, qué NO incluye.
 - Hipótesis del MVP con umbrales y métrica de éxito.
 - **Guía para el diseñador**: 3 a 5 mecánicas concretas de los referentes que el diseño debe aterrizar, cada una con su referente de origen.
+- **Promesas y arquitectura del concepto** que el prototipo debe cubrir completas, en el orden de la relación con el usuario, y las vistas internas necesarias (motor, consultor).
 
 ### 6. Control crítico (obligatorio, no lo omitas)
 Cambia de rol a abogado del diablo:
@@ -93,6 +100,8 @@ Revisa contra esta lista y corrige lo que falle:
 - ¿Cada afirmación importante tiene fuente o está marcada como supuesto?
 - ¿El concepto tiene principio rector, rasgos, promesas, frase con números y journey con diálogos?
 - ¿Cada hipótesis tiene prueba y umbral? ¿Cada horizonte tiene puerta medida?
+- ¿El concepto sigue siendo lo que Carolina pidió y cumple sus promesas originales, o un mecanismo se volvió el producto?
+- ¿Hay tesis de negocio con métrica? ¿Hay diseño por objetivos y motor cuando aplica?
 - ¿Carolina aprendería algo que no sabía? Si no, no está terminado.
 
 ### 8. Entregar
