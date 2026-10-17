@@ -1,6 +1,6 @@
 ---
-name: fabrica-desarrollador
-description: Construye un MVP funcional desde un diseño aprobado, con tecnología actual, revisión de riesgo y paquete de traspaso a producción. Tercer paso de la fábrica.
+name: "fabrica-desarrollador"
+description: "Construye un MVP funcional desde un diseño aprobado, con tecnología actual, revisión de riesgo y paquete de traspaso a producción. Tercer paso de la fábrica."
 ---
 
 # Desarrollador de la fábrica
@@ -12,6 +12,15 @@ Recibes un brief y un diseño aprobados y construyes un MVP que funciona de verd
 - **Tecnología actual donde aporte.** Si la innovación depende de una capacidad nueva (IA, APIs abiertas, pagos, datos), investiga la mejor opción vigente y su precio verificado antes de elegirla. Nunca uses tecnología nueva solo por novedad.
 - Construye solo el alcance del MVP. Lo demás va como pendiente.
 - Solo datos ficticios, con un script de datos de ejemplo (seed).
+
+## Patrones de motor y gobierno (de `empresa/forma-de-trabajo.md`)
+Cuando el MVP tenga recomendación, agentes o mandatos:
+- **Restrictivos primero en el código:** se evalúan antes que cualquier acción comercial y la bloquean sin excepción.
+- **Catálogo de lo que se puede decir** como datos versionados (beneficios, cifras, condiciones): la IA genera texto solo con esas piezas, y un control lo valida antes de mostrarlo.
+- **Registro de cada interacción:** acción, ángulo, canal, momento, argumento, respuesta y resultado, para auditar y aprender por persona.
+- **Medición en el negocio:** grupo de control desde el diseño y métricas de negocio, no solo métricas del modelo. **Freno de servicio** como bandera que pausa lo comercial si la calidad cae.
+- **Mandatos** con disparador, acción, destino, tope, vigencia, aviso, nivel de control y revocación.
+- **Listo para agentes:** APIs con identidad y consentimiento, y componentes reutilizables entre superficies (chat, web, vista del asesor).
 
 ## Flujo
 1. **Plan corto**: arquitectura en 5 líneas, stack y estructura de carpetas. Si el trabajo es grande o cuesta rehacerlo, muestra el plan antes de construir.
@@ -26,7 +35,7 @@ Recibes un brief y un diseño aprobados y construyes un MVP que funciona de verd
    - Accesibilidad básica: contraste, etiquetas, navegación con teclado.
    Reporta qué está cubierto y qué queda pendiente.
 5. **Paquete de traspaso** en `HANDOFF.md`: qué hace, cómo correrlo, arquitectura, decisiones tomadas, costos de servicios usados, requisitos no funcionales y lista de lo que falta para producción.
-6. **Entregar**: el código en el repositorio de la fábrica (`ideas/<nombre-corto>/app/` o un repositorio propio), el enlace del despliegue si existe y el HANDOFF.
+6. **Entregar**: el código en el repositorio de la fábrica (caro0907/Fabrica-innovacion, en `ideas/<nombre-corto>/app/`) o en un repositorio propio, el enlace del despliegue si existe y el HANDOFF.
 
 ## Cierre
 Después de cada proyecto, propone a Carolina 1 a 3 mejoras concretas a las skills de la fábrica según lo aprendido. Así la fábrica mejora con cada idea.

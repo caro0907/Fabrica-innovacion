@@ -1,9 +1,17 @@
 # Personal Wealth Architect: la mejor asesoría integral, para todos
 
-**Rentas medias y masivas · Documento de concepto v4 · 17 de octubre de 2026**
+**Rentas medias y masivas · Documento de concepto v5 · 17 de octubre de 2026**
 
 Idea de trabajo para el rol actual de Carolina en una AFP colombiana. Se construye solo con fuentes públicas y datos simulados. Las cifras de empresas son las que ellas reportan y no fueron verificadas de forma independiente. Referentes completos y matriz en `referentes.md`; beneficios tributarios en `../../empresa/beneficios-tributarios.md`.
 
+> **Cambios en v5 (alineación con el método de Carolina, `empresa/forma-de-trabajo.md`):**
+> 1. **Arquitectura del concepto en cuatro capas** y la fórmula Entender × Guiar × Resolver × Confiar (sección 1).
+> 2. **Puntaje con la pensión y la protección dentro**: seis pilares, no cinco. Es la primera versión visible del arquitecto (horizonte H1).
+> 3. **Mandatos con tres niveles de control** y tres mandatos nuevos de bajo riesgo (vigía de cesantías, retiro informado, semáforo anual).
+> 4. **Motor más estricto:** más escenarios restrictivos (queja abierta, pérdida de empleo), las cuatro poblaciones del impacto incremental, catálogo de lo que se puede decir y registro de cada interacción.
+> 5. **Sección 4C nueva:** reglas de la conversación, freno de servicio, lo que el arquitecto no hará nunca, capas de relación y qué necesidades piden un producto u otra solución en vez del motor.
+> 6. **Hipótesis H11** (servicio primero) y ruta con una versión visible en unos seis meses.
+>
 > **Cambios en v4 (observaciones de Carolina):**
 > 1. **Volvimos al concepto de Personal Wealth Architect.** En v3, un mecanismo (el "siguiente peso") se había vuelto el producto. Ahora el producto es el arquitecto integral: ve el patrimonio completo, diseña el plan de vida con números (con la pensión como ancla) y da el siguiente paso. El calendario del dinero, los vehículos tributarios y los mandatos quedan como **escenarios y acciones del motor**.
 > 2. **Nueva tesis:** llevar con tecnología la asesoría integral que hoy solo reciben los grandes patrimonios a las rentas medias y masivas.
@@ -25,6 +33,17 @@ Idea de trabajo para el rol actual de Carolina en una AFP colombiana. Se constru
 3. **Sabes qué hacer hoy:** un siguiente paso concreto, elegido por lo que te conviene a ti. Aquí entran la prima, diciembre de oro y cada peso a su vehículo tributario.
 4. **Lo haces en un toque, o lo delegas:** ejecución en la conversación y reglas sobre tu calendario del dinero.
 5. **Nunca estás solo:** el plan se ajusta con cada cambio de vida, y un consultor que ve el mismo plan está a una frase.
+
+**La arquitectura del concepto, en cuatro capas:**
+
+| Pregunta | Capa | Qué es |
+|---|---|---|
+| ¿Qué vive el afiliado? | **Personal Wealth Architect** | La promesa: su arquitecto de patrimonio, digital y humano |
+| ¿Quién conversa y actúa por él? | **El agente** | Arma el plan, explica, ejecuta y cumple sus mandatos |
+| ¿Dónde lo encuentra? | **Superficies** | Chat de mensajería para conversar y actuar; la app como **"hogar del plan"** para verlo, decidir con calma y controlar lo delegado; el consultor para las decisiones importantes. Una sola memoria en todas |
+| ¿Qué lo hace inteligente? | **El motor** | Entiende, calcula y prioriza (sección 4B) |
+
+**La fórmula: Relevancia = Entender × Guiar × Resolver × Confiar.** Es una multiplicación a propósito: conocer sin guiar es una base de datos, guiar sin dejar actuar es un folleto, y sin confianza nada funciona. Las cinco promesas cubren los cuatro factores: 1 entiende, 2 y 3 guían, 4 resuelve, 5 y el principio rector generan confianza.
 
 **Principio rector: el plan primero, el producto después.** El motor elige solo entre las acciones que el plan considera buenas para el afiliado; el objetivo de negocio prioriza entre ellas, nunca define el plan. A veces lo correcto es armar el colchón, pagar una deuda cara o no invertir todavía. Por eso el afiliado confía, vuelve y delega.
 
@@ -171,21 +190,34 @@ Entre enero y septiembre de 2026, el Fondo E (el más conservador del sistema ch
 ### Los mandatos: delegar es seguro porque deshacer es fácil
 Cada mandato tiene seis campos: **disparador** (llega la prima), **acción** (aportar el 30%), **destino** (meta de largo plazo), **tope** ($1.000.000), **vigencia** (12 meses) y **aviso** (24 horas antes, con opción de saltar esa vez). El afiliado los ve, pausa y cancela en "Mis reglas".
 
+**Tres niveles de control, de menor a mayor autonomía.** Se empieza por los que no mueven dinero sin confirmación:
+
+| Control | Qué hace el arquitecto | Mandatos de ejemplo |
+|---|---|---|
+| **Informar** | Avisa; el afiliado decide | Vigía de cesantías ("confírmame que mi empleador las consignó", plazo legal: 14 de febrero), semáforo anual ("dime cada año cómo voy para pensionarme"), retiro informado ("antes de retirar, muéstrame qué pierdo": impacto tributario si retira antes de 10 años, sin bloquear nunca el retiro) |
+| **Proponer y confirmar** | Prepara la operación; el afiliado confirma en un toque | Prima con rumbo, diciembre de oro, guardián de vencimientos |
+| **Ejecutar dentro de límites** | Ejecuta dentro del tope y la vigencia, y avisa después | Escalador salarial ("si mi salario sube, sube mi aporte en la misma proporción"; Save More Tomorrow llevó el ahorro de 3,5% a 13,6% en cuatro años) |
+
+**Los permisos son producto, no letra pequeña:** identidad reforzada antes de cualquier operación o mandato; consentimiento corto y específico (qué, cuándo, con qué tope); revocación en una frase; credenciales de pago que nunca pasan por el agente; registro de recomendación, argumento, respuesta y ejecución; y si el agente se equivoca, la entidad revierte y responde.
+
 Se inspira en tres referentes:
 - **AP2 de Google**, que distingue un mandato de intención (las reglas que el usuario fija de antemano) de la transacción final, firmados de forma verificable.
 - **Wealthfront Autopilot**, que mueve el excedente sobre un umbral y deja cancelar dentro de 24 horas.
 - **Cleo Autopilot**, que ejecuta solo decisiones dentro de un plan ya aprobado.
 
 ### El puntaje: un número que termina en una acción
-Puntaje de 0 a 1.000, construido sobre 5 pilares adaptados al ahorro e inversión de un asalariado colombiano. Cada pilar termina en una acción posible, al estilo WHOOP: "esto es lo que más mueve tu puntaje".
+Puntaje de 0 a 1.000 sobre **6 pilares** del patrimonio de un asalariado colombiano. Cada pilar termina en una acción posible, al estilo WHOOP: "esto es lo que más mueve tu puntaje". Nu Smart Invest (Brasil, octubre de 2026) usa cinco pilares de cartera (diversificación, rentabilidad, liquidez, protección y eficiencia); los nuestros miran la vida completa y ponen la pensión adentro, que es lo que un neobanco no puede ver.
 
 | Pilar | Pregunta que responde |
 |---|---|
 | **Colchón** | ¿Tengo un fondo de emergencia de al menos 3 meses? |
-| **Rumbo** | ¿Mi ahorro tiene metas y voy al ritmo? |
+| **Suficiencia** | ¿Con cuánto me pensiono frente a mi meta, y voy al ritmo en mis otras metas? |
+| **Protección** | ¿Mi familia está cubierta? (beneficiarios al día, seguros, sin deudas caras) |
 | **Riesgo a la medida** | ¿Lo que tengo coincide con el horizonte de cada meta? (explicado en pesos) |
-| **Costo y eficiencia** | ¿Cuánto pago en comisiones y aprovecho los beneficios que sí me aplican? |
-| **Constancia** | ¿Aprovecho mis momentos de dinero extra o se me diluyen? |
+| **Eficiencia** | ¿Cuánto pago en comisiones, aprovecho el beneficio tributario que me aplica y uso mis cesantías con propósito? |
+| **Constancia** | ¿Aporto de forma sostenida y aprovecho mis momentos de dinero extra? |
+
+**Es la victoria temprana:** el diagnóstico con puntaje se construye con datos y simuladores que ya existen, no ejecuta nada y por eso puede ser la primera versión visible del arquitecto (horizonte H1).
 
 ### El motor: la IA conversa, el motor calcula, el control revisa
 Siguiendo el modelo de Origin:
@@ -220,11 +252,11 @@ El recorrido del arquitecto sigue el proceso de una asesoría integral. Se model
 |---|---|---|
 | **1. Conocimiento** | Señales, perfil, eventos de vida, la "película" del afiliado. Clasifica **segmento × arquetipo × momento** | Perfiles ficticios con arquetipo (ahorrador, inversor, pragmático, aspiracional) y momento (prima, cierre del año, cambio de salario) |
 | **2. Plan** | Metas, brechas y avance por dimensión | Calculado con reglas deterministas |
-| **3. Escenarios** | **Restrictivos**, que frenan o filtran: coyuntura, evento de vida sensible, no contacto, deuda cara sin colchón. **De oportunidad**: atracción, crecimiento, venta cruzada, reactivación, conservación, adecuación, experiencia | Catálogo de reglas explícitas |
+| **3. Escenarios** | **Restrictivos**, con prioridad absoluta sobre todo lo demás: queja abierta, solicitud de no contacto, pérdida de empleo, coyuntura crítica, evento de vida sensible y deuda cara sin colchón. Cada escenario tiene ciclo de vida: candidato, en revisión, piloto, activo, retirado. **De oportunidad**: atracción, crecimiento, venta cruzada, reactivación, conservación, adecuación, experiencia | Catálogo de reglas explícitas |
 | **4. Acciones** | Catálogo escenario → acción, con mensaje, canal y contenido | Ver catálogo abajo |
-| **5. Priorización** | Impacto incremental de cada acción (modelos de uplift frente a grupo de control), más canal, tono, vigencia, momento y límite de contactos | Puntaje simulado y explicado |
+| **5. Priorización** | Impacto incremental de cada acción (modelos de uplift frente a grupo de control), más canal, tono, vigencia, momento y límite de contactos. Distingue cuatro poblaciones: **persuadibles** (contactar), **seguros** (actúan solos: no priorizar), **perdidos** (no contactar) y **no molestar** (el contacto los hace actuar peor: evitar) | Puntaje simulado y explicado |
 | **6. Activación** | Afiliado (muestra, recomienda, ejecuta, mandatos), consultor con el mismo plan, journeys de varios toques | Prototipo |
-| **7. Medición y aprendizaje** | El resultado vuelve al motor; impacto por acción y escenario frente a control; se retira lo que no mueve el objetivo; freno si cae la calidad del servicio | Plan de prueba y métricas |
+| **7. Medición y aprendizaje** | Cada contacto registra su **ángulo** (beneficio tributario, meta de pensión, prima), canal, momento y resultado, para aprender por afiliado y no por segmento. El contenido lo genera la IA para cada persona, pero solo dentro de un **catálogo de lo que se puede decir** (beneficios, cifras y condiciones aprobados por cumplimiento). El resultado vuelve al motor; impacto por acción y escenario frente a control; se retira lo que no mueve el objetivo; freno si cae la calidad del servicio | Plan de prueba y métricas |
 
 ### Catálogo inicial de escenarios y acciones (MVP de ahorro e inversión)
 | Escenario | Disparador | Acción elegible | Meta del afiliado | Objetivo de negocio |
@@ -237,11 +269,44 @@ El recorrido del arquitecto sigue el proceso de una asesoría integral. Se model
 | Aumento de salario | Cambio de ingreso de cotización | Subir el aporte en la misma proporción ("escalador") | Todas | Depósito neto |
 | Riesgo de fuga | Retiros o señales de traslado | Conversación de conservación con el plan a la vista | Continuidad del plan | Conservación |
 | **Restrictivo:** deuda cara sin colchón | Tarjeta o crédito de consumo y colchón bajo | **No recomendar inversión**; priorizar deuda y colchón | Tranquilidad | Confianza, NPS |
-| **Restrictivo:** evento sensible | Licencia, desempleo, calamidad | Pausar contactos comerciales; solo servicio | — | Experiencia |
+| **Restrictivo:** evento sensible | Licencia, calamidad | Pausar contactos comerciales; solo servicio | — | Experiencia |
+| **Restrictivo:** pérdida de empleo | El empleador dejó de cotizar | Modo servicio: cómo usar las cesantías y proteger el colchón; nada de venta | Tranquilidad | Conservación, NPS |
+| **Restrictivo:** queja abierta o no contacto | Queja sin resolver o solicitud de no contacto | Ningún contacto comercial hasta cerrar la queja o actualizar el registro | — | Confianza |
+| Retiro con pérdida | Pide retirar pensión voluntaria antes de 10 años y sin uso de vivienda | Mostrar qué pierde (retención) y las alternativas; nunca bloquear | Tranquilidad, metas | Conservación |
 
 ### Arquetipos del MVP
 - **Laura, "pragmática" de renta masiva:** quiere tranquilidad y una casa. Su momento es la prima de junio. Escenarios: colchón insuficiente, prima con rumbo y brecha pensional (ahorro de largo plazo).
 - **Juliana, "inversora" de renta media:** quiere optimizar. Su momento es el cierre del año. Escenarios: diciembre de oro, hipoteca con beneficio y brecha pensional (aporte voluntario a la obligatoria).
+
+## 4C. Cómo se comporta el arquitecto
+
+### Las reglas de la conversación
+1. **Lo que el afiliado pidió va primero.** Ninguna oferta antes de resolver su solicitud, ni a cambio de resolverla.
+2. **Los escenarios restrictivos mandan**, sin excepción.
+3. **Una recomendación por conversación:** la de mayor impacto para su plan, no un catálogo.
+4. **Siempre con el porqué**, en su lenguaje ("tu prima llega en 14 días"), nunca "tenemos una promoción".
+5. **Un "no" se respeta:** no se insiste y el rechazo vuelve al motor como señal.
+6. **El consultor está a una frase**, con todo el contexto y sin repetir la historia.
+7. **Lo regulado sigue su protocolo** (traslados, doble asesoría, modalidades de pensión).
+8. **Todo queda registrado:** qué se recomendó, por qué, qué respondió y qué se ejecutó.
+
+**El freno de servicio:** lo comercial solo crece si el servicio no retrocede. Si la resolución, la satisfacción o la tasa de quejas empeoran frente a su línea base, se pausa la expansión.
+
+### Lo que el arquitecto no hará nunca
+Completar un traslado sin el protocolo de doble asesoría; mover dinero fuera de las cuentas del afiliado; bloquear un retiro al que tiene derecho; recomendar invertir a quien tiene deuda cara y no tiene colchón; usar cifras o promesas fuera del catálogo aprobado.
+
+### Las capas de la relación, en orden
+Primero **asesorar** (diagnóstico, puntaje y plan), porque eso genera la confianza; después **engagement** (hábitos y constancia, accionables como beneficiarios, ciclo de vida y un resumen anual); y por último **intereses** (contenido según lo que le importa). Una experiencia que empieza por el contenido o la gamificación no gana el permiso para asesorar.
+
+### No todo lo resuelve el motor
+Algunas necesidades del patrimonio completo piden otro tipo de respuesta. Se dejan dichas para no forzarlas dentro del MVP:
+
+| Necesidad | Tipo de respuesta | En este concepto |
+|---|---|---|
+| Ingreso para el retiro y longevidad ("¿cuánto recibo al mes y por cuánto tiempo?") | Producto nuevo y servicios con aliados, más capacidad del plan | Fuera del MVP (rentas medias y masivas de 30 a 45 años); el plan muestra el ingreso esperado |
+| Familia: educación de los hijos, beneficiarios | Producto y servicio, más capacidad | La meta de educación entra al plan; el producto queda como oportunidad |
+| Hábitos de ahorro | Programa (rachas, reconocimiento) y capacidad (escalador) | Constancia como pilar del puntaje; rachas sin tokens ni cripto, medidas contra grupo de control |
+| Agentes de IA de los propios clientes | Capacidad: APIs con identidad y consentimiento | Principio de diseño desde el inicio; consulta de solo lectura en H3 |
 
 ## 5. Cómo lo vive un afiliado (journey ilustrativo)
 
@@ -295,6 +360,7 @@ El recorrido del arquitecto sigue el proceso de una asesoría integral. Se model
 | H7 | **Gancho tributario (renta media):** ver su ahorro de impuesto en pesos y su punto óptimo mueve a aportar más, aun con la permanencia de 10 años. | Prueba con 5 usuarios de renta media | Al menos 3 de 5 elevan su aporte simulado hacia el punto óptimo y explican la condición de permanencia |
 | H8 | **Diciembre de oro:** el aviso de fin de año con el faltante exacto convierte más que un mensaje genérico de beneficio tributario. | A/B en el prototipo | Intención de aportar al menos 30% mayor con el faltante personalizado |
 | H9 | **Paridad de calidad:** el plan y la recomendación del arquitecto son los que haría un consultor senior. | 3 consultores senior revisan 20 planes simulados a ciegas, mezclados con planes hechos por consultores | Al menos 80% aprobados sin cambios de fondo; sin diferencia significativa frente a los planes humanos |
+| H11 | **Servicio primero:** recomendar después de resolver lo que el afiliado pidió no baja su satisfacción. | A/B en el prototipo: solicitud resuelta con y sin recomendación al final | Satisfacción igual o mayor (escala de 1 a 5) y al menos 30% abre la recomendación |
 | H10 | **Integral antes que transaccional:** ver el patrimonio y el plan completo aumenta la intención de actuar frente a recibir solo la recomendación. | A/B en el prototipo | Intención de actuar al menos 20% mayor con mapa y plan |
 
 ---
@@ -304,7 +370,7 @@ El recorrido del arquitecto sigue el proceso de una asesoría integral. Se model
 | Horizonte | Qué incluye | Puerta para avanzar |
 |---|---|---|
 | **H0 · Prototipo (semanas 1 a 4)** | Web y WhatsApp simulados: journey de Laura completo con datos ficticios | H1, H2, H3 y H5 cumplen umbral con 5 a 10 usuarios |
-| **H1 · Piloto de orientación (meses 2 a 4)** | Calendario del dinero y diagnóstico con datos reales de un grupo pequeño, sin ejecución | Intención de ahorro frente a grupo de control; cero incidentes de datos |
+| **H1 · Diagnóstico con puntaje, la versión visible (meses 2 a 6)** | Puntaje de 6 pilares, plan y calendario del dinero con datos de un grupo pequeño, sin ejecución. Responde a que un competidor regional ya lanzó su diagnóstico: mejor algo visible en seis meses que todo en dos años | Intención de ahorro frente a grupo de control; cero incidentes de datos |
 | **H2 · Piloto de asesoría y ejecución (meses 4 a 8)** | Asesoría completa automatizada y ejecución, sujeta a la validación con el AMV y la SFC | Aporte nuevo por usuario frente a grupo de control; quejas por asesoría en cero |
 | **H3 · Mandatos y escala (meses 8 a 18)** | Mandatos sobre la prima y las cesantías, vista del asesor, patrimonio externo vía finanzas abiertas | Mandatos activos y tasa de revocación menor al 15%; activos administrados por usuario |
 

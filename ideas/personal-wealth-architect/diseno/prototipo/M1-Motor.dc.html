@@ -67,7 +67,7 @@ a{color:#0E6A4E}a:hover{color:#09503A}
 <span style="font-weight: 600; line-height: 1.35">{{a.accion}}</span><span>{{a.meta}}</span><span>{{a.objetivo}}</span><span>{{a.impacto}}</span><span style="{{a.chip}}">{{a.resultado}}</span>
 </div>
 </sc-for>
-<div style="font-size: 11px; color: #4A5C56; padding-top: 8px">*Impacto incremental estimado frente a grupo de control (modelo de uplift). Valores simulados para el prototipo.</div>
+<div style="font-size: 11px; color: #4A5C56; padding-top: 8px">*Impacto incremental estimado frente a grupo de control (modelo de uplift). Laura es "persuadible" para el plan de la prima: sin contacto, la prima se diluye. Valores simulados.</div>
 </div>
 <div style="background: #12241F; color: #FFFFFF; border-radius: 16px; padding: 14px 16px; font-size: 14px; line-height: 1.5"><strong>Por qué ganó "plan de la prima":</strong> cierra la brecha más urgente de Laura (colchón), avanza su casa, y es la de mayor impacto incremental en depósito neto en su momento (la prima). La inversión de largo plazo para la pensión queda bloqueada hasta que el colchón llegue a 3 meses: el plan primero.</div>
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
@@ -106,8 +106,8 @@ renderVals() {
 var self = this;
 var esc = [
 ['Restrictivo · deuda cara sin colchón', 'No aplica', 'no'],
-['Restrictivo · evento de vida sensible', 'No aplica', 'no'],
-['Restrictivo · no contacto', 'No aplica', 'no'],
+['Restrictivo · pérdida de empleo o evento sensible', 'No aplica', 'no'],
+['Restrictivo · queja abierta o no contacto', 'No aplica', 'no'],
 ['Colchón insuficiente', 'Activo', 'act'],
 ['Prima con rumbo', 'Activo', 'act'],
 ['Brecha pensional', 'Activo', 'act'],

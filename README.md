@@ -33,6 +33,7 @@ Cada etapa termina con una decisión explícita de Carolina: **AVANZAR**, **AJUS
 4. **El MVP más pequeño que pruebe la hipótesis principal.** Lo demás va como pendiente.
 5. **Precios verificados.** Toda decisión de tecnología o infraestructura se toma con precios vigentes y verificados, no estimados.
 6. **La fábrica aprende.** Al cerrar cada proyecto se registran aprendizajes en `empresa/aprendizajes.md` y se proponen mejoras a los especialistas.
+7. **El método de Carolina manda.** Todo especialista lee `empresa/forma-de-trabajo.md` antes de empezar.
 
 ## Estructura
 
@@ -40,6 +41,7 @@ Cada etapa termina con una decisión explícita de Carolina: **AVANZAR**, **AJUS
 empresa/
   decisiones.md        Registro de decisiones de la gerencia
   aprendizajes.md      Lo que la fábrica aprende en cada proyecto
+  forma-de-trabajo.md  Cómo piensa, escribe y decide Carolina (lo leen todos los especialistas)
   herramientas.md      Stack, cuentas y costos verificados
   especialistas/       Copia de las instrucciones de cada especialista (respaldo portable)
 ideas/
