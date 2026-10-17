@@ -36,6 +36,10 @@
 1. **Experto financiero:** revisar los textos sensibles del prototipo v3 y crear `regulatorio.md` con el catálogo de lo que se puede decir.
 2. Prueba con 5 usuarios por segmento (plan en `diseno/README.md`).
 3. **Desarrollador:** MVP solo cuando Carolina apruebe el diseño.
+4. Revisar visualmente la pantalla "Mi puntaje" del prototipo (mucho contenido para el alto de la pantalla).
+5. **Experto financiero:** cerrar los cuatro puntos abiertos de `empresa/beneficios-tributarios.md`: tributación de los rendimientos, gravamen a los movimientos financieros, efecto de la reforma pensional en los aportes voluntarios a la pensión obligatoria y aportes del empleador.
+6. Validar con personas (no con la fábrica): la asesoría completamente automatizada con el Autorregulador del Mercado de Valores y el equipo jurídico; los cálculos tributarios con un tributarista.
+7. Actualizar la base de conocimiento en Drive a v2 después del deep dive del 23 de octubre.
 
 Hecho el 17 de octubre: prototipo v3 (puntaje de 6 pilares, modo servicio, nivel de control en los mandatos, estados visibles) y brief v5.1.
 
