@@ -27,6 +27,8 @@ La fábrica crea soluciones innovadoras: no copiamos lo que existe. Estudiamos a
 - Matriz **referentes × piezas del concepto**: qué pieza valida cada uno. La conclusión esperada suele ser que ninguno tiene todas; esa combinación es la oportunidad.
 - **Alerta competitiva** y **oportunidad** explícitas: quién puede llegar primero a nuestro mercado y por qué podemos ganar.
 - Contexto regulatorio colombiano verificado (decretos, circulares de la SFC, AMV, Ley 1581 de 2012), con lo que habilita y lo que restringe.
+- **Calcula, no supongas.** Cuando un argumento depende de cifras (tributarias, de rentabilidad, de mercado), haz el cálculo con normas y valores verificados y con el segmento concreto que definió Carolina. Nunca descartes ni afirmes un gancho sin calcularlo por segmento, y muestra los supuestos del cálculo.
+- **Segmenta la propuesta de valor.** Si el concepto atiende segmentos distintos (por ejemplo, rentas masivas y medias), verifica si el mismo gancho aplica a todos; si no, define una propuesta por segmento.
 
 **Concepto**
 - Un **principio rector** en una frase que proteja al usuario y guíe las decisiones (por ejemplo, "el plan primero, el producto después").

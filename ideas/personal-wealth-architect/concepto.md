@@ -1,10 +1,12 @@
 # El Arquitecto del Siguiente Peso
 
-**Personal Wealth Architect para ahorro e inversión · Documento de concepto v3 · 17 de octubre de 2026**
+**Personal Wealth Architect para ahorro e inversión · Rentas medias y masivas · Documento de concepto v3.1 · 17 de octubre de 2026**
 
 Idea de trabajo para el rol actual de Carolina en una AFP colombiana. Se construye solo con fuentes públicas y datos simulados. Las cifras de empresas son las que ellas reportan y no fueron verificadas de forma independiente. Referentes completos y matriz en `referentes.md`.
 
-> **Cambios frente a v2:** se rehízo desde la visión de Carolina (plan vivo, mandatos, dos caras, plan primero) y con 27 referentes. Aparecen tres diferenciales que v2 no tenía: el **ingreso conocido**, el **calendario del dinero colombiano** y los **mandatos sobre ese calendario**. Se corrigió además un supuesto débil: el beneficio tributario **no** es un gancho para el ingreso medio (ver sección 3).
+> **Cambios frente a v2:** se rehízo desde la visión de Carolina (plan vivo, mandatos, dos caras, plan primero) y con 27 referentes. Aparecen tres diferenciales que v2 no tenía: el **ingreso conocido**, el **calendario del dinero colombiano** y los **mandatos sobre ese calendario**.
+>
+> **Cambios en v3.1:** el segmento son **rentas medias y masivas**, y la renta media gana entre $8 y $9 millones al mes. Con esa cifra, el **beneficio tributario de la pensión voluntaria sí es un diferencial** para la renta media (cálculo en la sección 3). Para la renta masiva no aplica, así que el concepto tiene dos propuestas de valor. Se suma un cuarto diferencial: **diciembre de oro**, cuando coinciden la prima de diciembre y el cierre del año gravable.
 
 ---
 
@@ -23,10 +25,21 @@ Idea de trabajo para el rol actual de Carolina en una AFP colombiana. Se constru
 
 **Principio rector: el plan primero, el producto después.** El arquitecto recomienda lo que le conviene al afiliado aunque no sea un producto de la AFP: armar primero un fondo de emergencia, pagar una deuda cara o no invertir todavía. Por eso el afiliado confía, vuelve y delega.
 
-**La frase que es el producto (usuario ficticio):**
-> "Laura, si separas $200.000 al mes y el 30% de cada prima, en 20 años habrás puesto $79 millones y podrías tener entre $108 y $167 millones en pesos de hoy, según cómo inviertas. ¿Quieres que lo haga por ti cada vez que llegue la prima?"
+**Dos segmentos, dos propuestas de valor, un mismo arquitecto:**
 
-*Cálculo ilustrativo: rentabilidades reales supuestas de 3% a 7% anual, aportes mensuales más dos aportes de $780.000 al año (30% de una prima de $2.600.000). No es una promesa de rentabilidad.*
+| | Renta masiva | Renta media |
+|---|---|---|
+| **Ingreso mensual de referencia** | Hasta unos $6 millones | $8 a $9 millones |
+| **¿Paga impuesto de renta?** | En general no (cálculo en la sección 3) | Sí: unos $2,7 a $4,4 millones al año |
+| **El gancho** | Que la prima no se diluya: colchón, metas y constancia automática | Lo anterior, más **"tu impuesto paga parte de tu ahorro"** |
+| **Producto que más resuelve** | Ahorro con liquidez y metas | Pensión voluntaria con beneficio tributario, más inversión por metas |
+
+**Las frases que son el producto (usuarios ficticios):**
+> **Renta media:** "Juliana, ganas $8,5 millones y este año pagarías unos $3,6 millones de renta. Si aportas $1.000.000 al mes a tu pensión voluntaria, pagas unos $1,7 millones menos: es como si de cada 100 pesos que ahorras, 14 los pusiera tu impuesto. Y en diciembre, con la prima, puedes cerrar el año aprovechándolo al máximo."
+>
+> **Renta masiva:** "Laura, si separas $200.000 al mes y el 30% de cada prima, en 20 años habrás puesto $79 millones y podrías tener entre $108 y $167 millones en pesos de hoy, según cómo inviertas. ¿Quieres que lo haga por ti cada vez que llegue la prima?"
+
+*Cálculos ilustrativos y simplificados, a validar con un experto tributario. Renta: asalariado sin dependientes ni otras deducciones, UVT 2026 de $52.374. Proyección: rentabilidades reales supuestas de 3% a 7% anual. No son promesas de rentabilidad ni asesoría tributaria.*
 
 ---
 
@@ -47,6 +60,7 @@ Idea de trabajo para el rol actual de Carolina en una AFP colombiana. Se constru
 3. **Sé qué hacer con mi siguiente peso**, antes de que se me vaya.
 4. **Lo hago en un toque, o lo dejo andando solo**, y lo puedo deshacer cuando quiera.
 5. **Sé quién me asesora, cuánto cuesta y por qué me lo recomienda.**
+6. **Sé cuánto me ahorra mi impuesto, si me aplica**, y cuál es mi punto óptimo de aporte (renta media).
 
 ### El cambio
 | Hasta hoy | Con el Arquitecto del Siguiente Peso |
@@ -67,7 +81,7 @@ Idea de trabajo para el rol actual de Carolina en una AFP colombiana. Se constru
 | Consignación de cesantías | Hasta el 14 de febrero | Al fondo de cesantías | Misma fuente |
 | Prima de mitad de año | Hasta el 30 de junio | Unos 15 días de salario | [Blu Radio](https://www.bluradio.com/economia/finanzas-personales/hasta-cuando-hay-plazo-pagar-prima-junio-colombia-2023) |
 | Prima de fin de año | Diciembre (la ley fija el 20 de diciembre; *a verificar con la norma*) | Unos 15 días de salario | Misma fuente |
-| Cierre del año gravable | 31 de diciembre | Último día para aportes con efecto tributario del año | Estatuto Tributario, art. 126-1 |
+| Cierre del año gravable | 31 de diciembre | Último día para aportes con efecto tributario del año (renta media) | Estatuto Tributario, art. 126-1 |
 
 **El hallazgo:** en las fuentes revisadas, ningún actor del mercado colombiano usa este calendario para proponer un destino al dinero antes de que llegue. Nu y Mercado Pago compiten por el saldo una vez está en la cuenta; las AFP digitalizaron los trámites. *Supuesto: no se encontró evidencia pública de que alguien lo haga; no es concluyente.*
 
@@ -78,12 +92,34 @@ Idea de trabajo para el rol actual de Carolina en una AFP colombiana. Se constru
 
 *En el MVP todo esto se simula. En producción depende de las reglas de uso de datos de la entidad y del consentimiento del afiliado (Ley 1581 de 2012).*
 
-### Una corrección importante: el beneficio tributario no es el gancho del ingreso medio
-Los aportes voluntarios a pensiones y a cuentas AFC son renta exenta hasta el 30% del ingreso y 3.800 UVT, con permanencia de 10 años salvo compra de vivienda o pensión. Pero entran en el límite general de la cédula general: **40% del ingreso neto y máximo 1.340 UVT ($70,2 millones en 2026)**, compartido con otras rentas exentas. [Gerencie](https://www.gerencie.com/guia-renta/conceptos/renta-exenta-en-aportes-a-fondos-voluntarios-de-pension) · [INCP: UVT 2026 = $52.374](https://incp.org.co/agendatributariaincp/noticias/2025/12/dian-fijo-en-52-374-en-valor-de-la-uvt-para-el-ano-gravable-2026/)
+### El beneficio tributario: diferencial de la renta media, no de la masiva
+**Las reglas (verificadas):**
+- Los aportes voluntarios a pensiones y a cuentas AFC son renta exenta hasta el 30% del ingreso y 3.800 UVT, con permanencia de 10 años salvo compra de vivienda o pensión. Si se retiran antes, el beneficio se devuelve como renta gravable. [Gerencie](https://www.gerencie.com/guia-renta/conceptos/renta-exenta-en-aportes-a-fondos-voluntarios-de-pension)
+- La renta exenta laboral del 25% tiene tope de 790 UVT al año, y junto con las demás rentas exentas y deducciones está limitada al **40% del ingreso neto y a 1.340 UVT** ($70,2 millones en 2026). [Garrigues, reforma tributaria de 2022](https://www.garrigues.com/sites/default/files/noticias/files/20221128_alerta_colombia_reforma_tributaria.pdf)
+- La tarifa marginal es 0% hasta 1.090 UVT de renta gravable ($57,1 millones en 2026), 19% hasta 1.700 UVT y 28% hasta 4.100 UVT. [Estatuto Tributario, art. 241](https://actualicese.com/estatutotributario/241-2/) · [INCP: UVT 2026 = $52.374](https://incp.org.co/agendatributariaincp/noticias/2025/12/dian-fijo-en-52-374-en-valor-de-la-uvt-para-el-ano-gravable-2026/)
 
-La tarifa de renta para personas empieza a cobrar por encima de 1.090 UVT de renta líquida gravable ($57,1 millones en 2026). *Cálculo simplificado, a validar con un experto tributario:* un asalariado de ingreso medio, después de aportes obligatorios y de la renta exenta del 25%, muchas veces queda por debajo de ese umbral. **Para él, el ahorro tributario es cero.** El beneficio solo pesa desde ingresos medio-altos.
+**El cálculo por segmento** *(simplificado: asalariado sin dependientes ni otras deducciones, 13 salarios al año contando la prima, aportes obligatorios de 8% a 9%, cesantías exentas; a validar con un experto tributario)*:
 
-**Consecuencia para el diseño:** el arquitecto muestra el beneficio tributario solo a quien de verdad lo tiene, y con su cifra. Al resto se le habla de metas, disciplina automática y rendimiento explicado. Prometer un beneficio que no existe destruiría la confianza.
+| Salario mensual | Renta gravable sin aportes | Impuesto anual sin aportes | Ahorro si aporta $1.000.000 al mes | Aporte anual máximo que aún ahorra impuesto | Ahorro máximo |
+|---|---|---|---|---|---|
+| $4.000.000 | 690 UVT | $0 | $0 | — | $0 |
+| $6.000.000 | 1.024 UVT | $0 | $0 | — | $0 |
+| $8.000.000 | 1.366 UVT | $2,7 millones | $1,7 millones | $19,1 millones | $2,7 millones |
+| $8.500.000 | 1.451 UVT | $3,6 millones | $1,7 millones | $20,3 millones | $2,9 millones |
+| $9.000.000 | 1.536 UVT | $4,4 millones | $1,7 millones | $21,5 millones | $3,1 millones |
+
+**Lo que revela el cálculo:**
+1. **El umbral está cerca de $6,4 millones al mes.** Por debajo, el afiliado no paga renta y el beneficio es cero. Para la renta masiva, el gancho es otro.
+2. **Para la renta media, cada peso aportado ahorra cerca de 14 centavos de impuesto** (19% de tarifa marginal × 75%, porque el aporte también reduce la base del 25% exento). Es un rendimiento inmediato que ningún neobanco puede ofrecer con una cuenta de ahorros.
+3. **Hay un punto óptimo, y casi nadie lo conoce.** Por el límite del 40%, para un salario de $8,5 millones el beneficio se agota hacia los $20 millones de aporte al año (unos $1,7 millones al mes). Aportar más ya no ahorra impuesto. **Calcular ese punto para cada afiliado es asesoría de alto valor**, que hoy solo da un contador.
+4. **La permanencia de 10 años es una condición, no letra pequeña.** El arquitecto debe explicarla antes de recomendar y conectar el aporte con metas de largo plazo o de vivienda.
+
+**Consecuencia para el diseño:** el arquitecto calcula el beneficio con los datos de cada afiliado y lo muestra solo cuando existe, con su cifra. A la renta masiva no se le promete un beneficio que no tiene.
+
+### Diciembre de oro: el momento en que todo coincide
+Para la renta media, diciembre reúne tres cosas: llega la prima (unos $4,25 millones con un salario de $8,5 millones), el año gravable cierra el 31 de diciembre, y el afiliado ya sabe cuánto ha aportado en el año. El arquitecto puede decirle, con su número: *"Te faltan $X para aprovechar todo tu beneficio de este año; con el 60% de tu prima lo completas."* **En las fuentes revisadas no aparece ningún actor que haga este cálculo personalizado y oportuno.** *(Supuesto: no es concluyente.)*
+
+*A validar con el equipo tributario: si el aporte voluntario hecho por nómina reduce la retención en la fuente del mismo mes. Si es así, el afiliado vería el beneficio en su siguiente pago y no un año después en la declaración.*
 
 ### La alerta competitiva
 - **Nubank** tiene más de 5 millones de clientes en Colombia y US$3.300 millones en depósitos colombianos (junio de 2026). Está probando nuFormer en sus tarjetas colombianas y lanzó Nu Smart Invest en Brasil el 15 de octubre de 2026. Es el competidor más probable para un diagnóstico de inversión en Colombia en los próximos 12 meses.
@@ -91,7 +127,7 @@ La tarifa de renta para personas empieza a cobrar por encima de 1.090 UVT de ren
 - **BBVA** ya tiene el asesor virtual en México y anunció un asistente de IA conversacional en España.
 
 ### La oportunidad
-Ninguno combina las cinco piezas. El neobanco tiene la app y el saldo, pero no conoce el ingreso ni el calendario; el banco tiene la asesoría, pero cara y por agenda; los robo-advisors tienen la automatización, pero no la relación ni el contexto colombiano. **La AFP tiene el ingreso, el calendario y la confianza de largo plazo; le falta la experiencia.** Eso es lo que construye este concepto.
+Ninguno combina las cinco piezas. El neobanco tiene la app y el saldo, pero no conoce el ingreso ni el calendario, y su cuenta de ahorros no da beneficio tributario. El banco tiene la asesoría, pero cara y por agenda. Los robo-advisors tienen la automatización, pero no la relación ni el contexto colombiano. **La AFP tiene el ingreso, el calendario, el producto con beneficio tributario y la confianza de largo plazo; le falta la experiencia.** Eso es lo que construye este concepto.
 
 ### Una lección de Chile: "conservador" no es "sin riesgo"
 Entre enero y septiembre de 2026, el Fondo E (el más conservador del sistema chileno) cayó en promedio 10,39% real, y las siete AFP perdieron casi lo mismo. [El Clarín de Chile, 16-oct-2026](https://www.elclarin.cl/2026/10/16/efecto-manada-afp-perdidas-fondo-e-2026/). **Implicación:** el arquitecto no puede usar etiquetas de riesgo como explicación. Debe mostrar el riesgo en pesos ("en un mal año esto podría bajar $X") y diversificar con el horizonte de la meta.
@@ -159,6 +195,15 @@ Siguiendo el modelo de Origin:
 | 5 | **Ejecuta y deja una regla** | Confirma con su huella el día que llega la prima. Luego: *"¿Quieres que en diciembre lo haga igual, con aviso un día antes?"* Laura deja el mandato con tope de $1.000.000. | Ejecuta · Cumple mandatos |
 | 6 | **Pide un humano** | En diciembre escribe: *"¿y si mejor pago la tarjeta?"* El arquitecto le muestra el costo de la deuda frente a lo que ganaría invirtiendo y le ofrece un asesor, que la atiende con el mismo plan a la vista. | Escala al humano |
 
+**Variante renta media: Juliana, 41 años, ingeniera en Bogotá, salario de $8.500.000. (Usuaria ficticia.)**
+
+| # | Momento | Qué pasa | Nivel |
+|---|---|---|---|
+| 1 | **Finales de noviembre** | *"Juliana, este año pagarías unos $3,6 millones de renta. Llevas $6 millones aportados a pensión voluntaria; te faltan unos $14 millones para tu punto óptimo, que ahorra $2,9 millones de impuesto. Con el 60% de tu prima de diciembre y un aporte extra lo completas. ¿Lo vemos?"* | Muestra |
+| 2 | **Entiende la condición** | *"Este beneficio exige que el dinero se quede 10 años, o que lo uses para comprar vivienda o al pensionarte. ¿Tienes una meta así?"* Juliana define la meta "casa en la costa a los 55". | Recomienda |
+| 3 | **Ejecuta antes del 31 de diciembre** | Recibe la recomendación con portafolio, riesgo en pesos, costo y tarjeta de transparencia. Confirma con su huella el día de la prima. | Ejecuta |
+| 4 | **Deja el año siguiente andando** | *"¿Quieres que el próximo año aporte $1.700.000 al mes para llegar a tu punto óptimo sin esperar a diciembre?"* Juliana deja el mandato. | Cumple mandatos |
+
 ---
 
 ## 6. Las piezas y lo que falta (lectura honesta)
@@ -184,6 +229,8 @@ Siguiendo el modelo de Origin:
 | H4 | **Transparencia:** mostrar costo y conflicto de interés aumenta la confianza. | A/B en el prototipo, con y sin tarjeta | Confianza igual o mayor con la tarjeta (escala de 1 a 5) |
 | H5 | **Permiso de marca:** el afiliado le confía su ahorro de mediano plazo a su AFP, no solo su pensión. | Entrevistas antes del prototipo | Al menos 3 de 5 lo consideran sin objeción de fondo |
 | H6 | **Plan primero:** recomendar el colchón antes que la inversión aumenta la confianza, aunque reduzca la venta inmediata. | Prueba de usuario | Al menos 4 de 5 lo valoran explícitamente |
+| H7 | **Gancho tributario (renta media):** ver su ahorro de impuesto en pesos y su punto óptimo mueve a aportar más, aun con la permanencia de 10 años. | Prueba con 5 usuarios de renta media | Al menos 3 de 5 elevan su aporte simulado hacia el punto óptimo y explican la condición de permanencia |
+| H8 | **Diciembre de oro:** el aviso de fin de año con el faltante exacto convierte más que un mensaje genérico de beneficio tributario. | A/B en el prototipo | Intención de aportar al menos 30% mayor con el faltante personalizado |
 
 ---
 
@@ -202,6 +249,7 @@ Siguiendo el modelo de Origin:
 | P1 · Prima con destino | H1 y H2 | 15% de los contactados ejecuta antes de la prima; 5% deja mandato |
 | P2 · Asesoría en el chat | H3 y H4 | 20% de quienes reciben asesoría ejecuta en 7 días |
 | P3 · Colchón primero | H6 | NPS de la recomendación de 60 o más |
+| P4 · Diciembre de oro (renta media) | H7 y H8 | 20% de los contactados aporta antes del 31 de diciembre; aporte promedio de al menos 50% del faltante a su punto óptimo |
 
 *Los OKR son metas iniciales para discutir, no benchmarks verificados.*
 
@@ -215,9 +263,11 @@ Siguiendo el modelo de Origin:
 | 2 | **El AMV o la SFC no habilitan la asesoría completa automatizada**, o tardan. | Diseñar la variante asistida desde el inicio: el motor prepara y un asesor certificado firma en un clic. |
 | 3 | **El uso del ingreso de cotización** para recomendar no está permitido o incomoda al afiliado. | Consentimiento explícito y revocable, propósito claro, y la opción de declarar en vez de inferir. |
 | 4 | **La recomendación se vuelve venta disfrazada** y la transparencia pierde credibilidad. | El principio rector con reglas: si hay deuda cara o no hay colchón, el arquitecto no recomienda invertir. Medir y publicar internamente ese porcentaje. |
-| 5 | **Exceso de alcance**: cinco niveles diluyen la prueba. | El H0 prueba solo el journey de Laura; cada nivel tiene su puerta. |
+| 5 | **Exceso de alcance**: cinco niveles y dos segmentos diluyen la prueba. | El H0 prueba solo los journeys de Laura y Juliana; cada nivel tiene su puerta. |
+| 6 | **El cálculo tributario se equivoca** para un afiliado con deducciones o ingresos que el arquitecto no conoce, y la promesa se rompe. | Mostrar siempre el cálculo como estimado, con los supuestos visibles; pedir la información que falta; derivar a un asesor o contador en casos complejos. |
+| 7 | **La permanencia de 10 años genera arrepentimiento** cuando el afiliado necesita el dinero. | Recomendar el aporte tributario solo después del colchón y conectado a metas de largo plazo o vivienda. |
 
-**¿Innovación real o copia?** Las piezas existen por separado. La innovación es la combinación: ingreso conocido + calendario del dinero colombiano + mandatos antes de que el dinero llegue + asesoría completa y transparente. En la investigación no apareció nadie que la tenga, ni en Colombia ni afuera.
+**¿Innovación real o copia?** Las piezas existen por separado. La innovación es la combinación: ingreso conocido + calendario del dinero colombiano + mandatos antes de que el dinero llegue + asesoría completa y transparente + punto óptimo tributario personalizado para la renta media. En la investigación no apareció nadie que la tenga, ni en Colombia ni afuera.
 
 **¿Alguien puede hacerlo en 12 meses?** Nu puede hacer diagnóstico y rendimiento, pero no conoce el ingreso ni la prima. Un banco con nómina sí podría: es el riesgo a vigilar.
 
@@ -236,4 +286,6 @@ Siguiendo el modelo de Origin:
 - **Mandato:** regla que el afiliado delega al arquitecto, con disparador, acción, tope, vigencia, aviso y revocación.
 - **Modelo fundacional financiero:** modelo de IA entrenado con secuencias de eventos de clientes (PRAGMA, nuFormer).
 - **Plan vivo:** plan que se actualiza con cada evento de la vida y del dinero del afiliado.
+- **Punto óptimo tributario:** aporte voluntario anual a partir del cual aportar más ya no reduce el impuesto, por el límite del 40% del ingreso neto y 1.340 UVT.
+- **Renta exenta:** parte del ingreso que no paga impuesto de renta, como los aportes voluntarios a pensión dentro de los límites legales.
 - **UVT:** Unidad de Valor Tributario; $52.374 en 2026.
