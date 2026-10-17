@@ -3,7 +3,7 @@
 ## 0. Leer primero
 - La fábrica funciona: 4 especialistas guardados en la cuenta de Claude de Carolina (estratega, diseñador, desarrollador, experto financiero), este repositorio como memoria y la carpeta de Drive "Fabrica de diseno y desarrollo".
 - Todo especialista lee `empresa/forma-de-trabajo.md` (el documento de Carolina, v2) antes de empezar y pasa su lista de verificación (sección 6) antes de entregar.
-- **Trabajo previo de Carolina (la base del Personal Wealth Architect):** está en su Drive personal, carpeta "Proyecto Claude Evolucion Modelos Distribución" (id 1SxWN3ArDRCekmOMl1ua9qKanX5oB91Ev). Empieza por el documento "CONTEXTO" más reciente de esa carpeta y sigue los enlaces de "Documentos vigentes" (visión, arquitectura, análisis de tendencias, referentes). Para trabajo de estrategia o diseño profundo, léelos de ahí. Son documentos internos: se usan como contexto y nunca se copian al repositorio ni a los entregables.
+- **Trabajo previo de Carolina (la base del Personal Wealth Architect):** síntesis en el Google Doc "BASE DE CONOCIMIENTO — Trabajo previo de Carolina" de la carpeta de Drive de la fábrica (https://docs.google.com/document/d/1At0uLPCUv8-b6u7XO4R8IBjPtuaNt8gRbeNzA5VmX8k/edit), con enlaces a los originales en la carpeta "Proyecto Claude Evolucion Modelos Distribución". Léela antes de trabajo de estrategia o diseño sobre este tema. Carolina autorizó usar esos documentos como contexto y dejarlos en su Drive; no se copian a este repositorio.
 - **Al retomar:** leer este archivo, preguntar a Carolina qué definió desde la última sesión y seguir con el pendiente 1.
 
 ## 1. Documentos vigentes
@@ -26,7 +26,7 @@
 - Se leyó el material de su trabajo previo solo como contexto; al repositorio entró únicamente método genérico.
 
 ## 3. Decisiones tomadas (no se revisitan)
-- Solo datos públicos o simulados; nada interno de Protección en el repositorio ni en los entregables.
+- Solo datos públicos o simulados en el repositorio y en los entregables. Los documentos internos de Carolina se usan como contexto y viven solo en su Drive (decisión del 17 de octubre).
 - Segmentos: renta masiva (hasta unos $6 millones) y renta media ($8 a $9 millones al mes). Foco: ahorro e inversión.
 - Siempre evaluar beneficios tributarios como gancho, sin depender de ellos.
 - Supuesto de trabajo: asesoría completamente automatizada (a validar con el Autorregulador del Mercado de Valores).
