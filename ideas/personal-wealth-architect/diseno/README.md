@@ -106,3 +106,12 @@ Ajustes a partir de las observaciones de Carolina (ver `../concepto.md`, v4):
 - **Nueva vista para negocio, "el motor por dentro" (M1):** conocimiento, plan, escenarios (con los restrictivos), acciones elegibles, priorización, activación y medición.
 - **Juliana y la vista del consultor** se mantienen como el escenario tributario de renta media.
 - **Nuevas hipótesis:** H9 (paridad de calidad con consultor senior) y H10 (integral frente a transaccional), en el concepto.
+
+## 9. Versión 3 del prototipo (17 de octubre de 2026)
+Alineada con el concepto v5.1 y el brief v5.1:
+- **Nueva pantalla L3b · Mi puntaje:** 520 de 1.000 sobre 6 pilares (colchón, suficiencia, protección, riesgo a la medida, eficiencia, constancia), cada uno con su nota, y la acción que más lo mueve. Se llega desde "Mi patrimonio" (la foto).
+- **Nueva pantalla S1 · Modo servicio:** Andrés pierde su empleo y pide sus cesantías; el agente resuelve, no vende, pausa la regla de la prima y deja al consultor a una frase. Incluye lo que hizo el motor (vista interna).
+- **Nivel de control en los mandatos:** "Te propongo y tú confirmas" (Laura, Mis reglas) y "lo hago solo dentro del tope y te aviso después" (Juliana, regla mensual).
+- **Estados visibles:** "el motor por dentro" dice que todo es diseño y nada está en operación.
+- **Nombre:** el lienzo pasa a "Personal Wealth Architect · Prototipo".
+- **Pendiente:** revisión de los textos sensibles por el experto financiero antes de probar con usuarios.

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tu puntaje</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E6A4E}a:hover{color:#09503A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F2F4F3; font-family: 'Plus Jakarta Sans', sans-serif; color: #12241F; padding: 24px 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="L2-Foto.dc.html" aria-label="Volver" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 22px; background: #FFFFFF"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12241F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a>
+<div style="font-size: 13px; color: #4A5C56; font-weight: 600">Paso 2 de 6 · Tu diagnóstico</div>
+</div>
+<div style="display: flex; align-items: center; gap: 16px">
+<div style="width: 92px; height: 92px; border-radius: 46px; background: #FFFFFF; border: 6px solid #B9721C; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0">
+<span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; font-weight: 700; line-height: 1">520</span>
+<span style="font-size: 11px; color: #4A5C56">de 1.000</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 24px; line-height: 1.15">Vas a mitad de camino</h1>
+<span style="font-size: 13px; color: #4A5C56; line-height: 1.4">Seis pilares de tu salud financiera, con tu pensión adentro</span>
+</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 18px; padding: 6px 16px; display: flex; flex-direction: column">
+<sc-for list="{{pilares}}" as="p" hint-placeholder-count="6">
+<div style="display: flex; flex-direction: column; gap: 6px; padding: 10px 0; border-bottom: 1px solid #EEF1F0">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px">
+<span style="font-size: 14px; font-weight: 700">{{p.nombre}}</span>
+<span style="font-size: 13px; font-weight: 700; color: {{p.color}}">{{p.valor}}</span>
+</div>
+<div style="height: 6px; border-radius: 3px; background: #E6EBE9; overflow: hidden"><div style="height: 6px; border-radius: 3px; width: {{p.ancho}}; background: {{p.color}}"></div></div>
+<span style="font-size: 12px; color: #2E403A; line-height: 1.35">{{p.nota}}</span>
+</div>
+</sc-for>
+</div>
+<div style="background: #12241F; color: #FFFFFF; border-radius: 16px; padding: 12px 14px; font-size: 13px; line-height: 1.45"><strong>Lo que más mueve tu puntaje hoy:</strong> llevar tu colchón a 3 meses. Con tu prima de junio puedes subir unos 90 puntos.</div>
+<div style="flex-grow: 1"></div>
+<a href="L3a-PlanVida.dc.html" style="display: block; text-align: center; text-decoration: none; background: #0E6A4E; color: #FFFFFF; font-weight: 700; font-size: 16px; padding: 15px; border-radius: 14px">Ver mi plan de vida</a>
+<div style="font-size: 11px; color: #4A5C56; text-align: center">Puntaje simulado e ilustrativo. No es una calificación crediticia.</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+var rows = [
+['Colchón', 40, 'Cubres 1,2 meses de gastos; lo sano son 3'],
+['Suficiencia', 55, 'Te pensionarías con $2,3 M; tu meta son $3,0 M'],
+['Protección', 35, 'Beneficiarios por confirmar; tu hija sin cobertura'],
+['Riesgo a la medida', 70, 'Tu pensión está en el fondo que va con tu edad'],
+['Eficiencia', 62, 'Comisiones bajas; cesantías sin propósito definido'],
+['Constancia', 50, 'Aportas sin falta, pero tus primas se diluyen']
+];
+return {
+pilares: rows.map(function (r) {
+var c = r[1] >= 65 ? '#0E6A4E' : (r[1] >= 50 ? '#B9721C' : '#9A2B1E');
+return { nombre: r[0], valor: r[1] + ' / 100', ancho: r[1] + '%', color: c, nota: r[2] };
+})
+};
+}
+}
+</script>
+</body>
+</html>

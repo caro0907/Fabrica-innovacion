@@ -15,10 +15,10 @@
 | Aprendizajes y mejoras a especialistas | `empresa/aprendizajes.md` |
 | Respaldo de los 4 especialistas | `empresa/especialistas/` |
 | Concepto PWA v5.1 | `ideas/personal-wealth-architect/concepto.md` |
-| Brief (v4, por actualizar) | `ideas/personal-wealth-architect/brief.md` |
+| Brief v5.1 | `ideas/personal-wealth-architect/brief.md` |
 | 27 referentes y matriz | `ideas/personal-wealth-architect/referentes.md` |
 | Diseño y copia del prototipo | `ideas/personal-wealth-architect/diseno/` |
-| Prototipo editable | Artefacto de diseño "Personal Wealth Architect · Prototipo": https://claude.ai/artifact/9MVrnadPTUq5rhxkSjFxAR (14 pantallas: recorrido de Laura, recorrido tributario de Juliana, vista del consultor y "el motor por dentro") |
+| Prototipo editable | Artefacto de diseño "Personal Wealth Architect · Prototipo": https://claude.ai/artifact/9MVrnadPTUq5rhxkSjFxAR (16 pantallas: recorrido de Laura con puntaje, recorrido tributario de Juliana, modo servicio, vista del consultor y "el motor por dentro") |
 
 ## 2. Lo trabajado hoy
 - Se montó la fábrica (repositorio, Drive, 4 especialistas) y se hizo el primer proyecto: Personal Wealth Architect para rentas medias y masivas.
@@ -33,11 +33,11 @@
 - Principio: el plan primero, el producto después.
 
 ## 4. Pendientes, en orden
-1. **Diseñador:** actualizar el prototipo a v5.1 — diagnóstico con el puntaje de 6 pilares (pantalla "Mi patrimonio"), pantalla de modo servicio (escenario restrictivo), nivel de control en todos los mandatos, y estados visibles en "el motor por dentro".
-2. **Experto financiero:** revisar los textos sensibles del prototipo y crear `regulatorio.md` con el catálogo de lo que se puede decir.
-3. **Estratega:** actualizar `brief.md` a v5.1.
-4. Prueba con 5 usuarios por segmento (plan en `diseno/README.md`).
-5. **Desarrollador:** MVP solo cuando Carolina apruebe el diseño.
+1. **Experto financiero:** revisar los textos sensibles del prototipo v3 y crear `regulatorio.md` con el catálogo de lo que se puede decir.
+2. Prueba con 5 usuarios por segmento (plan en `diseno/README.md`).
+3. **Desarrollador:** MVP solo cuando Carolina apruebe el diseño.
+
+Hecho el 17 de octubre: prototipo v3 (puntaje de 6 pilares, modo servicio, nivel de control en los mandatos, estados visibles) y brief v5.1.
 
 ## 5. Frase para retomar en una conversación nueva
 "Retomemos la fábrica: lee CONTEXTO.md del repositorio caro0907/Fabrica-innovacion y empecemos por el pendiente 1."
