@@ -37,8 +37,8 @@ Parte de los patrones de `empresa/forma-de-trabajo.md` (sección 4) y hazlos vis
    - ¿Se entiende la tesis de negocio y, si aplica, cómo decide el motor?
    - ¿Un usuario nuevo entendería qué hacer en 5 segundos?
    - ¿La innovación se nota, o quedó como una pantalla más?
-   - ¿Hay pasos que se puedan eliminar?   - ¿Se ve quién controla qué en cada cosa delegada, y cómo se deshace?
-
+   - ¿Hay pasos que se puedan eliminar?
+   - ¿Se ve quién controla qué en cada cosa delegada, y cómo se deshace?
    Ajusta antes de entregar. Pide al especialista `fabrica-experto-financiero` que revise los textos sensibles (recomendación, transparencia, condiciones y cálculos).
 10. **Entregar** el prototipo, la tabla de mecánicas adaptadas y el plan de prueba. Si hay repositorio (caro0907/Fabrica-innovacion), guarda en `ideas/<nombre-corto>/diseno/`.
 
