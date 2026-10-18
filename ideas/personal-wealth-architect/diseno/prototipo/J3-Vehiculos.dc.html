@@ -18,32 +18,32 @@ input[type=checkbox]{accent-color:#0E6A4E;width:20px;height:20px}
 <div style="width: 390px; height: 844px; box-sizing: border-box; background: #F2F4F3; font-family: 'Plus Jakarta Sans', sans-serif; color: #12241F; padding: 24px 20px; display: flex; flex-direction: column; gap: 12px">
 <div style="display: flex; align-items: center; justify-content: space-between">
 <a href="J2-Impuesto.dc.html" aria-label="Volver" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 22px; background: #FFFFFF"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12241F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a>
-<div style="font-size: 13px; color: #4A5C56; font-weight: 600">Paso 2 de 3</div>
+<div style="display: flex; flex-direction: column; align-items: flex-end; gap: 4px"><div style="font-size: 13px; color: #4A5C56; font-weight: 600">Paso 3 de 4 · Cada peso a su meta</div><span style="font-size: 11px; font-weight: 700; color: #0E6A4E; background: #E3EFEA; padding: 3px 8px; border-radius: 8px">Información de tu plan</span></div>
 </div>
-<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; line-height: 1.15">Cada peso a su vehículo, según tu meta</h1>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; line-height: 1.15">Cada peso a su meta, en el vehículo que le sirve</h1>
 <div style="background: #FFFFFF; border-radius: 18px; padding: 12px 16px; display: flex; gap: 12px; align-items: center">
 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E6A4E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M5 12l5 5L20 7"></path></svg>
 <div style="font-size: 14px; line-height: 1.4"><strong>Colchón:</strong> ya cubre 4 meses. No le movemos nada.</div>
 </div>
 <div style="background: #FFFFFF; border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px">
-<div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline"><strong style="font-size: 15px">Casa en la costa a los 55</strong><strong style="font-size: 15px">$6,7 M</strong></div>
+<div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline"><strong style="font-size: 15px">Casa en la costa a los 55</strong><strong style="font-size: 15px">$6,65 M</strong></div>
 <div style="font-size: 12px; font-weight: 700; color: #0E6A4E">PENSIÓN VOLUNTARIA · PAGAS ~$950.000 MENOS DE RENTA</div>
-<div style="font-size: 13px; color: #2E403A; line-height: 1.45"><strong>Condición:</strong> el beneficio se conserva si lo dejas 10 años, lo usas para tu vivienda o para tu pensión. Si lo sacas antes para otra cosa, lo devuelves en tu declaración.</div>
+<div style="font-size: 13px; color: #2E403A; line-height: 1.45"><strong>Condición:</strong> el beneficio se conserva si dejas cada aporte 10 años, o lo usas para tu vivienda o tu pensión. Si lo retiras antes para otra cosa, ese retiro suma a tus ingresos del año y te retenemos el 7% al retirarlo. Siempre puedes retirarlo: antes te mostramos cuánto pierdes.</div>
 <label for="hipoteca" style="display: flex; gap: 10px; align-items: center; font-size: 14px; min-height: 36px; cursor: pointer"><input id="hipoteca" type="checkbox" checked="{{hipoteca}}" onChange="{{onHipoteca}}">Tengo crédito de vivienda</label>
 <sc-if value="{{hipoteca}}" hint-placeholder-val="{{ false }}">
-<div style="font-size: 13px; background: #FFF4E2; border-radius: 10px; padding: 8px 10px; line-height: 1.45">También puedes usar este ahorro para <strong>abonar a tu crédito</strong>: el fondo le gira directo al banco, sin retención y sin perder el beneficio. Cada abono te cuesta cerca de 14% menos.</div>
+<div style="font-size: 13px; background: #FFF4E2; border-radius: 10px; padding: 8px 10px; line-height: 1.45">También puedes usar este ahorro para <strong>abonar a tu crédito</strong>: el fondo le gira directo al banco, sin retención y sin perder el beneficio. Como ese aporte te bajó el impuesto, abonar así te sale cerca de 14% más barato que abonar directo.</div>
 </sc-if>
 </div>
 <div style="background: #FFFFFF; border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px">
 <div style="display: flex; justify-content: space-between; gap: 8px; align-items: baseline"><strong style="font-size: 15px">Tu pensión</strong><strong style="font-size: 15px; color: #4A5C56">Opcional</strong></div>
 <div style="font-size: 12px; font-weight: 700; color: #7A4A0E">APORTE VOLUNTARIO A TU PENSIÓN OBLIGATORIA · SIN EL TOPE ANTERIOR</div>
-<div style="font-size: 13px; color: #2E403A; line-height: 1.45">Si quieres ahorrar aún más impuesto pensando solo en tu pensión. <strong>Condición:</strong> solo sirve para pensionarte; si lo retiras para otra cosa, te retienen 35%.</div>
-<a href="A1-Asesor.dc.html" style="font-size: 14px; font-weight: 700; min-height: 32px; display: flex; align-items: center">Verlo con un asesor</a>
+<div style="font-size: 13px; color: #2E403A; line-height: 1.45">Si quieres ahorrar aún más impuesto pensando solo en tu pensión. <strong>Condición:</strong> solo sirve para pensionarte; si lo retiras para otra cosa, te retienen 35%. Sus reglas pueden cambiar con la reforma pensional desde el 1 de abril de 2027.</div>
+<a href="A1-Asesor.dc.html" style="font-size: 14px; font-weight: 700; min-height: 32px; display: flex; align-items: center; line-height: 1.35">Como solo sirve para tu pensión, esta decisión te la propone un asesor certificado, con tu mismo plan</a>
 </div>
 <label for="entiendo" style="display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.4; cursor: pointer; padding: 4px 2px"><input id="entiendo" type="checkbox" checked="{{entiendo}}" onChange="{{onEntiendo}}" style="flex-shrink: 0; margin-top: 1px">Entiendo la condición de cada vehículo. El cálculo es un estimado.</label>
 <div style="flex-grow: 1"></div>
 <sc-if value="{{entiendo}}" hint-placeholder-val="{{ false }}">
-<a href="J4-Confirmar.dc.html" style="display: block; text-align: center; text-decoration: none; background: #0E6A4E; color: #FFFFFF; font-weight: 700; font-size: 16px; padding: 15px; border-radius: 14px">Continuar con $6,7 M a mi casa</a>
+<a href="J4-Confirmar.dc.html" style="display: block; text-align: center; text-decoration: none; background: #0E6A4E; color: #FFFFFF; font-weight: 700; font-size: 16px; padding: 15px; border-radius: 14px">Continuar con $6,65 M a mi casa</a>
 </sc-if>
 <sc-if value="{{noEntiendo}}" hint-placeholder-val="{{ true }}">
 <div style="text-align: center; background: #DDE5E2; color: #2E403A; font-weight: 700; font-size: 15px; padding: 15px; border-radius: 14px">Confirma que entiendes las condiciones</div>

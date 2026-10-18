@@ -25,7 +25,7 @@ a{color:#0E6A4E}a:hover{color:#09503A}
 <div style="background: #FFFFFF; border-radius: 16px; padding: 14px; display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 6px 8px; font-size: 13px">
 <span style="color: #4A5C56">Segmento</span><strong>Renta masiva</strong>
 <span style="color: #4A5C56">Arquetipo</span><strong>Pragmática</strong>
-<span style="color: #4A5C56">Momento</span><strong>Prima en 14 días</strong>
+<span style="color: #4A5C56">Momento</span><strong>Prima en 15 días</strong>
 </div>
 <div style="background: #FFFFFF; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; line-height: 1.4">
 <strong>Señales</strong>
@@ -70,13 +70,21 @@ a{color:#0E6A4E}a:hover{color:#09503A}
 <div style="font-size: 11px; color: #4A5C56; padding-top: 8px">*Impacto incremental estimado frente a grupo de control (modelo de uplift). Laura es "persuadible" para el plan de la prima: sin contacto, la prima se diluye. Valores simulados.</div>
 </div>
 <div style="background: #12241F; color: #FFFFFF; border-radius: 16px; padding: 14px 16px; font-size: 14px; line-height: 1.5"><strong>Por qué ganó "plan de la prima":</strong> cierra la brecha más urgente de Laura (colchón), avanza su casa, y es la de mayor impacto incremental en depósito neto en su momento (la prima). La inversión de largo plazo para la pensión queda bloqueada hasta que el colchón llegue a 3 meses: el plan primero.</div>
-<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
 <div style="background: #FFFFFF; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px; font-size: 13px">
 <div style="font-size: 12px; font-weight: 700; color: #4A5C56">6 · ACTIVACIÓN</div>
 <span>Canal: chat de mensajería → app</span>
 <span>Tono: cercano · vigencia: 14 días</span>
 <span>Límite: 1 contacto comercial por semana</span>
-<span>Consultor: disponible en cada paso</span>
+<span>Horario: lunes a viernes 7 a. m. a 7 p. m., sábados 8 a. m. a 3 p. m.</span>
+<span>¿Quién lo hace? El agente: paso simple y reversible. El asesor si la decisión solo sirve para pensión, es un traslado o la afiliada lo pide</span>
+</div>
+<div style="background: #FFFFFF; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px; font-size: 13px">
+<div style="font-size: 12px; font-weight: 700; color: #4A5C56">CONTROL DE CUMPLIMIENTO</div>
+<span>Antes de mostrar: perfil vigente y producto adecuado</span>
+<span>Costo visible y texto dentro del catálogo</span>
+<span>Autorización de canal y de uso del ingreso</span>
+<span>Marca: información o recomendación</span>
 </div>
 <div style="background: #FFFFFF; border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 6px; font-size: 13px">
 <div style="font-size: 12px; font-weight: 700; color: #4A5C56">7 · MEDICIÓN Y APRENDIZAJE</div>
@@ -108,6 +116,7 @@ var esc = [
 ['Restrictivo · deuda cara sin colchón', 'No aplica', 'no'],
 ['Restrictivo · pérdida de empleo o evento sensible', 'No aplica', 'no'],
 ['Restrictivo · queja abierta o no contacto', 'No aplica', 'no'],
+['Restrictivo · sin autorización de canal o fuera de horario', 'No aplica', 'no'],
 ['Colchón insuficiente', 'Activo', 'act'],
 ['Prima con rumbo', 'Activo', 'act'],
 ['Brecha pensional', 'Activo', 'act'],
@@ -115,7 +124,7 @@ var esc = [
 ['Diciembre de oro', 'No aplica: no paga renta', 'no']
 ];
 var acc = [
-['Plan de la prima: 70% colchón, 30% casa, y mandato', 'Colchón, casa', 'Depósito neto', 'Alto', 'Elegida', 'sel'],
+['Plan de la prima: 70% colchón en su cuenta, 30% casa, y mandato', 'Colchón, casa', 'Depósito neto', 'Alto', 'Elegida', 'sel'],
 ['Ahorro automático de $200 mil al mes', 'Casa, pensión', 'Depósito neto', 'Medio', 'Siguiente', 'alt'],
 ['Confirmar beneficiarios y protección', 'Familia', 'Experiencia', 'Medio', 'Servicio', 'alt'],
 ['Inversión de largo plazo para la pensión', 'Pensión', 'Activos administrados', 'Medio', 'Bloqueada', 'blo'],

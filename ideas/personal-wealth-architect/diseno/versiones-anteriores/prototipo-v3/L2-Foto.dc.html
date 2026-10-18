@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Mi patrimonio</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E6A4E}a:hover{color:#09503A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F2F4F3; font-family: 'Plus Jakarta Sans', sans-serif; color: #12241F; padding: 24px 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="L2-Diagnostico.dc.html" aria-label="Volver" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 22px; background: #FFFFFF"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12241F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a>
+<div style="font-size: 13px; color: #4A5C56; font-weight: 600">Paso 2 de 6 · Tu foto</div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: flex-end; gap: 12px">
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 28px; line-height: 1.1">Laura, este es todo tu patrimonio</h1>
+<a href="L2b-Puntaje.dc.html" aria-label="Ver tu puntaje por pilar" style="background: #FFFFFF; border-radius: 14px; padding: 8px 12px; text-align: center; flex-shrink: 0; text-decoration: none; color: #12241F">
+<div style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 22px; font-weight: 700">520</div>
+<div style="font-size: 11px; color: #4A5C56">de 1.000</div>
+</a>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap; font-size: 12px; font-weight: 600">
+<span style="background: #E3EFEA; color: #0E6A4E; padding: 4px 10px; border-radius: 10px">Sabemos</span>
+<span style="background: #FFF4E2; color: #7A4A0E; padding: 4px 10px; border-radius: 10px">Nos contaste</span>
+<span style="background: #E6E6E6; color: #3F3F3F; padding: 4px 10px; border-radius: 10px">Por completar</span>
+</div>
+<div style="background: #FFFFFF; border-radius: 18px; padding: 4px 16px; display: flex; flex-direction: column">
+<sc-for list="{{dims}}" as="d" hint-placeholder-count="8">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 11px 0; border-bottom: 1px solid #EEF1F0">
+<div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+<span style="font-size: 14px; font-weight: 700">{{d.nombre}}</span>
+<span style="font-size: 13px; color: #2E403A">{{d.valor}}</span>
+</div>
+<span style="{{d.chip}}">{{d.estado}}</span>
+</div>
+</sc-for>
+</div>
+<div style="background: #FFF4E2; border-radius: 16px; padding: 12px 14px; font-size: 13px; line-height: 1.45"><strong>Lo que más mueve tu puntaje:</strong> tu colchón cubre 1,2 meses de gastos; lo sano son 3. Y aún no sabemos cómo proteger a tu hija si algo te pasa.</div>
+<div style="flex-grow: 1"></div>
+<a href="L2b-Puntaje.dc.html" style="display: block; text-align: center; text-decoration: none; background: #0E6A4E; color: #FFFFFF; font-weight: 700; font-size: 16px; padding: 15px; border-radius: 14px">Ver mi puntaje por pilar</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+var chips = {
+s: ['Sabemos', '#E3EFEA', '#0E6A4E'],
+c: ['Nos contaste', '#FFF4E2', '#7A4A0E'],
+p: ['Por completar', '#E6E6E6', '#3F3F3F']
+};
+var rows = [
+['Pensión obligatoria', '$78 M ahorrados · 14 años cotizados', 's'],
+['Cesantías', '$9,4 M', 's'],
+['Ahorro e inversión', '$3,0 M en una cuenta de ahorros', 'c'],
+['Vivienda', 'En arriendo · meta: tu casa', 'c'],
+['Deudas', 'Tarjeta al día · sin deudas caras', 'c'],
+['Protección de tu familia', 'Tu hija de 8 años · beneficiarios por confirmar', 'p'],
+['Impuestos', 'No declaras renta (estimado)', 's'],
+['Legado', 'Por conversar', 'p']
+];
+var dims = rows.map(function (r) {
+var c = chips[r[2]];
+return {
+nombre: r[0],
+valor: r[1],
+estado: c[0],
+chip: 'flex-shrink: 0; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 10px; background: ' + c[1] + '; color: ' + c[2]
+};
+});
+return { dims: dims };
+}
+}
+</script>
+</body>
+</html>

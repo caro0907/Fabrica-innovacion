@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Cómo funciona tu arquitecto</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E6A4E}a:hover{color:#09503A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F2F4F3; font-family: 'Plus Jakarta Sans', sans-serif; color: #12241F; padding: 24px 20px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="L4-Asesoria.dc.html" aria-label="Volver" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 22px; background: #FFFFFF"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12241F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a>
+<div style="font-size: 13px; color: #4A5C56; font-weight: 600">Reglamento de uso</div>
+</div>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; line-height: 1.15">Cómo funciona tu arquitecto</h1>
+<div style="font-size: 13px; color: #4A5C56; line-height: 1.45">Lo que antes era un servicio de banca privada, en tu bolsillo, con un asesor cuando la decisión lo pide.</div>
+<sc-for list="{{bloques}}" as="b" hint-placeholder-count="5">
+<div style="background: #FFFFFF; border-radius: 16px; padding: 11px 14px; display: flex; flex-direction: column; gap: 4px">
+<strong style="font-size: 14px">{{b.titulo}}</strong>
+<span style="font-size: 12.5px; color: #2E403A; line-height: 1.45">{{b.texto}}</span>
+</div>
+</sc-for>
+<div style="flex-grow: 1"></div>
+<a href="A1-Asesor.dc.html" style="display: block; text-align: center; text-decoration: none; background: #0E6A4E; color: #FFFFFF; font-weight: 700; font-size: 16px; padding: 15px; border-radius: 14px">Hablar con un asesor</a>
+<div style="font-size: 11px; color: #4A5C56; text-align: center"><a href="#">Reglamento completo</a> · Comisión: [X]% al año · Datos ficticios</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+var raw = [
+['Tu plan primero', 'Partimos de tus metas, no de nuestros productos. A veces tu siguiente paso no es un producto: armar tu colchón en tu cuenta, pagar una deuda cara o confirmar a tus beneficiarios.'],
+['Información o recomendación', 'Tu foto, tu puntaje y tu plan son información. Cuando te recomendamos un producto lo marcamos como Recomendación profesional, con su porqué, su riesgo en pesos y su costo.'],
+['Quién te asesora', 'Una herramienta tecnológica de [Administradora], autorizada y supervisada por la entidad, con tu perfil. Es asesoría no independiente: te recomendamos alternativas nuestras y recibimos una comisión.'],
+['Cuándo entra un asesor', 'Siempre que lo pidas. Y te lo proponemos cuando la decisión lo pide: aportes que solo sirven para tu pensión, traslados, tu modalidad de pensión o un retiro que te hace perder un beneficio.'],
+['Tus permisos', 'Usamos el salario con el que cotizas porque lo autorizaste. Nada se mueve sin tu confirmación o una regla que tú fijaste. Pausas o cancelas todo con una frase.']
+];
+return { bloques: raw.map(function (r) { return { titulo: r[0], texto: r[1] }; }) };
+}
+}
+</script>
+</body>
+</html>

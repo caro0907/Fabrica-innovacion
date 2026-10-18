@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Recomendación y confirmación</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E6A4E}a:hover{color:#09503A}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F2F4F3; font-family: 'Plus Jakarta Sans', sans-serif; color: #12241F; padding: 24px 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<a href="L3-Plan.dc.html" aria-label="Volver" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 22px; background: #FFFFFF"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12241F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a>
+<div style="font-size: 13px; color: #4A5C56; font-weight: 600">Paso 5 de 6 · Recomendación</div>
+</div>
+<sc-if value="{{pendiente}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 26px; line-height: 1.15">Te recomiendo esto, y te digo por qué</h1>
+<div style="background: #FFFFFF; border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; gap: 8px"><strong style="font-size: 15px">$1.820.000 a tu colchón</strong><span style="font-size: 12px; color: #0E6A4E; font-weight: 700">LIQUIDEZ DIARIA</span></div>
+<div style="font-size: 13px; color: #2E403A; line-height: 1.45">Por qué: hoy tu colchón cubre 1,2 meses. Con esto llegas a 1,9 y cualquier imprevisto no te obliga a endeudarte.</div>
+</div>
+<div style="background: #FFFFFF; border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; gap: 8px"><strong style="font-size: 15px">$780.000 a tu casa en 10 años</strong><span style="font-size: 12px; color: #7A4A0E; font-weight: 700">PORTAFOLIO MODERADO</span></div>
+<div style="font-size: 13px; color: #2E403A; line-height: 1.45">Por qué: tu meta es a 10 años y tu perfil es moderado. Con ese plazo puedes aguantar las bajas y buscar más rentabilidad.</div>
+<div style="font-size: 13px; background: #FFF4E2; border-radius: 10px; padding: 8px 10px; line-height: 1.4"><strong>En un mal año</strong> esta parte podría bajar unos $90.000. Por eso no va ahí tu colchón.</div>
+</div>
+<details style="background: #FFFFFF; border-radius: 18px; padding: 12px 16px; font-size: 13px; line-height: 1.5">
+<summary style="font-weight: 700; font-size: 14px; cursor: pointer; min-height: 24px">Transparencia: quién te asesora y cuánto cuesta</summary>
+<div style="padding-top: 8px; display: flex; flex-direction: column; gap: 6px; color: #2E403A">
+<div><strong>Quién:</strong> recomendación profesional automatizada de tu AFP, con tu perfil de 6 preguntas (moderado). <a href="#">Ver mis respuestas</a></div>
+<div><strong>Tipo de asesoría:</strong> no independiente. Te recomendamos alternativas nuestras y recibimos una comisión por administrarlas.</div>
+<div><strong>Costo:</strong> [X]% al año, unos [$Y] al año sobre estos montos.</div>
+<div><strong>Otras opciones:</strong> dejarlo en tu cuenta de ahorros actual, un CDT o fondos de otras entidades.</div>
+</div>
+</details>
+<button type="button" onClick="{{confirmar}}" style="margin-top: 4px; min-height: 52px; border: 0; border-radius: 14px; background: #0E6A4E; color: #FFFFFF; font-family: inherit; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 11c0 3-1 6-3 8"></path><path d="M8 4.5A8 8 0 0 1 20 11c0 2-.3 4-1 6"></path><path d="M4 8a8 8 0 0 0-.5 3c0 2 .3 3.5 1 5"></path><path d="M12 7a4 4 0 0 1 4 4c0 3-.5 5.5-1.5 7.5"></path><path d="M8 11a4 4 0 0 1 .2-1.2"></path></svg>
+Confirmar con mi huella el día de la prima</button>
+<a href="Main.dc.html" style="text-align: center; font-size: 14px; font-weight: 600; padding: 10px">Prefiero hablar con un asesor</a>
+</div>
+</sc-if>
+<sc-if value="{{listo}}" hint-placeholder-val="{{ false }}">
+<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 16px; justify-content: center">
+<div style="width: 72px; height: 72px; border-radius: 36px; background: #E3EFEA; display: flex; align-items: center; justify-content: center"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#0E6A4E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></div>
+<h1 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-size: 28px; line-height: 1.15">Listo, Laura. Tu prima ya tiene rumbo.</h1>
+<div style="font-size: 15px; color: #2E403A; line-height: 1.5">El 30 de junio movemos $1.820.000 a tu colchón y $780.000 a tu casa. Te avisamos ese día. Tu puntaje sube de 520 a <strong>610</strong>.</div>
+<div style="background: #FFF4E2; border-radius: 18px; padding: 14px 16px; font-size: 15px; line-height: 1.45">¿Quieres que en diciembre lo haga igual, con aviso un día antes?</div>
+<a href="L5-Reglas.dc.html" style="display: block; text-align: center; text-decoration: none; background: #0E6A4E; color: #FFFFFF; font-weight: 700; font-size: 16px; padding: 15px; border-radius: 14px">Sí, déjalo como regla</a>
+<button type="button" onClick="{{volver}}" style="min-height: 44px; border: 0; background: transparent; font-family: inherit; font-size: 14px; font-weight: 600; color: #0E6A4E; cursor: pointer">Ver de nuevo la recomendación</button>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { listo: false };
+}
+renderVals() {
+var self = this;
+return {
+pendiente: !this.state.listo,
+listo: this.state.listo,
+confirmar: function () { self.setState({ listo: true }); },
+volver: function () { self.setState({ listo: false }); }
+};
+}
+}
+</script>
+</body>
+</html>

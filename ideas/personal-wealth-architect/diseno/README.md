@@ -1,4 +1,4 @@
-# Diseño: Personal Wealth Architect · v2
+# Diseño: Personal Wealth Architect · v4
 
 **17 de octubre de 2026 · Especialista: diseñador de la fábrica** · Parte del brief v3.2 (`../brief.md`). Todos los datos son ficticios.
 
@@ -115,3 +115,23 @@ Alineada con el concepto v5.1 y el brief v5.1:
 - **Estados visibles:** "el motor por dentro" dice que todo es diseño y nada está en operación.
 - **Nombre:** el lienzo pasa a "Personal Wealth Architect · Prototipo".
 - **Pendiente:** revisión de los textos sensibles por el experto financiero antes de probar con usuarios.
+
+## 10. Versión 4 del prototipo (17 de octubre de 2026, noche): fiel a la definición del concepto
+Revisión de las 15 pantallas contra la definición de Carolina: *"un wealth architect diseña el plan completo del patrimonio a partir de las metas de vida, y no a partir de los productos que vende; la IA lo pone en el bolsillo de cada afiliado, y el asesor lo completa cuando la decisión lo pide"*. La copia de v3 queda en `versiones-anteriores/prototipo-v3/`.
+
+**Desvíos que se corrigieron:**
+
+| Desvío en v3 | Qué cambia en v4 | Parte de la definición |
+|---|---|---|
+| El recorrido de Juliana empezaba por el impuesto y la pensión voluntaria | El aviso parte de sus metas (casa en la costa a los 55, pensión) y hay una pantalla nueva, **J2 · Tu plan antes del impuesto**, con colchón, casa, pensión como ancla y protección. El beneficio tributario aparece como la forma de cerrar la brecha | Plan a partir de las metas |
+| El colchón de Laura terminaba en un producto de la entidad | El colchón es un **paso del plan, separado en su cuenta, marcado "no es un producto"**; la alternativa de liquidez queda como opción con sus diferencias. Solo los $780.000 de largo plazo son recomendación profesional | No a partir de los productos que vende |
+| El plan de vida solo tenía metas que terminan en productos | Nueva acción sin producto: **confirmar a la hija como beneficiaria** | Plan completo del patrimonio |
+| El asesor era solo "Hablar con alguien" | Entra **por regla cuando la decisión lo pide**: el aporte que solo sirve para pensión lo propone un asesor certificado (J4, vista del consultor y motor) | El asesor lo completa cuando la decisión lo pide |
+| No se distinguía información de recomendación | Cada pantalla de la app lleva la marca **"Información de tu plan"** o **"Recomendación profesional"** | La IA en el bolsillo, con reglas claras |
+| No había un lugar que explicara el servicio | Pantalla nueva **L8 · Cómo funciona tu arquitecto** (reglamento de uso): plan primero, información o recomendación, quién asesora, cuándo entra el asesor, tus permisos | Las tres partes |
+
+**Ajustes regulatorios aplicados** (de `../regulatorio.md`, sección 4): los 7 de prioridad alta y los de prioridad media y baja que tocan pantallas existentes, entre ellos: "con el método de nuestros consultores", autorización del uso del salario de cotización, remitente identificado, "no pagas impuesto" en vez de "no declaras", reglas de la reforma pensional en la proyección, proyección neta de comisiones, condición correcta de retiro de la pensión voluntaria (7%), faltante exacto de $6,65 M, regla mensual por nómina con autorización ante la empresa, plazo de 5 días para las cesantías y el Mecanismo de Protección al Cesante en modo servicio. El motor suma el control de cumplimiento, el horario de contacto y la pregunta "¿quién lo hace?".
+
+**Recorridos v4:** Laura L1 a L8 (aviso → diagnóstico → patrimonio → puntaje → plan de vida → siguiente paso → recomendación → mis reglas → cómo funciona). Juliana J1 a J5 (aviso → su plan → impuesto → cada peso a su meta → confirmar y regla). Vista del consultor, motor por dentro y modo servicio.
+
+**Pendiente:** revisión visual en el lienzo de L4 (cuatro metas), L6 (recomendación con el colchón como paso del plan) y S1 (un mensaje más), que crecieron en contenido.

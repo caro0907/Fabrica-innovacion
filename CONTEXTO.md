@@ -1,4 +1,4 @@
-# CONTEXTO · 17 de octubre de 2026 (v2, noche) — Revisión regulatoria del Personal Wealth Architect lista; el prototipo pasa a ajustes de texto
+# CONTEXTO · 17 de octubre de 2026 (v2, noche) — Revisión regulatoria lista y prototipo v4 fiel al concepto
 
 > El contexto anterior está en `historial-contextos/CONTEXTO-2026-10-17-v1.md`.
 
@@ -22,13 +22,14 @@
 | **Concepto regulatorio y catálogo de lo que se puede decir v1 (nuevo)** | `ideas/personal-wealth-architect/regulatorio.md` |
 | 27 referentes y matriz | `ideas/personal-wealth-architect/referentes.md` |
 | Diseño y copia del prototipo | `ideas/personal-wealth-architect/diseno/` |
-| Prototipo editable | Artefacto de diseño "Personal Wealth Architect · Prototipo": https://claude.ai/artifact/9MVrnadPTUq5rhxkSjFxAR (15 pantallas; la copia del repositorio es idéntica) |
+| Prototipo editable (v4) | Artefacto de diseño "Personal Wealth Architect · Prototipo": https://claude.ai/artifact/9MVrnadPTUq5rhxkSjFxAR (17 pantallas; copia en `diseno/prototipo/`, v3 en `diseno/versiones-anteriores/`) |
 
 ## 2. Lo trabajado en esta sesión
 - **Experto financiero:** revisó los textos sensibles del prototipo v3 y creó `regulatorio.md` v1: 27 ajustes de texto (7 de prioridad alta), catálogo de lo que se puede decir (plan antes que producto, beneficios, condiciones, advertencias, lo que la IA nunca dice, reglas de cálculo), mandatos viables hoy, retiro informado, escenarios restrictivos regulatorios y 11 preguntas para validar con personas.
 - **Hallazgos principales:** la Circular Externa 14 de 2025 de la Superintendencia Financiera ya regula la asesoría con herramientas tecnológicas y permite tratar los portafolios estandarizados de pensión voluntaria como productos simples masivos (el riesgo de la asesoría automatizada baja de alto a medio); información y recomendación deben verse distintas; las cifras tributarias del prototipo cuadran, pero tres textos eran inexactos (retiro antes de tiempo, "no declaras renta", retención por nómina); la reforma pensional rige desde el 1 de abril de 2027 (sentencia C-264 de 2026); la Ley 2300 de 2023 fija horario y frecuencia de contacto; en modo servicio se puede informar del Mecanismo de Protección al Cesante.
 - `empresa/beneficios-tributarios.md` pasó a v2 con lo verificado.
 - Se leyeron como contexto los 9 archivos de la carpeta de Drive de la fábrica.
+- **Diseñador:** prototipo v4 fiel a la definición del concepto: Juliana empieza por su plan (pantalla nueva), el colchón de Laura es un paso del plan y no un producto, el asesor entra por regla cuando la decisión lo pide, marcas de información o recomendación y pantalla nueva "Cómo funciona tu arquitecto". Aplicados los ajustes regulatorios a las pantallas.
 
 ## 3. Decisiones tomadas (no se revisitan)
 - Solo datos públicos o simulados en el repositorio y en los entregables. Los documentos internos de Carolina se usan como contexto y viven solo en su Drive.
@@ -38,8 +39,8 @@
 - Principio: el plan primero, el producto después.
 
 ## 4. Pendientes, en orden
-1. **Carolina:** revisar `regulatorio.md` y decir si el diseñador aplica los 27 ajustes al prototipo (empezando por los 7 de prioridad alta).
-2. **Diseñador:** aplicar los ajustes aprobados al prototipo (v4) y, de paso, revisar visualmente la pantalla "Mi puntaje" (mucho contenido para el alto de la pantalla). Verificar cada pantalla contra la definición de la sección 0.
+1. **Carolina:** revisar el prototipo v4 en el lienzo (fiel a la definición del concepto y con los ajustes regulatorios; ver `diseno/README.md`, sección 10), en especial el alto de L4, L6, S1 y "Mi puntaje".
+2. **Diseñador:** ajustar lo que Carolina observe en v4.
 3. Prueba con 5 usuarios por segmento (plan en `diseno/README.md`).
 4. **Estratega:** en la siguiente versión del concepto, cerrar el "a verificar" de la prima de diciembre (verificado) y bajar a medio el riesgo de la asesoría automatizada (control crítico #2), según `regulatorio.md` sección 10.
 5. **Desarrollador:** MVP solo cuando Carolina apruebe el diseño.
