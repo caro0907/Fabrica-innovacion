@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Tu perfil</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Newsreader:opsz,wght@6..72,500;6..72,600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E6A4E}a:hover{color:#09503A}
+input[type=range]{accent-color:#0E6A4E}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F6F3EC; font-family: 'Plus Jakarta Sans', sans-serif; color: #12241F; padding: 22px 18px 18px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px"><a href="D3-Vida.dc.html" aria-label="Volver" style="width: 44px; height: 44px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 22px; background: #FFFFFF"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12241F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a><div style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px"><span style="font-size: 12px; font-weight: 600; color: #4A5C56">Tu primera reunión · 3 de 4</span><div role="img" aria-label="Paso 3 de 4" style="display: flex; gap: 4px"><span style="width: 22px; height: 8px; border-radius: 4px; background: #0E6A4E"></span><span style="width: 22px; height: 8px; border-radius: 4px; background: #0E6A4E"></span><span style="width: 22px; height: 8px; border-radius: 4px; background: #0E6A4E"></span><span style="width: 8px; height: 8px; border-radius: 4px; background: #E7E2D6"></span></div></div></div>
+<h1 style="margin: 0; font-family: 'Newsreader', serif; font-size: 28px; font-weight: 600; line-height: 1.15">¿Cómo te sientes con el riesgo?</h1>
+<span style="font-size: 14px; color: #2E403A; line-height: 1.45">Seis preguntas, una por cada cosa que un asesor debe conocer antes de recomendarte. Vas en la sexta.</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><span style="font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 8px; background: #E3EFEA; color: #0E6A4E">Tu horizonte</span><span style="font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 8px; background: #E3EFEA; color: #0E6A4E">Tus objetivos</span><span style="font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 8px; background: #E3EFEA; color: #0E6A4E">Tu conocimiento</span><span style="font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 8px; background: #E3EFEA; color: #0E6A4E">Tu experiencia</span><span style="font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 8px; background: #E3EFEA; color: #0E6A4E">Cuánto puedes perder</span><span style="font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 8px; background: #F3C98A; color: #12241F">Cómo reaccionas a las bajas</span></div>
+<div style="background: #FFFFFF; border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+<span style="font-size: 12px; font-weight: 700; color: #4A5C56">PREGUNTA 6 DE 6</span>
+<strong style="font-size: 16px; line-height: 1.4">Pusiste $780.000 para tu casa. Un mal año bajan a $690.000. ¿Qué harías?</strong>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{resp}}" as="c" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{c.on}}" onClick="{{c.pick}}" style="{{c.style}}">{{c.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="background: #FFF4E2; border-radius: 16px; padding: 12px 14px; font-size: 13px; line-height: 1.45">No hay respuestas buenas o malas. Con esto sabemos qué te recomendamos y qué no; lo puedes cambiar cuando tu vida cambie.</div>
+<div style="flex-grow: 1"></div>
+<a href="D5-Entendi.dc.html" style="min-height: 52px; border-radius: 14px; background: #0E6A4E; color: #FFFFFF; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center; text-decoration: none">Siguiente</a>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { resp: 'Espero: mi meta es a 10 años' };
+}
+renderVals() {
+var self = this, s = this.state;
+function st(on) { return 'min-height: 48px; padding: 0 14px; text-align: left; border-radius: 14px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; border: 2px solid ' + (on ? '#0E6A4E' : '#E7E2D6') + '; background: ' + (on ? '#E3EFEA' : '#FFFFFF') + '; color: #12241F'; }
+return {
+resp: ['Lo saco todo para no perder más','Espero: mi meta es a 10 años','Aprovecho y pongo más'].map(function (o) { var on = s.resp === o; return { label: o, on: on ? 'true' : 'false', style: st(on), pick: function () { self.setState({ resp: o }); } }; })
+};
+}
+}
+</script>
+</body>
+</html>

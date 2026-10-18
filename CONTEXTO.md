@@ -42,7 +42,7 @@
 - Principio: el plan primero, el producto después.
 
 ## 4. Pendientes, en orden
-1. **Carolina:** revisar la v5 en el lienzo (fila superior, "La app del arquitecto"; ver `diseno/README.md`, sección 11 y `diseno/benchmark-experiencia.md`). Decidir si el consultor con nombre aplica a la renta masiva.
+1. **Carolina:** revisar la v5 en el lienzo (dos filas superiores: "Tu primera reunión", el diagnóstico, y "La app del arquitecto"; ver `diseno/README.md`, sección 11 y `diseno/benchmark-experiencia.md`). Decidir si el consultor con nombre aplica a la renta masiva.
 2. **Diseñador:** ajustar lo que Carolina observe en v5; luego preparar la prueba con usuarios sobre la app (no sobre el chat).
 3. Prueba con 5 usuarios por segmento (plan en `diseno/README.md`).
 4. **Estratega:** en la siguiente versión del concepto, cerrar el "a verificar" de la prima de diciembre (verificado) y bajar a medio el riesgo de la asesoría automatizada (control crítico #2), según `regulatorio.md` sección 10.

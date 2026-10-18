@@ -157,3 +157,15 @@ El chat queda como una superficie (la barra "Pregúntale algo a tu arquitecto" y
 **Supuestos nuevos y ficticios:** consultora "Daniela R." para Laura y consultor "Camilo V." para Juliana; patrimonio de Juliana de $257 M. La pantalla "Cómo funciona tu arquitecto" queda enlazada desde "Tu equipo".
 
 **Pendiente:** revisión visual de Carolina en el lienzo; decidir si el modelo de "consultor con nombre" aplica a toda la renta masiva o solo a la media (capacidad del equipo).
+
+**Ajuste a v5 (observación de Carolina: "¿por qué no iniciamos con las preguntas o el diagnóstico?"):** fila nueva arriba, **"Primero te conozco: tu primera reunión"**, que va antes del plan, como la primera reunión con un asesor de banca privada:
+
+| Pantalla | Qué hace |
+|---|---|
+| D1 · Tu primera reunión | Lo que ya sabemos y no preguntamos (pensión, cesantías, salario, primas), la agenda de 4 temas y unos 6 minutos, y la opción de hacerla con la consultora por video |
+| D2 · Lo que quieres lograr | Metas elegibles y el plazo de la más importante |
+| D3 · Tu vida hoy | Dependientes (de la hija, solo la edad), vivienda, gastos con deslizador (calcula el colchón) y deudas |
+| D4 · Cómo te sientes con el riesgo | El perfil en 6 preguntas, una por criterio de la norma de asesoría, explicadas en pesos |
+| D5 · Esto entendí de ti | Resumen para corregir antes de armar el plan; lo que aún no sabemos; lleva al inicio (V1) |
+
+El aviso de mensajería (L1) ahora lleva a D1; la conversación de diagnóstico por chat (v4) queda como alternativa.
