@@ -42,6 +42,7 @@
 - Principio: el plan primero, el producto después.
 
 ## 4. Pendientes, en orden
+0. **Fábrica v2 lista (17 oct, noche):** revisor independiente, criterios vivos, activos, vigía semanal (lunes 6:56 a. m.) y métricas. Carolina debe guardar las mejoras de los cuatro especialistas. El revisor devolvió la v5 con 7 hallazgos que bloquean (`empresa/metricas.md`); el diseñador debe corregirlos y pasar la segunda ronda antes del desarrollo.
 1. **Carolina:** revisar la v5 en el lienzo (dos filas superiores: "Tu primera reunión", el diagnóstico, y "La app del arquitecto"; ver `diseno/README.md`, sección 11 y `diseno/benchmark-experiencia.md`). Decidir si el consultor con nombre aplica a la renta masiva.
 2. **Diseñador:** ajustar lo que Carolina observe en v5; luego preparar la prueba con usuarios sobre la app (no sobre el chat).
 3. Prueba con 5 usuarios por segmento (plan en `diseno/README.md`).

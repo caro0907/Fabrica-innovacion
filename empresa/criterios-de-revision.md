@@ -27,6 +27,8 @@
 | B7 | ¿Se hizo un benchmark de experiencia con los mejores (incluidos Nubank y Revolut) antes de diseñar pantallas? | Pantallas sin `benchmark-experiencia.md` o sin tabla de mecánicas adaptadas | Sí | PWA v5, 17 oct: Carolina pidió analizar Nubank, Revolut y fintech |
 | B8 | ¿Quién controla cada cosa delegada y cómo se deshace está a la vista? | Mandatos sin tope, vigencia, nivel de control o forma de cancelar | Sí | Concepto PWA |
 | B9 | ¿Un usuario nuevo entiende en 5 segundos qué hacer en cada pantalla? | Pantallas con más de una acción principal o textos largos arriba | No | Estándar del diseñador |
+| B10 | ¿Cada dato que usa el plan viene de lo que ya se sabe o de una pregunta del diagnóstico, con su origen visible? | El plan muestra montos (ahorro, cuota de la casa, meta de pensión) que nunca se preguntaron | Sí | Revisor, 17 oct 2026 (prototipo v5) |
+| B11 | ¿La primera vez, después del diagnóstico, la persona ve su plan completo antes de cualquier propuesta? | Del diagnóstico pasa a una "revisión" o una propuesta como si fuera usuaria antigua | Sí | Revisor, 17 oct 2026 (prototipo v5) |
 
 ## C. Rigor regulatorio y de cifras
 
@@ -58,6 +60,8 @@
 | E1 | ¿Cada pantalla cabe en su alto, con botones de al menos 44 px y contraste suficiente? | Contenido que se corta; textos grises claros | No | PWA, pantalla "Mi puntaje" |
 | E2 | ¿Versión nueva en el nombre y dentro del documento, la anterior archivada, nada perdido? | Archivos sobrescritos sin versión | No | Forma de trabajo, sección 1 |
 | E3 | ¿El CONTEXTO está actualizado? | Pendientes que ya se hicieron, decisiones sin registrar | No | Forma de trabajo, sección 1 |
+| E4 | ¿Cada enlace lleva a una pantalla de la misma persona, la misma versión y el mismo momento, sin botones muertos ni salidas a versiones anteriores o a vistas internas? | El inicio de Juliana abre el plan y la consultora de Laura; "Hablar con un asesor" abre la vista interna de otra afiliada | Sí | Revisor, 17 oct 2026 (prototipo v5) |
 
 ## Historial de criterios agregados
+- 17 de octubre de 2026: B10, B11 y E4, propuestos por el revisor en su primera revisión (prototipo v5).
 - 17 de octubre de 2026: creación con A1 a E3, a partir de `forma-de-trabajo.md`, `aprendizajes.md` y las observaciones de Carolina sobre el Personal Wealth Architect.

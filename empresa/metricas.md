@@ -21,6 +21,7 @@
 ## Revisiones del revisor independiente
 | Fecha | Entregable | Veredicto | Hallazgos que bloquean | Nota |
 |---|---|---|---|---|
+| 17 oct 2026 | Prototipo v5 del Personal Wealth Architect (primera reunión y app del arquitecto) | DEVUELVE | 7 (16 que no bloquean) | Primera prueba del revisor. Encontró problemas que Carolina no había señalado: el plan se salta después del diagnóstico y el mecanismo de la prima vuelve al centro; datos del plan que el diagnóstico no pidió; información y recomendación mezcladas en la revisión; la pensión sin supuestos; el beneficio de Juliana sin su condición; el recorrido de Juliana abre pantallas de Laura; el mandato de Juliana sin vigencia ni aviso. Propuso 2 criterios nuevos (E4 y B10) |
 
 ## Detectado por Carolina después de pasar por el revisor
 | Fecha | Entregable | Observación | Criterio agregado |

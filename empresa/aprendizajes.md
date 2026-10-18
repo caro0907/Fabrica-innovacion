@@ -38,3 +38,8 @@ Al cerrar cada proyecto, registra qué funcionó, qué no y qué mejora proponer
 - **Mejoras propuestas a los especialistas:**
   - **Experto financiero:** revisar siempre contra la definición del concepto (plan antes que producto, cuándo entra el asesor), no solo contra la norma; separar en todo cálculo tributario "paga impuesto" de "debe declarar"; buscar circulares de la Superintendencia de los últimos 12 meses antes de calificar un riesgo regulatorio.
   - **Diseñador:** marcar en cada pantalla si es "información de tu plan" o "recomendación profesional"; nunca escribir que la entidad "mueve" dinero que está en otra cuenta; usar textos del catálogo de `regulatorio.md` en vez de redactar condiciones nuevas.
+
+### Personal Wealth Architect · diseño v5 y fábrica v2 · 17 de octubre de 2026
+- **Observaciones de Carolina:** la v4 se sentía como una IA que guía en un chat, no como un asesor personal; y la v5 empezaba con el plan sin el diagnóstico antes. Las dos estaban escritas en el skill del diseñador y no se aplicaron.
+- **Lo que cambió en la fábrica:** un revisor independiente (`fabrica-revisor`) que corre como agente aparte, criterios vivos (`criterios-de-revision.md`), activos reutilizables (`activos/`), un vigía semanal y métricas de rondas de corrección (`metricas.md`).
+- **Primera prueba del revisor:** devolvió la v5 con 7 hallazgos que bloquean, ninguno señalado antes por Carolina (por ejemplo, el recorrido de Juliana abría pantallas de Laura y el plan se saltaba después del diagnóstico). Es la primera evidencia de que la compuerta encuentra lo que la autoría no ve.
