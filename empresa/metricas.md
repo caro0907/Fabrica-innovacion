@@ -24,11 +24,15 @@
 | 17 oct 2026 | Prototipo v5 del Personal Wealth Architect (primera reunión y app del arquitecto) | DEVUELVE | 7 (16 que no bloquean) | Primera prueba del revisor. Encontró problemas que Carolina no había señalado: el plan se salta después del diagnóstico y el mecanismo de la prima vuelve al centro; datos del plan que el diagnóstico no pidió; información y recomendación mezcladas en la revisión; la pensión sin supuestos; el beneficio de Juliana sin su condición; el recorrido de Juliana abre pantallas de Laura; el mandato de Juliana sin vigencia ni aviso. Propuso 2 criterios nuevos (E4 y B10) |
 | 17 oct 2026 | Prototipo v5.1 (segunda ronda) | DEVUELVE | 2 (15 que no bloquean) | De los 7 anteriores, 5 resueltos y 2 con residuo menor. Nuevos: la pensión de Juliana ($5,6 M) no salía de sus propios supuestos (recalculada: unos $3,0 M), y Laura saltaba entre la primera reunión y la app. Propuso C8 (perfil y producto coherentes) y ampliar E4 a "el mismo momento". Corregido en v5.2 junto con 12 de los 15 que no bloquean; según la skill, no hay tercera ronda: va a Carolina con lo abierto a la vista |
 | 17 oct 2026 | Prototipo v5.2 · verificación mecánica | 0 que bloquean | — | La herramienta, ampliada para revisar momentos, encontró un salto que el revisor no vio ("Ver tus 8 dimensiones" en el plan del 1 de junio abría el patrimonio del 15 de junio). Lo mecánico lo hace la herramienta; el juicio, el revisor |
+| 18 oct 2026 | Vigía semanal `vigia/2026-10-18.md` | PASA | 0 (5 que no bloquean, aplicados) | Primera revisión de un informe del vigía |
+| 18 oct 2026 | Experto financiero v3 y sección 2.3 del vigía (referentes ampliados) | DEVUELVE | 1 (5 que no bloquean) | La revisión ampliada dejaba fuera, sin decirlo, 2 de los 6 grupos de referentes |
+| 18 oct 2026 | Experto financiero v3 y sección 2.3 (segunda ronda) | PASA | 0 (3 que no bloquean, aplicados) | — |
 
 ## Detectado por Carolina después de pasar por el revisor
 | Fecha | Entregable | Observación | Criterio agregado |
 |---|---|---|---|
 | 18 oct 2026 | Prototipo v5.2 | Ninguna: "el prototipo quedó perfecto". Aprobado sin rondas de corrección | — |
+| 18 oct 2026 | Vigía semanal | La evaluación debía usar todos los referentes de su investigación previa en Drive, no solo los nombrados en la instrucción | A6 |
 
 ## Lectura después del primer proyecto (17 de octubre de 2026)
 - **Detectado por la fábrica vs. por Carolina en el diseño:** desde que existe el revisor, 9 hallazgos que bloquean los encontró la fábrica y 0 Carolina (hasta su próxima revisión). Antes del revisor, los 4 desvíos de fondo los había encontrado ella.

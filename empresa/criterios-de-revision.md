@@ -13,6 +13,7 @@
 | A3 | ¿El plan va antes que el producto? | Una meta termina siempre en un producto propio; el colchón o una acción del plan se resuelven con un producto de la entidad sin necesidad | Sí | PWA v4, 17 oct: el colchón terminaba en un producto propio |
 | A4 | ¿Se cumplen todas las promesas del concepto dentro del alcance del MVP? | Una promesa no aparece en ninguna pantalla o sección | Sí | Estándar del diseñador |
 | A5 | ¿Se partió del trabajo previo de Carolina? | Ideas que ella ya había resuelto aparecen como nuevas o contradichas | No | PWA v1: el estratega no partió de su material |
+| A6 | ¿Las comparaciones con el mercado usan todos los referentes de la investigación previa (Drive y `referentes.md`), por grupo, y no solo los que nombra la instrucción? | Un informe o concepto que solo mira 4 o 5 competidores conocidos; grupos enteros (pensiones de otros países, reguladores, agentes de terceros) sin mencionar | Sí | Carolina, 18 oct 2026 (vigía semanal) |
 
 ## B. Experiencia (cómo se siente para el usuario)
 
@@ -65,6 +66,7 @@
 | E4 | ¿Cada enlace lleva a una pantalla de la misma persona, la misma versión y el mismo momento, sin botones muertos ni salidas a versiones anteriores o a vistas internas? Se comprueba con `empresa/activos/plantillas/verificar-prototipo.py` (cada pantalla declara su momento) y, a mano, que cada salto de momento marcado tenga sentido | El inicio de Juliana abre el plan y la consultora de Laura; la bienvenida del 1 de junio abre la app del 15 de junio | Sí | Revisor, 17 oct 2026 (prototipos v5 y v5.1) |
 
 ## Historial de criterios agregados
+- 18 de octubre de 2026: A6, por una observación de Carolina sobre el vigía semanal (detectado por Carolina).
 - 17 de octubre de 2026: C8 y C9, y E4 ampliado a "el mismo momento", propuestos por el revisor en la segunda ronda (prototipo v5.1).
 - 17 de octubre de 2026: B10, B11 y E4, propuestos por el revisor en su primera revisión (prototipo v5).
 - 17 de octubre de 2026: creación con A1 a E3, a partir de `forma-de-trabajo.md`, `aprendizajes.md` y las observaciones de Carolina sobre el Personal Wealth Architect.
