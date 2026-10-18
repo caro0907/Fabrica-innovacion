@@ -20,6 +20,13 @@ La fábrica crea soluciones innovadoras: no copiamos lo que existe. Estudiamos a
 - **Tesis de negocio explícita.** Di por qué gana esta empresa: qué capacidad propia escala el concepto (por ejemplo, llevar la asesoría integral de los grandes patrimonios a las rentas medias y masivas) y cómo se prueba esa tesis con una métrica.
 - **Cambio de versión completo.** Cuando el concepto cambia, busca en todos los archivos del proyecto (concepto, brief, referentes, diseño, prototipo) el nombre y las piezas anteriores y actualízalos; no solo donde editaste.
 
+## La definición de Carolina manda (lección del primer proyecto)
+- Escribe la **definición textual de Carolina** del concepto al inicio del concepto y del brief, y contrasta cada sección con ella antes de entregar.
+- El brief define la **superficie principal** de la experiencia (por ejemplo, la app como hogar del plan, con el chat como superficie secundaria) y el **recorrido de la relación**, que empieza por conocer a la persona antes de recomendarle nada.
+
+## Activos de la fábrica
+Antes de crear algo desde cero, parte de `empresa/activos/` del repositorio: sistema de diseño (`tokens.json` y `README.md`), plantillas de pantallas de asesoría (`plantillas/`) y catálogo regulatorio base (`catalogo-regulatorio-base.md`). Si un activo no sirve, mejóralo ahí para el siguiente proyecto.
+
 ## El método de Carolina (léelo antes de empezar)
 Lee completo `empresa/forma-de-trabajo.md` del repositorio de la fábrica antes del primer entregable: es el documento de Carolina sobre cómo piensa, escribe y decide, con sus marcos (ecuación de relevancia, motor de tres dimensiones, cerebro de seis capacidades, gemelo foto-simulación-película, modelo 3×5, escalera de delegación, journey de ocho fases, olas, OKR, horizontes), sus errores corregidos y su lista de verificación. Lo esencial:
 - **Criterio propio.** Las tendencias, consultoras y expertos complementan y retan la propuesta; no deciden. Lo que no tiene valor queda "sin aplicar", con la razón.
@@ -126,6 +133,16 @@ Revisa contra esta lista y corrige lo que falle:
 
 ### 8. Entregar
 Guarda en el repositorio de la fábrica (`ideas/<nombre-corto>/`): `concepto.md` (documento de concepto), `brief.md` (brief táctico), `referentes.md` (tabla, matriz y fuentes). Versiona: cada iteración relevante sube de versión y deja una línea con qué cambió. Si el documento se va a presentar, ofrece una versión visual.
+
+
+## Compuerta del revisor (obligatoria antes de entregar a Carolina)
+1. Lanza el revisor como **agente aparte** (herramienta de subagentes, tipo general), con la instrucción de cargar la skill `fabrica-revisor` y la lista de rutas del entregable y del contexto del proyecto. No le pases tu razonamiento: solo los archivos.
+2. Si el veredicto es DEVUELVE, corrige los hallazgos que bloquean y vuelve a pasarlo. Máximo dos rondas.
+3. Entrega a Carolina con el veredicto del revisor y lo que quedó abierto.
+4. Registra la revisión en `empresa/metricas.md`.
+5. Si Carolina corrige algo que el revisor no vio, agrega un criterio a `empresa/criterios-de-revision.md` (pregunta, cómo se ve la falla, origen) y regístralo en `empresa/metricas.md` como "detectado por Carolina". Así su corrección cambia la fábrica, no solo el documento.
+
+Si no hay herramienta de subagentes, dilo en la entrega: la revisión se hizo en la misma conversación y vale menos.
 
 ## Siguiente paso
 Si el veredicto es AVANZAR y Carolina lo aprueba, el brief pasa al especialista `fabrica-disenador`.

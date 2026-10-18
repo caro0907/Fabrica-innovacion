@@ -13,6 +13,17 @@ Recibes un brief aprobado del especialista `fabrica-estratega`, con su tabla de 
 - Diseña solo el alcance del MVP del brief.
 - No copies interfaces de referentes. Adapta el **mecanismo** que los hace funcionar, nunca su marca, apariencia ni contenido.
 
+## Lecciones que ya son reglas (primer proyecto, 17 de octubre de 2026)
+- **Un asesor no vive en un chat.** En servicios de asesoría, la experiencia principal es la app como hogar del plan: el inicio muestra el patrimonio y el plan de la persona, con una nota o revisión periódica del asesor. El chat es una superficie secundaria para avisar y responder. Nunca diseñes el recorrido principal como una conversación guiada.
+- **Primero conocer.** El recorrido empieza con la primera reunión: lo que ya sabemos (y por eso no preguntamos), las metas, la vida hoy, el perfil de riesgo explicado en pesos y "esto entendí de ti". Ningún plan, puntaje o recomendación aparece antes.
+- **El humano tiene nombre.** Un consultor que ve el mismo plan, se agenda en dos toques y entra por regla cuando la decisión lo pide, además de cuando el usuario lo pide.
+- **Información o recomendación, siempre marcado.** Cada pantalla dice si es información del plan o recomendación profesional; cada propuesta separa el paso del plan que no es un producto de la recomendación de un producto.
+- **El benchmark de experiencia es obligatorio** (paso 3) antes de la primera pantalla. Incluye a Nubank, Revolut y al menos cuatro fintech de asesoría o patrimonio, y responde "¿qué hace que esto se sienta como X?". Se guarda en `ideas/<nombre-corto>/diseno/benchmark-experiencia.md`.
+- **Textos del catálogo.** Las condiciones, riesgos y costos salen del catálogo regulatorio; no se redactan de nuevo.
+
+## Activos de la fábrica
+Antes de crear algo desde cero, parte de `empresa/activos/` del repositorio: sistema de diseño (`tokens.json` y `README.md`), plantillas de pantallas de asesoría (`plantillas/`) y catálogo regulatorio base (`catalogo-regulatorio-base.md`). Si un activo no sirve, mejóralo ahí para el siguiente proyecto.
+
 ## Patrones de relación de Carolina
 Lee completo `empresa/forma-de-trabajo.md` antes de diseñar. Parte de sus marcos (sección 3) y de los patrones de la sección 7 y hazlos visibles en el prototipo cuando el concepto los use:
 - **Superficies con rol claro:** el chat conversa y actúa; la app es el "hogar del plan" (ver, decidir con calma, controlar lo delegado); el asesor acompaña lo importante. Una sola memoria.
@@ -45,6 +56,16 @@ Lee completo `empresa/forma-de-trabajo.md` antes de diseñar. Parte de sus marco
    - ¿Pasé la lista de verificación de la sección 6 de `forma-de-trabajo.md` y revisé visualmente cada pantalla?
    Ajusta antes de entregar. Pide al especialista `fabrica-experto-financiero` que revise los textos sensibles (recomendación, transparencia, condiciones y cálculos).
 10. **Entregar** el prototipo, la tabla de mecánicas adaptadas y el plan de prueba. Si hay repositorio (caro0907/Fabrica-innovacion), guarda en `ideas/<nombre-corto>/diseno/`.
+
+
+## Compuerta del revisor (obligatoria antes de entregar a Carolina)
+1. Lanza el revisor como **agente aparte** (herramienta de subagentes, tipo general), con la instrucción de cargar la skill `fabrica-revisor` y la lista de rutas del entregable y del contexto del proyecto. No le pases tu razonamiento: solo los archivos.
+2. Si el veredicto es DEVUELVE, corrige los hallazgos que bloquean y vuelve a pasarlo. Máximo dos rondas.
+3. Entrega a Carolina con el veredicto del revisor y lo que quedó abierto.
+4. Registra la revisión en `empresa/metricas.md`.
+5. Si Carolina corrige algo que el revisor no vio, agrega un criterio a `empresa/criterios-de-revision.md` (pregunta, cómo se ve la falla, origen) y regístralo en `empresa/metricas.md` como "detectado por Carolina". Así su corrección cambia la fábrica, no solo el documento.
+
+Si no hay herramienta de subagentes, dilo en la entrega: la revisión se hizo en la misma conversación y vale menos.
 
 ## Siguiente paso
 Cuando Carolina apruebe el diseño (idealmente después de probarlo con usuarios), pasa al especialista `fabrica-desarrollador`.

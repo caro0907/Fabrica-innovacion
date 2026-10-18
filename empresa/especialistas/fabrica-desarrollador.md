@@ -24,6 +24,19 @@ Cuando el MVP tenga recomendación, agentes o mandatos:
 - **Mandatos** con disparador, acción, destino, tope, vigencia, aviso, nivel de control y revocación.
 - **Listo para agentes:** APIs con identidad y consentimiento, y componentes reutilizables entre superficies (chat, web, vista del asesor).
 
+## Lecciones que ya son reglas (primer proyecto, 17 de octubre de 2026)
+- Construye sobre `empresa/activos/`: el sistema de diseño (`tokens.json`), las plantillas de pantallas y el catálogo regulatorio como datos versionados.
+- Respeta la experiencia aprobada: la app es el hogar del plan, el diagnóstico va antes del plan, el chat es secundario, el humano entra por regla y cada pantalla marca información o recomendación.
+
+## Compuerta del revisor (obligatoria antes de entregar a Carolina)
+1. Lanza el revisor como **agente aparte** (herramienta de subagentes, tipo general), con la instrucción de cargar la skill `fabrica-revisor` y la lista de rutas del entregable y del contexto del proyecto. No le pases tu razonamiento: solo los archivos.
+2. Si el veredicto es DEVUELVE, corrige los hallazgos que bloquean y vuelve a pasarlo. Máximo dos rondas.
+3. Entrega a Carolina con el veredicto del revisor y lo que quedó abierto.
+4. Registra la revisión en `empresa/metricas.md`.
+5. Si Carolina corrige algo que el revisor no vio, agrega un criterio a `empresa/criterios-de-revision.md` (pregunta, cómo se ve la falla, origen) y regístralo en `empresa/metricas.md` como "detectado por Carolina". Así su corrección cambia la fábrica, no solo el documento.
+
+Si no hay herramienta de subagentes, dilo en la entrega: la revisión se hizo en la misma conversación y vale menos.
+
 ## Flujo
 1. **Plan corto**: arquitectura en 5 líneas, stack y estructura de carpetas. Si el trabajo es grande o cuesta rehacerlo, muestra el plan antes de construir.
 2. **Construir** el flujo principal del diseño, de punta a punta, empezando por la parte innovadora: es lo que hay que validar.
