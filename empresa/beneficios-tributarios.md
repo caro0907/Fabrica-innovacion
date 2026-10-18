@@ -1,6 +1,6 @@
 # Beneficios tributarios del negocio de pensiones, cesantías, ahorro e inversión en Colombia
 
-**Base de consulta obligatoria del estratega en cada concepto.** Versión del 17 de octubre de 2026. No es asesoría tributaria: cada cálculo que vaya a un cliente debe validarlo un experto, y antes de cada concepto hay que verificar que las normas sigan vigentes.
+**Base de consulta obligatoria del estratega en cada concepto.** v2 · 17 de octubre de 2026 (v1 en `versiones-anteriores/`; v2 suma la sección "Verificado por el experto financiero" al final, sin quitar nada). No es asesoría tributaria: cada cálculo que vaya a un cliente debe validarlo un experto, y antes de cada concepto hay que verificar que las normas sigan vigentes.
 
 ## Valores de referencia 2026
 - **UVT 2026:** $52.374. [INCP](https://incp.org.co/agendatributariaincp/noticias/2025/12/dian-fijo-en-52-374-en-valor-de-la-uvt-para-el-ano-gravable-2026/)
@@ -57,3 +57,15 @@
 | $8,0 M | $2,7 M | $1,7 M | $12,0 M/año | $2,7 M |
 | $8,5 M | $3,6 M | $1,7 M | $12,7 M/año | $3,4 M |
 | $9,0 M | $4,4 M | $1,7 M | $13,4 M/año | $3,4 M |
+
+## Verificado por el experto financiero · 17 de octubre de 2026 (v2)
+*Detalle, cálculos y fuentes en `ideas/personal-wealth-architect/regulatorio.md`, secciones 2, 3 y 11.*
+
+- **Las cifras de la tabla por segmento cuadran** al recalcularlas en código para $8,5 M: impuesto de $3,59 M sin aportes, $2,74 M con $6 M y $1,79 M en el punto óptimo; el punto óptimo exacto es **$12,65 M** (la tabla lo muestra redondeado como $12,7 M); el ahorro es de $14,10 por cada $100 aportados; con $12 M adicionales en voluntario a la obligatoria el impuesto baja a $0,42 M.
+- **Retiro de pensión voluntaria que incumple las condiciones** (art. 126-1, parágrafo 4, para aportes desde 2017): es renta gravada del año del retiro y la administradora retiene el **7%** al retirar. Los rendimientos tributan con las reglas generales de rendimientos financieros. No es "devolver el beneficio en la declaración".
+- **Vivienda:** el retiro para vivienda conserva el beneficio con o sin financiación (crédito hipotecario o leasing habitacional); sin financiación, la escritura se acredita antes del retiro. *A validar: si cubre una segunda vivienda.*
+- **"Lo ves en tu próximo pago": verificado** para aportes por nómina (los aportes no hacen parte de la base de retención). Para $8,5 M y $1.060.000 al mes, la retención mensual baja unos $151.000 (cálculo simplificado). Si el aporte es directo, el beneficio llega en la declaración (*a validar el procedimiento para que el empleador lo descuente*).
+- **Pagar no es declarar.** Topes del año gravable 2026: 1.400 UVT ($73.323.600) en ingresos brutos, consumos con tarjeta, compras o consignaciones; 4.500 UVT ($235.683.000) en patrimonio. Una asalariada de $5,2 M con prima, cesantías e intereses suma unos $73.424.000: no paga impuesto, pero probablemente debe declarar.
+- **Prima:** a más tardar el 30 de junio y en los primeros veinte días de diciembre (Código Sustantivo del Trabajo, art. 306, modificado por la Ley 1788 de 2016). Cierra el "a verificar" del concepto.
+- **Salario mínimo 2026:** $1.750.905; el aporte al Fondo de Solidaridad Pensional aplica desde 4 salarios mínimos ($7.003.620), por eso la renta media usa aportes obligatorios de 9% y la masiva de 8%.
+- **Reforma pensional:** la sentencia C-264 de 2026 dejó en firme la mayor parte de la Ley 2381 de 2024, con vigencia el 1 de abril de 2027. El punto 3 de los pendientes (efecto en el art. 55) sigue abierto y ahora tiene fecha.
