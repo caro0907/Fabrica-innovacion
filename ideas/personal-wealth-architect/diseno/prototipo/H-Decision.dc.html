@@ -13,45 +13,41 @@
 body{margin:0}
 a{color:#0E6A4E}a:hover{color:#09503A}
 input[type=range]{accent-color:#0E6A4E}
+summary{list-style-position:inside}
 </style>
 </helmet>
 <div style="width: 390px; height: 844px; box-sizing: border-box; background: #F6F3EC; font-family: 'Plus Jakarta Sans', sans-serif; color: #12241F; display: flex; flex-direction: column">
-<div style="flex-grow: 1; padding: 22px 16px 14px; display: flex; flex-direction: column; gap: 12px">
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px"><a href="H-Revision.dc.html" aria-label="Volver" style="width: 44px; height: 44px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 22px; background: #FFFFFF"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12241F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a><span style="font-size: 11px; font-weight: 700; color: #7A4A0E; background: #FFF4E2; padding: 3px 8px; border-radius: 8px">Recomendación profesional</span></div>
+<div style="flex-grow: 1; padding: 20px 16px 12px; display: flex; flex-direction: column; gap: 10px; overflow: hidden">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px"><a href="H-Revision.dc.html" aria-label="Volver" style="width: 44px; height: 44px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border-radius: 22px; background: #FFFFFF"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#12241F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a><span style="font-size: 11.5px; font-weight: 700; color: #7A4A0E; background: #FFF4E2; padding: 3px 8px; border-radius: 8px; flex-shrink: 0">Recomendación profesional</span></div>
 <sc-if value="{{pendiente}}" hint-placeholder-val="{{ true }}">
-<div style="display: flex; flex-direction: column; gap: 12px">
-<h1 style="margin: 0; font-family: 'Newsreader', serif; font-size: 28px; font-weight: 600; line-height: 1.15">Tu propuesta para la prima</h1>
-<div style="background: #E3EFEA; border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px">
-<div style="display: flex; justify-content: space-between; gap: 8px"><strong style="font-size: 15px">$1.820.000 a tu colchón</strong><span style="font-size: 11px; font-weight: 700; color: #0E6A4E; text-align: right">PASO DEL PLAN · NO ES UN PRODUCTO</span></div>
-<span style="font-size: 13px; line-height: 1.45; color: #2E403A">Sepáralo en tu cuenta de ahorros. Pasas de 1,2 a 1,9 meses de colchón.</span>
-</div>
-<div style="background: #FFFFFF; border-radius: 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px">
-<div style="display: flex; justify-content: space-between; gap: 8px"><strong style="font-size: 15px">$780.000 a tu casa</strong><span style="font-size: 11px; font-weight: 700; color: #7A4A0E; text-align: right">PORTAFOLIO MODERADO</span></div>
-<span style="font-size: 13px; line-height: 1.45; color: #2E403A"><strong>Por qué:</strong> tu meta es a 10 años y tu perfil es moderado; con ese plazo puedes aguantar las bajas.</span>
-<span style="font-size: 13px; background: #FFF4E2; border-radius: 10px; padding: 8px 10px; line-height: 1.4"><strong>En un mal año</strong> podría bajar unos $90.000. Por eso tu colchón no va ahí.</span>
-<details style="font-size: 12.5px; line-height: 1.5; color: #2E403A">
-<summary style="font-weight: 700; font-size: 13px; color: #12241F; cursor: pointer; min-height: 24px">Quién te asesora y cuánto cuesta</summary>
-Recomendación de [Administradora] hecha por una herramienta que la entidad supervisa, con tu perfil del 15 de junio. Asesoría no independiente: recibimos una comisión de [X]% al año. Otras opciones: tu cuenta de ahorros, un CDT o fondos de otras entidades.
-</details>
-</div>
-<a href="H-Equipo.dc.html" style="background: #FFFFFF; border-radius: 18px; padding: 12px 14px; display: flex; align-items: center; gap: 12px; text-decoration: none; color: #12241F"><span aria-hidden="true" style="width: 40px; height: 40px; border-radius: 20px; background: #F3C98A; color: #12241F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; border: 2px solid #F6F3EC">DR</span><span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 14px">¿Lo vemos con Daniela?</strong><span style="font-size: 12.5px; color: #4A5C56">Mañana 10:00 a. m. o 4:00 p. m. · 15 minutos por video</span></span></a>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h1 style="margin: 0; font-family: 'Newsreader', serif; font-weight: 600; font-size: 26px; line-height: 1.15">Tu propuesta para la prima</h1>
+<div style="background: #E3EFEA; border-radius: 18px; padding: 12px 16px; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; justify-content: space-between; gap: 8px"><strong style="font-size: 15px">$1.820.000 a tu colchón</strong><span style="font-size: 11.5px; font-weight: 700; color: #0E6A4E; text-align: right">PASO DEL PLAN · NO ES UN PRODUCTO</span></div>
+<span style="font-size: 13px; line-height: 1.45; color: #2E403A">Sepáralo en tu cuenta de ahorros. Pasas de 1,2 a 1,9 meses de colchón.</span></div>
+<div style="background: #FFFFFF; border-radius: 18px; padding: 12px 16px; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; gap: 8px"><strong style="font-size: 15px">$780.000 a tu casa</strong><span style="font-size: 11.5px; font-weight: 700; color: #7A4A0E; text-align: right">PORTAFOLIO MODERADO</span></div>
+<span style="font-size: 13px; line-height: 1.45; color: #2E403A"><strong>Por qué:</strong> tu casa es tu meta más importante, es a 10 años y tu perfil es moderado: con ese plazo puedes esperar las bajas.</span>
+<span style="font-size: 13px; background: #FFF4E2; border-radius: 10px; padding: 8px 10px; line-height: 1.4"><strong>En un mal año</strong> esta parte podría bajar unos $90.000 (estimado con una caída de 12%). Por eso tu colchón no va ahí.</span>
+<details style="font-size: 12.5px; line-height: 1.5; color: #2E403A"><summary style="min-height: 44px; display: flex; align-items: center; font-weight: 700; font-size: 13.5px; color: #0E6A4E; cursor: pointer">Quién te asesora y cuánto cuesta</summary>Recomendación de [Administradora] hecha por una herramienta que la entidad supervisa, con tu perfil del 1 de junio. Asesoría no independiente: recibimos una comisión de 1,2% al año (ficticia). Otras opciones: tu cuenta de ahorros, un certificado de depósito a término o fondos de otras entidades. Te enviamos esta recomendación a tu correo y queda en Mis documentos.</details></div>
+<a href="H-Equipo.dc.html" style="background: #FFFFFF; border-radius: 18px; padding: 10px 14px; display: flex; align-items: center; gap: 12px; text-decoration: none; color: #12241F; min-height: 44px"><span aria-hidden="true" style="width: 38px; height: 38px; border-radius: 19px; background: #F3C98A; color: #12241F; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; border: 2px solid #F6F3EC">DR</span><span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 14px">¿Lo vemos con Daniela?</strong><span style="font-size: 12.5px; color: #4A5C56">15 minutos por video, con tu plan a la vista</span></span></a>
 <button type="button" onClick="{{aprobar}}" style="min-height: 52px; border: 0; border-radius: 14px; background: #0E6A4E; color: #FFFFFF; font-family: inherit; font-weight: 700; font-size: 16px; cursor: pointer">Aprobar con mi huella</button>
-<span style="font-size: 11px; color: #4A5C56; text-align: center">El 30 de junio te pido confirmar antes de mover cualquier peso.</span>
+<span style="font-size: 12px; color: #4A5C56; line-height: 1.4; text-align: center">Aprobar no mueve dinero: el 30 de junio te pido confirmar.</span>
 </div>
 </sc-if>
 <sc-if value="{{listo}}" hint-placeholder-val="{{ false }}">
-<div style="flex-grow: 1; display: flex; flex-direction: column; gap: 14px; justify-content: center">
-<span aria-hidden="true" style="width: 68px; height: 68px; border-radius: 34px; background: #E3EFEA; display: flex; align-items: center; justify-content: center"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0E6A4E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg></span>
-<h1 style="margin: 0; font-family: 'Newsreader', serif; font-size: 28px; font-weight: 600; line-height: 1.15">Listo, Laura. Tu prima ya tiene rumbo.</h1>
-<span style="font-size: 15px; line-height: 1.5; color: #2E403A">El 30 de junio, cuando llegue, te pido confirmar. Tu plan pasa de 520 a <strong>610</strong> (estimado) y tu colchón a 1,9 meses.</span>
-<div style="background: #FFFFFF; border-radius: 18px; padding: 14px 16px; font-size: 14px; line-height: 1.45">¿Quieres que en diciembre te lo proponga igual, con aviso un día antes?</div>
-<a href="L5-Reglas.dc.html" style="min-height: 50px; border-radius: 14px; background: #0E6A4E; color: #FFFFFF; font-weight: 700; font-size: 15px; display: flex; align-items: center; justify-content: center; text-decoration: none">Sí, déjalo como regla</a>
-<a href="H-Inicio.dc.html" style="text-align: center; font-size: 14px; font-weight: 700; padding: 8px">Volver a mi inicio</a>
+<div style="display: flex; flex-direction: column; gap: 11px">
+<span aria-hidden="true" style="width: 60px; height: 60px; border-radius: 30px; background: #E3EFEA; display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0E6A4E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg></span>
+<h1 style="margin: 0; font-family: 'Newsreader', serif; font-weight: 600; font-size: 27px; line-height: 1.15">Listo, Laura. Tu prima ya tiene rumbo.</h1>
+<span style="font-size: 15px; line-height: 1.45; color: #2E403A">El 30 de junio, cuando llegue, te pido confirmar antes de mover cualquier peso. Tu colchón pasa a 1,9 meses y tu puntaje a unos 580 (estimado).</span>
+<div style="background: #FFFFFF; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 14px; line-height: 1.45; color: #12241F">¿Quieres que en diciembre te lo proponga igual, con aviso un día antes? Lo pausas o lo cancelas cuando quieras.</span></div>
+<a href="H-Reglas.dc.html" style="min-height: 50px; border-radius: 14px; background: #0E6A4E; color: #FFFFFF; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center; text-decoration: none; text-align: center; padding: 0 12px">Sí, déjalo como regla</a>
+<a href="H-Inicio.dc.html" style="min-height: 44px; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 14px; font-weight: 700; text-decoration: none">No por ahora, volver a mi inicio</a>
+<span style="font-size: 12px; color: #4A5C56; line-height: 1.4; text-align: center">Te enviamos el resumen a tu correo y queda en Mis documentos.</span>
 </div>
 </sc-if>
 </div>
 </div>
-
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
 class Component extends DCLogic {
@@ -61,11 +57,7 @@ this.state = { listo: false };
 }
 renderVals() {
 var self = this;
-return {
-pendiente: !this.state.listo,
-listo: this.state.listo,
-aprobar: function () { self.setState({ listo: true }); }
-};
+return { pendiente: !this.state.listo, listo: this.state.listo, aprobar: function () { self.setState({ listo: true }); } };
 }
 }
 </script>

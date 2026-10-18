@@ -30,16 +30,24 @@ Los generadores de `plantillas/` producen las pantallas del lienzo de diseño (a
 | Patrón | Para qué sirve | Generador | Ejemplo |
 |---|---|---|---|
 | Primera reunión: lo que ya sabemos | Abrir el diagnóstico sin preguntar lo que la entidad ya sabe | `generar-primera-reunion.py` | `D1-Bienvenida` |
-| Metas | Elegir metas y plazo de la principal | `generar-primera-reunion.py` | `D2-Metas` |
-| Tu vida hoy | Dependientes, vivienda, gastos con deslizador, deudas | `generar-primera-reunion.py` | `D3-Vida` |
-| Perfil de riesgo en pesos | Seis preguntas, una por criterio de la norma de asesoría | `generar-primera-reunion.py` | `D4-Riesgo` |
-| Esto entendí de ti | Resumen para corregir antes del plan | `generar-primera-reunion.py` | `D5-Entendi` |
-| Inicio del hogar del plan | Patrimonio, salud del plan, nota del asesor, metas, equipo | `generar-app-del-plan.py` | `H-Inicio`, `H-InicioJuliana` |
-| Revisión periódica | La carta del banquero privado: cómo vas, qué cambió, lo que propongo y lo que no | `generar-app-del-plan.py` | `H-Revision` |
-| Plan de vida y calendario del dinero | Ancla, metas con estado, fechas del año | `generar-app-del-plan.py` | `H-Plan` |
-| Meta con simulador | "¿Y si separas cada mes…?" | `generar-app-del-plan.py` | `H-Meta` |
-| Propuesta | Paso del plan + recomendación, porqué, riesgo, costo, consultor a un toque | `generar-app-del-plan.py` | `H-Decision` |
-| Patrimonio | Todo lo tuyo con lo que sabemos, nos contaste y falta | `generar-app-del-plan.py` | `H-Patrimonio` |
-| Tu equipo | Consultor con nombre, arquitecto digital y cuándo entra el humano | `generar-app-del-plan.py` | `H-Equipo` |
+| Metas y la más importante | Elegir metas y marcar la prioridad | `generar-primera-reunion.py` | `D2-Metas` |
+| Metas con números | Cifra propuesta que la persona ajusta (cuota de la casa, pensión deseada) | `generar-primera-reunion.py` | `D2b-Numeros` |
+| Tu vida y tu dinero hoy | Dependientes y su edad, vivienda, deudas, gastos, ahorros aquí y en otras entidades, seguro | `generar-primera-reunion.py` | `D3-Vida`, `D3b-Dinero` |
+| Perfil de riesgo en pesos | Las seis preguntas a la vista, en hipotético | `generar-primera-reunion.py` | `D4-Riesgo` |
+| Esto entendí de ti | Resumen con números para corregir antes del plan | `generar-primera-reunion.py` | `D5-Entendi` |
+| Tu plan (primera vez) | Patrimonio, pensión con supuestos, metas con origen, salud del plan y el orden del plan | `generar-primera-reunion.py` | `H-TuPlan` |
+| Inicio del hogar del plan | Patrimonio, salud del plan con advertencia, nota del asesor, metas | `generar-app-del-plan.py` → `inicio()` | `H-Inicio`, `H-InicioJuliana` |
+| Salud del plan | Seis pilares; el puntaje es su promedio | `pilares()` | `H-Pilares` |
+| Revisión periódica | Para quien vuelve: cómo vas, qué cambió, lo que propongo (sin nombrar productos) y lo que no | `revision()` | `H-Revision` |
+| Recomendación | Paso del plan + producto con porqué, riesgo en pesos, costo, condición, alternativas y medio verificable; regla al confirmar | `decision()` | `H-Decision`, `H-DecisionJuliana` |
+| Mis reglas | Mandato con sus siete campos, pausar y cancelar | `reglas()` | `H-Reglas` |
+| Plan de vida y calendario | Ancla con "Ver supuestos", metas, sugerencias, fechas del año | `plan()` | `H-Plan` |
+| Meta con simulador | "¿Y si separas cada mes…?" con escenario bueno y malo | `generar-app-del-plan.py` | `H-Meta` |
+| Patrimonio | Ocho dimensiones con su origen | `patrimonio()` | `H-Patrimonio` |
+| Tu equipo, perfil y reglamento | Consultor con nombre y agenda, perfil, reglas, cómo funciona | `equipo()`, `perfil()`, `como_funciona()` | `H-Equipo`, `H-Perfil`, `H-ComoFunciona` |
+| Pregunta (superficie secundaria) | El chat responde y lleva al plan | `chat()` | `H-Chat` |
 
-Uso: `python3 generar-app-del-plan.py <carpeta>/project` escribe las pantallas en esa carpeta.
+Los componentes comunes (colores, etiquetas de información, recomendación y origen, navegación por persona con `tabbar(activa, persona)`, `ask_bar(persona)`, primera reunión, deslizadores y opciones) están en `plantillas/pantallas_asesoria.py`. Cada función recibe la persona: la persona secundaria lleva su nombre como sufijo en los archivos.
+
+**Antes del revisor:** `python3 plantillas/verificar-prototipo.py <carpeta> --entradas <pantallas de entrada> --personas <sufijos> --internas <prefijos> --visual` revisa enlaces muertos, recorridos que cruzan de persona o abren vistas internas, pantallas huérfanas, marcadores sin llenar, siglas, contenido que no cabe y elementos tocables de menos de 44 px. Debe dar 0 que bloquean.
+Uso: `python3 generar-primera-reunion.py <carpeta>/project` y `python3 generar-app-del-plan.py <carpeta>/project` escriben las pantallas en esa carpeta (se ejecutan desde `plantillas/`).

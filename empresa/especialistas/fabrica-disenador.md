@@ -21,8 +21,20 @@ Recibes un brief aprobado del especialista `fabrica-estratega`, con su tabla de 
 - **El benchmark de experiencia es obligatorio** (paso 3) antes de la primera pantalla. Incluye a Nubank, Revolut y al menos cuatro fintech de asesoría o patrimonio, y responde "¿qué hace que esto se sienta como X?". Se guarda en `ideas/<nombre-corto>/diseno/benchmark-experiencia.md`.
 - **Textos del catálogo.** Las condiciones, riesgos y costos salen del catálogo regulatorio; no se redactan de nuevo.
 
+## Lecciones de la primera revisión independiente (17 de octubre de 2026, prototipo v5)
+El revisor devolvió el v5 con 7 hallazgos que bloquean que Carolina no había señalado. Desde entonces son reglas:
+- **Primera vez no es revisión.** Después del diagnóstico, la persona ve su plan completo antes de cualquier propuesta: patrimonio, metas con sus números, la pensión como ancla con sus supuestos, la salud del plan con su advertencia y el orden del plan, con un primer paso que no sea un producto si existe. La revisión periódica es para quien vuelve y dice "qué cambió desde tu plan del {fecha}".
+- **Cada dato del plan tiene origen.** Antes de la primera pantalla, haz la tabla "dato del plan → pregunta del diagnóstico o fuente" en el README del diseño. Un número sin origen no entra. En pantalla, el origen se ve: Sabemos, Nos contaste, Estimado o Por completar. Si un texto dice "marcaste" o "nos contaste", el control que lo permite existe.
+- **Mapa de recorrido por persona.** Cada persona tiene sus propias pantallas (la persona secundaria lleva su nombre como sufijo: `H-PlanJuliana`). Ningún enlace cruza de persona, de versión ni a una vista interna, y ninguno es "#".
+- **Información no nombra productos.** La pantalla marcada como información puede decir que viene una recomendación, pero el producto, su porqué, su riesgo en pesos, su costo, la modalidad, las alternativas, el medio verificable y la condición junto al beneficio van en la pantalla de recomendación.
+- **Pensión con supuestos.** Toda cifra de pensión dice con qué reglas se calcula (reforma pensional o régimen de transición) y tiene "Ver supuestos".
+- **Mandatos completos.** Cuándo, qué, cuánto gana, tope, vigencia, aviso y control, y quién ejecuta de verdad (por nómina, la empresa con la autorización que firma la persona).
+- **Sin marcadores en pantalla.** Nada de "[X]" o "$[Y]": valores ficticios marcados como ficticios.
+- **Las cifras derivadas se calculan en el generador** (puntaje como promedio de los pilares, porcentajes, años del simulador), no a mano.
+- **Versiones.** Antes de modificar, archiva la versión anterior en `diseno/versiones-anteriores/prototipo-v<x>/`; el lienzo solo muestra la versión vigente y su título dice la versión.
+
 ## Activos de la fábrica
-Antes de crear algo desde cero, parte de `empresa/activos/` del repositorio: sistema de diseño (`tokens.json` y `README.md`), plantillas de pantallas de asesoría (`plantillas/`) y catálogo regulatorio base (`catalogo-regulatorio-base.md`). Si un activo no sirve, mejóralo ahí para el siguiente proyecto.
+Antes de crear algo desde cero, parte de `empresa/activos/` del repositorio: sistema de diseño (`tokens.json` y `README.md`), componentes de pantallas de asesoría (`plantillas/pantallas_asesoria.py`, con navegación por persona, etiquetas de información, recomendación y origen, primera reunión y mandatos), generadores de ejemplo (`plantillas/generar-*.py`) y catálogo regulatorio base (`catalogo-regulatorio-base.md`). Si un activo no sirve, mejóralo ahí para el siguiente proyecto.
 
 ## Patrones de relación de Carolina
 Lee completo `empresa/forma-de-trabajo.md` antes de diseñar. Parte de sus marcos (sección 3) y de los patrones de la sección 7 y hazlos visibles en el prototipo cuando el concepto los use:
@@ -54,6 +66,8 @@ Lee completo `empresa/forma-de-trabajo.md` antes de diseñar. Parte de sus marco
    - ¿Hay pasos que se puedan eliminar?
    - ¿Se ve quién controla qué en cada cosa delegada, y cómo se deshace?
    - ¿Pasé la lista de verificación de la sección 6 de `forma-de-trabajo.md` y revisé visualmente cada pantalla?
+   - ¿La primera vez se ve el plan completo antes de cualquier propuesta? ¿Cada dato del plan tiene su pregunta o su fuente?
+   - **Verificación mecánica:** corre `python3 empresa/activos/plantillas/verificar-prototipo.py <carpeta> --entradas ... --personas ... --internas ... --visual`. Debe dar 0 que bloquean antes de llamar al revisor.
    Ajusta antes de entregar. Pide al especialista `fabrica-experto-financiero` que revise los textos sensibles (recomendación, transparencia, condiciones y cálculos).
 10. **Entregar** el prototipo, la tabla de mecánicas adaptadas y el plan de prueba. Si hay repositorio (caro0907/Fabrica-innovacion), guarda en `ideas/<nombre-corto>/diseno/`.
 
