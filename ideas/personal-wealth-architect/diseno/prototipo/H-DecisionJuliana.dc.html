@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Cierra tu año con tu casa</title>
+<meta name="momento" content="Juliana · 23 de noviembre">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -26,10 +27,11 @@ summary{list-style-position:inside}
 <div style="display: flex; justify-content: space-between; gap: 8px"><strong style="font-size: 15px">$6,65 M a tu casa</strong><span style="font-size: 11.5px; font-weight: 700; color: #7A4A0E; text-align: right">PENSIÓN VOLUNTARIA · PORTAFOLIO MODERADO</span></div>
 <span style="font-size: 13px; color: #2E403A">$4,25 M de tu prima (a más tardar el 20 de diciembre) y $2,40 M de tu ahorro, sin tocar tu colchón.</span>
 <span style="font-size: 13px; line-height: 1.45; color: #2E403A"><strong>Por qué:</strong> avanza tu casa a 34% y, si queda acreditado a más tardar el 31 de diciembre, pagas unos $950.000 menos de renta (estimado).</span>
-<span style="font-size: 12.5px; line-height: 1.4; color: #2E403A"><strong>Condición:</strong> el beneficio se conserva si dejas cada aporte 10 años, o lo usas para tu vivienda o tu pensión. Si lo retiras antes para otra cosa, ese retiro suma a tus ingresos del año y te retenemos el 7% al retirarlo.</span>
+<span style="font-size: 12.5px; line-height: 1.4; color: #2E403A"><strong>Condición:</strong> el beneficio se conserva si dejas cada aporte 10 años, o lo usas para tu vivienda o tu pensión. Si lo retiras antes para otra cosa, ese retiro suma a tus ingresos del año y te retenemos el 7% al retirarlo. Que el retiro para una segunda vivienda conserve el beneficio está por validar con el experto tributario.</span>
 <span style="font-size: 12.5px; background: #FFF4E2; border-radius: 10px; padding: 7px 10px; line-height: 1.4"><strong>En un mal año</strong> esta parte podría bajar unos $800.000 (estimado con una caída de 12%). Por eso tu colchón no va ahí.</span>
-<details style="font-size: 12.5px; line-height: 1.5; color: #2E403A"><summary style="min-height: 44px; display: flex; align-items: center; font-weight: 700; font-size: 13.5px; color: #0E6A4E; cursor: pointer">Quién te asesora y cuánto cuesta</summary>Recomendación de [Administradora] hecha por una herramienta que la entidad supervisa, con tu perfil del 3 de marzo. Asesoría no independiente: recibimos una comisión de 1,2% al año (ficticia). Otras opciones: una cuenta de ahorro para el fomento a la construcción en un banco, o fondos de otras entidades. Te enviamos esta recomendación a tu correo y queda en Mis documentos.</details></div>
-<button type="button" onClick="{{aprobar}}" style="min-height: 52px; border: 0; border-radius: 14px; background: #0E6A4E; color: #FFFFFF; font-family: inherit; font-weight: 700; font-size: 16px; cursor: pointer">Confirmar con mi huella</button>
+<details style="font-size: 12.5px; line-height: 1.5; color: #2E403A"><summary style="min-height: 44px; display: flex; align-items: center; font-weight: 700; font-size: 13.5px; color: #0E6A4E; cursor: pointer">Quién te asesora y cuánto cuesta</summary>Recomendación de tu administradora de fondos hecha por una herramienta que la entidad supervisa, con tu perfil del 3 de marzo. Asesoría no independiente: recibimos una comisión de 1,2% al año (ficticia). Otras opciones: una cuenta de ahorro para el fomento a la construcción en un banco, o fondos de otras entidades. Te enviamos esta recomendación a tu correo y queda en Mis documentos.</details></div>
+<label style="display: flex; gap: 10px; align-items: center; min-height: 44px; font-size: 13px; line-height: 1.35; cursor: pointer"><input type="checkbox" onChange="{{toggle}}" style="width: 22px; height: 22px; accent-color: #0E6A4E; flex-shrink: 0">Entiendo la condición del beneficio y que el cálculo es un estimado.</label>
+<button type="button" onClick="{{aprobar}}" aria-disabled="{{bloqueado}}" style="min-height: 52px; border: 0; border-radius: 14px; background: {{btnBg}}; color: #FFFFFF; font-family: inherit; font-weight: 700; font-size: 16px; cursor: pointer">Confirmar con mi huella</button>
 <span style="font-size: 12px; color: #4A5C56; line-height: 1.4; text-align: center">Confirmar no mueve dinero de otra cuenta: te pido cada transferencia. Te enviamos la recomendación a tu correo.</span>
 </div>
 </sc-if>
@@ -49,11 +51,11 @@ summary{list-style-position:inside}
 class Component extends DCLogic {
 constructor(props) {
 super(props);
-this.state = { listo: false };
+this.state = { listo: false, ok: false };
 }
 renderVals() {
-var self = this;
-return { pendiente: !this.state.listo, listo: this.state.listo, aprobar: function () { self.setState({ listo: true }); } };
+var self = this, s = this.state;
+return { pendiente: !s.listo, listo: s.listo, bloqueado: s.ok ? 'false' : 'true', btnBg: s.ok ? '#0E6A4E' : '#7C8A85', toggle: function () { self.setState({ ok: !s.ok }); }, aprobar: function () { if (s.ok) { self.setState({ listo: true }); } } };
 }
 }
 </script>

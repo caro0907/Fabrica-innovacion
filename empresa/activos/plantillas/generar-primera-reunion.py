@@ -2,6 +2,7 @@
 import sys
 from pantallas_asesoria import *
 set_out(sys.argv[1])
+set_momento('Laura · 1 de junio · primera reunión')
 
 def chipcard(title, key, sub='', col=False):
     s = small(sub) if sub else ''
@@ -19,7 +20,7 @@ body = f'''{root()}
 {card('<strong style="font-size: 15px">De qué vamos a hablar</strong>' + ag, gap=9)}
 <div style="flex-grow: 1"></div>
 {cta('D2-Metas.dc.html', 'Empecemos')}
-{link('H-Equipo.dc.html', avatar('DR', GOLD, INK, 28, 11) + 'Prefiero hacerla con Daniela por video')}
+{link('D-Agenda.dc.html', avatar('DR', GOLD, INK, 28, 11) + 'Prefiero hacerla con Daniela por video')}
 </div>'''
 write('D1-Bienvenida.dc.html', 'Tu primera reunión', body)
 
@@ -98,34 +99,39 @@ write('D3b-Dinero.dc.html', 'Tu dinero hoy', body, script(
      ('seguro', ['Sí', 'No', 'No sé'], False, False)],
     ['gastos', 'ahorro'], extra='colchonTxt: fmt(s.gastos * 3)'))
 
-# ---------- D4 Riesgo: las 6 preguntas ----------
-preg = [('1 · Tu horizonte', '¿Para cuándo necesitas el dinero de tu meta?', 'En más de 5 años'),
-        ('2 · Tus objetivos', '¿Qué buscas, sobre todo?', 'Que crezca para mi casa'),
-        ('3 · Tu conocimiento', '¿Qué tanto sabes de inversiones?', 'Lo básico'),
-        ('4 · Tu experiencia', '¿Has invertido antes?', 'Solo mi pensión y mis cesantías'),
-        ('5 · Cuánto puedes perder', '¿Cuánto podría bajar en un año sin afectar tu vida?', 'Hasta 1 de cada 10 pesos')]
-rows = ''.join(f'<div style="display: flex; justify-content: space-between; gap: 10px; align-items: center; padding: 7px 0; border-bottom: 1px solid {LINE}"><span style="display: flex; flex-direction: column; gap: 1px; min-width: 0"><span style="font-size: 11.5px; font-weight: 700; color: {MUTED}">{a.upper()}</span><span style="font-size: 13px">{b}</span></span><strong style="font-size: 12.5px; color: {GREEN}; text-align: right; max-width: 120px">{c}</strong></div>' for a, b, c in preg)
-body = f'''{root()}
+# ---------- D4 Riesgo: las 6 preguntas, todas editables (pantalla con desplazamiento) ----------
+body = f'''{root(True, 1420)}
 {top('D3b-Dinero.dc.html', 3, 4)}
 {h1('¿Cómo te sientes con el riesgo?', size=27)}
-{p('Seis preguntas, una por cada cosa que un asesor debe conocer antes de recomendarte. Tocas una para cambiar tu respuesta.', 13.5)}
-<div style="background: #FFFFFF; border-radius: 20px; padding: 4px 16px">{rows}</div>
-<div style="background: #FFFFFF; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 9px; border: 2px solid {GREEN}">
-<span style="font-size: 11.5px; font-weight: 700; color: {MUTED}">6 · CÓMO REACCIONAS A LAS BAJAS</span>
-<strong style="font-size: 15px; line-height: 1.4">Si pusieras $1.000.000 para tu casa y en un mal año bajara a $880.000, ¿qué harías?</strong>
-{chips('resp', True)}
-</div>
+{p('Seis preguntas, una por cada cosa que un asesor debe conocer antes de recomendarte. Te propongo respuestas según lo que me contaste: cámbialas si no son tuyas.', 13.5)}
+{perfil_cards()}
 {small('No hay respuestas buenas o malas. Con esto sabemos qué te podemos recomendar y qué no; lo cambias cuando tu vida cambie.')}
 <div style="flex-grow: 1"></div>
 {cta('D5-Entendi.dc.html', 'Siguiente')}
 </div>'''
-write('D4-Riesgo.dc.html', 'Tu perfil', body, script("{ resp: 'Espero: mi meta es a 10 años' }",
-      [('resp', ['Lo saco todo para no perder más', 'Espero: mi meta es a 10 años', 'Aprovecho y pongo más'], False, True)]))
+write('D4-Riesgo.dc.html', 'Tu perfil', body, perfil_script(), h=1420)
+
+# ---------- Agendar con Daniela, dentro de la primera reunión ----------
+def agenda(name, back_href, intro):
+    body = f'''{root()}
+{back(back_href, small('Lunes 1 de junio · datos ficticios'))}
+<div style="display: flex; gap: 12px; align-items: center">{avatar('DR', GOLD, INK, 56, 18)}<span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 17px">Daniela R. · tu consultora</strong><span style="font-size: 11.5px; color: {MUTED}; line-height: 1.35">Certificada por el Autorregulador del Mercado de Valores e inscrita en el Registro Nacional de Profesionales del Mercado de Valores</span></span></div>
+{h1('Agenda con Daniela', True, 27)}
+{p(intro)}
+{card('<strong style="font-size: 15px">15 minutos por video</strong>' + chips('slot'), gap=9)}
+<sc-if value="{{{{agendado}}}}" hint-placeholder-val="{{{{ false }}}}"><div style="background: {SGREEN}; border-radius: 16px; padding: 12px 14px; font-size: 14px; line-height: 1.45; color: {GREEN}; font-weight: 700">{{{{agendadoTxt}}}}</div></sc-if>
+<div style="flex-grow: 1"></div>
+{link(back_href, 'Volver')}
+</div>'''
+    write(name, 'Agenda con Daniela', body, script("{ slot: '' }", [('slot', ['Mañana 10:00 a. m.', 'Mañana 4:00 p. m.', 'Jueves 8:00 a. m.'], False, False)],
+          extra="agendado: s.slot !== '', agendadoTxt: 'Agendado: ' + s.slot + '. Te llega la invitación a tu correo.'"))
+agenda('D-Agenda.dc.html', 'D1-Bienvenida.dc.html', 'Hacen juntas tu primera reunión: ella te pregunta lo mismo que yo y arma tu plan contigo. Lo que ya sabemos lo tiene a la vista.')
+agenda('H-TuPlanAgenda.dc.html', 'H-TuPlan.dc.html', 'Daniela ya tiene tu plan del 1 de junio a la vista. Revísenlo juntas antes de guardarlo; no tienes que repetirle nada.')
 
 # ---------- D5 Lo que entendí ----------
 ent = [('Lo que quieres', 'Tu casa primero: $45 M de cuota inicial en 10 años. Pensionarte con unos $3,0 M al mes. Y tranquilidad: un colchón de 3 meses.'),
        ('Tu vida y tu dinero hoy', 'Vives en arriendo con tu hija de 8 años. Gastas unos $2,5 M al mes y tienes $3,0 M en tu cuenta de ahorros. Tu tarjeta la pagas completa.'),
-       ('Tu perfil', 'Moderado: tu meta es a más de 5 años, aceptas bajas de hasta 1 de cada 10 pesos y esperas cuando el mercado baja.'),
+       ('Tu perfil', 'Moderado: tu meta es a más de 5 años, quieres que crezca, en un mal año aceptas bajas de hasta 15 de cada 100 pesos y esperas cuando el mercado baja.'),
        ('Lo que aún no sé', 'Si tienes seguro de vida. Lo revisamos en tu plan.')]
 e = ''.join(f'<div style="display: flex; flex-direction: column; gap: 3px; padding: 9px 0; border-bottom: 1px solid {LINE}">{eyebrow(a)}<span style="font-size: 13.5px; line-height: 1.45">{b}</span></div>' for a, b in ent)
 body = f'''{root()}
@@ -142,7 +148,7 @@ body = f'''{root()}
 write('D5-Entendi.dc.html', 'Esto entendí de ti', body)
 
 # ---------- H-TuPlan: el plan de primera vez (pantalla con desplazamiento) ----------
-H = 2080
+H = 2140
 def meta_row(nombre, estado, txt, pct, color, ok, cond=''):
     fg, bg = (GREEN, SGREEN) if ok == 'g' else ((AMBER, SAMBER) if ok == 'a' else ('#3F3F3F', GREY))
     c = f'<span style="font-size: 12px; color: {MUTED}; line-height: 1.4">{cond}</span>' if cond else ''
@@ -151,7 +157,7 @@ def meta_row(nombre, estado, txt, pct, color, ok, cond=''):
             f'<span style="font-size: 13px; color: {BODY}; line-height: 1.4">{txt}</span>{bar(pct, color)}{c}</div>')
 PIL = [('Colchón', 40, 'Cubres 1,2 meses; lo sano son 3'), ('Suficiencia', 55, 'Vas para $2,3 M; tu meta, $3,0 M'),
        ('Protección', 35, 'Tu hija aún no es tu beneficiaria confirmada'), ('Riesgo a la medida', 70, 'Tu pensión va en el fondo para tu edad'),
-       ('Eficiencia', 62, 'Comisión de 1,2% al año (ficticia); cesantías con meta'), ('Constancia', 50, 'Aportas sin falta; tus primas se diluyen')]
+       ('Eficiencia', 62, 'Comisión de 1,2% al año (ficticia); cesantías con meta'), ('Constancia', 50, 'Aportas sin falta a tu pensión; tus primas aún no tienen meta')]
 def pil_rows(rows):
     out = []
     for n, v, t in rows:
@@ -160,7 +166,7 @@ def pil_rows(rows):
     return ''.join(out)
 PENSION_SUP_L = ('Estimado con tu salario de cotización de hoy, cotizando hasta los 57 y una rentabilidad real supuesta de 4% al año, neta de comisiones. '
                  'Tienes unas 730 semanas cotizadas: si sigues cotizando, llegas a 750 antes del 1 de abril de 2027 y conservarías las reglas de hoy (régimen de transición de la reforma pensional). '
-                 'Lo confirmamos con tu historia laboral. No es una promesa ni una rentabilidad garantizada; algunos años puede ser negativa.')
+                 'Supone 13 mesadas al año durante 30 años. Lo confirmamos con tu historia laboral. No es una promesa ni una rentabilidad garantizada; algunos años puede ser negativa.')
 body = f'''{root(True, H)}
 <div style="display: flex; justify-content: space-between; align-items: center">{back('D5-Entendi.dc.html')}{TAG_INFO}</div>
 <span style="font-size: 12.5px; color: {MUTED}">Tu plan · lunes 1 de junio · datos ficticios</span>
@@ -171,13 +177,13 @@ body = f'''{root(True, H)}
 <span style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 32px; font-weight: 700; line-height: 1.05">$90,4 M</span>
 <div style="display: flex; flex-direction: column; gap: 3px; font-size: 13px; color: #DCE6E2">
 <span>Pensión obligatoria $78 M · sabemos</span><span>Cesantías $9,4 M · sabemos</span><span>Ahorro $3,0 M · nos contaste</span><span>Vivienda: arriendo · deudas: ninguna cara · nos contaste</span></div>
-<a href="H-Patrimonio.dc.html" style="color: {GOLD}; font-weight: 700; font-size: 14px; min-height: 44px; display: flex; align-items: center">Ver tus 8 dimensiones</a>
+<span style="font-size: 12px; color: #B8CCC4">Protección, impuestos y legado: por completar. Las 8 dimensiones las ves en Patrimonio.</span>
 </div>
 {card(eyebrow('Tu pensión, el ancla') + '<span style="font-size: 15px; line-height: 1.45">Vas para unos <strong>$2,3 M al mes</strong> a los 57 (estimado). Para la vida que quieres, <strong>$3,0 M</strong>, te faltan unos $0,7 M.</span>' + bar(77, GOLD, GREY, 8) + details('Ver supuestos', PENSION_SUP_L), gap=8)}
 <div style="background: #FFFFFF; border-radius: 20px; padding: 6px 16px 4px">
 <div style="padding-top: 8px">{eyebrow('Tus metas, con tus números')}</div>
 {meta_row('Tranquilidad: colchón de 3 meses', 'Lo primero', '$7,5 M, 3 meses de tus gastos · tienes $3,0 M', 40, WARN, 'a', 'Puede quedarse en tu cuenta de ahorros: lo importante es que esté separado y disponible.')}
-{meta_row('Tu casa en 10 años · tu meta más importante', 'En camino', 'Cuota inicial de $45 M · llevas $9,4 M en tus cesantías', 21, GREEN, 'g', 'Tus cesantías se pueden usar para tu vivienda; si las usas, dejan de ser tu respaldo si pierdes el empleo. Por eso tu colchón va aparte.')}
+{meta_row('Tu casa en 10 años · tu meta más importante', 'Con brecha', 'Cuota inicial de $45 M · llevas $9,4 M en tus cesantías. Solo con tus primas llegas hacia 2040; a tiempo, con unos $100 mil más al mes', 21, WARN, 'a', 'Tus cesantías se pueden usar para tu vivienda; si las usas, dejan de ser tu respaldo si pierdes el empleo. Por eso tu colchón va aparte.')}
 {meta_row('Tu pensión con $3,0 M al mes', 'Con brecha', 'Te faltan unos $0,7 M al mes (estimado)', 77, WARN, 'a')}
 {meta_row('Proteger a tu hija', 'Por empezar', 'Confirmarla como beneficiaria y revisar si necesitas un seguro de vida', 0, GREY, 'p')}
 <div style="padding: 10px 0; display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 13.5px">¿Sumamos la educación de tu hija?</strong>{small('No la elegiste, pero tiene 8 años: la universidad empieza en unos 10. Si quieres, la sumamos en tu próxima revisión.')}</div>
@@ -195,8 +201,8 @@ body = f'''{root(True, H)}
 <div style="display: flex; gap: 10px"><strong style="color: {GREEN}">3</strong><span style="display: flex; flex-direction: column; gap: 3px"><strong style="font-size: 14px">Diciembre: tu pensión</strong>{small('Cuando tu colchón esté completo, vemos cómo cerrar la brecha de tu pensión.')}</span></div>
 </div>
 <div style="flex-grow: 1"></div>
-{cta('H-Inicio.dc.html', 'Guardar mi plan')}
-{link('H-Equipo.dc.html', avatar('DR', GOLD, INK, 28, 11) + 'Revisarlo con Daniela, tu consultora')}
+{cta('H-Inicio.dc.html', 'Guardar mi plan', salto=True)}
+{link('H-TuPlanAgenda.dc.html', avatar('DR', GOLD, INK, 28, 11) + 'Revisarlo con Daniela, tu consultora')}
 {small('Preparado por tu arquitecto digital con lo que sabemos y lo que nos contaste. Cifras estimadas; no son promesas. Te enviamos una copia a tu correo y queda en Mis documentos.', True)}
 </div>'''
 write('H-TuPlan.dc.html', 'Tu plan', body, script("{ ok: false }", extra=(

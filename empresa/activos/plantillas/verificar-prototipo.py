@@ -2,8 +2,9 @@
 
 Lo que revisa (lo que una persona no debería tener que encontrar a mano):
   1. Enlaces: cada href existe; ninguno es "#" ni vacío.
-  2. Recorrido por persona (criterio E4): una pantalla de una persona solo enlaza pantallas de esa misma
-     persona; ninguna pantalla de usuario enlaza una vista interna.
+  2. Recorrido por persona y momento (criterio E4): una pantalla de una persona solo enlaza pantallas de esa
+     misma persona y del mismo momento (<meta name="momento">), salvo los enlaces marcados con
+     data-cambia-momento="si"; ninguna pantalla de usuario enlaza una vista interna.
   3. Pantallas huérfanas: toda pantalla de usuario se alcanza desde una entrada.
   4. Textos prohibidos: marcadores sin llenar ([X], $[Y], [NOMBRE], lorem) y siglas sin nombre completo.
   5. Visual (con --visual): contenido que se sale del alto de la pantalla, elementos tocables de menos
@@ -20,7 +21,7 @@ Sale con código 1 si encuentra algo que bloquea.
 import argparse, glob, os, re, sys
 
 SIGLAS = ['AFP', 'AMV', 'FPV', 'SFC', 'CDT', 'UVT', 'AFC', 'RNPMV', 'DIAN', 'IA ', 'GMF', 'FIC', 'URF']
-MARCADORES = [r'\[X\]', r'\$\[', r'\[Y\]', r'\[NOMBRE\]', r'(?i)lorem', r'\bTODO\b', r'XXX']
+MARCADORES = [r'\[X\]', r'\$\[', r'\[Y\]', r'\[[A-ZÁÉÍÓÚ][A-Za-záéíóúñ ]+\]', r'(?i)lorem', r'\bTODO\b', r'XXX']
 
 ap = argparse.ArgumentParser()
 ap.add_argument('carpeta')
@@ -44,11 +45,16 @@ def interna(fn):
 
 bloquea, avisos = [], []
 links = {}
+momento = {}
+saltos = {}
 visible = {}
 for fn in files:
     s = open(os.path.join(a.carpeta, fn), encoding='utf-8').read()
     body = s.split('</helmet>')[-1].split('<script type="text/x-dc"')[0]
     links[fn] = re.findall(r'href="([^"]*)"', body)
+    m = re.search(r'<meta name="momento" content="([^"]*)"', s)
+    momento[fn] = m.group(1) if m else ''
+    saltos[fn] = set(re.findall(r'<a href="([^"]*)" data-cambia-momento="si"', body))
     txt = re.sub(r'<svg.*?</svg>', ' ', body, flags=re.S)
     txt = re.sub(r'<[^>]+>', ' ', txt)
     script = s.split('data-dc-script')[-1] if 'data-dc-script' in s else ''
@@ -67,6 +73,8 @@ for fn, hs in links.items():
                 bloquea.append(f'{fn}: una pantalla de usuario abre una vista interna ({h})')
             if not interna(fn) and not interna(h) and persona(fn) != persona(h):
                 bloquea.append(f'{fn} ({persona(fn)}): enlaza una pantalla de otra persona ({h}, {persona(h)})')
+            elif not interna(fn) and not interna(h) and momento[fn] and momento[h] and momento[fn] != momento[h] and h not in saltos[fn]:
+                bloquea.append(f'{fn} ({momento[fn]}): salta a otro momento sin marcarlo ({h}, {momento[h]})')
 
 entradas = a.entradas.split(',')
 vistos, cola = set(), list(entradas)
@@ -77,6 +85,8 @@ while cola:
     vistos.add(x)
     cola += [h for h in links[x] if h in links]
 for fn in files:
+    if not interna(fn) and not momento[fn]:
+        avisos.append(f'{fn}: no declara su momento (<meta name="momento">)')
     if not interna(fn) and fn not in vistos:
         avisos.append(f'{fn}: no se llega desde ninguna entrada ({", ".join(entradas)})')
 
@@ -114,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
               walk(root);
               document.querySelectorAll('a, button, summary, input').forEach(e => {
                 const bb = e.getBoundingClientRect();
-                if (bb.height > 0 && bb.height < 43.5 && !e.closest('nav') && (e.getAttribute('style') || '').indexOf('{{') < 0) out.chicos.push((e.innerText || e.getAttribute('aria-label') || e.tagName).trim().slice(0, 40) + ' (' + Math.round(bb.height) + ' px)');
+                if (bb.height > 0 && bb.height < 43.5 && !e.closest('nav') && !e.closest('label') && (e.getAttribute('style') || '').indexOf('{{') < 0) out.chicos.push((e.innerText || e.getAttribute('aria-label') || e.tagName).trim().slice(0, 40) + ' (' + Math.round(bb.height) + ' px)');
               });
               document.querySelectorAll('span, strong, label, a, button, p').forEach(e => {
                 const fs = parseFloat(getComputedStyle(e).fontSize);

@@ -4,7 +4,7 @@
   "v": 1,
   "at": "2026-10-17T21:55:00Z"
  },
- "title": "Personal Wealth Architect · Prototipo v5.1",
+ "title": "Personal Wealth Architect · Prototipo v5.2",
  "launch": {
   "view": "canvas"
  },
@@ -53,7 +53,7 @@
    "x": 2350,
    "y": 0,
    "w": 390,
-   "h": 844,
+   "h": 1420,
    "title": "6 · Tu perfil: las 6 preguntas",
    "is_interactive": true
   },
@@ -68,7 +68,7 @@
    "x": 3290,
    "y": 0,
    "w": 390,
-   "h": 2080,
+   "h": 2140,
    "title": "8 · Tu plan (primera vez, pantalla con desplazamiento)",
    "is_interactive": true
   },
@@ -163,35 +163,35 @@
   },
   "H-InicioJuliana.dc.html": {
    "x": 0,
-   "y": 3944,
+   "y": 4544,
    "w": 390,
    "h": 844,
    "title": "Inicio de Juliana"
   },
   "H-PilaresJuliana.dc.html": {
    "x": 470,
-   "y": 3944,
+   "y": 4544,
    "w": 390,
    "h": 844,
    "title": "La salud de su plan"
   },
   "H-RevisionJuliana.dc.html": {
    "x": 940,
-   "y": 3944,
+   "y": 4544,
    "w": 390,
    "h": 844,
    "title": "Revisión de cierre de año"
   },
   "H-ImpuestoJuliana.dc.html": {
    "x": 1410,
-   "y": 3944,
+   "y": 4544,
    "w": 390,
    "h": 844,
    "title": "Su impuesto, con y sin su casa"
   },
   "H-DecisionJuliana.dc.html": {
    "x": 1880,
-   "y": 3944,
+   "y": 4544,
    "w": 390,
    "h": 844,
    "title": "Recomendación y regla por nómina",
@@ -199,7 +199,7 @@
   },
   "H-ReglasJuliana.dc.html": {
    "x": 2350,
-   "y": 3944,
+   "y": 4544,
    "w": 390,
    "h": 844,
    "title": "Mis reglas",
@@ -207,21 +207,21 @@
   },
   "H-PlanJuliana.dc.html": {
    "x": 2820,
-   "y": 3944,
+   "y": 4544,
    "w": 390,
    "h": 844,
    "title": "Mi plan de vida"
   },
   "H-PatrimonioJuliana.dc.html": {
    "x": 3290,
-   "y": 3944,
+   "y": 4544,
    "w": 390,
    "h": 844,
    "title": "Mi patrimonio"
   },
   "H-EquipoJuliana.dc.html": {
    "x": 3760,
-   "y": 3944,
+   "y": 4544,
    "w": 390,
    "h": 844,
    "title": "Tu equipo: Camilo",
@@ -229,45 +229,69 @@
   },
   "H-PerfilJuliana.dc.html": {
    "x": 4230,
-   "y": 3944,
+   "y": 4544,
    "w": 390,
    "h": 844,
    "title": "Su perfil"
   },
   "H-ComoFuncionaJuliana.dc.html": {
    "x": 4700,
-   "y": 3944,
+   "y": 4544,
    "w": 390,
    "h": 844,
    "title": "Cómo funciona"
   },
   "H-ChatJuliana.dc.html": {
    "x": 5170,
-   "y": 3944,
+   "y": 4544,
    "w": 390,
    "h": 844,
    "title": "Pregúntale"
   },
   "A1-Asesor.dc.html": {
    "x": 0,
-   "y": 5188,
+   "y": 5788,
    "w": 1280,
    "h": 800,
    "title": "Vista de Camilo: entra cuando la decisión lo pide"
   },
   "M1-Motor.dc.html": {
    "x": 1360,
-   "y": 5188,
+   "y": 5788,
    "w": 1440,
    "h": 900,
    "title": "El motor por dentro (Laura)"
   },
   "S1-ModoServicio.dc.html": {
    "x": 2880,
-   "y": 5188,
+   "y": 5788,
    "w": 390,
    "h": 844,
    "title": "Modo servicio: cuando el motor no vende"
+  },
+  "D-Agenda.dc.html": {
+   "x": 3760,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "Agenda con Daniela (desde la bienvenida)",
+   "is_interactive": true
+  },
+  "H-TuPlanAgenda.dc.html": {
+   "x": 3760,
+   "y": 944,
+   "w": 390,
+   "h": 844,
+   "title": "Revisar el plan con Daniela",
+   "is_interactive": true
+  },
+  "H-PerfilCambiar.dc.html": {
+   "x": 5640,
+   "y": 2700,
+   "w": 390,
+   "h": 1420,
+   "title": "Actualiza tu perfil",
+   "is_interactive": true
   }
  },
  "order": [
@@ -305,60 +329,63 @@
   "H-ChatJuliana.dc.html",
   "A1-Asesor.dc.html",
   "M1-Motor.dc.html",
-  "S1-ModoServicio.dc.html"
+  "S1-ModoServicio.dc.html",
+  "D-Agenda.dc.html",
+  "H-TuPlanAgenda.dc.html",
+  "H-PerfilCambiar.dc.html"
  ],
  "notes": {
   "titleDiag": {
    "x": 0,
    "y": -300,
-   "text": "v5.1 · Laura, 1 de junio: primero te conozco y después tu plan",
+   "text": "v5.2 · Laura, 1 de junio: primero te conozco y después tu plan",
    "kind": "title1",
    "maxW": 3680
   },
   "titleApp": {
    "x": 0,
    "y": 2400,
-   "text": "v5.1 · Laura vuelve el 15 de junio: la app es el hogar de su plan",
+   "text": "v5.2 · Laura vuelve el 15 de junio: la app es el hogar de su plan",
    "kind": "title1",
-   "maxW": 5640
+   "maxW": 6030
   },
   "titleJuliana": {
    "x": 0,
-   "y": 3644,
-   "text": "v5.1 · Juliana, 23 de noviembre: su plan primero; el cierre del año es el momento",
+   "y": 4244,
+   "text": "v5.2 · Juliana, 23 de noviembre: su plan primero; el cierre del año es el momento",
    "kind": "title1",
    "maxW": 5640
   },
   "titleInternas": {
    "x": 0,
-   "y": 4888,
+   "y": 5488,
    "text": "Para negocio · vistas internas (estado: diseño, nada en operación)",
    "kind": "title1",
    "maxW": 3300
   },
   "recorrido": {
-   "x": 3760,
+   "x": 4230,
    "y": 0,
    "text": "Cómo recorrerlo: Laura empieza en «Bienvenida» (arriba a la izquierda) y termina su primera reunión viendo su plan completo. Dos semanas después vuelve (segunda fila): revisión, propuesta y su regla. Juliana empieza en su inicio (tercera fila). Cada persona tiene sus propias pantallas.",
    "w": 340,
    "fill": "green"
   },
   "principios": {
-   "x": 3760,
+   "x": 4230,
    "y": 520,
-   "text": "v5.1 (17 oct), después de la primera revisión independiente: la primera vez se ve el plan completo antes de cualquier propuesta; cada número del plan sale de una pregunta o de lo que ya sabemos, con su origen; la revisión solo informa y la recomendación va aparte con porqué, riesgo en pesos, costo y condición; la pensión muestra sus supuestos y el régimen de transición.",
+   "text": "v5.1 (17 oct), después de la primera revisión independiente: la primera vez se ve el plan completo antes de cualquier propuesta; cada número del plan sale de una pregunta o de lo que ya sabemos, con su origen; la revisión solo informa y la recomendación va aparte con porqué, riesgo en pesos, costo y condición; la pensión muestra sus supuestos y el régimen de transición. v5.2 (17 oct, segunda revisión): cada pantalla declara su momento y ningún enlace salta de momento sin decirlo; la pensión de Juliana se recalculó con el mismo método que la de Laura; las seis preguntas del perfil se responden de verdad y la caída de la recomendación cabe en lo que la persona dijo tolerar.",
    "w": 340,
    "fill": "blue"
   },
   "supuestos": {
-   "x": 3760,
+   "x": 4230,
    "y": 1080,
-   "text": "Datos ficticios; comisión de 1,2% ficticia. Cálculos verificados en regulatorio.md, a validar con un experto. Pensión, puntaje y proyecciones son estimados. SUPUESTO POR DECIDIR: si el consultor con nombre (Daniela) aplica a la renta masiva o solo a la renta media.",
+   "text": "Datos ficticios; comisión de 1,2% ficticia. Cálculos verificados en regulatorio.md, a validar con un experto. Pensión, puntaje y proyecciones son estimados. SUPUESTO POR DECIDIR: si el consultor con nombre (Daniela) aplica a la renta masiva o solo a la renta media. Abierto: si el retiro para una segunda vivienda conserva el beneficio (Juliana); vistas de Daniela y de los equipos comercial, remoto y de servicio; pantalla «Mis documentos».",
    "w": 340,
    "fill": "orange"
   },
   "definicion": {
-   "x": 3760,
+   "x": 4230,
    "y": 1600,
    "text": "La definición que manda: en la banca privada, un wealth architect es el asesor que diseña el plan completo del patrimonio de una persona a partir de sus metas de vida, y no a partir de los productos que vende. La IA lo pone en el bolsillo de cada afiliado, y el asesor lo completa cuando la decisión lo pide.",
    "w": 340,

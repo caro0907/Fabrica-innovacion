@@ -25,12 +25,13 @@ Recibes un brief aprobado del especialista `fabrica-estratega`, con su tabla de 
 El revisor devolvió el v5 con 7 hallazgos que bloquean que Carolina no había señalado. Desde entonces son reglas:
 - **Primera vez no es revisión.** Después del diagnóstico, la persona ve su plan completo antes de cualquier propuesta: patrimonio, metas con sus números, la pensión como ancla con sus supuestos, la salud del plan con su advertencia y el orden del plan, con un primer paso que no sea un producto si existe. La revisión periódica es para quien vuelve y dice "qué cambió desde tu plan del {fecha}".
 - **Cada dato del plan tiene origen.** Antes de la primera pantalla, haz la tabla "dato del plan → pregunta del diagnóstico o fuente" en el README del diseño. Un número sin origen no entra. En pantalla, el origen se ve: Sabemos, Nos contaste, Estimado o Por completar. Si un texto dice "marcaste" o "nos contaste", el control que lo permite existe.
-- **Mapa de recorrido por persona.** Cada persona tiene sus propias pantallas (la persona secundaria lleva su nombre como sufijo: `H-PlanJuliana`). Ningún enlace cruza de persona, de versión ni a una vista interna, y ninguno es "#".
+- **Mapa de recorrido por persona y momento.** Cada persona tiene sus propias pantallas (la persona secundaria lleva su nombre como sufijo: `H-PlanJuliana`) y cada pantalla declara su momento (`set_momento(...)` en los componentes). Ningún enlace cruza de persona, de versión ni a una vista interna, y ninguno es "#". Un salto de momento (por ejemplo, "Guardar mi plan" del 1 al 15 de junio) solo existe si se marca a propósito (`salto=True`).
 - **Información no nombra productos.** La pantalla marcada como información puede decir que viene una recomendación, pero el producto, su porqué, su riesgo en pesos, su costo, la modalidad, las alternativas, el medio verificable y la condición junto al beneficio van en la pantalla de recomendación.
 - **Pensión con supuestos.** Toda cifra de pensión dice con qué reglas se calcula (reforma pensional o régimen de transición) y tiene "Ver supuestos".
 - **Mandatos completos.** Cuándo, qué, cuánto gana, tope, vigencia, aviso y control, y quién ejecuta de verdad (por nómina, la empresa con la autorización que firma la persona).
 - **Sin marcadores en pantalla.** Nada de "[X]" o "$[Y]": valores ficticios marcados como ficticios.
-- **Las cifras derivadas se calculan en el generador** (puntaje como promedio de los pilares, porcentajes, años del simulador), no a mano.
+- **Ninguna cifra se escribe a mano, tampoco al corregir.** Las derivadas (puntaje como promedio de los pilares, porcentajes, años del simulador, pensión) se calculan en el generador o en código, con el mismo método para todas las personas. En la segunda ronda, una pensión escrita a mano al corregir fue el hallazgo más grave.
+- **Perfil y producto coherentes.** La caída en pesos de un mal año de cada recomendación cabe en la pérdida que la persona dijo tolerar.
 - **Versiones.** Antes de modificar, archiva la versión anterior en `diseno/versiones-anteriores/prototipo-v<x>/`; el lienzo solo muestra la versión vigente y su título dice la versión.
 
 ## Activos de la fábrica

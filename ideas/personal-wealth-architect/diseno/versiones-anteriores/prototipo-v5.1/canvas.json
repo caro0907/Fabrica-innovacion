@@ -1,0 +1,369 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-10-17T21:55:00Z"
+ },
+ "title": "Personal Wealth Architect · Prototipo v5.1",
+ "launch": {
+  "view": "canvas"
+ },
+ "pages": [],
+ "boards": {
+  "D1-Bienvenida.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "1 · Bienvenida: lo que ya sabemos"
+  },
+  "D2-Metas.dc.html": {
+   "x": 470,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "2 · Tus metas y la más importante",
+   "is_interactive": true
+  },
+  "D2b-Numeros.dc.html": {
+   "x": 940,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "3 · Tus metas con números",
+   "is_interactive": true
+  },
+  "D3-Vida.dc.html": {
+   "x": 1410,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "4 · Tu vida hoy",
+   "is_interactive": true
+  },
+  "D3b-Dinero.dc.html": {
+   "x": 1880,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "5 · Tu dinero hoy",
+   "is_interactive": true
+  },
+  "D4-Riesgo.dc.html": {
+   "x": 2350,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "6 · Tu perfil: las 6 preguntas",
+   "is_interactive": true
+  },
+  "D5-Entendi.dc.html": {
+   "x": 2820,
+   "y": 0,
+   "w": 390,
+   "h": 844,
+   "title": "7 · Esto entendí de ti"
+  },
+  "H-TuPlan.dc.html": {
+   "x": 3290,
+   "y": 0,
+   "w": 390,
+   "h": 2080,
+   "title": "8 · Tu plan (primera vez, pantalla con desplazamiento)",
+   "is_interactive": true
+  },
+  "H-Inicio.dc.html": {
+   "x": 0,
+   "y": 2700,
+   "w": 390,
+   "h": 844,
+   "title": "Inicio: patrimonio, salud del plan y nota"
+  },
+  "H-Pilares.dc.html": {
+   "x": 470,
+   "y": 2700,
+   "w": 390,
+   "h": 844,
+   "title": "La salud de tu plan: 6 pilares"
+  },
+  "H-Revision.dc.html": {
+   "x": 940,
+   "y": 2700,
+   "w": 390,
+   "h": 844,
+   "title": "Tu revisión de junio"
+  },
+  "H-Decision.dc.html": {
+   "x": 1410,
+   "y": 2700,
+   "w": 390,
+   "h": 844,
+   "title": "Tu propuesta para la prima",
+   "is_interactive": true
+  },
+  "H-Reglas.dc.html": {
+   "x": 1880,
+   "y": 2700,
+   "w": 390,
+   "h": 844,
+   "title": "Mis reglas",
+   "is_interactive": true
+  },
+  "H-Plan.dc.html": {
+   "x": 2350,
+   "y": 2700,
+   "w": 390,
+   "h": 844,
+   "title": "Mi plan de vida",
+   "is_interactive": true
+  },
+  "H-Meta.dc.html": {
+   "x": 2820,
+   "y": 2700,
+   "w": 390,
+   "h": 844,
+   "title": "Tu casa: ¿y si separas cada mes?",
+   "is_interactive": true
+  },
+  "H-Patrimonio.dc.html": {
+   "x": 3290,
+   "y": 2700,
+   "w": 390,
+   "h": 844,
+   "title": "Mi patrimonio: 8 dimensiones"
+  },
+  "H-Equipo.dc.html": {
+   "x": 3760,
+   "y": 2700,
+   "w": 390,
+   "h": 844,
+   "title": "Tu equipo: Daniela y tu arquitecto",
+   "is_interactive": true
+  },
+  "H-Perfil.dc.html": {
+   "x": 4230,
+   "y": 2700,
+   "w": 390,
+   "h": 844,
+   "title": "Tu perfil"
+  },
+  "H-ComoFunciona.dc.html": {
+   "x": 4700,
+   "y": 2700,
+   "w": 390,
+   "h": 844,
+   "title": "Cómo funciona tu arquitecto"
+  },
+  "H-Chat.dc.html": {
+   "x": 5170,
+   "y": 2700,
+   "w": 390,
+   "h": 844,
+   "title": "Pregúntale (superficie secundaria)"
+  },
+  "H-InicioJuliana.dc.html": {
+   "x": 0,
+   "y": 3944,
+   "w": 390,
+   "h": 844,
+   "title": "Inicio de Juliana"
+  },
+  "H-PilaresJuliana.dc.html": {
+   "x": 470,
+   "y": 3944,
+   "w": 390,
+   "h": 844,
+   "title": "La salud de su plan"
+  },
+  "H-RevisionJuliana.dc.html": {
+   "x": 940,
+   "y": 3944,
+   "w": 390,
+   "h": 844,
+   "title": "Revisión de cierre de año"
+  },
+  "H-ImpuestoJuliana.dc.html": {
+   "x": 1410,
+   "y": 3944,
+   "w": 390,
+   "h": 844,
+   "title": "Su impuesto, con y sin su casa"
+  },
+  "H-DecisionJuliana.dc.html": {
+   "x": 1880,
+   "y": 3944,
+   "w": 390,
+   "h": 844,
+   "title": "Recomendación y regla por nómina",
+   "is_interactive": true
+  },
+  "H-ReglasJuliana.dc.html": {
+   "x": 2350,
+   "y": 3944,
+   "w": 390,
+   "h": 844,
+   "title": "Mis reglas",
+   "is_interactive": true
+  },
+  "H-PlanJuliana.dc.html": {
+   "x": 2820,
+   "y": 3944,
+   "w": 390,
+   "h": 844,
+   "title": "Mi plan de vida"
+  },
+  "H-PatrimonioJuliana.dc.html": {
+   "x": 3290,
+   "y": 3944,
+   "w": 390,
+   "h": 844,
+   "title": "Mi patrimonio"
+  },
+  "H-EquipoJuliana.dc.html": {
+   "x": 3760,
+   "y": 3944,
+   "w": 390,
+   "h": 844,
+   "title": "Tu equipo: Camilo",
+   "is_interactive": true
+  },
+  "H-PerfilJuliana.dc.html": {
+   "x": 4230,
+   "y": 3944,
+   "w": 390,
+   "h": 844,
+   "title": "Su perfil"
+  },
+  "H-ComoFuncionaJuliana.dc.html": {
+   "x": 4700,
+   "y": 3944,
+   "w": 390,
+   "h": 844,
+   "title": "Cómo funciona"
+  },
+  "H-ChatJuliana.dc.html": {
+   "x": 5170,
+   "y": 3944,
+   "w": 390,
+   "h": 844,
+   "title": "Pregúntale"
+  },
+  "A1-Asesor.dc.html": {
+   "x": 0,
+   "y": 5188,
+   "w": 1280,
+   "h": 800,
+   "title": "Vista de Camilo: entra cuando la decisión lo pide"
+  },
+  "M1-Motor.dc.html": {
+   "x": 1360,
+   "y": 5188,
+   "w": 1440,
+   "h": 900,
+   "title": "El motor por dentro (Laura)"
+  },
+  "S1-ModoServicio.dc.html": {
+   "x": 2880,
+   "y": 5188,
+   "w": 390,
+   "h": 844,
+   "title": "Modo servicio: cuando el motor no vende"
+  }
+ },
+ "order": [
+  "D1-Bienvenida.dc.html",
+  "D2-Metas.dc.html",
+  "D2b-Numeros.dc.html",
+  "D3-Vida.dc.html",
+  "D3b-Dinero.dc.html",
+  "D4-Riesgo.dc.html",
+  "D5-Entendi.dc.html",
+  "H-TuPlan.dc.html",
+  "H-Inicio.dc.html",
+  "H-Pilares.dc.html",
+  "H-Revision.dc.html",
+  "H-Decision.dc.html",
+  "H-Reglas.dc.html",
+  "H-Plan.dc.html",
+  "H-Meta.dc.html",
+  "H-Patrimonio.dc.html",
+  "H-Equipo.dc.html",
+  "H-Perfil.dc.html",
+  "H-ComoFunciona.dc.html",
+  "H-Chat.dc.html",
+  "H-InicioJuliana.dc.html",
+  "H-PilaresJuliana.dc.html",
+  "H-RevisionJuliana.dc.html",
+  "H-ImpuestoJuliana.dc.html",
+  "H-DecisionJuliana.dc.html",
+  "H-ReglasJuliana.dc.html",
+  "H-PlanJuliana.dc.html",
+  "H-PatrimonioJuliana.dc.html",
+  "H-EquipoJuliana.dc.html",
+  "H-PerfilJuliana.dc.html",
+  "H-ComoFuncionaJuliana.dc.html",
+  "H-ChatJuliana.dc.html",
+  "A1-Asesor.dc.html",
+  "M1-Motor.dc.html",
+  "S1-ModoServicio.dc.html"
+ ],
+ "notes": {
+  "titleDiag": {
+   "x": 0,
+   "y": -300,
+   "text": "v5.1 · Laura, 1 de junio: primero te conozco y después tu plan",
+   "kind": "title1",
+   "maxW": 3680
+  },
+  "titleApp": {
+   "x": 0,
+   "y": 2400,
+   "text": "v5.1 · Laura vuelve el 15 de junio: la app es el hogar de su plan",
+   "kind": "title1",
+   "maxW": 5640
+  },
+  "titleJuliana": {
+   "x": 0,
+   "y": 3644,
+   "text": "v5.1 · Juliana, 23 de noviembre: su plan primero; el cierre del año es el momento",
+   "kind": "title1",
+   "maxW": 5640
+  },
+  "titleInternas": {
+   "x": 0,
+   "y": 4888,
+   "text": "Para negocio · vistas internas (estado: diseño, nada en operación)",
+   "kind": "title1",
+   "maxW": 3300
+  },
+  "recorrido": {
+   "x": 3760,
+   "y": 0,
+   "text": "Cómo recorrerlo: Laura empieza en «Bienvenida» (arriba a la izquierda) y termina su primera reunión viendo su plan completo. Dos semanas después vuelve (segunda fila): revisión, propuesta y su regla. Juliana empieza en su inicio (tercera fila). Cada persona tiene sus propias pantallas.",
+   "w": 340,
+   "fill": "green"
+  },
+  "principios": {
+   "x": 3760,
+   "y": 520,
+   "text": "v5.1 (17 oct), después de la primera revisión independiente: la primera vez se ve el plan completo antes de cualquier propuesta; cada número del plan sale de una pregunta o de lo que ya sabemos, con su origen; la revisión solo informa y la recomendación va aparte con porqué, riesgo en pesos, costo y condición; la pensión muestra sus supuestos y el régimen de transición.",
+   "w": 340,
+   "fill": "blue"
+  },
+  "supuestos": {
+   "x": 3760,
+   "y": 1080,
+   "text": "Datos ficticios; comisión de 1,2% ficticia. Cálculos verificados en regulatorio.md, a validar con un experto. Pensión, puntaje y proyecciones son estimados. SUPUESTO POR DECIDIR: si el consultor con nombre (Daniela) aplica a la renta masiva o solo a la renta media.",
+   "w": 340,
+   "fill": "orange"
+  },
+  "definicion": {
+   "x": 3760,
+   "y": 1600,
+   "text": "La definición que manda: en la banca privada, un wealth architect es el asesor que diseña el plan completo del patrimonio de una persona a partir de sus metas de vida, y no a partir de los productos que vende. La IA lo pone en el bolsillo de cada afiliado, y el asesor lo completa cuando la decisión lo pide.",
+   "w": 340,
+   "fill": "teal"
+  }
+ },
+ "designSystems": []
+}

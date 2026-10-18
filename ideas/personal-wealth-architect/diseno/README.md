@@ -1,4 +1,4 @@
-# Diseño: Personal Wealth Architect · v5
+# Diseño: Personal Wealth Architect · v5.2
 
 **17 de octubre de 2026 · Especialista: diseñador de la fábrica** · Parte del brief v3.2 (`../brief.md`). Todos los datos son ficticios.
 
@@ -48,6 +48,8 @@
 **Asesor:** A1 Mismo plan, con contexto.
 
 ## 5. Plan de prueba con 5 usuarios por segmento
+> **Reemplazado por la sección 12.4** para el prototipo v5.2 (las pantallas L y J de mensajería ya no están en el lienzo). Se conserva como registro.
+
 **Participantes:**
 - **Renta masiva:** 5 asalariados de 30 a 45 años con salario entre $3,5 y $6 millones, que reciben prima y tienen ahorro en una cuenta o un neobanco.
 - **Renta media:** 5 asalariados con salario entre $8 y $9 millones, que declaran renta.
@@ -169,3 +171,40 @@ El chat queda como una superficie (la barra "Pregúntale algo a tu arquitecto" y
 | D5 · Esto entendí de ti | Resumen para corregir antes de armar el plan; lo que aún no sabemos; lleva al inicio (V1) |
 
 El aviso de mensajería (L1) ahora lleva a D1; la conversación de diagnóstico por chat (v4) queda como alternativa.
+
+## 12. Versiones 5.1 y 5.2 (17 de octubre de 2026, noche): después del revisor independiente
+**Conclusión:** la primera vez Laura ve su plan completo antes de cualquier propuesta, cada número del plan sale de una pregunta o de lo que ya sabemos, y cada persona recorre solo sus pantallas y su momento. Pasó por dos rondas del revisor independiente (7 y luego 2 hallazgos que bloquean, todos corregidos) y por la verificación mecánica (0 que bloquean).
+
+### 12.1 Qué cambió
+- **Plan de primera vez (H-TuPlan):** patrimonio con su origen, la pensión como ancla con "Ver supuestos" (régimen de transición, 13 mesadas, rentabilidad real de 4% neta), metas con números, la salud del plan con sus 6 pilares y la advertencia, y el orden del plan. El primer paso es confirmar a su hija como beneficiaria (no es un producto); la prima es el paso 2.
+- **Laura vuelve el 15 de junio:** la revisión de junio dice "cómo vas desde tu plan del 1 de junio", no nombra productos y manda la recomendación a su propia pantalla (fondo de inversión colectiva moderado, porqué, caída de $94.000 en un mal año, costo, alternativas, copia por correo).
+- **Diagnóstico con números:** prioridad marcada (D2), cuota de la casa y pensión deseada propuestas y ajustables (D2b), edad de la hija (D3), ahorros aquí o en otras entidades y seguro de vida (D3b), las seis preguntas del perfil editables, con la pérdida tolerada coherente con la caída del portafolio (D4).
+- **Juliana tiene sus propias pantallas** (inicio, pilares, revisión de cierre de año, impuesto, recomendación con la condición junto al beneficio y la casilla "Entiendo la condición", reglas por nómina con vigencia, aviso y revocación ante la empresa, plan, patrimonio, equipo con Camilo, perfil, cómo funciona y chat). Su pensión se recalculó con el mismo método que la de Laura: unos $3,0 M frente a $5,0 M deseados; esa brecha la ve con Camilo en enero.
+- **Momentos:** agendar con Daniela desde la bienvenida o desde el plan abre pantallas del 1 de junio (D-Agenda, H-TuPlanAgenda); cambiar el perfil el 15 de junio abre "Actualiza tu perfil" (H-PerfilCambiar).
+- **Salieron del lienzo** las pantallas de mensajería de v4 (L1 a L8, J1 a J5 y T1). Están en `versiones-anteriores/prototipo-v5.0/`. El aviso por mensajería sigue siendo parte del concepto como superficie secundaria; volverá cuando se diseñe el canal.
+
+### 12.2 Origen de cada dato del plan (criterio B10)
+| Dato | De dónde sale |
+|---|---|
+| Pensión obligatoria, semanas, cesantías, salario de cotización, primas | Lo que ya sabemos, con autorización (D1) |
+| Metas y la más importante | D2 |
+| Cuota inicial, plazo de la casa, pensión deseada | D2b (cifra propuesta que Laura ajusta) |
+| Hija y su edad, vivienda, deudas | D3 |
+| Gastos (colchón), ahorros, dónde están, seguro de vida | D3b |
+| Perfil (horizonte, objetivos, conocimiento, experiencia, pérdida tolerada, reacción) | D4 |
+| Pensión estimada, brecha, impuesto, puntaje, años del simulador | Estimados calculados con los datos anteriores y supuestos visibles |
+
+### 12.3 Abierto (no bloquea, a la vista de Carolina)
+- Si el consultor con nombre aplica a la renta masiva (decisión de Carolina).
+- Si el retiro de la pensión voluntaria para una segunda vivienda conserva el beneficio (Juliana; experto tributario).
+- Vistas internas de Daniela y de los equipos comercial, remoto y de servicio; pantalla "Mis documentos".
+
+### 12.4 Plan de prueba vigente (5 personas por segmento)
+| # | Laura (renta masiva) | Juliana (renta media) |
+|---|---|---|
+| 1 | "Haz tu primera reunión." (D1 a D5) · ¿Corrige algo en "Esto entendí de ti"? | "Mira tu inicio. ¿Cómo vas?" (H-InicioJuliana) |
+| 2 | "Explica tu plan con tus palabras: qué va primero y por qué." (H-TuPlan) | "¿Cuánto bajaría tu impuesto y qué condición tiene?" (revisión e impuesto) |
+| 3 | "Vuelves dos semanas después. Decide qué hacer con tu prima." (revisión y propuesta) | "Decide tu aporte de fin de año." (recomendación) |
+| 4 | "¿Quién es Daniela y cuándo hablarías con ella?" (Tu equipo) | "Deja listo el año siguiente. ¿Quién hace el descuento?" (Mis reglas) |
+
+**Criterio de que funciona:** al menos 3 de 5 dicen que se sintió como hablar con un asesor y no con una aplicación; al menos 3 de 5 explican el orden de su plan (colchón antes que inversión; casa con brecha); en renta media, al menos 3 de 5 explican la condición del beneficio sin que se les pregunte; la confianza no baja al ver la transparencia.

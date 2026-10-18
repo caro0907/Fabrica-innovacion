@@ -41,6 +41,8 @@
 | C5 | ¿Los textos usan el catálogo de lo que se puede decir (`empresa/activos/catalogo-regulatorio-base.md`)? | Condiciones redactadas de nuevo, frases prohibidas ("garantizado", "sin conflicto de interés", "como nuestro mejor consultor") | Sí | Regulatorio v1 |
 | C6 | ¿La entidad nunca "mueve" dinero que está en otra cuenta sin confirmación o autorización? | "Movemos tu dinero el 30 de junio" | Sí | Regulatorio v1 |
 | C7 | ¿Las proyecciones son netas de comisiones y muestran un escenario malo? | Rangos solo optimistas | No | Regulatorio v1 |
+| C8 | ¿La caída en pesos de un mal año de cada recomendación cabe en la pérdida que la persona dijo tolerar en su perfil? | El perfil dice "hasta 10%" y la recomendación "caída de 12%" | Sí | Revisor, 17 oct 2026 (prototipo v5.1) |
+| C9 | ¿Cada estimado sale, recalculado en código, de los supuestos que la misma pantalla muestra, con el mismo método para todas las personas? | Pensión de $5,6 M con un saldo que, con esos supuestos, da unos $3,0 M | Sí | Revisor, 17 oct 2026 (prototipo v5.1) |
 
 ## D. Forma de Carolina
 
@@ -60,8 +62,9 @@
 | E1 | ¿Cada pantalla cabe en su alto, con botones de al menos 44 px y contraste suficiente? | Contenido que se corta; textos grises claros | No | PWA, pantalla "Mi puntaje" |
 | E2 | ¿Versión nueva en el nombre y dentro del documento, la anterior archivada, nada perdido? | Archivos sobrescritos sin versión | No | Forma de trabajo, sección 1 |
 | E3 | ¿El CONTEXTO está actualizado? | Pendientes que ya se hicieron, decisiones sin registrar | No | Forma de trabajo, sección 1 |
-| E4 | ¿Cada enlace lleva a una pantalla de la misma persona, la misma versión y el mismo momento, sin botones muertos ni salidas a versiones anteriores o a vistas internas? | El inicio de Juliana abre el plan y la consultora de Laura; "Hablar con un asesor" abre la vista interna de otra afiliada | Sí | Revisor, 17 oct 2026 (prototipo v5) |
+| E4 | ¿Cada enlace lleva a una pantalla de la misma persona, la misma versión y el mismo momento, sin botones muertos ni salidas a versiones anteriores o a vistas internas? Se comprueba con `empresa/activos/plantillas/verificar-prototipo.py` (cada pantalla declara su momento) y, a mano, que cada salto de momento marcado tenga sentido | El inicio de Juliana abre el plan y la consultora de Laura; la bienvenida del 1 de junio abre la app del 15 de junio | Sí | Revisor, 17 oct 2026 (prototipos v5 y v5.1) |
 
 ## Historial de criterios agregados
+- 17 de octubre de 2026: C8 y C9, y E4 ampliado a "el mismo momento", propuestos por el revisor en la segunda ronda (prototipo v5.1).
 - 17 de octubre de 2026: B10, B11 y E4, propuestos por el revisor en su primera revisión (prototipo v5).
 - 17 de octubre de 2026: creación con A1 a E3, a partir de `forma-de-trabajo.md`, `aprendizajes.md` y las observaciones de Carolina sobre el Personal Wealth Architect.

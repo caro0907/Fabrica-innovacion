@@ -5,9 +5,9 @@ from pantallas_asesoria import *
 set_out(sys.argv[1])
 
 L = dict(sfx='', nombre='Laura', fecha='Lunes 15 de junio · datos ficticios', cons='Daniela', cons_full='Daniela R.', cons_ini='DR',
-         cons_rol='tu consultora', perfil='moderado · del 1 de junio')
+         cons_rol='tu consultora', perfil='moderado · del 1 de junio', cert='Certificada por el Autorregulador del Mercado de Valores e inscrita en el Registro Nacional de Profesionales del Mercado de Valores')
 J = dict(sfx='Juliana', nombre='Juliana', fecha='Lunes 23 de noviembre · datos ficticios', cons='Camilo', cons_full='Camilo V.', cons_ini='CV',
-         cons_rol='tu consultor', perfil='moderado · del 3 de marzo')
+         cons_rol='tu consultor', perfil='moderado · del 3 de marzo', cert='Certificado por el Autorregulador del Mercado de Valores e inscrito en el Registro Nacional de Profesionales del Mercado de Valores')
 
 def metas_tiles(persona, tiles):
     out = []
@@ -158,16 +158,15 @@ def equipo(P, cuando, nota_rnpmv='Supuesto por decidir: si el consultor con nomb
 {inner(10, '20px 16px 8px')}
 {h1('Tu equipo', False, 26)}
 <div style="background: #FFFFFF; border-radius: 22px; padding: 14px 16px; display: flex; flex-direction: column; gap: 9px">
-<div style="display: flex; gap: 12px; align-items: center">{avatar(P['cons_ini'], GOLD, INK, 52, 17)}<span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 16px">{P['cons_full']} · {P['cons_rol']}</strong><span style="font-size: 11.5px; color: {MUTED}; line-height: 1.35">Certificado por el Autorregulador del Mercado de Valores e inscrito en el Registro Nacional de Profesionales del Mercado de Valores · datos ficticios</span></span></div>
+<div style="display: flex; gap: 12px; align-items: center">{avatar(P['cons_ini'], GOLD, INK, 52, 17)}<span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 16px">{P['cons_full']} · {P['cons_rol']}</strong><span style="font-size: 11.5px; color: {MUTED}; line-height: 1.35">{P['cert']} · datos ficticios</span></span></div>
 {p('Ve tu mismo plan y tu historia: no tienes que repetirle nada. Agenda 15 minutos por video:', 13)}
 <div style="display: flex; gap: 8px; flex-wrap: wrap">
 <sc-for list="{{{{slots}}}}" as="c" hint-placeholder-count="2"><button type="button" aria-pressed="{{{{c.on}}}}" onClick="{{{{c.pick}}}}" style="{{{{c.style}}}}">{{{{c.label}}}}</button></sc-for>
-<a href="{f('H-Chat', s)}" style="min-height: 44px; padding: 0 14px; border-radius: 12px; border: 2px solid {LINE}; background: #FFFFFF; font-weight: 700; font-size: 13px; color: {INK}; display: flex; align-items: center; text-decoration: none">Escribirle</a>
 </div>
 <sc-if value="{{{{agendado}}}}" hint-placeholder-val="{{{{ false }}}}"><span style="font-size: 13px; font-weight: 700; color: {GREEN}">{{{{agendadoTxt}}}}</span></sc-if>
 </div>
 <div style="background: #FFFFFF; border-radius: 22px; padding: 12px 16px; display: flex; flex-direction: column; gap: 6px">
-<div style="display: flex; gap: 12px; align-items: center">{avatar('A', GREEN, '#FFFFFF', 40, 15)}<span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 15px">Tu arquitecto digital</strong><span style="font-size: 11.5px; color: {MUTED}">Herramienta de [Administradora], supervisada por la entidad</span></span></div>
+<div style="display: flex; gap: 12px; align-items: center">{avatar('A', GREEN, '#FFFFFF', 40, 15)}<span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 15px">Tu arquitecto digital</strong><span style="font-size: 11.5px; color: {MUTED}">Herramienta de tu administradora de fondos, supervisada por la entidad</span></span></div>
 {p('Arma y vigila tu plan y te avisa antes de los momentos que importan. Te propone; nunca decide por ti. Asesoría no independiente: te recomienda alternativas nuestras y recibimos una comisión.', 12.5)}
 </div>
 <div style="background: {SAMBER}; border-radius: 20px; padding: 12px 16px; display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 14px">Cuándo te proponemos hablar con {P['cons']}</strong>{ch}</div>
@@ -204,7 +203,7 @@ def como_funciona(P):
     s = P['sfx']
     bloques = [('Tu plan primero', 'Partimos de tus metas, no de nuestros productos. A veces tu siguiente paso no es un producto: tu colchón en tu cuenta, pagar una deuda cara o confirmar a tus beneficiarios.'),
                ('Información o recomendación', 'Tu patrimonio, tu puntaje y tu plan son información. Cuando te recomendamos un producto lo marcamos como Recomendación profesional, con su porqué, su riesgo en pesos y su costo.'),
-               ('Quién te asesora', 'Una herramienta tecnológica de [Administradora], supervisada por la entidad, con tu perfil. Asesoría no independiente: te recomendamos alternativas nuestras y recibimos una comisión.'),
+               ('Quién te asesora', 'Una herramienta tecnológica de tu administradora de fondos, supervisada por la entidad, con tu perfil. Asesoría no independiente: te recomendamos alternativas nuestras y recibimos una comisión.'),
                ('Cuándo entra un asesor', f'Siempre que lo pidas. Y te proponemos ver con {P["cons"]} las decisiones que lo piden: aportes que solo sirven para tu pensión, traslados, tu forma de pensionarte o un retiro que te hace perder un beneficio.'),
                ('Tus permisos', 'Usamos el salario con el que cotizas porque lo autorizaste; puedes retirar ese permiso con una frase. Nada se mueve sin tu confirmación o una regla que tú fijaste.')]
     b = ''.join(f'<div style="display: flex; flex-direction: column; gap: 3px; padding: 9px 0; border-bottom: 1px solid {LINE}"><strong style="font-size: 14px">{t}</strong><span style="font-size: 13px; line-height: 1.45; color: {BODY}">{x}</span></div>' for t, x in bloques)
@@ -238,20 +237,20 @@ def chat(P, pregunta, respuesta, link_href, link_txt):
 </div>'''
     write(f('H-Chat', s), 'Pregúntale a tu arquitecto', body)
 
-def reglas(P, nombre, estado_ini, campos, nota):
+def reglas(P, nombre, estado_ini, campos, nota, intro='Lo que dejaste andando solo, con su tope, su vigencia y su aviso. Lo pausas o lo cancelas en un toque.', pausable=True):
     s = P['sfx']
     filas = ''.join(f'<div style="display: grid; grid-template-columns: 78px minmax(0, 1fr); gap: 8px; font-size: 13px; line-height: 1.4; padding: 6px 0; border-bottom: 1px solid {LINE}"><span style="color: {MUTED}; font-weight: 700">{a}</span><span>{b}</span></div>' for a, b in campos)
     body = f'''{root(False)}
 {inner(11, '20px 16px 10px')}
 {back(f('H-Equipo', s), TAG_INFO)}
 {h1('Mis reglas', False, 26)}
-{p('Lo que dejaste andando solo, con su tope, su vigencia y su aviso. Lo pausas o lo cancelas en un toque.', 13.5)}
+{p(intro, 13.5)}
 <div style="background: #FFFFFF; border-radius: 20px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px">
 <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px"><strong style="font-size: 15px">{nombre}</strong><span style="font-size: 11.5px; font-weight: 700; color: {GREEN}; background: {SGREEN}; padding: 3px 8px; border-radius: 8px">{{{{estado}}}}</span></div>
 {filas}
 <div style="display: flex; gap: 8px; padding-top: 4px">
-<button type="button" onClick="{{{{pausar}}}}" style="flex: 1; min-height: 44px; border-radius: 12px; border: 2px solid {GREEN}; background: #FFFFFF; color: {GREEN}; font-family: inherit; font-weight: 700; font-size: 14px; cursor: pointer">{{{{botonPausa}}}}</button>
-<button type="button" onClick="{{{{cancelar}}}}" style="flex: 1; min-height: 44px; border-radius: 12px; border: 2px solid {LINE}; background: #FFFFFF; color: #9A2B1E; font-family: inherit; font-weight: 700; font-size: 14px; cursor: pointer">Cancelar regla</button>
+<button type="button" onClick="{{{{pausar}}}}" style="display: {'block' if pausable else 'none'}; flex: 1; min-height: 44px; border-radius: 12px; border: 2px solid {GREEN}; background: #FFFFFF; color: {GREEN}; font-family: inherit; font-weight: 700; font-size: 14px; cursor: pointer">{{{{botonPausa}}}}</button>
+<button type="button" onClick="{{{{cancelar}}}}" style="flex: 1; min-height: 44px; border-radius: 12px; border: 2px solid {LINE}; background: #FFFFFF; color: #9A2B1E; font-family: inherit; font-weight: 700; font-size: 14px; cursor: pointer">{'Cancelar regla' if pausable else 'No la quiero'}</button>
 </div></div>
 {nota}
 <div style="flex-grow: 1"></div>
@@ -266,23 +265,24 @@ def reglas(P, nombre, estado_ini, campos, nota):
     write(f('H-Reglas', s), 'Mis reglas', body, sc)
 
 # ======================= LAURA =======================
+set_momento('Laura · 15 de junio · vuelve')
 inicio(L, '$90,4 M', 'Pensión $78 M · Cesantías $9,4 M · Ahorro $3,0 M', '535',
        'Tu prima llega en 15 días',
        'Preparé tu revisión de junio: cómo vas desde tu plan del 1 de junio y una propuesta para tu prima. Tú decides; te toma 2 minutos.',
        'Ver mi revisión de junio', 'H-Revision.dc.html',
        [('Colchón de 3 meses', 40, 'Lo primero', WARN, SAMBER, AMBER, 'H-Plan.dc.html'),
-        ('Tu casa en 10 años', 21, 'En camino', GREEN, SGREEN, GREEN, 'H-Meta.dc.html'),
+        ('Tu casa en 10 años', 21, 'Con brecha', WARN, SAMBER, AMBER, 'H-Meta.dc.html'),
         ('Tu pensión a los 57', 77, 'Con brecha', WARN, SAMBER, AMBER, 'H-Plan.dc.html'),
         ('Proteger a tu hija', 50, 'En camino', GREEN, SGREEN, GREEN, 'H-Plan.dc.html')])
 
 pilares(L, '535', [('Colchón', 40, 'Cubres 1,2 meses; lo sano son 3'), ('Suficiencia', 55, 'Vas para $2,3 M; tu meta, $3,0 M'),
                    ('Protección', 44, 'Tu hija ya es tu beneficiaria; falta revisar tu seguro de vida'), ('Riesgo a la medida', 70, 'Tu pensión va en el fondo para tu edad'),
-                   ('Eficiencia', 62, 'Comisión de 1,2% al año (ficticia); cesantías con meta'), ('Constancia', 50, 'Aportas sin falta; tus primas se diluyen')],
-        'llevar tu colchón a 3 meses. Si separas para él la mayor parte de tu prima de junio, tu puntaje sube a unos 580 (estimado).',
+                   ('Eficiencia', 62, 'Comisión de 1,2% al año (ficticia); cesantías con meta'), ('Constancia', 50, 'Aportas sin falta a tu pensión; tus primas aún no tienen meta')],
+        'llevar tu colchón a 3 meses. Si separas para él la mayor parte de tu prima de junio, tu puntaje sube a unos 575 (estimado).',
         'H-Revision.dc.html', 'Ver mi revisión de junio')
 
 revision(L, 'Tu revisión de junio', 'Preparada para Laura · 15 de junio',
-         ['Tu colchón cubre 1,2 meses de gastos; lo sano son 3.', 'Tu casa va en 21%: $9,4 M de tus $45 M.', 'Tu pensión va para unos $2,3 M de los $3,0 M que quieres (estimado).', 'Tu hija ya es tu beneficiaria: lo hiciste el 1 de junio.'],
+         ['Tu colchón cubre 1,2 meses de gastos; lo sano son 3.', 'Tu casa va en 21%: $9,4 M de tus $45 M. Solo con tus primas llegarías hacia 2040, no en 10 años.', 'Tu pensión va para unos $2,3 M de los $3,0 M que quieres (estimado).', 'Tu hija ya es tu beneficiaria: lo hiciste el 1 de junio.'],
          ['El 30 de junio llega tu prima, unos $2.600.000 (estimado con tu salario de cotización).'],
          ['<strong>1.</strong> Separa $1.820.000, el 70%, para tu colchón en tu cuenta de ahorros. Es un paso de tu plan, no un producto.',
           '<strong>2.</strong> Pon $780.000, el 30%, a tu casa. Para eso te hago una recomendación profesional, con su porqué, su riesgo y su costo: la ves en el siguiente paso.'],
@@ -291,10 +291,10 @@ revision(L, 'Tu revisión de junio', 'Preparada para Laura · 15 de junio',
 
 SUP_L = ('Estimado con tu salario de cotización de hoy, cotizando hasta los 57 y una rentabilidad real supuesta de 4% al año, neta de comisiones. '
          'Tienes unas 730 semanas cotizadas: si sigues cotizando, llegas a 750 antes del 1 de abril de 2027 y conservarías las reglas de hoy (régimen de transición de la reforma pensional). '
-         'Lo confirmamos con tu historia laboral. No es una promesa ni una rentabilidad garantizada; algunos años puede ser negativa.')
+         'Supone 13 mesadas al año durante 30 años. Lo confirmamos con tu historia laboral. No es una promesa ni una rentabilidad garantizada; algunos años puede ser negativa.')
 plan(L, 'Vas para unos <strong style="color: #FFFFFF">$2,3 M al mes</strong> a los 57 (estimado); quieres <strong style="color: #FFFFFF">$3,0 M</strong>. Te faltan unos $0,7 M.' + bar(77, GOLD, '#2C4A41', 8), SUP_L,
      meta_row('Colchón de 3 meses', 'Lo primero', 'Tienes $3,0 M de $7,5 M · en tu cuenta de ahorros', 40, WARN, 'a') +
-     meta_row('Tu casa en 10 años', 'En camino', 'Cuota inicial de $45 M · llevas $9,4 M en tus cesantías', 21, GREEN, 'g', 'H-Meta.dc.html') +
+     meta_row('Tu casa en 10 años', 'Con brecha', '$45 M · llevas $9,4 M · a tiempo con unos $100 mil más al mes', 21, WARN, 'a', 'H-Meta.dc.html') +
      meta_row('Proteger a tu hija', 'En camino', 'Beneficiaria confirmada · falta revisar tu seguro de vida', 50, GREEN, 'g'),
      f'''<div style="background: #FFFFFF; border-radius: 18px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 13.5px">¿Sumamos la educación de tu hija?</strong><span style="font-size: 12px; color: {MUTED}">No la elegiste; tiene 8 años.</span></span><button type="button" onClick="{{{{sumar}}}}" style="min-height: 44px; padding: 0 12px; border-radius: 12px; border: 2px solid {GREEN}; background: #FFFFFF; color: {GREEN}; font-family: inherit; font-weight: 700; font-size: 13px; cursor: pointer; flex-shrink: 0">{{{{sumarTxt}}}}</button></div>''',
      [('30 jun', 'Prima de mitad de año', '$2,6 M'), ('20 dic', 'Prima de fin de año', '$2,6 M'), ('31 ene', 'Intereses de tus cesantías', '$624 mil'), ('14 feb', 'Tu empresa consigna tus cesantías', '$5,2 M')])
@@ -311,9 +311,18 @@ patrimonio(L, '$90,4 M', [('Pensión', 86.3, INK), ('Cesantías', 10.4, GREEN), 
             ('Impuestos', 'No pagas renta; si debes declarar depende de tus ingresos del año', 'e'), ('Legado', 'Tu hija es tu beneficiaria · lo demás, por conversar', 'p')])
 
 equipo(L, ['Siempre que lo pidas', 'Aportes que solo sirven para tu pensión', 'Traslados y tu forma de pensionarte', 'Un retiro que te hace perder un beneficio'])
-perfil(L, [('1 · Tu horizonte', 'Más de 5 años'), ('2 · Tus objetivos', 'Que crezca para mi casa'), ('3 · Tu conocimiento', 'Lo básico'),
-           ('4 · Tu experiencia', 'Pensión y cesantías'), ('5 · Cuánto puedes perder', 'Hasta 1 de cada 10 pesos'), ('6 · Cómo reaccionas', 'Espero: mi meta es a 10 años')],
-       'D4-Riesgo.dc.html')
+perfil(L, [('1 · Tu horizonte', 'Más de 5 años'), ('2 · Tus objetivos', 'Que crezca para mi meta'), ('3 · Tu conocimiento', 'Lo básico'),
+           ('4 · Tu experiencia', 'Nunca, además de pensión y cesantías'), ('5 · Cuánto puedes perder', 'Hasta 15 de cada 100 pesos'), ('6 · Cómo reaccionas', 'Espero')],
+       'H-PerfilCambiar.dc.html')
+body = f'''{root(True, 1420)}
+{back('H-Perfil.dc.html', TAG_INFO)}
+{h1('Actualiza tu perfil', True, 27)}
+{p('Lunes 15 de junio. Cambia lo que ya no sea cierto: tu plan y lo que te podemos recomendar se ajustan.', 13.5)}
+{perfil_cards()}
+<div style="flex-grow: 1"></div>
+{cta('H-Perfil.dc.html', 'Guardar mi perfil')}
+</div>'''
+write('H-PerfilCambiar.dc.html', 'Actualiza tu perfil', body, perfil_script(), h=1420)
 como_funciona(L)
 chat(L, '¿Puedo usar mis cesantías para la cuota inicial de mi casa?',
      'Sí. Tus cesantías se pueden usar para tu vivienda; si las usas, dejan de ser tu respaldo si pierdes el empleo. Por eso en tu plan tu colchón va aparte. Hoy tienes $9,4 M y ya cuentan para tu casa.',
@@ -383,8 +392,9 @@ lectura: t <= 10 ? 'Con 4% llegas dentro de los 10 años que te pusiste; en un m
 write('H-Meta.dc.html', 'Tu casa', body, meta_script)
 
 # ---------- H-Decision (Laura) ----------
-def decision(P, back_href, titulo, pendiente_html, listo_html, aprobar_txt, nota):
+def decision(P, back_href, titulo, pendiente_html, listo_html, aprobar_txt, nota, entiendo=None):
     s = P['sfx']
+    chk = (f'<label style="display: flex; gap: 10px; align-items: center; min-height: 44px; font-size: 13px; line-height: 1.35; cursor: pointer"><input type="checkbox" onChange="{{{{toggle}}}}" style="width: 22px; height: 22px; accent-color: {GREEN}; flex-shrink: 0">{entiendo}</label>') if entiendo else ''
     body = f'''{root(False)}
 {inner(10, '20px 16px 12px')}
 {back(back_href, TAG_REC)}
@@ -392,7 +402,8 @@ def decision(P, back_href, titulo, pendiente_html, listo_html, aprobar_txt, nota
 <div style="display: flex; flex-direction: column; gap: 10px">
 {h1(titulo, True, 26)}
 {pendiente_html}
-<button type="button" onClick="{{{{aprobar}}}}" style="min-height: 52px; border: 0; border-radius: 14px; background: {GREEN}; color: #FFFFFF; font-family: inherit; font-weight: 700; font-size: 16px; cursor: pointer">{aprobar_txt}</button>
+{chk}
+<button type="button" onClick="{{{{aprobar}}}}" aria-disabled="{{{{bloqueado}}}}" style="min-height: 52px; border: 0; border-radius: 14px; background: {{{{btnBg}}}}; color: #FFFFFF; font-family: inherit; font-weight: 700; font-size: 16px; cursor: pointer">{aprobar_txt}</button>
 {small(nota, True)}
 </div>
 </sc-if>
@@ -403,25 +414,27 @@ def decision(P, back_href, titulo, pendiente_html, listo_html, aprobar_txt, nota
 </sc-if>
 </div>
 </div>'''
-    sc = ('class Component extends DCLogic {\nconstructor(props) {\nsuper(props);\nthis.state = { listo: false };\n}\nrenderVals() {\nvar self = this;\n'
-          'return { pendiente: !this.state.listo, listo: this.state.listo, aprobar: function () { self.setState({ listo: true }); } };\n}\n}')
+    ok0 = 'false' if entiendo else 'true'
+    sc = ('class Component extends DCLogic {\nconstructor(props) {\nsuper(props);\nthis.state = { listo: false, ok: ' + ok0 + ' };\n}\nrenderVals() {\nvar self = this, s = this.state;\n'
+          "return { pendiente: !s.listo, listo: s.listo, bloqueado: s.ok ? 'false' : 'true', btnBg: s.ok ? '#0E6A4E' : '#7C8A85', "
+          'toggle: function () { self.setState({ ok: !s.ok }); }, aprobar: function () { if (s.ok) { self.setState({ listo: true }); } } };\n}\n}')
     write(f('H-Decision', s), titulo, body, sc)
 
-TRANSP_L = details('Quién te asesora y cuánto cuesta', 'Recomendación de [Administradora] hecha por una herramienta que la entidad supervisa, con tu perfil del 1 de junio. Asesoría no independiente: recibimos una comisión de 1,2% al año (ficticia). Otras opciones: tu cuenta de ahorros, un certificado de depósito a término o fondos de otras entidades. Te enviamos esta recomendación a tu correo y queda en Mis documentos.')
+TRANSP_L = details('Quién te asesora y cuánto cuesta', 'Recomendación de tu administradora de fondos hecha por una herramienta que la entidad supervisa, con tu perfil del 1 de junio. Lo retiras cuando quieras, en pocos días hábiles; su valor puede variar. Asesoría no independiente: recibimos una comisión de 1,2% al año (ficticia). Otras opciones: tu cuenta de ahorros, un certificado de depósito a término o fondos de otras entidades. Te enviamos esta recomendación a tu correo y queda en Mis documentos.')
 check = f'<span aria-hidden="true" style="width: 60px; height: 60px; border-radius: 30px; background: {SGREEN}; display: flex; align-items: center; justify-content: center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="{GREEN}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg></span>'
 decision(L, 'H-Revision.dc.html', 'Tu propuesta para la prima',
     f'''<div style="background: {SGREEN}; border-radius: 18px; padding: 12px 16px; display: flex; flex-direction: column; gap: 4px">
 <div style="display: flex; justify-content: space-between; gap: 8px"><strong style="font-size: 15px">$1.820.000 a tu colchón</strong><span style="font-size: 11.5px; font-weight: 700; color: {GREEN}; text-align: right">PASO DEL PLAN · NO ES UN PRODUCTO</span></div>
 <span style="font-size: 13px; line-height: 1.45; color: {BODY}">Sepáralo en tu cuenta de ahorros. Pasas de 1,2 a 1,9 meses de colchón.</span></div>
 <div style="background: #FFFFFF; border-radius: 18px; padding: 12px 16px; display: flex; flex-direction: column; gap: 6px">
-<div style="display: flex; justify-content: space-between; gap: 8px"><strong style="font-size: 15px">$780.000 a tu casa</strong><span style="font-size: 11.5px; font-weight: 700; color: {AMBER}; text-align: right">PORTAFOLIO MODERADO</span></div>
+<div style="display: flex; justify-content: space-between; gap: 8px"><strong style="font-size: 15px">$780.000 a tu casa</strong><span style="font-size: 11.5px; font-weight: 700; color: {AMBER}; text-align: right">FONDO DE INVERSIÓN COLECTIVA · MODERADO</span></div>
 <span style="font-size: 13px; line-height: 1.45; color: {BODY}"><strong>Por qué:</strong> tu casa es tu meta más importante, es a 10 años y tu perfil es moderado: con ese plazo puedes esperar las bajas.</span>
-<span style="font-size: 13px; background: {SAMBER}; border-radius: 10px; padding: 8px 10px; line-height: 1.4"><strong>En un mal año</strong> esta parte podría bajar unos $90.000 (estimado con una caída de 12%). Por eso tu colchón no va ahí.</span>
+<span style="font-size: 13px; background: {SAMBER}; border-radius: 10px; padding: 8px 10px; line-height: 1.4"><strong>En un mal año</strong> esta parte podría bajar unos $94.000 (estimado con una caída de 12%). Por eso tu colchón no va ahí.</span>
 {TRANSP_L}</div>
 <a href="H-Equipo.dc.html" style="background: #FFFFFF; border-radius: 18px; padding: 10px 14px; display: flex; align-items: center; gap: 12px; text-decoration: none; color: {INK}; min-height: 44px">{avatar('DR', GOLD, INK, 38, 13)}<span style="display: flex; flex-direction: column; gap: 2px"><strong style="font-size: 14px">¿Lo vemos con Daniela?</strong><span style="font-size: 12.5px; color: {MUTED}">15 minutos por video, con tu plan a la vista</span></span></a>''',
     f'''{check}
 {h1('Listo, Laura. Tu prima ya tiene rumbo.', True, 27)}
-{p('El 30 de junio, cuando llegue, te pido confirmar antes de mover cualquier peso. Tu colchón pasa a 1,9 meses y tu puntaje a unos 580 (estimado).', 15)}
+{p('El 30 de junio, cuando llegue, te pido confirmar antes de mover cualquier peso. Tu colchón pasa a 1,9 meses y tu puntaje a unos 575 (estimado).', 15)}
 {card(p('¿Quieres que en diciembre te lo proponga igual, con aviso un día antes? Lo pausas o lo cancelas cuando quieras.', 14, INK), gap=4)}
 {cta('H-Reglas.dc.html', 'Sí, déjalo como regla', 50)}
 {link('H-Inicio.dc.html', 'No por ahora, volver a mi inicio')}
@@ -429,26 +442,27 @@ decision(L, 'H-Revision.dc.html', 'Tu propuesta para la prima',
     'Aprobar con mi huella', 'Aprobar no mueve dinero: el 30 de junio te pido confirmar.')
 
 # ======================= JULIANA =======================
+set_momento('Juliana · 23 de noviembre')
 inicio(J, '$257 M', 'Pensión $185 M · Pensión voluntaria $24 M · Ahorro $34 M · Cesantías $14 M', '640',
        'Cierre de año: tu casa y tu impuesto',
        'Tu casa en la costa va en 27%. Preparé tu revisión de cierre de año: cómo vas y una propuesta para tu prima de diciembre que avanza tu casa y, como pagas renta, también baja tu impuesto. Las condiciones van con la propuesta.',
        'Ver mi revisión de cierre de año', 'H-RevisionJuliana.dc.html',
        [('Colchón de 4 meses', 100, 'Completo', GREEN, SGREEN, GREEN, 'H-PlanJuliana.dc.html'),
         ('Casa en la costa a los 55', 27, 'En camino', GREEN, SGREEN, GREEN, 'H-PlanJuliana.dc.html'),
-        ('Tu pensión a los 57', 80, 'Con brecha', WARN, SAMBER, AMBER, 'H-PlanJuliana.dc.html')])
+        ('Tu pensión a los 57', 60, 'Con brecha', WARN, SAMBER, AMBER, 'H-PlanJuliana.dc.html')])
 
-pilares(J, '640', [('Colchón', 100, '4 meses de gastos, separado y disponible'), ('Suficiencia', 60, 'Vas para $5,6 M; tu meta, $7,0 M'),
+pilares(J, '640', [('Colchón', 100, '4 meses de gastos, separado y disponible'), ('Suficiencia', 60, 'Vas para $3,0 M; tu meta, $5,0 M'),
                    ('Protección', 70, 'Beneficiarios confirmados; seguro de vida con tu empresa'), ('Riesgo a la medida', 65, 'Tu casa y tu pensión, según tu perfil moderado'),
                    ('Eficiencia', 48, 'Te faltan $6,65 M para tu punto óptimo de este año'), ('Constancia', 41, 'Aportas para tu casa solo a fin de año')],
-        'completar el aporte de este año para tu casa y aportar cada mes. Con las dos cosas, tu puntaje sube a unos 735 (estimado).',
+        'completar el aporte de este año para tu casa y aportar cada mes. Con las dos cosas, tu puntaje sube a unos 733 (estimado).',
         'H-RevisionJuliana.dc.html', 'Ver mi revisión de cierre de año')
 
 revision(J, 'Tu revisión de cierre de año', 'Preparada para Juliana · 23 de noviembre',
-         ['Tu colchón está completo: 4 meses.', 'Tu casa en la costa va en 27%: $24 M de tus $90 M.', 'Tu pensión va para unos $5,6 M de los $7,0 M que quieres (estimado).'],
+         ['Tu colchón está completo: 4 meses.', 'Tu casa en la costa va en 27%: $24 M de tus $90 M.', 'Tu pensión va para unos $3,0 M de los $5,0 M que quieres (estimado): es tu brecha más grande.'],
          ['A más tardar el 20 de diciembre llega tu prima, unos $4.250.000.', 'Este año aportaste $6,0 M a tu pensión voluntaria; tu punto óptimo es $12,65 M.'],
          ['<strong>1.</strong> Completa $6,65 M para tu casa antes del 31 de diciembre: tu prima y $2,40 M de tu ahorro por encima de tu colchón. Es una recomendación profesional, con su beneficio y su condición: la ves en el siguiente paso.',
           '<strong>2.</strong> Tu colchón no se toca.'],
-         'el aporte voluntario a tu pensión obligatoria. Solo sirve para tu pensión: si te interesa, lo ves con Camilo.',
+         'cómo cerrar la brecha de tu pensión. Es una decisión que solo sirve para tu pensión: la vemos con Camilo en enero. El aporte de este año no compite: vence el 31 de diciembre y también puede ir a tu pensión.',
          'H-ImpuestoJuliana.dc.html', 'Ver cómo cambia mi impuesto')
 
 # ---------- H-ImpuestoJuliana ----------
@@ -468,7 +482,7 @@ body = f'''{root(False)}
 </div>'''
 write('H-ImpuestoJuliana.dc.html', 'Tu impuesto de 2026', body)
 
-TRANSP_J = details('Quién te asesora y cuánto cuesta', 'Recomendación de [Administradora] hecha por una herramienta que la entidad supervisa, con tu perfil del 3 de marzo. Asesoría no independiente: recibimos una comisión de 1,2% al año (ficticia). Otras opciones: una cuenta de ahorro para el fomento a la construcción en un banco, o fondos de otras entidades. Te enviamos esta recomendación a tu correo y queda en Mis documentos.')
+TRANSP_J = details('Quién te asesora y cuánto cuesta', 'Recomendación de tu administradora de fondos hecha por una herramienta que la entidad supervisa, con tu perfil del 3 de marzo. Asesoría no independiente: recibimos una comisión de 1,2% al año (ficticia). Otras opciones: una cuenta de ahorro para el fomento a la construcción en un banco, o fondos de otras entidades. Te enviamos esta recomendación a tu correo y queda en Mis documentos.')
 regla_j = ''.join(f'<div style="display: grid; grid-template-columns: 66px minmax(0, 1fr); gap: 8px; font-size: 12.5px; line-height: 1.35; padding: 3px 0"><span style="color: {MUTED}; font-weight: 700">{a}</span><span>{b}</span></div>' for a, b in [
     ('Cuando', 'Cada pago de nómina, desde enero de 2027'), ('Qué', 'Tu empresa descuenta $1.060.000 y lo aporta a tu pensión voluntaria para tu casa'),
     ('Ganas', 'Te retiene unos $151.000 menos al mes (estimado)'), ('Tope', 'Tu punto óptimo de 2027; si tu salario cambia, te propongo el nuevo monto y tú confirmas'),
@@ -479,7 +493,7 @@ decision(J, 'H-ImpuestoJuliana.dc.html', 'Cierra tu año con tu casa',
 <div style="display: flex; justify-content: space-between; gap: 8px"><strong style="font-size: 15px">$6,65 M a tu casa</strong><span style="font-size: 11.5px; font-weight: 700; color: {AMBER}; text-align: right">PENSIÓN VOLUNTARIA · PORTAFOLIO MODERADO</span></div>
 <span style="font-size: 13px; color: {BODY}">$4,25 M de tu prima (a más tardar el 20 de diciembre) y $2,40 M de tu ahorro, sin tocar tu colchón.</span>
 <span style="font-size: 13px; line-height: 1.45; color: {BODY}"><strong>Por qué:</strong> avanza tu casa a 34% y, si queda acreditado a más tardar el 31 de diciembre, pagas unos $950.000 menos de renta (estimado).</span>
-<span style="font-size: 12.5px; line-height: 1.4; color: {BODY}"><strong>Condición:</strong> el beneficio se conserva si dejas cada aporte 10 años, o lo usas para tu vivienda o tu pensión. Si lo retiras antes para otra cosa, ese retiro suma a tus ingresos del año y te retenemos el 7% al retirarlo.</span>
+<span style="font-size: 12.5px; line-height: 1.4; color: {BODY}"><strong>Condición:</strong> el beneficio se conserva si dejas cada aporte 10 años, o lo usas para tu vivienda o tu pensión. Si lo retiras antes para otra cosa, ese retiro suma a tus ingresos del año y te retenemos el 7% al retirarlo. Que el retiro para una segunda vivienda conserve el beneficio está por validar con el experto tributario.</span>
 <span style="font-size: 12.5px; background: {SAMBER}; border-radius: 10px; padding: 7px 10px; line-height: 1.4"><strong>En un mal año</strong> esta parte podría bajar unos $800.000 (estimado con una caída de 12%). Por eso tu colchón no va ahí.</span>
 {TRANSP_J}</div>''',
     f'''<div style="display: flex; gap: 12px; align-items: center">{check}{h1('Listo, Juliana.', True, 26)}</div>
@@ -487,15 +501,16 @@ decision(J, 'H-ImpuestoJuliana.dc.html', 'Cierra tu año con tu casa',
 <div style="background: #FFFFFF; border-radius: 18px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px"><strong style="font-size: 14px">¿Y si el próximo año no esperas a diciembre?</strong>{regla_j}</div>
 {cta('H-ReglasJuliana.dc.html', 'Prepárame la autorización', 50)}
 {link('H-EquipoJuliana.dc.html', avatar('CV', GOLD, INK, 28, 11) + 'Ver el aporte a mi pensión obligatoria con Camilo')}''',
-    'Confirmar con mi huella', 'Confirmar no mueve dinero de otra cuenta: te pido cada transferencia. Te enviamos la recomendación a tu correo.')
+    'Confirmar con mi huella', 'Confirmar no mueve dinero de otra cuenta: te pido cada transferencia. Te enviamos la recomendación a tu correo.',
+    entiendo='Entiendo la condición del beneficio y que el cálculo es un estimado.')
 
 SUP_J = ('Estimado con tu salario de cotización de hoy, cotizando hasta los 57 y una rentabilidad real supuesta de 4% al año, neta de comisiones. '
          'Con tus 18 años cotizados superas las 750 semanas: conservarías las reglas de hoy (régimen de transición de la reforma pensional, que rige desde el 1 de abril de 2027). '
-         'Lo confirmamos con tu historia laboral. No es una promesa ni una rentabilidad garantizada; algunos años puede ser negativa.')
-plan(J, 'Vas para unos <strong style="color: #FFFFFF">$5,6 M al mes</strong> a los 57 (estimado); quieres <strong style="color: #FFFFFF">$7,0 M</strong>. Te faltan unos $1,4 M.' + bar(80, GOLD, '#2C4A41', 8), SUP_J,
+         'Supone 13 mesadas al año durante 30 años. Lo confirmamos con tu historia laboral. No es una promesa ni una rentabilidad garantizada; algunos años puede ser negativa.')
+plan(J, 'Vas para unos <strong style="color: #FFFFFF">$3,0 M al mes</strong> a los 57 (estimado); quieres <strong style="color: #FFFFFF">$5,0 M</strong>. Te faltan unos $2,0 M: la vemos con Camilo en enero.' + bar(60, GOLD, '#2C4A41', 8), SUP_J,
      meta_row('Colchón de 4 meses', 'Completo', '$20 M de tu ahorro, separado y disponible', 100, GREEN, 'g') +
      meta_row('Casa en la costa a los 55', 'En camino', '$90 M · llevas $24 M en tu pensión voluntaria', 27, GREEN, 'g', 'H-RevisionJuliana.dc.html') +
-     meta_row('Tu pensión con $7,0 M al mes', 'Con brecha', 'Te faltan unos $1,4 M al mes (estimado)', 80, WARN, 'a'),
+     meta_row('Tu pensión con $5,0 M al mes', 'Con brecha', 'Te faltan unos $2,0 M al mes (estimado) · la ves con Camilo en enero', 60, WARN, 'a'),
      '',
      [('20 dic', 'Prima de fin de año', '$4,25 M'), ('31 dic', 'Último día para que tu aporte cuente en 2026', ''), ('31 ene', 'Intereses de tus cesantías', '$1,02 M'), ('14 feb', 'Tu empresa consigna tus cesantías', '$8,5 M')])
 
@@ -516,5 +531,6 @@ reglas(J, 'Aporte mensual para tu casa', 'Por firmar',
        [('Cuando', 'Cada pago de nómina, desde enero de 2027'), ('Qué', 'Tu empresa descuenta $1.060.000 y lo aporta a tu pensión voluntaria'),
         ('Tope', 'Tu punto óptimo de 2027'), ('Vigencia', 'Hasta diciembre de 2027'), ('Aviso', 'Cada mes, el día de pago'),
         ('Control', 'Tú firmas ante tu empresa; nosotros no ejecutamos el descuento')],
-       f'<div style="background: {SAMBER}; border-radius: 16px; padding: 12px 14px; font-size: 13px; line-height: 1.45"><strong>Siguiente paso:</strong> te enviamos a tu correo la autorización lista para que la firmes y la entregues a tu empresa. Si prefieres, Camilo te ayuda.</div>')
+       f'<div style="background: {SAMBER}; border-radius: 16px; padding: 12px 14px; font-size: 13px; line-height: 1.45"><strong>Siguiente paso:</strong> te enviamos a tu correo la autorización lista para que la firmes y la entregues a tu empresa. Si prefieres, Camilo te ayuda.</div>',
+       intro='El descuento lo hace tu empresa con la autorización que tú firmas. Para cancelarlo después, revocas esa autorización ante tu empresa; te preparamos la carta en una frase.', pausable=False)
 print('app ok')

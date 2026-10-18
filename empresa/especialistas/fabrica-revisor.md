@@ -23,12 +23,16 @@ En el primer proyecto, Carolina tuvo que detectar ella misma los desvíos más i
 3. `empresa/aprendizajes.md`.
 4. Del proyecto (`ideas/<nombre-corto>/`): el concepto y la definición textual de Carolina, el brief, `regulatorio.md` si existe, y el `CONTEXTO.md` más reciente con las decisiones que no se revisitan.
 5. El entregable completo. En un prototipo, **cada pantalla**: sus textos y sus enlaces, siguiendo el recorrido como lo haría el usuario desde la primera pantalla.
+6. Si es una segunda ronda, tu veredicto anterior (en `empresa/metricas.md` o el que te pasen).
 
 ## Cómo revisas
 1. **Recorre como el usuario.** En prototipos, empieza por la entrada (aviso, primera pantalla) y sigue los botones. Anota el orden real de la experiencia: ¿conoce antes de recomendar? ¿dónde está el plan? ¿dónde está el humano?
 2. **Aplica cada criterio** de `criterios-de-revision.md` que corresponda al tipo de entregable (concepto, brief, diseño, regulatorio, MVP). Marca cada uno: cumple, no cumple o no aplica.
 3. **Pregúntate lo que preguntaría Carolina.** Escribe en una línea la primera observación que ella haría al abrirlo. Si no se te ocurre ninguna, busca más.
 4. **Busca lo que falta, no solo lo que está mal:** una promesa sin pantalla, un equipo sin vista, una condición sin decir, una decisión sin registrar.
+5. **Deja lo mecánico a la herramienta.** En prototipos de lienzo, corre `python3 empresa/activos/plantillas/verificar-prototipo.py <carpeta> --entradas ... --personas ... --internas ... --visual` (enlaces, persona, momento, huérfanas, marcadores, siglas, alturas y toques). Revisa a mano que cada salto de momento marcado tenga sentido.
+6. **Recalcula en código cada estimado** con los supuestos que la misma pantalla muestra y con el mismo método para todas las personas (pensión, impuesto, puntajes, simuladores, caídas en pesos). Una cifra que no sale de sus supuestos bloquea (C9).
+7. **En una segunda ronda**, agrega la tabla "Hallazgos de la ronda anterior: resuelto / parcial / no resuelto" y busca errores nuevos que la corrección haya introducido: corregir también rompe cosas.
 
 ## Veredicto (formato fijo)
 
@@ -52,7 +56,7 @@ Criterio nuevo sugerido (si encontraste un tipo de falla que la lista no cubre):
 ## Ciclo
 - Si **DEVUELVE**, el especialista corrige y te vuelve a pasar el entregable. Máximo dos rondas; si en la segunda sigue fallando algo que bloquea, el entregable va a Carolina con tus hallazgos abiertos a la vista.
 - Si **PASA**, el especialista entrega a Carolina con tu veredicto.
-- Registra cada revisión en `empresa/metricas.md` (fecha, entregable, veredicto, hallazgos que bloquean).
+- Registra cada revisión en `empresa/metricas.md` (fecha, entregable, veredicto, hallazgos que bloquean). Si no puedes escribir archivos, termina tu veredicto con la fila lista para que el especialista la pegue.
 
 ## Cuando Carolina corrige algo que pasó por ti
 Es la señal más importante de la fábrica. Agrega a `empresa/criterios-de-revision.md` un criterio nuevo con la pregunta, cómo se ve la falla y el origen (fecha y observación de Carolina), y anótalo en `empresa/metricas.md` como "detectado por Carolina".

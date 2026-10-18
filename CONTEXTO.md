@@ -1,6 +1,6 @@
-# CONTEXTO · 17 de octubre de 2026 (v2, noche) — Revisión regulatoria lista y prototipo v5: la app del arquitecto
+# CONTEXTO · 17 de octubre de 2026 (v3, noche) — Prototipo v5.2 después de dos rondas del revisor independiente; listo para que Carolina lo revise
 
-> El contexto anterior está en `historial-contextos/CONTEXTO-2026-10-17-v1.md`.
+> El contexto anterior está en `historial-contextos/CONTEXTO-2026-10-17-v2.md`.
 
 ## 0. Leer primero
 - La fábrica funciona: 4 especialistas guardados en la cuenta de Claude de Carolina (estratega, diseñador, desarrollador, experto financiero), este repositorio como memoria y la carpeta de Drive "Fabrica de diseno y desarrollo".
@@ -22,7 +22,8 @@
 | **Concepto regulatorio y catálogo de lo que se puede decir v1 (nuevo)** | `ideas/personal-wealth-architect/regulatorio.md` |
 | 27 referentes y matriz | `ideas/personal-wealth-architect/referentes.md` |
 | Diseño y copia del prototipo | `ideas/personal-wealth-architect/diseno/` |
-| Prototipo editable (v4) | Artefacto de diseño "Personal Wealth Architect · Prototipo": https://claude.ai/artifact/9MVrnadPTUq5rhxkSjFxAR (v5: fila nueva de 8 pantallas de app sobre las 17 de v4; copia en `diseno/prototipo/`, v3 en `diseno/versiones-anteriores/`) |
+| Prototipo editable (v5.2) | Artefacto de diseño "Personal Wealth Architect · Prototipo v5.2": https://claude.ai/artifact/9MVrnadPTUq5rhxkSjFxAR (38 pantallas en 4 filas: Laura el 1 de junio, Laura el 15 de junio, Juliana el 23 de noviembre y vistas internas; copia en `diseno/prototipo/`; v3, v5.0 y v5.1 en `diseno/versiones-anteriores/`) |
+| Criterios del revisor, métricas y verificador | `empresa/criterios-de-revision.md`, `empresa/metricas.md`, `empresa/activos/plantillas/verificar-prototipo.py` |
 
 ## 2. Lo trabajado en esta sesión
 - **Experto financiero:** revisó los textos sensibles del prototipo v3 y creó `regulatorio.md` v1: 27 ajustes de texto (7 de prioridad alta), catálogo de lo que se puede decir (plan antes que producto, beneficios, condiciones, advertencias, lo que la IA nunca dice, reglas de cálculo), mandatos viables hoy, retiro informado, escenarios restrictivos regulatorios y 11 preguntas para validar con personas.
@@ -31,6 +32,7 @@
 - Se leyeron como contexto los 9 archivos de la carpeta de Drive de la fábrica.
 - **Diseñador:** prototipo v4 fiel a la definición del concepto: Juliana empieza por su plan (pantalla nueva), el colchón de Laura es un paso del plan y no un producto, el asesor entra por regla cuando la decisión lo pide, marcas de información o recomendación y pantalla nueva "Cómo funciona tu arquitecto". Aplicados los ajustes regulatorios a las pantallas.
 - **Diseñador:** benchmark de experiencia (`diseno/benchmark-experiencia.md`) y prototipo v5, la app del arquitecto: inicio con patrimonio y plan, revisión periódica, metas, simulador, propuesta, patrimonio y tu equipo con consultora con nombre.
+- **Fábrica v2 en uso:** el revisor independiente devolvió la v5 (7 que bloquean) y la v5.1 (2 que bloquean); el diseñador corrigió todo en v5.2 (`diseno/README.md`, sección 12). Nueva herramienta de verificación mecánica (enlaces, persona, momento, alturas, toques, marcadores, siglas) y componentes reutilizables en `empresa/activos/plantillas/`. Criterios nuevos B10, B11, C8, C9 y E4.
 
 ## 3. Decisiones tomadas (no se revisitan)
 - **Aprobado por Carolina (17 de octubre):** el colchón es un paso del plan fuera de los productos de la entidad; el asesor certificado entra por regla cuando la decisión lo pide (por ejemplo, el aporte voluntario a la pensión obligatoria).
@@ -42,13 +44,13 @@
 - Principio: el plan primero, el producto después.
 
 ## 4. Pendientes, en orden
-0. **Fábrica v2 lista (17 oct, noche):** revisor independiente, criterios vivos, activos, vigía semanal (lunes 6:56 a. m.) y métricas. Carolina debe guardar las mejoras de los cuatro especialistas. El revisor devolvió la v5 con 7 hallazgos que bloquean (`empresa/metricas.md`); el diseñador debe corregirlos y pasar la segunda ronda antes del desarrollo.
-1. **Carolina:** revisar la v5 en el lienzo (dos filas superiores: "Tu primera reunión", el diagnóstico, y "La app del arquitecto"; ver `diseno/README.md`, sección 11 y `diseno/benchmark-experiencia.md`). Decidir si el consultor con nombre aplica a la renta masiva.
-2. **Diseñador:** ajustar lo que Carolina observe en v5; luego preparar la prueba con usuarios sobre la app (no sobre el chat).
-3. Prueba con 5 usuarios por segmento (plan en `diseno/README.md`).
-4. **Estratega:** en la siguiente versión del concepto, cerrar el "a verificar" de la prima de diciembre (verificado) y bajar a medio el riesgo de la asesoría automatizada (control crítico #2), según `regulatorio.md` sección 10.
-5. **Desarrollador:** MVP solo cuando Carolina apruebe el diseño.
-6. **Experto financiero:** cerrar los cuatro puntos abiertos de `empresa/beneficios-tributarios.md` (tributación de los rendimientos, gravamen a los movimientos financieros, efecto de la reforma pensional en los aportes voluntarios a la pensión obligatoria, aportes del empleador).
+0. **Carolina:** guardar las mejoras propuestas de los especialistas (diseñador y revisor en esta sesión; estratega, experto financiero y desarrollador desde la sesión anterior, si aún no se guardaron).
+1. **Carolina:** revisar la v5.2 en el lienzo. Laura empieza en "Bienvenida", arriba a la izquierda; Juliana, en su inicio, en la tercera fila (`diseno/README.md`, sección 12). Decidir si el consultor con nombre aplica a la renta masiva. Lo que ella corrija y el revisor no vio se vuelve criterio nuevo.
+2. **Diseñador:** ajustar lo que Carolina observe; luego vistas de Daniela y de los equipos comercial, remoto y de servicio, y la pantalla "Mis documentos".
+3. Prueba con 5 usuarios por segmento (plan en `diseno/README.md`, sección 12.4).
+4. **Experto financiero:** validar si el retiro de pensión voluntaria para una segunda vivienda conserva el beneficio; cerrar los cuatro puntos abiertos de `empresa/beneficios-tributarios.md`.
+5. **Estratega:** en la siguiente versión del concepto, cerrar el "a verificar" de la prima de diciembre y bajar a medio el riesgo de la asesoría automatizada, según `regulatorio.md` sección 10.
+6. **Desarrollador:** MVP solo cuando Carolina apruebe el diseño.
 7. Validar con personas (no con la fábrica) las 11 preguntas de `regulatorio.md`, sección 9; las 6 de prioridad alta antes de cualquier piloto real.
 8. Actualizar la base de conocimiento en Drive a v2 después del deep dive del 23 de octubre.
 

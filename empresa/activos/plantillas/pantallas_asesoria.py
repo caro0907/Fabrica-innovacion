@@ -5,9 +5,14 @@ Uso: from pantallas_asesoria import *; set_out('<carpeta>/project'); luego write
 import os
 
 OUT = '.'
+MOMENTO = ''
 def set_out(path):
     global OUT
     OUT = path
+def set_momento(m):
+    """Persona y fecha de las pantallas que siguen. El verificador revisa que los enlaces no salten de momento."""
+    global MOMENTO
+    MOMENTO = m
 
 INK = '#12241F'; MUTED = '#4A5C56'; BODY = '#2E403A'; GROUND = '#F6F3EC'; GREEN = '#0E6A4E'; SGREEN = '#E3EFEA'
 AMBER = '#7A4A0E'; SAMBER = '#FFF4E2'; GOLD = '#F3C98A'; LINE = '#E7E2D6'; WARN = '#B9721C'; GREY = '#ECE8DE'
@@ -17,6 +22,7 @@ HEAD = '''<!doctype html>
 <head>
 <meta charset="utf-8">
 <title>{title}</title>
+<meta name="momento" content="{momento}">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -41,7 +47,7 @@ TAIL = '''</x-dc>
 EMPTY = 'class Component extends DCLogic {\nrenderVals() {\nreturn {};\n}\n}'
 
 def write(name, title, body, script=EMPTY, h=844):
-    html = HEAD.format(title=title) + body + '\n' + TAIL.format(script=script, h=h)
+    html = HEAD.format(title=title, momento=MOMENTO) + body + '\n' + TAIL.format(script=script, h=h)
     open(os.path.join(OUT, name), 'w', encoding='utf-8').write(html)
 
 def root(pad=True, h=844):
@@ -88,8 +94,9 @@ def bar(pct, color=GREEN, track=GREY, hgt=6):
 def row(a, b):
     return f'<div style="display: flex; justify-content: space-between; gap: 10px; font-size: 13.5px; padding: 5px 0; border-bottom: 1px solid {LINE}"><span>{a}</span><strong style="text-align: right">{b}</strong></div>'
 
-def cta(href, text, h=52):
-    return f'<a href="{href}" style="min-height: {h}px; border-radius: 14px; background: {GREEN}; color: #FFFFFF; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center; text-decoration: none; text-align: center; padding: 0 12px">{text}</a>'
+def cta(href, text, h=52, salto=False):
+    d = ' data-cambia-momento="si"' if salto else ''
+    return f'<a href="{href}"{d} style="min-height: {h}px; border-radius: 14px; background: {GREEN}; color: #FFFFFF; font-weight: 700; font-size: 16px; display: flex; align-items: center; justify-content: center; text-decoration: none; text-align: center; padding: 0 12px">{text}</a>'
 
 def link(href, text, center=True):
     j = 'center' if center else 'flex-start'
@@ -168,3 +175,18 @@ def script(state, chip_groups=(), sliders=(), extra='', methods=''):
         parts.append(extra)
     return ('class Component extends DCLogic {\nconstructor(props) {\nsuper(props);\nthis.state = ' + state + ';\n}\n' + methods +
             'renderVals() {\nvar self = this, s = this.state;\n' + CHIP_STYLE + '\nreturn {\n' + ',\n'.join(parts) + '\n};\n}\n}')
+
+# ---------- perfil de riesgo: las seis preguntas, todas editables ----------
+PERFIL_Q = [
+ ('horizonte', '1 · Tu horizonte', '¿Para cuándo necesitas el dinero de tu meta?', ['Menos de 2 años', 'De 2 a 5 años', 'Más de 5 años'], 'Más de 5 años'),
+ ('objetivo', '2 · Tus objetivos', '¿Qué buscas, sobre todo?', ['Que no baje', 'Que crezca un poco', 'Que crezca para mi meta'], 'Que crezca para mi meta'),
+ ('conocimiento', '3 · Tu conocimiento', '¿Qué tanto sabes de inversiones?', ['Nada', 'Lo básico', 'Bastante'], 'Lo básico'),
+ ('experiencia', '4 · Tu experiencia', '¿Has invertido, además de tu pensión y tus cesantías?', ['Nunca', 'Alguna vez', 'Con frecuencia'], 'Nunca'),
+ ('perdida', '5 · Cuánto puedes perder', 'En un mal año, ¿cuánto podría bajar sin afectar tu vida?', ['Nada', 'Hasta 5 de cada 100 pesos', 'Hasta 15 de cada 100 pesos', 'Más'], 'Hasta 15 de cada 100 pesos'),
+ ('reaccion', '6 · Cómo reaccionas a las bajas', 'Si pusieras $1.000.000 y en un mal año bajara a $880.000, ¿qué harías?', ['Lo saco todo', 'Espero', 'Pongo más'], 'Espero'),
+]
+def perfil_cards():
+    return '\n'.join(card(eyebrow(lbl) + f'<strong style="font-size: 14px; line-height: 1.35">{q}</strong>' + chips(k), gap=7, pad='12px 16px') for k, lbl, q, _, _ in PERFIL_Q)
+def perfil_script():
+    st = '{ ' + ', '.join(f"{k}: '{d}'" for k, _, _, _, d in PERFIL_Q) + ' }'
+    return script(st, [(k, o, False, False) for k, _, _, o, _ in PERFIL_Q])
