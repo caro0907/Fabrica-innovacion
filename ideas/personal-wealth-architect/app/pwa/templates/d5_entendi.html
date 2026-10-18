@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Esto entendí de ti{% endblock %}
+{% block contenido %}
+{{ c.volver('/d/riesgo') }}
+{{ c.progreso(4) }}
+<h1>Esto entendí de ti, {{ af.nombre }}</h1>
+<p class="parrafo">Revisa que esté bien antes de armar tu plan. Lo que corrijas cambia tus números.</p>
+<div class="tarjeta">
+  <div class="fila-borde columna"><span class="cejilla">Lo que quieres</span>
+    <span>
+    {%- if plan.casa %}Tu casa{% if d.prioridad == 'Comprar mi casa' %} primero{% endif %}: {{ millones(d.cuota_inicial_casa) }} de cuota inicial {{ d.plazo_casa|lower }}. {% endif -%}
+    Pensionarte con unos {{ millones(d.pension_deseada) }} al mes.
+    {%- if 'Tener tranquilidad' in d.metas %} Y tranquilidad: un colchón de 3 meses.{% endif %}
+    {%- for m in d.metas if m not in ('Comprar mi casa', 'Pensionarme bien', 'Tener tranquilidad') %} {{ m }}.{% endfor %}</span></div>
+  <div class="fila-borde columna"><span class="cejilla">Tu vida y tu dinero hoy</span>
+    <span>{{ d.vivienda }}{% if d.depende not in ('Nadie', '') %}, con {{ plan.dependiente }}{% if d.depende in ('Mi hija', 'Hijos') %} de {{ d.edad_dependiente }} años{% endif %}{% endif %}. Gastas unos {{ millones(d.gastos_mensuales) }} al mes y tienes {{ millones(d.ahorro) }} {{ (d.donde_ahorro|join(', '))|lower }}. Deudas: {{ d.deudas|lower }}.</span></div>
+  <div class="fila-borde columna"><span class="cejilla">Tu perfil</span><span>{{ perfil_txt }}</span></div>
+  <div class="fila-borde columna"><span class="cejilla">Lo que aún no sé</span>
+    <span>{% if d.seguro_vida == 'No sé' %}Si tienes seguro de vida. {% endif %}Tus impuestos y tu legado. Lo completamos en tus revisiones.</span></div>
+</div>
+<a class="enlace" href="/d/numeros">Corregir algo</a>
+<div class="tarjeta tinta"><span style="font-size:14px">Con esto y lo que ya sabemos de tu pensión y tus cesantías, armo tu plan: tu patrimonio, tus metas con números y el orden para lograrlas.</span></div>
+<form method="post" action="/d/entendi"><button class="boton" type="submit">Ver mi plan</button></form>
+<p class="pequeno centro">Tus respuestas quedan como tu perfil del 1 de junio. Lo ves y lo cambias en Tu equipo.</p>
+{% endblock %}

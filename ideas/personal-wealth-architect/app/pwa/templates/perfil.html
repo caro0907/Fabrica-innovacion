@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Tu perfil{% endblock %}
+{% block contenido %}
+<div class="fila">{{ c.volver('/equipo', 'Tu equipo') }}{{ c.info() }}</div>
+<h1>Tu perfil</h1>
+<section class="tarjeta verde"><strong style="font-size:16px">{{ perfil_clase|capitalize }}</strong><span style="font-size:13.5px">{{ perfil_txt }}</span><span class="pequeno">Respondido el {{ d.get('perfil_fecha', '2026-06-01')|fecha }}. Vigente por un año o hasta que tu vida cambie.</span></section>
+<section class="tarjeta">
+  {% for k, eti, preg, ops in PREGUNTAS_PERFIL %}
+  <div class="fila-borde columna"><span class="cejilla">{{ eti }}</span><span style="font-size:13.5px">{{ preg }}</span><strong>{{ d.perfil.get(k, 'Sin responder') }}</strong></div>
+  {% endfor %}
+</section>
+<a class="boton secundario" href="/perfil/cambiar">Actualizar mi perfil</a>
+<p class="pequeno">Con esto sabemos qué te podemos recomendar y qué no. Si cambias tu perfil, tus recomendaciones cambian desde hoy.</p>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Tu revisión de junio{% endblock %}
+{% block contenido %}
+<div class="fila">{{ c.volver('/inicio') }}{{ c.info() }}</div>
+<span class="fecha">Lunes 15 de junio · de tu arquitecto</span>
+<h1 class="carta">{{ af.nombre }}, tu revisión de junio</h1>
+
+<section class="tarjeta carta">
+  <span class="cejilla">Cómo vas desde tu plan del 1 de junio</span>
+  <p>Tu colchón cubre {{ plan.colchon.meses_txt }} meses de tus gastos; lo sano son 3.</p>
+  {% if plan.casa %}<p>Tu casa va en {{ (plan.casa.avance * 100)|round|int }}%: {{ plan.casa.llevas_txt }} de tus {{ plan.casa.cuota_txt }}.{% if plan.casa.anio_solo_primas and not plan.casa.a_tiempo_solo_con_primas %} Solo con tus primas llegarías hacia {{ plan.casa.anio_solo_primas }}, no en {{ plan.casa.plazo_anios }} años.{% endif %}</p>{% endif %}
+  <p>Tu pensión va para unos {{ plan.pension.mesada_txt }} de los {{ plan.pension.deseada_txt }} que quieres (estimado).</p>
+  {% if plan.beneficiarios_confirmados and plan.dependiente %}<p>{{ plan.dependiente[0]|upper }}{{ plan.dependiente[1:] }} ya es tu beneficiaria.</p>{% endif %}
+</section>
+
+<section class="tarjeta">
+  <span class="cejilla">Qué cambió</span>
+  {{ c.piezas(nota.piezas, nota.textos, False) }}
+</section>
+
+{% if dec.modo == 'asesoria' and dec.principal and dec.principal.escenario == 'O-PRIMA' and 'propuesta_confirmada' not in s.hechos %}
+<section class="tarjeta">
+  <span class="cejilla">Lo que te propongo para tu prima</span>
+  {% if plan.prima.al_colchon > 0 %}<div class="paso"><strong>1</strong><span>Separa <strong>{{ plan.prima.al_colchon_txt }}</strong>, el {{ (plan.prima.porcentaje_colchon * 100)|round|int }}%, para tu colchón en tu cuenta de ahorros. Es un paso de tu plan, no un producto.</span></div>{% endif %}
+  {% if plan.casa and d.prioridad == 'Comprar mi casa' %}<div class="paso"><strong>{{ 2 if plan.prima.al_colchon > 0 else 1 }}</strong><span>Pon <strong>{{ plan.prima.a_la_meta_txt }}</strong> a tu casa. Para eso te hago una recomendación profesional, con su porqué, su riesgo y su costo: la ves en el siguiente paso.</span></div>{% endif %}
+</section>
+<section class="tarjeta ambar">
+  <span class="cejilla">Lo que no te propongo todavía</span>
+  <span style="font-size:14px">Invertir para tu pensión. Tu casa sí avanza porque es tu meta más importante y su plazo es largo. Tu pensión la vemos en diciembre, con tu colchón más completo.</span>
+</section>
+<a class="boton" href="/propuesta">Ver mi propuesta</a>
+{% else %}
+<div class="tarjeta verde"><strong style="color:var(--accion)">Nada que proponerte hoy: tu plan va en orden.</strong></div>
+{% endif %}
+<a class="enlace" href="/equipo">{{ c.avatar(cons.iniciales, 'cons', 28) }}Verla con {{ cons.corto }}</a>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Tu casa{% endblock %}
+{% block contenido %}
+<div class="fila">{{ c.volver('/plan', 'Mi plan') }}{{ c.info() }}</div>
+<h1>Tu casa en {{ plan.casa.plazo_anios }} años</h1>
+<section class="tarjeta">
+  <div class="fila"><span class="columna"><span class="pequeno">Tu cuota inicial</span><strong class="cifra-m">{{ plan.casa.cuota_txt }}</strong></span>
+  <span class="columna" style="text-align:right"><span class="pequeno">Llevas</span><strong class="cifra-m">{{ plan.casa.llevas_txt }}</strong></span></div>
+  {{ c.barra(plan.casa.avance, 'ambar') }}
+  <span class="pequeno">Lo que la construye hoy: tus cesantías ({{ plan.casa.llevas_txt }}){% if plan.casa.aporte_primas_mensual %} y la parte de tus primas que va a tu casa ({{ miles(plan.casa.aporte_primas_mensual) }} al mes en promedio){% endif %}.</span>
+</section>
+<form id="simulador" class="tarjeta" method="get" action="/meta/casa">
+  <strong>¿Y si separas cada mes un poco más?</strong>
+  <label for="mensual" class="oculto">Ahorro adicional al mes</label>
+  <output id="sim-mensual" class="cifra-m">{{ sim.mensual_txt }}</output>
+  <input type="range" id="mensual" name="mensual" min="0" max="500000" step="10000" value="{{ sim.mensual }}" style="width:100%;accent-color:var(--accion);min-height:44px">
+  <div class="fila fila-borde"><span>Con rentabilidad real de 4% al año</span><strong id="sim-bueno">{{ sim.anio_bueno or 'más de 50 años' }}</strong></div>
+  <div class="fila fila-borde"><span>Sin ninguna rentabilidad</span><strong id="sim-malo">{{ sim.anio_malo or 'más de 50 años' }}</strong></div>
+  <strong id="sim-estado" style="color:var(--accion)" role="status">{{ 'Llegas a tiempo (estimado)' if sim.a_tiempo else 'Aún no llegas a tiempo' }}</strong>
+  <noscript><button class="boton chico" type="submit">Calcular</button></noscript>
+  <span class="pequeno">Rentabilidades supuestas, netas de comisiones. Cuenta tus cesantías de hoy y tus primas; no tus cesantías futuras. No es una promesa ni una rentabilidad garantizada; algunos años puede ser negativa. A tiempo, con unos {{ plan.casa.extra_txt }} más al mes (estimado).</span>
+</form>
+<p class="pequeno">{{ 'Tus cesantías se pueden usar para tu vivienda o la educación tuya o de tu familia; si las usas, dejan de ser tu respaldo si pierdes el empleo.' }}</p>
+{% endblock %}

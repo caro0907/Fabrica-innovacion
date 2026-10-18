@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Tus metas{% endblock %}
+{% block contenido %}
+{{ c.volver('/d/bienvenida') }}
+{{ c.progreso(1) }}
+<h1>¿Qué te gustaría lograr en los próximos años?</h1>
+<p class="parrafo">Elige las que sean tuyas. En la siguiente pantalla les ponemos fecha y números.</p>
+<form method="post" action="/d/metas" class="columna" style="gap:12px">
+<fieldset class="tarjeta" style="border:0;margin:0">
+  <legend class="oculto">Tus metas</legend>
+  <strong>Tus metas</strong>
+  {{ c.opciones('metas', METAS, d.metas, multiple=True) }}
+</fieldset>
+<fieldset class="tarjeta" style="border:0;margin:0">
+  <legend class="oculto">La más importante</legend>
+  <strong>¿Cuál es la más importante para ti?</strong>
+  <span class="pequeno">Por esa empezamos tu plan. Debe estar entre las que elegiste.</span>
+  {{ c.opciones('prioridad', METAS, d.prioridad) }}
+</fieldset>
+<button class="boton" type="submit">Siguiente</button>
+</form>
+{% endblock %}

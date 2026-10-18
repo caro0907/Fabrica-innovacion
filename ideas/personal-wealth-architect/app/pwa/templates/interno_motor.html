@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block titulo %}El motor por dentro{% endblock %}
+{% block cuerpo %}
+<main class="interno" id="principal">
+  <div class="fila"><span class="cejilla">El motor por dentro · {{ momento }}</span><span class="fila" style="gap:12px"><a href="/interno/consultor">Vista del consultor</a><a href="/">Portada</a></span></div>
+  <h1>Una sola decisión para {{ af.nombre }}, con su porqué</h1>
+  <div class="estado-mvp" style="margin:10px 0 14px"><strong>Estado:</strong> MVP. El motor es determinista y auditable; el impacto incremental es simulado (en producción lo estima un modelo contra grupos de control). Versiones: motor {{ VERSION_MOTOR }} · supuestos {{ S.VERSION }} · catálogo {{ CAT.VERSION }} ({{ CAT.CATALOGO.estado|lower }}). Redacción: {{ modo_ia }}.{% if sin_clave %} Sin clave interna: solo local.{% endif %}</div>
+
+  <div class="rejilla">
+    <section class="tarjeta" aria-label="Los cinco campos">
+      <span class="cejilla">La decisión: cinco campos</span>
+      <table><tbody>
+        <tr><th>Canal</th><td>{{ dec.cinco_campos.canal }}</td></tr>
+        <tr><th>Prioridad</th><td>{{ dec.cinco_campos.prioridad or '—' }}</td></tr>
+        <tr><th>Vigencia</th><td>{{ dec.cinco_campos.vigencia or '—' }}</td></tr>
+        <tr><th>Tono</th><td>{{ dec.cinco_campos.tono }}</td></tr>
+        <tr><th>Recomendación</th><td>{{ dec.cinco_campos.recomendacion }}</td></tr>
+        <tr><th>¿Quién lo hace?</th><td>{{ dec.quien_lo_hace }}</td></tr>
+        <tr><th>Modo</th><td>{{ 'Servicio (restrictivo activo)' if dec.modo == 'servicio' else 'Asesoría' }}</td></tr>
+        <tr><th>Grupo</th><td>{{ dec.grupo }}</td></tr>
+        <tr><th>¿Inicia contacto?</th><td>{{ 'Sí' if dec.puede_iniciar_contacto else 'No' }}</td></tr>
+      </tbody></table>
+    </section>
+    <section class="tarjeta" aria-label="Cola de acciones">
+      <span class="cejilla">Cola de acciones elegibles (el plan las define; la priorización las ordena)</span>
+      <table><thead><tr><th>Acción</th><th>¿Producto?</th><th>Población</th><th>Puntaje</th></tr></thead><tbody>
+      {% for x in dec.cola %}<tr><td>{{ x.nombre }}</td><td>{{ 'Sí' if x.es_producto else 'No' }}</td><td>{{ x.poblacion }}</td><td>{{ x.puntaje }}</td></tr>
+      {% else %}<tr><td colspan="4">Nada elegible hoy.</td></tr>{% endfor %}
+      </tbody></table>
+    </section>
+  </div>
+
+  <section class="tarjeta" aria-label="Traza">
+    <span class="cejilla">Traza de la decisión, capa por capa</span>
+    {% for capa in dec.traza %}
+    <details {% if loop.index > 1 %}open{% endif %}><summary>{{ loop.index }}. {{ capa.capa }}</summary>
+      {% for x in capa.detalle %}<p style="font-size:12.5px">{{ x.escenario ~ ': ' ~ x.resultado if x is mapping else x }}</p>{% endfor %}
+    </details>
+    {% endfor %}
+  </section>
+
+  <section class="tarjeta" id="freno" aria-label="Freno de servicio">
+    <span class="cejilla">Freno de servicio · {{ 'ACTIVO' if dec.freno.activo else 'inactivo' }}</span>
+    <p class="pequeno">Lo comercial solo crece si el servicio no retrocede frente a su línea base (valores ficticios). Cambie un valor para ver cómo el motor deja de iniciar contactos.</p>
+    <form method="post" action="/interno/freno" class="fila" style="flex-wrap:wrap;gap:12px;align-items:flex-end">
+      {% for k, cfg in S.FRENO_LINEAS_BASE.items() %}
+      <label class="columna"><span class="pequeno">{{ k|replace('_', ' ')|capitalize }} (base {{ porcentaje(cfg.base) }})</span>
+        <input name="{{ k }}" type="number" step="0.01" min="0" max="1" value="{{ metricas.get(k, cfg.base) }}" style="min-height:44px;width:120px;border:2px solid var(--linea);border-radius:10px;padding:0 8px"></label>
+      {% endfor %}
+      <button class="boton chico" type="submit">Actualizar</button>
+    </form>
+    {% for m in dec.freno.motivos %}<span class="etiqueta alerta">{{ m }}</span>{% endfor %}
+  </section>
+
+  <section class="tarjeta" aria-label="Escenarios">
+    <span class="cejilla">Escenarios con ciclo de vida (restrictivos primero)</span>
+    <table><thead><tr><th>Id</th><th>Escenario</th><th>Tipo</th><th>Estado</th><th>Disparador</th><th>Efecto</th></tr></thead><tbody>
+    {% for e in ESCENARIOS %}<tr><td>{{ e.id }}</td><td>{{ e.nombre }}</td><td>{{ e.tipo }}</td><td>{{ e.estado }}</td><td>{{ e.disparador }}</td><td>{{ e.efecto }}</td></tr>{% endfor %}
+    </tbody></table>
+  </section>
+
+  <section class="tarjeta" aria-label="Registro">
+    <span class="cejilla">Registro de interacciones de esta sesión (acción, ángulo, canal, momento, argumento, respuesta, resultado)</span>
+    <div style="overflow-x:auto"><table><thead><tr><th>#</th><th>Fecha</th><th>Canal</th><th>Acción</th><th>Escenario</th><th>Ángulo</th><th>Piezas</th><th>Tipo</th><th>Respuesta</th><th>Resultado</th><th>Grupo</th></tr></thead><tbody>
+    {% for h in historia %}<tr><td>{{ h.id }}</td><td>{{ h.fecha_simulada }}</td><td>{{ h.canal or '' }}</td><td>{{ h.accion or '' }}</td><td>{{ h.escenario or '' }}</td><td>{{ h.angulo or '' }}</td><td>{{ h.argumento or '' }}</td><td>{{ h.tipo or '' }}</td><td>{{ h.respuesta or '' }}</td><td>{{ h.resultado or '' }}</td><td>{{ h.grupo or '' }}</td></tr>
+    {% else %}<tr><td colspan="11">Aún no hay interacciones.</td></tr>{% endfor %}
+    </tbody></table></div>
+  </section>
+
+  <section class="tarjeta" aria-label="Equipos">
+    <span class="cejilla">Quién vive el modelo</span>
+    <p class="pequeno">Afiliado (app, hogar del plan) · Arquitecto digital · Consultor con el mismo plan · Equipos comercial, remoto y de servicio (vistas pendientes, diseñador) · Gobierno: cumplimiento aprueba catálogo y supuestos; analítica aprueba escenarios (candidato → en revisión → piloto → activo → retirado).</p>
+  </section>
+</main>
+{% endblock %}

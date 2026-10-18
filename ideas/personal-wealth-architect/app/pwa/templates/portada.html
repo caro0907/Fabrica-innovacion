@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block titulo %}Prototipo funcional{% endblock %}
+{% block cuerpo %}
+<div class="telefono">
+  <main class="contenido" id="principal">
+    <span class="cejilla">Fábrica de innovación · MVP v{{ VERSION_APP }}</span>
+    <h1>Un arquitecto de patrimonio en el bolsillo de cada afiliado</h1>
+    <p class="parrafo">En la banca privada, un wealth architect diseña el plan completo del patrimonio de una persona a partir de sus metas de vida, y no a partir de los productos que vende. Este MVP lo pone a prueba con datos ficticios: primero te conoce, después arma tu plan y solo al final recomienda, si el plan lo pide. El asesor lo completa cuando la decisión lo pide.</p>
+    <div class="estado-mvp"><strong>Estado:</strong> MVP para pruebas con usuarios. Nada está en operación, ninguna persona ni cifra es real y nada mueve dinero. Redacción: {{ 'Claude, dentro del catálogo' if modo_ia == 'claude' else 'plantillas del catálogo' }}.</div>
+
+    <form method="post" action="/demo/laura" class="tarjeta">
+      <span class="cejilla">Recorrido principal</span>
+      <strong style="font-size:17px">Laura, 36 años, renta masiva</strong>
+      <span class="pequeno">Lunes 1 de junio: su primera reunión con el arquitecto. Después vuelve el 15 de junio, dos semanas antes de su prima.</span>
+      <button class="boton" type="submit">Empezar como Laura</button>
+    </form>
+
+    <form method="post" action="/demo/andres" class="tarjeta">
+      <span class="cejilla">Modo servicio</span>
+      <strong style="font-size:17px">Andrés, 41 años, perdió su empleo</strong>
+      <span class="pequeno">El arquitecto resuelve, no vende: cesantías en el plazo legal, el Mecanismo de Protección al Cesante y su regla en pausa.</span>
+      <button class="boton secundario" type="submit">Entrar como Andrés</button>
+    </form>
+
+    <div class="tarjeta">
+      <span class="cejilla">Vistas internas (con la sesión abierta)</span>
+      <a class="enlace" style="justify-content:flex-start" href="/interno/consultor">El consultor: mismo plan y brief</a>
+      <a class="enlace" style="justify-content:flex-start" href="/interno/motor">El motor por dentro: decisión, registro y freno</a>
+    </div>
+    <p class="pequeno centro">Lo que se construye aquí es un MVP de la fábrica, no un producto en operación. Diseño aprobado v5.2.</p>
+  </main>
+</div>
+{% endblock %}

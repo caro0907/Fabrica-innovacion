@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Tu propuesta para la prima{% endblock %}
+{% block contenido %}
+<div class="fila">{{ c.volver('/revision') }}{{ c.reco() }}</div>
+<span class="fecha">Lunes 15 de junio · tu prima del 30 de junio, unos {{ plan.prima.monto_corto }}</span>
+<h1>Tu propuesta para la prima</h1>
+
+{% if plan.prima.al_colchon > 0 %}
+<div class="bloque-paso">
+  <div class="fila"><strong>{{ plan.prima.al_colchon_txt }} a tu colchón</strong><span class="marca-tipo" style="color:var(--accion)">Paso del plan · no es un producto</span></div>
+  <span style="font-size:13.5px">Déjalo en tu cuenta de ahorros, separado y disponible. Con esto tu colchón pasa de {{ plan.colchon.meses_txt }} a {{ ((plan.colchon.tiene + plan.prima.al_colchon) / d.gastos_mensuales)|round(1)|string|replace('.', ',') }} meses.</span>
+</div>
+{% endif %}
+
+{% if s.senales_no_comprende >= 2 %}
+<div class="tarjeta ambar" role="alert"><strong>Mejor veámoslo con {{ cons.corto }}.</strong><span>Es una decisión importante: tiene tu mismo plan a la vista y te lo explica en 15 minutos. Por ahora no la confirmamos aquí.</span><a class="boton" href="/equipo">Hablar con {{ cons.corto }}</a></div>
+{% elif pr.elegible %}
+<div class="bloque-reco">
+  <div class="fila"><strong>{{ plan.prima.a_la_meta_txt }} a tu casa</strong><span class="marca-tipo" style="color:var(--atencion-texto)">{{ pr.portafolio.nombre }}</span></div>
+  <span style="font-size:13.5px"><strong>Por qué:</strong> tu casa es tu meta más importante y su plazo es de {{ plan.casa.plazo_anios }} años; este fondo es para metas de más de {{ pr.portafolio.horizonte_minimo_anios }} años y coincide con tu perfil {{ perfil_clase }}, del {{ d.get('perfil_fecha', '2026-06-01')|fecha }}.</span>
+  <span class="riesgo">{{ pr.textos.B14 }} {{ pr.textos.A8 }}</span>
+  <span style="font-size:13px"><strong>Cuánto cuesta:</strong> {{ pr.textos.C4 }}</span>
+  <span class="pequeno">{{ pr.textos.C3 }}</span>
+</div>
+{% if falta == 'entiendo' %}<span class="etiqueta alerta" role="alert">Marca que entiendes la recomendación para seguir, o habla con {{ cons.corto }}.</span>{% endif %}
+{% if falta == 'huella' %}<span class="etiqueta alerta" role="alert">Falta confirmar con tu huella.</span>{% endif %}
+<form method="post" action="/propuesta/confirmar" class="tarjeta">
+  <label class="casilla"><input type="checkbox" name="entiendo" value="si"><span>Entiendo que es una recomendación de un fondo cuyo valor puede bajar, su costo y que hay otras opciones.</span></label>
+  <label class="casilla"><input type="checkbox" name="regla" value="si" checked><span>Además, deja una regla: en cada prima, propónmelo de nuevo con el mismo reparto. Yo confirmo cada vez y la cancelo cuando quiera.</span></label>
+  <input type="hidden" name="huella" value="si">
+  <button class="boton" type="submit">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="margin-right:8px"><path d="M12 11v4M8 9a4 4 0 0 1 8 0v4a8 8 0 0 1-1 4M6 14a10 10 0 0 0 1 5M12 3a7 7 0 0 1 7 7v2"/></svg>Aprobar con mi huella</button>
+  <span class="pequeno">Aprobar no mueve dinero de otra cuenta: el 30 de junio te pedimos confirmar cada transferencia. La huella es del celular; no recibimos tu dato biométrico. Te enviamos esta recomendación a tu correo.</span>
+</form>
+<form method="post" action="/propuesta/no"><button class="boton secundario" type="submit">No, gracias</button></form>
+{% else %}
+<div class="tarjeta ambar"><strong>Para tu casa, mejor con {{ cons.corto }}.</strong><span>Lo que tienes en tu perfil no coincide con un fondo cuyo valor puede bajar, o nos dijiste que no. No te recomendamos nada aquí.</span><a class="boton" href="/equipo">Hablar con {{ cons.corto }}</a></div>
+{% endif %}
+<a class="enlace" href="/equipo">{{ c.avatar(cons.iniciales, 'cons', 28) }}Verla con {{ cons.corto }} antes de decidir</a>
+{% endblock %}

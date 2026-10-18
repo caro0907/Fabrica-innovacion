@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Tus cesantías{% endblock %}
+{% block contenido %}
+<div class="fila"><span class="fila" style="gap:8px">{{ c.avatar('A', 'arq', 32) }}<strong>Tu arquitecto</strong></span><span class="etiqueta neutra">Modo servicio</span></div>
+<span class="fecha">Lunes 15 de junio · 9:12 a. m.</span>
+<div class="columna" style="gap:10px" aria-live="polite">
+  <div class="burbuja yo">Me quedé sin trabajo y necesito sacar mis cesantías.</div>
+  <div class="burbuja arq">Lo siento, {{ af.nombre }}. Vamos primero con lo que necesitas. {{ textos.B9 }}</div>
+  <div class="burbuja arq">Tienes {{ millones(af.lo_que_sabemos.cesantias) }} en tus cesantías: cubren unos {{ (meses)|round(1)|string|replace('.', ',') }} meses de tus gastos de hoy (estimado con lo que nos contaste).</div>
+  <div class="burbuja arq">{{ textos.B10 }} {{ textos.A6 }}</div>
+  {% for m in reglas_lista if m.estado == 'pausado' %}
+  <div class="burbuja arq">Pausé tu regla "{{ m.nombre }}" mientras tanto. La reanudas cuando quieras.</div>
+  {% endfor %}
+  <div class="burbuja arq">Si quieres pensarlo con alguien, {{ cons.corto }} te atiende con tu plan a la vista. Hoy no te voy a proponer nada más.</div>
+</div>
+{% if solicitado %}
+<div class="tarjeta verde" role="status"><strong style="color:var(--accion)">Recibimos tu solicitud.</strong><span style="font-size:13.5px">{{ textos.B9 }} Te avisamos por aquí en cada paso. (Simulado: en el MVP no se mueve dinero.)</span></div>
+{% else %}
+<form method="post" action="/servicio/solicitar"><button class="boton" type="submit">Solicitar mis cesantías</button></form>
+{% endif %}
+{% if escalado %}<div class="tarjeta" role="status"><strong>{{ cons.corto }} te escribe en minutos.</strong><span class="pequeno">Ya tiene esta conversación y tu plan a la vista: no tienes que repetirle nada.</span></div>
+{% else %}<form method="post" action="/servicio/consultor"><button class="boton secundario" type="submit">{{ c.avatar(cons.iniciales, 'cons', 28) }}&nbsp;Hablar con {{ cons.corto }}</button></form>{% endif %}
+<p class="pequeno centro">Modo servicio: el arquitecto resuelve, no vende. Datos ficticios.</p>
+{% endblock %}

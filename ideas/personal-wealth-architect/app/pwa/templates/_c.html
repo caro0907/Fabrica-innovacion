@@ -1,0 +1,53 @@
+{# Componentes del sistema de diseño "despacho del asesor" #}
+{% macro info() %}<span class="etiqueta info">Información de tu plan</span>{% endmacro %}
+{% macro reco() %}<span class="etiqueta reco">Recomendación profesional</span>{% endmacro %}
+{% macro origen(t) %}<span class="origen">{{ t }}</span>{% endmacro %}
+
+{% macro barra(valor, clase='') %}<div class="barra {{ clase }}" role="img" aria-label="{{ (valor * 100)|round|int }} de 100"><span style="width: {{ [[valor * 100, 0]|max, 100]|min }}%"></span></div>{% endmacro %}
+
+{% macro volver(href, texto='Volver') %}<a class="volver" href="{{ href }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>{{ texto }}</a>{% endmacro %}
+
+{% macro avatar(ini, clase='arq', tam=40) %}<span class="avatar {{ clase }}" style="width:{{ tam }}px;height:{{ tam }}px;font-size:{{ (tam * 0.34)|round|int }}px" aria-hidden="true">{{ ini }}</span>{% endmacro %}
+
+{% macro progreso(paso, total=4) %}<div class="progreso" role="img" aria-label="Tema {{ paso }} de {{ total }}">{% for i in range(total) %}<span class="{{ 'hecho' if i < paso }}"></span>{% endfor %}</div>{% endmacro %}
+
+{% macro opciones(nombre, lista, elegidas, multiple=False, columna=False) %}
+<div class="opciones {{ 'columna-opc' if columna }}" role="{{ 'group' if multiple else 'radiogroup' }}">
+{% for o in lista %}<label class="opcion"><input type="{{ 'checkbox' if multiple else 'radio' }}" name="{{ nombre }}" value="{{ o }}" {% if (multiple and o in elegidas) or (not multiple and o == elegidas) %}checked{% endif %}><span>{{ o }}</span></label>{% endfor %}
+</div>
+{% endmacro %}
+
+{% macro deslizador(nombre, etiqueta, valor, minimo, maximo, paso, ayuda='') %}
+<div class="tarjeta deslizador">
+  <label for="{{ nombre }}"><strong>{{ etiqueta }}</strong></label>
+  <output id="{{ nombre }}-txt" for="{{ nombre }}" data-pesos>{{ pesos(valor) }}</output>
+  <input type="range" id="{{ nombre }}" name="{{ nombre }}" min="{{ minimo }}" max="{{ maximo }}" step="{{ paso }}" value="{{ valor }}" data-salida="{{ nombre }}-txt">
+  {% if ayuda %}<span class="pequeno" data-ayuda="{{ nombre }}">{{ ayuda }}</span>{% endif %}
+</div>
+{% endmacro %}
+
+{% macro meta(m, href=None) %}
+<div class="fila-borde columna">
+  <div class="fila"><strong style="font-size:14.5px">{% if href %}<a href="{{ href }}" style="display:inline-flex;align-items:center;min-height:44px">{{ m.nombre }}</a>{% else %}{{ m.nombre }}{% endif %}</strong>{{ estado(m.estado) }}</div>
+  <span style="font-size:13px;color:var(--texto-cuerpo)">{{ m.texto }}</span>
+  {{ barra(m.avance, 'ambar' if m.estado in ('Lo primero', 'Con brecha') else '') }}
+  {% if m.nota %}<span class="pequeno">{{ m.nota }}</span>{% endif %}
+</div>
+{% endmacro %}
+
+{% macro estado(t) %}<span class="etiqueta {{ 'info' if t in ('Completo', 'En camino') else ('reco' if t in ('Lo primero', 'Con brecha') else 'neutra') }}">{{ t }}</span>{% endmacro %}
+
+{% macro piezas(ids, textos, grande=True) %}
+{% for pid in ids %}{% set t = textos[loop.index0] %}
+{% if tipo_pieza(pid) in ('plan', 'beneficio') %}<p {% if grande %}style="font-family:var(--t-carta);font-size:17px;line-height:1.45"{% endif %}>{{ t }}</p>{% endif %}
+{% endfor %}
+{% set adv = [] %}{% for pid in ids %}{% if tipo_pieza(pid) in ('advertencia', 'condicion') %}{% set _ = adv.append(textos[loop.index0]) %}{% endif %}{% endfor %}
+{% if adv %}<p class="pequeno">{{ adv|join(' ') }}</p>{% endif %}
+{% endmacro %}
+
+{% macro pilares_filas(lista) %}
+{% for x in lista %}
+<div class="pilar"><span style="font-size:13px;font-weight:700">{{ x.nombre }}</span>{{ barra(x.valor / 100, '' if x.valor >= 65 else 'ambar') }}<strong style="font-size:12.5px;text-align:right">{{ x.valor }}</strong></div>
+<span class="pequeno" style="margin:-4px 0 4px">{{ x.texto }}</span>
+{% endfor %}
+{% endmacro %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Pregúntale a tu arquitecto{% endblock %}
+{% block contenido %}
+<div class="fila">{{ c.volver('/inicio', 'Inicio') }}{{ c.info() }}</div>
+<h1>Pregúntale a tu arquitecto</h1>
+<p class="pequeno">Te responde con tu plan y te lleva a la pantalla donde está. Las cifras salen de tu plan, no de la conversación.</p>
+<div class="columna" style="gap:10px" aria-live="polite">
+{% if q %}
+  <div class="burbuja yo">{{ q }}</div>
+  <div class="burbuja arq">{% if respuesta.textos %}{{ c.piezas(respuesta.piezas, respuesta.textos, False) }}{% else %}<p>{{ respuesta.texto }}</p>{% endif %}
+    <a class="enlace" style="justify-content:flex-start" href="{{ respuesta.enlace }}">{{ respuesta.enlace_txt }}</a></div>
+{% else %}
+  <div class="burbuja arq">¿En qué te ayudo, {{ af.nombre }}? Por ejemplo: "¿cuándo llego a mi casa?", "¿y mi pensión?" o "quiero hablar con {{ cons.corto }}".</div>
+{% endif %}
+</div>
+<form method="get" action="/pregunta" class="tarjeta">
+  <label for="q"><strong>Tu pregunta</strong></label>
+  <input id="q" name="q" maxlength="200" required style="min-height:46px;border:2px solid var(--linea);border-radius:14px;padding:0 12px;font:500 15px var(--t-cuerpo)" placeholder="Escribe aquí">
+  <button class="boton chico" type="submit">Preguntar</button>
+</form>
+<div class="opciones">
+  {% for sug in ['¿Cuándo llego a mi casa?', '¿Y mi pensión?', 'Quiero hablar con alguien'] %}
+  <a class="boton chico secundario" href="/pregunta?q={{ sug|urlencode }}">{{ sug }}</a>
+  {% endfor %}
+</div>
+{% endblock %}

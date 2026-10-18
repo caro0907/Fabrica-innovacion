@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Inicio{% endblock %}
+{% block contenido %}
+<div class="fila">
+  <span class="columna"><span class="fecha">Lunes 15 de junio</span><strong style="font-size:18px">Hola, {{ af.nombre }}</strong></span>
+  <a href="/equipo" class="fila" style="text-decoration:none;gap:6px;min-height:44px;min-width:44px" aria-label="Tu equipo: tu arquitecto y {{ cons.nombre }}">{{ c.avatar('A', 'arq', 34) }}<span style="margin-left:-12px;display:flex">{{ c.avatar(cons.iniciales, 'cons', 34) }}</span></a>
+</div>
+{% if vuelves %}<p class="pequeno" role="status">Volviste dos semanas después de armar tu plan.</p>{% endif %}
+
+<a href="/patrimonio" class="tarjeta tinta" style="text-decoration:none" aria-label="Tu patrimonio y la salud de tu plan">
+  <div class="fila">
+    <span class="columna"><span class="suave" style="font-size:13px">Tu patrimonio</span><span class="cifra">{{ plan.patrimonio.total_txt }}</span>
+    <span style="font-size:12.5px;color:#DCE6E2">Pensión {{ millones(af.lo_que_sabemos.saldo_pension_obligatoria) }} · Cesantías {{ millones(af.lo_que_sabemos.cesantias) }} · Ahorro {{ millones(d.ahorro) }}</span></span>
+    <span class="anillo" style="--v: {{ (plan.puntaje / 10)|round|int }}" role="img" aria-label="Salud del plan: {{ plan.puntaje }} de 1.000"><span>{{ plan.puntaje }}</span></span>
+  </div>
+  <span class="suave" style="font-size:12px">Salud de tu plan: {{ plan.puntaje }} de 1.000 · lo que más la mueve: {{ plan.lo_que_mas_mueve.accion|lower }}</span>
+</a>
+
+{% if dec.modo == 'servicio' %}
+<div class="tarjeta alerta"><strong>Hoy no te proponemos nada.</strong><span>{{ dec.restrictivos[0].efecto }}. Si necesitas algo, pregúntame o habla con {{ cons.corto }}.</span></div>
+{% elif nota %}
+<section class="tarjeta" aria-label="Nota de tu arquitecto">
+  <div class="fila"><span class="fila" style="gap:8px">{{ c.avatar('A', 'arq', 28) }}<strong>Tu arquitecto</strong></span>{{ c.info() }}</div>
+  <h2 style="font-family:var(--t-carta);font-weight:600;font-size:21px">Tu revisión de junio está lista</h2>
+  {{ c.piezas(nota.piezas, nota.textos) }}
+  <a class="boton" href="/revision">Ver mi revisión</a>
+</section>
+{% elif 'propuesta_confirmada' in s.hechos %}
+<section class="tarjeta verde"><strong style="color:var(--accion)">Tu prima ya tiene rumbo.</strong><span>El 30 de junio te pedimos confirmar cada transferencia. Lo ves en Mis reglas.</span><a class="enlace" style="justify-content:flex-start" href="/reglas">Ver mis reglas</a></section>
+{% endif %}
+
+<section class="tarjeta" aria-label="Tus metas">
+  <div class="fila"><span class="cejilla">Tus metas</span><a href="/plan" style="font-weight:700;font-size:13.5px;min-height:44px;display:flex;align-items:center">Ver mi plan</a></div>
+  {% for m in plan.metas %}{{ c.meta(m, '/meta/casa' if m.id == 'casa' else None) }}{% endfor %}
+</section>
+{% endblock %}

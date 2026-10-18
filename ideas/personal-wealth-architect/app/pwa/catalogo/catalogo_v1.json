@@ -1,0 +1,254 @@
+{
+  "version": "catalogo-1.0-2026-10-17",
+  "fuente": "ideas/personal-wealth-architect/regulatorio.md, sección 5 (v1, 17 de octubre de 2026)",
+  "estado": "Propuesto por la fábrica, pendiente de aprobación de cumplimiento",
+  "piezas": {
+    "P1": {
+      "tipo": "plan",
+      "texto": "Antes de hablar de productos, cuéntame qué quieres lograr: tu casa, tu pensión, la educación de tu familia, tu tranquilidad.",
+      "cuando": "Inicio de todo plan"
+    },
+    "P2": {
+      "tipo": "plan",
+      "texto": "Con lo que sabemos y lo que me contaste, este es todo tu patrimonio: {dimensiones}. Lo que falta por completar: {faltantes}.",
+      "cuando": "Foto del patrimonio"
+    },
+    "P3": {
+      "tipo": "plan",
+      "texto": "Tu colchón cubre {meses} meses de gastos; lo sano son 3. Antes de invertir, eso va primero.",
+      "cuando": "Colchón menor a 3 meses"
+    },
+    "P4": {
+      "tipo": "plan",
+      "texto": "Tu deuda de {tipo} te cuesta más de lo que ganarías invirtiendo. Te conviene pagarla primero; no te recomiendo invertir todavía.",
+      "cuando": "Deuda cara declarada"
+    },
+    "P5": {
+      "tipo": "plan",
+      "texto": "Tu colchón puede quedarse en tu cuenta de ahorros: lo importante es que esté separado y disponible.",
+      "cuando": "Siempre que el colchón sea la meta"
+    },
+    "P6": {
+      "tipo": "plan",
+      "texto": "Revisa quiénes son tus beneficiarios: es lo que protege a {persona} si algo te pasa.",
+      "cuando": "Dependientes declarados y beneficiarios por confirmar"
+    },
+    "P7": {
+      "tipo": "plan",
+      "texto": "Para tu meta de {meta} te faltan {brecha}. Estas son las formas de cerrarla: {opciones}.",
+      "cuando": "Plan de vida con brechas"
+    },
+    "P8": {
+      "tipo": "plan",
+      "texto": "Esta decisión es importante: ¿quieres verla con un asesor? Tiene tu mismo plan a la vista.",
+      "cuando": "Decisiones de la tabla 'cuándo entra el asesor'"
+    },
+    "B1": {
+      "tipo": "beneficio",
+      "texto": "Por cada $100 que aportes a tu pensión voluntaria hasta tu punto óptimo, pagas unos ${ahorro_por_100} menos de impuesto.",
+      "requiere": [
+        "A1",
+        "A2",
+        "C1"
+      ],
+      "condicion": "paga_impuesto",
+      "norma": "Estatuto Tributario, art. 126-1"
+    },
+    "B2": {
+      "tipo": "beneficio",
+      "texto": "Te faltan {faltante} para tu punto óptimo de este año. Si los aportas y quedan acreditados a más tardar el 31 de diciembre, pagas unos {ahorro} menos.",
+      "requiere": [
+        "A1",
+        "A2",
+        "C1"
+      ],
+      "condicion": "paga_impuesto",
+      "norma": "Estatuto Tributario, arts. 126-1 y 336"
+    },
+    "B3": {
+      "tipo": "beneficio",
+      "texto": "Si aportas por nómina, tu empresa te retiene menos desde ese mismo mes: unos {menos_retencion} al mes.",
+      "requiere": [
+        "A1"
+      ],
+      "condicion": "paga_impuesto",
+      "norma": "Estatuto Tributario, art. 126-1"
+    },
+    "B4": {
+      "tipo": "beneficio",
+      "texto": "Puedes usar este ahorro para comprar tu vivienda o abonar a tu crédito de vivienda sin perder el beneficio.",
+      "requiere": [
+        "C1"
+      ],
+      "norma": "Estatuto Tributario, art. 126-1"
+    },
+    "B5": {
+      "tipo": "beneficio",
+      "texto": "Si quieres ahorrar más impuesto pensando solo en tu pensión, hay un segundo vehículo: el aporte voluntario a tu pensión obligatoria.",
+      "requiere": [
+        "C2",
+        "A4"
+      ],
+      "condicion": "paga_impuesto",
+      "norma": "Estatuto Tributario, art. 55"
+    },
+    "B6": {
+      "tipo": "beneficio",
+      "texto": "A finales de {mes} te llega la prima: unos {prima}.",
+      "requiere": [
+        "A1",
+        "A5"
+      ],
+      "condicion": "autoriza_uso_salario",
+      "norma": "Código Sustantivo del Trabajo, art. 306"
+    },
+    "B7": {
+      "tipo": "beneficio",
+      "texto": "En enero te llegan los intereses de tus cesantías: unos {intereses}.",
+      "requiere": [
+        "A1"
+      ],
+      "condicion": "autoriza_uso_salario",
+      "norma": "Ley 50 de 1990"
+    },
+    "B8": {
+      "tipo": "beneficio",
+      "texto": "Tus cesantías se pueden usar para tu vivienda o la educación tuya o de tu familia; si las usas, dejan de ser tu respaldo si pierdes el empleo.",
+      "requiere": [],
+      "norma": "Ley 50 de 1990, art. 102"
+    },
+    "B9": {
+      "tipo": "beneficio",
+      "texto": "Puedes retirar tus cesantías completas porque terminó tu contrato. Te las entregamos dentro de los 5 días siguientes a tu solicitud.",
+      "requiere": [],
+      "norma": "Ley 50 de 1990, art. 102"
+    },
+    "B10": {
+      "tipo": "beneficio",
+      "texto": "Pregunta en tu caja de compensación por el Mecanismo de Protección al Cesante.",
+      "requiere": [
+        "A6"
+      ],
+      "norma": "Ley 1636 de 2013"
+    },
+    "B11": {
+      "tipo": "beneficio",
+      "texto": "Tu puntaje es {puntaje} de 1.000. Lo que más lo mueve hoy: {accion}.",
+      "requiere": [
+        "A3"
+      ],
+      "norma": "Información"
+    },
+    "B12": {
+      "tipo": "beneficio",
+      "texto": "Vas para unos {pension} al mes a los {edad} (estimado). Para la vida que quieres te faltan {brecha}.",
+      "requiere": [
+        "A1",
+        "A4",
+        "A7"
+      ],
+      "norma": "Ley 2381 de 2024"
+    },
+    "B13": {
+      "tipo": "beneficio",
+      "texto": "Si separas {mensual} al mes, en {anios} años habrás puesto {puesto} y podrías tener entre {bajo} y {alto} en pesos de hoy.",
+      "requiere": [
+        "A1",
+        "A7"
+      ],
+      "norma": "Ley 1328 de 2009, art. 7"
+    },
+    "B14": {
+      "tipo": "beneficio",
+      "texto": "En un mal año, esta parte podría bajar unos {caida}.",
+      "requiere": [
+        "A8"
+      ],
+      "norma": "Decreto 2555, art. 2.40.1.1.6"
+    },
+    "C1": {
+      "tipo": "condicion",
+      "texto": "El beneficio se conserva si dejas cada aporte 10 años, o lo usas para tu vivienda o tu pensión. Si lo retiras antes para otra cosa, ese retiro suma a tus ingresos del año y te retenemos el 7% al retirarlo."
+    },
+    "C2": {
+      "tipo": "condicion",
+      "texto": "Solo sirve para tu pensión: si lo retiras para otra cosa, te retienen el 35%."
+    },
+    "C3": {
+      "tipo": "condicion",
+      "texto": "Esta alternativa no es un depósito ni tiene seguro de depósitos, y su valor puede variar."
+    },
+    "C4": {
+      "tipo": "condicion",
+      "texto": "Asesoría no independiente: te recomendamos alternativas nuestras y recibimos una comisión de {comision} al año por administrarlas. Otras opciones: {alternativas}."
+    },
+    "A1": {
+      "tipo": "advertencia",
+      "texto": "Es un estimado con tus datos y estos supuestos: {supuestos}. Si tienes otros ingresos, deducciones o dependientes, cambia."
+    },
+    "A2": {
+      "tipo": "advertencia",
+      "texto": "Es un cálculo informativo; no es asesoría tributaria. Si tu caso es complejo, te conectamos con un asesor."
+    },
+    "A3": {
+      "tipo": "advertencia",
+      "texto": "Información de tu plan. No es una recomendación profesional ni una calificación de crédito."
+    },
+    "A4": {
+      "tipo": "advertencia",
+      "texto": "Las reglas de la pensión cambian con la reforma pensional desde el 1 de abril de 2027; este cálculo usa {reglas}."
+    },
+    "A5": {
+      "tipo": "advertencia",
+      "texto": "Usamos tu salario de cotización porque nos autorizaste. Puedes retirar ese permiso con una frase."
+    },
+    "A6": {
+      "tipo": "advertencia",
+      "texto": "Las condiciones las define tu caja de compensación; te ayudamos a pedirlo."
+    },
+    "A7": {
+      "tipo": "advertencia",
+      "texto": "No es una promesa ni una rentabilidad garantizada. Algunos años puede ser negativa."
+    },
+    "A8": {
+      "tipo": "advertencia",
+      "texto": "Calculado con {metodo} para este portafolio. Por eso tu colchón no va ahí."
+    }
+  },
+  "nunca": [
+    {
+      "id": "N2",
+      "patron": "sin riesgo|garantizad[oa]s?|rentabilidad asegurada|es seguro invertir",
+      "motivo": "Promesa de seguridad o rentabilidad"
+    },
+    {
+      "id": "N3",
+      "patron": "no (debes|tienes que|necesitas) declarar|no declaras",
+      "motivo": "Decir que alguien no debe declarar renta"
+    },
+    {
+      "id": "N4",
+      "patron": "sin conflicto de inter[eé]s|imparcial|asesor[ií]a independiente",
+      "motivo": "La asesoría es no independiente"
+    },
+    {
+      "id": "N5",
+      "patron": "como nuestro mejor consultor|igual que un asesor",
+      "motivo": "Hipótesis de paridad no probada"
+    },
+    {
+      "id": "N10",
+      "patron": "solo hoy|[uú]ltimos cupos|aprovecha ya|no te lo pierdas",
+      "motivo": "Urgencia artificial"
+    },
+    {
+      "id": "N0",
+      "patron": "promoci[oó]n|oferta especial",
+      "motivo": "Siempre con el porqué, nunca 'tenemos una promoción'"
+    }
+  ],
+  "frases_permitidas_que_contienen_patrones": [
+    "no es una promesa ni una rentabilidad garantizada",
+    "no es una rentabilidad garantizada"
+  ]
+}

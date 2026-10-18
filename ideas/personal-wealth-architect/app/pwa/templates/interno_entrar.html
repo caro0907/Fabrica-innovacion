@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block titulo %}Vistas internas{% endblock %}
+{% block cuerpo %}
+<main class="interno" id="principal" style="max-width:420px">
+  <h1>Vistas internas</h1>
+  <p class="parrafo">Para el consultor y el equipo que gobierna el motor.</p>
+  <form method="post" action="/interno/entrar" class="tarjeta">
+    <label for="clave"><strong>Clave</strong></label>
+    <input id="clave" name="clave" type="password" autocomplete="current-password" required style="min-height:46px;border:2px solid var(--linea);border-radius:14px;padding:0 12px">
+    <input type="hidden" name="siguiente" value="{{ siguiente }}">
+    {% if request.query_params.get('error') %}<span class="etiqueta alerta" role="alert">Clave incorrecta</span>{% endif %}
+    <button class="boton" type="submit">Entrar</button>
+  </form>
+</main>
+{% endblock %}

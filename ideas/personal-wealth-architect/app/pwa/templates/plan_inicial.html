@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Tu plan{% endblock %}
+{% block contenido %}
+<div class="fila">{{ c.volver('/d/entendi') }}{{ c.info() }}</div>
+<span class="fecha">Tu plan · lunes 1 de junio</span>
+<h1>{{ af.nombre }}, este es tu plan</h1>
+<p class="parrafo">Lo armé con tus metas, no con nuestros productos. Al final está el orden para lograrlo y tu primer paso.</p>
+
+<section class="tarjeta tinta" aria-label="Tu patrimonio">
+  <span class="suave" style="font-size:13px">Tu patrimonio hoy</span>
+  <span class="cifra">{{ plan.patrimonio.total_txt }}</span>
+  <div class="columna" style="font-size:13px;color:#DCE6E2">
+    <span>Pensión obligatoria {{ millones(af.lo_que_sabemos.saldo_pension_obligatoria) }} · sabemos</span>
+    <span>Cesantías {{ millones(af.lo_que_sabemos.cesantias) }} · sabemos</span>
+    <span>Ahorro {{ millones(d.ahorro) }} · nos contaste</span>
+    <span>Vivienda: {{ d.vivienda|lower }} · deudas: {{ 'una deuda cara' if plan.deuda_cara else 'ninguna cara' }} · nos contaste</span>
+  </div>
+  <span class="suave" style="font-size:12px">Impuestos y legado: por completar. Las 8 dimensiones las ves en Patrimonio.</span>
+</section>
+
+<section class="tarjeta" aria-label="Tu pensión">
+  <span class="cejilla">Tu pensión, el ancla</span>
+  <span style="font-size:15px">Vas para unos <strong>{{ plan.pension.mesada_txt }} al mes</strong> a los {{ plan.pension.edad_pension }} (estimado). Para la vida que quieres, <strong>{{ plan.pension.deseada_txt }}</strong>{% if plan.pension.brecha > 0 %}, te faltan unos {{ plan.pension.brecha_txt }}{% endif %}.</span>
+  {{ c.barra(plan.pension.avance, 'oro') }}
+  <details><summary>Ver supuestos</summary><p>{{ plan.pension.supuestos_txt }}</p></details>
+</section>
+
+<section class="tarjeta" aria-label="Tus metas">
+  <span class="cejilla">Tus metas, con tus números</span>
+  {% for m in plan.metas %}{{ c.meta(m) }}{% endfor %}
+  {% if d.depende in ('Mi hija', 'Hijos') and 'Educar a mis hijos' not in d.metas %}
+  <div class="columna" style="padding-top:6px"><strong style="font-size:13.5px">¿Sumamos la educación de {{ plan.dependiente }}?</strong>
+  <span class="pequeno">No la elegiste, pero {{ 'tiene' if d.depende == 'Mi hija' else 'el menor tiene' }} {{ d.edad_dependiente }} años. Si quieres, la sumamos en tu próxima revisión.</span></div>
+  {% endif %}
+</section>
+
+<section class="tarjeta" aria-label="La salud de tu plan">
+  <div class="fila"><span class="cejilla">La salud de tu plan</span><span><strong class="cifra-m">{{ plan.puntaje }}</strong><span class="pequeno"> de 1.000</span></span></div>
+  {{ c.pilares_filas(plan.pilares) }}
+  <span class="pequeno">Lo que más lo mueve hoy: {{ plan.lo_que_mas_mueve.accion|lower }}. Información de tu plan. No es una recomendación profesional ni una calificación de crédito.</span>
+</section>
+
+<section class="tarjeta" aria-label="El orden de tu plan">
+  <span class="cejilla">El orden de tu plan</span>
+  {% for o in plan.orden %}
+  <div class="paso"><strong>{{ loop.index }}</strong><span class="columna" style="flex:1"><strong style="font-size:14px">{{ o.cuando }}: {{ o.titulo }}</strong><span class="pequeno">{{ o.texto }}</span>
+  {% if o.id == 'beneficiaria' %}
+  <form method="post" action="/accion/beneficiaria"><input type="hidden" name="volver" value="/plan-inicial"><button class="boton chico" type="submit">Confirmar a {{ plan.dependiente }}</button></form>
+  {% endif %}
+  </span></div>
+  {% endfor %}
+  {% if plan.beneficiarios_confirmados and plan.dependiente %}
+  <div class="tarjeta verde" role="status"><strong style="color:var(--accion)">Listo: {{ plan.dependiente }} quedó como tu beneficiaria. Tu plan ya está más protegido.</strong></div>
+  {% endif %}
+</section>
+
+<form method="post" action="/plan/guardar"><button class="boton" type="submit">Guardar mi plan</button></form>
+<a class="enlace" href="/agenda?desde=plan">{{ c.avatar(cons.iniciales, 'cons', 28) }}Revisarlo antes con {{ cons.corto }}</a>
+<p class="pequeno centro">Al guardar, la demostración salta al lunes 15 de junio: dos semanas antes de tu prima.</p>
+{% endblock %}

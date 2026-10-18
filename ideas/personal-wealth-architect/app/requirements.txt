@@ -1,0 +1,7 @@
+# Versiones fijadas el 18 de octubre de 2026
+fastapi==0.120.4
+starlette==0.49.3
+uvicorn[standard]==0.53.0
+jinja2==3.1.6
+python-multipart==0.0.32
+anthropic==1.15.0        # solo se usa si existe ANTHROPIC_API_KEY

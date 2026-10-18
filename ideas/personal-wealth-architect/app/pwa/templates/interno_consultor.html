@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Vista del consultor{% endblock %}
+{% block cuerpo %}
+<main class="interno" id="principal">
+  <div class="fila"><span class="cejilla">Vista del consultor · {{ momento }}</span><span class="fila" style="gap:12px"><a href="/interno/motor">El motor por dentro</a><a href="/">Portada</a></span></div>
+  <h1>{{ cons.nombre }} ve el mismo plan de {{ af.nombre }}</h1>
+  <div class="estado-mvp" style="margin:10px 0 14px"><strong>Estado:</strong> MVP con datos ficticios. Nada está en operación. Las vistas de los equipos comercial, remoto y de servicio y de "Mis documentos" están pendientes del diseñador (pendiente 4).{% if sin_clave %} Vistas internas sin clave: solo para uso local; en Railway se define PWA_CLAVE_INTERNA.{% endif %}</div>
+
+  <div class="rejilla">
+    <section class="tarjeta" aria-label="Por qué la contactamos">
+      <span class="cejilla">Motivo del contacto</span>
+      {% if dec.modo == 'servicio' %}
+      <strong>Modo servicio: {{ dec.restrictivos[0].nombre|lower }}</strong>
+      <span>{{ dec.restrictivos[0].efecto }}.</span>
+      <span class="etiqueta alerta">Nada comercial en esta conversación</span>
+      {% else %}
+      <strong>{{ dec.cinco_campos.recomendacion }}</strong>
+      <span class="pequeno">Quién lo hace: {{ dec.quien_lo_hace }}. Usted entra si {{ af.nombre }} lo pide, duda, no marca la comprensión o la decisión es de las que piden asesor.</span>
+      {% endif %}
+    </section>
+    <section class="tarjeta" aria-label="Brief de enganche">
+      <span class="cejilla">Brief de enganche (canal digital, misma fuente)</span>
+      {% for l in enganche %}<span style="font-size:13.5px">· {{ l }}</span>{% endfor %}
+    </section>
+  </div>
+
+  <section class="tarjeta" aria-label="Brief de profundización">
+    <span class="cejilla">Brief de profundización</span>
+    <div class="rejilla">
+      <div class="columna">
+        <strong>Contexto que importa para esta conversación</strong>
+        <span>{{ af.edad }} años, {{ af.segmento|replace('_', ' ') }}, {{ af.ciudad }}. Perfil {{ perfil_clase }} ({{ d.get('perfil_fecha', '2026-06-01')|fecha }}).</span>
+        <span>Patrimonio {{ plan.patrimonio.total_txt }}: pensión {{ millones(af.lo_que_sabemos.saldo_pension_obligatoria) }}, cesantías {{ millones(af.lo_que_sabemos.cesantias) }}, ahorro {{ millones(d.ahorro) }}.</span>
+        <span>Colchón: {{ plan.colchon.meses_txt }} meses de {{ millones(d.gastos_mensuales) }} de gastos.</span>
+        {% if plan.casa %}<span>Casa: {{ plan.casa.cuota_txt }} en {{ plan.casa.plazo_anios }} años; lleva {{ plan.casa.llevas_txt }}{% if plan.casa.anio_solo_primas %}; solo con primas llega hacia {{ plan.casa.anio_solo_primas }}{% endif %}.</span>{% endif %}
+        <span>Pensión estimada {{ plan.pension.mesada_txt }} frente a {{ plan.pension.deseada_txt }} deseados (brecha {{ plan.pension.brecha_txt }}).</span>
+        <span>Salud del plan: {{ plan.puntaje }} de 1.000. Más débil: {{ plan.lo_que_mas_mueve.nombre|lower }}.</span>
+      </div>
+      <div class="columna">
+        <strong>Cómo conversarlo</strong>
+        <span>Empiece por sus metas, no por el producto. Tono: {{ dec.cinco_campos.tono|lower }}.</span>
+        {% if dec.modo == 'asesoria' %}
+        <span>Cuantificación: la prima de {{ plan.prima.monto_txt }} se reparte {{ plan.prima.al_colchon_txt }} al colchón (paso del plan) y {{ plan.prima.a_la_meta_txt }} a la casa.</span>
+        <span>Objeciones posibles: "¿y si lo necesito?" (el colchón queda en su cuenta, disponible); "¿puede bajar?" (sí: en un mal año, unos {{ pesos(pr.caida) }}; por eso el colchón no va ahí).</span>
+        <span>Lo que no se propone todavía: invertir para la pensión.</span>
+        {% else %}
+        <span>Resolver la solicitud y escuchar. Recordar el Mecanismo de Protección al Cesante y la caja de compensación. Reanudar reglas solo cuando él lo pida.</span>
+        {% endif %}
+        <span class="pequeno">Las cifras vienen del motor (versión {{ dec.version_motor }}) con supuestos visibles para el afiliado. No use cifras distintas.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="rejilla">
+    <section class="tarjeta" aria-label="Sus reglas">
+      <span class="cejilla">Reglas y permisos</span>
+      {% for m in lista %}<span>{{ m.nombre }}: <strong>{{ m.estado }}</strong>{% if m.motivo_estado %} ({{ m.motivo_estado|lower }}){% endif %}</span>{% else %}<span class="pequeno">Sin reglas.</span>{% endfor %}
+      <span class="pequeno">Uso del salario: {{ 'autorizado' if af.estado.autoriza_uso_salario else 'no autorizado' }} · Mensajes comerciales: {{ 'sí' if af.estado.autoriza_mensajes_comerciales else 'no' }} · Agentes externos: {{ 'sí' if af.estado.autoriza_agentes_externos else 'no' }}</span>
+    </section>
+    <section class="tarjeta" aria-label="Lo que ha pasado">
+      <span class="cejilla">Lo que ha pasado (registro)</span>
+      {% for h in historia[:10] %}<span style="font-size:12.5px">{{ h.fecha_simulada }} · {{ h.accion }} · {{ h.respuesta or h.tipo }}</span>{% else %}<span class="pequeno">Sin interacciones.</span>{% endfor %}
+    </section>
+  </div>
+</main>
+{% endblock %}

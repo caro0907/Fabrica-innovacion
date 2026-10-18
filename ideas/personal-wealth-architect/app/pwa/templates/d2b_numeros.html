@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Tus metas con números{% endblock %}
+{% block contenido %}
+{{ c.volver('/d/metas') }}
+{{ c.progreso(1) }}
+<h1>Pongámosle números a tus metas</h1>
+<p class="parrafo">Te propongo una cifra para empezar. Muévela hasta que se parezca a lo que quieres.</p>
+<form method="post" action="/d/numeros" class="columna" style="gap:12px">
+{% if 'Comprar mi casa' in d.metas %}
+<fieldset class="tarjeta" style="border:0;margin:0">
+  <legend class="oculto">Plazo de la casa</legend>
+  <strong>Tu casa, ¿para cuándo?</strong>
+  {{ c.opciones('plazo_casa', ['En 3 años', 'En 5 años', 'En 10 años', 'Más de 10'], d.plazo_casa) }}
+</fieldset>
+{{ c.deslizador('cuota_inicial_casa', 'Tu cuota inicial', d.cuota_inicial_casa, 10000000, 150000000, 5000000, 'Te propongo $45 M: el 30% de una vivienda de $150 M.') }}
+{% else %}
+<input type="hidden" name="cuota_inicial_casa" value="0">
+{% endif %}
+{{ c.deslizador('pension_deseada', 'Tu pensión, ¿con cuánto al mes quieres vivir?', d.pension_deseada, 1800000, 6000000, 100000, 'Te propongo ' ~ millones(af.lo_que_sabemos.salario_cotizacion * 0.6) ~ ': unos 6 de cada 10 pesos de tu salario de hoy.') }}
+<p class="pequeno">Tu tranquilidad la calculamos con tus gastos, en el siguiente tema.</p>
+<button class="boton" type="submit">Siguiente</button>
+</form>
+{% endblock %}

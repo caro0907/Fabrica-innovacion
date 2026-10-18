@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Mi patrimonio{% endblock %}
+{% block contenido %}
+<div class="fila"><h1>Mi patrimonio</h1>{{ c.info() }}</div>
+<section class="tarjeta tinta">
+  <span class="suave" style="font-size:13px">Todo lo tuyo que conocemos</span>
+  <span class="cifra">{{ plan.patrimonio.total_txt }}</span>
+  <span class="suave" style="font-size:12px">Con lo que sabemos y lo que nos contaste. Lo que falta, lo completamos contigo.</span>
+</section>
+<section class="tarjeta" aria-label="Las ocho dimensiones">
+  <span class="cejilla">Las 8 dimensiones de tu patrimonio</span>
+  {% for x in plan.patrimonio.dimensiones %}
+  <div class="fila-borde columna"><div class="fila"><strong style="font-size:14px">{{ x.nombre }}</strong>{{ c.origen(x.origen) }}</div><span class="pequeno">{{ x.texto }}</span></div>
+  {% endfor %}
+</section>
+<a class="boton secundario" href="/pilares">Ver la salud de tu plan: {{ plan.puntaje }} de 1.000</a>
+<p class="pequeno">Cuando las finanzas abiertas estén disponibles en Colombia, podrás sumar con tu autorización lo que tienes en otras entidades.</p>
+{% endblock %}

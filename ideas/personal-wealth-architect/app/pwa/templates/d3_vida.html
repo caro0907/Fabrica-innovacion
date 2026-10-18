@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Tu vida hoy{% endblock %}
+{% block contenido %}
+{{ c.volver('/d/numeros') }}
+{{ c.progreso(2) }}
+<h1>Cuéntame de tu vida hoy</h1>
+<form method="post" action="/d/vida" class="columna" style="gap:12px">
+<fieldset class="tarjeta" style="border:0;margin:0">
+  <legend class="oculto">Dependientes</legend>
+  <strong>¿Alguien depende de ti?</strong>
+  {{ c.opciones('depende', ['Nadie', 'Mi hija', 'Hijos', 'Mis padres'], d.depende) }}
+</fieldset>
+<div class="tarjeta fila">
+  <span class="columna"><label for="edad_dependiente"><strong>Si tienes hijos, ¿qué edad tiene el menor?</strong></label><span class="pequeno">Solo eso: para su educación y para protegerlo.</span></span>
+  <span class="numero"><input type="number" id="edad_dependiente" name="edad_dependiente" value="{{ d.edad_dependiente }}" min="0" max="25" inputmode="numeric" style="width:76px;min-height:44px;border:2px solid var(--linea);border-radius:12px;font:700 17px var(--t-cuerpo);text-align:center"> <span>años</span></span>
+</div>
+<fieldset class="tarjeta" style="border:0;margin:0">
+  <legend class="oculto">Vivienda</legend>
+  <strong>¿Dónde vives?</strong>
+  {{ c.opciones('vivienda', ['En arriendo', 'Con mi familia', 'Propia', 'Con crédito'], d.vivienda) }}
+</fieldset>
+<fieldset class="tarjeta" style="border:0;margin:0">
+  <legend class="oculto">Deudas</legend>
+  <strong>¿Tienes deudas?</strong>
+  {{ c.opciones('deudas', ['No tengo', 'Tarjeta que pago completa', 'Tarjeta o crédito que pago a cuotas'], d.deudas, columna=True) }}
+</fieldset>
+<button class="boton" type="submit">Siguiente</button>
+</form>
+{% endblock %}

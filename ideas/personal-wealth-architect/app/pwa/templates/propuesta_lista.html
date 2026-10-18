@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Aprobado{% endblock %}
+{% block contenido %}
+<div class="fila">{{ c.volver('/inicio', 'Inicio') }}{{ c.info() }}</div>
+<h1>Listo, {{ af.nombre }}. Tu prima ya tiene rumbo</h1>
+<div class="tarjeta">
+  <div class="paso"><strong>1</strong><span>El 30 de junio te pedimos confirmar las transferencias: {{ plan.prima.al_colchon_txt }} a tu colchón y {{ plan.prima.a_la_meta_txt }} a tu casa. Nada se mueve sin tu confirmación.</span></div>
+  <div class="paso"><strong>2</strong><span>Te enviamos la recomendación y su costo a tu correo, para que la tengas por escrito.</span></div>
+  {% if 'regla_prima' in s.hechos %}<div class="paso"><strong>3</strong><span>Tu regla quedó activa: dos semanas antes de cada prima te propongo el mismo reparto y tú confirmas. La pausas o la cancelas en un toque.</span></div>{% endif %}
+</div>
+{% if 'regla_prima' in s.hechos %}<a class="boton" href="/reglas">Ver mis reglas</a>{% endif %}
+<a class="boton {{ 'secundario' if 'regla_prima' in s.hechos }}" href="/inicio">Volver al inicio</a>
+{% endblock %}

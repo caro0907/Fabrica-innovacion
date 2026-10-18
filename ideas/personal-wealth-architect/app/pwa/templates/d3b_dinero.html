@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Tu dinero hoy{% endblock %}
+{% block contenido %}
+{{ c.volver('/d/vida') }}
+{{ c.progreso(2) }}
+<h1>Y tu dinero, más o menos</h1>
+<p class="parrafo">No necesitas cifras exactas. Con esto vemos tu tranquilidad.</p>
+<form method="post" action="/d/dinero" class="columna" style="gap:12px">
+<div class="tarjeta deslizador">
+  <label for="gastos_mensuales"><strong>¿Cuánto gastas al mes?</strong></label>
+  <output id="gastos-txt">{{ pesos(d.gastos_mensuales) }}</output>
+  <input type="range" id="gastos_mensuales" name="gastos_mensuales" min="1000000" max="8000000" step="100000" value="{{ d.gastos_mensuales }}" data-salida="gastos-txt">
+  <span class="pequeno">Tu colchón de 3 meses sería <strong id="colchon-txt">{{ pesos(d.gastos_mensuales * 3) }}</strong>.</span>
+</div>
+{{ c.deslizador('ahorro', '¿Cuánto tienes ahorrado o invertido, aquí o en otras entidades?', d.ahorro, 0, 30000000, 500000) }}
+<fieldset class="tarjeta" style="border:0;margin:0">
+  <legend class="oculto">Dónde está tu ahorro</legend>
+  <strong>¿Dónde está?</strong>
+  {{ c.opciones('donde_ahorro', ['En mi cuenta de ahorros', 'En inversiones', 'En otra entidad'], d.donde_ahorro, multiple=True) }}
+</fieldset>
+<fieldset class="tarjeta" style="border:0;margin:0">
+  <legend class="oculto">Seguro de vida</legend>
+  <strong>¿Tienes seguro de vida?</strong>
+  {{ c.opciones('seguro_vida', ['Sí', 'No', 'No sé'], d.seguro_vida) }}
+</fieldset>
+<button class="boton" type="submit">Siguiente</button>
+</form>
+{% endblock %}

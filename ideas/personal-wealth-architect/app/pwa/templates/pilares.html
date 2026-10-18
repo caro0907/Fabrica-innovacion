@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}La salud de tu plan{% endblock %}
+{% block contenido %}
+<div class="fila">{{ c.volver('/patrimonio', 'Patrimonio') }}{{ c.info() }}</div>
+<h1>La salud de tu plan</h1>
+<section class="tarjeta">
+  <div class="fila"><span class="cejilla">Seis pilares; el puntaje es su promedio</span><span><strong class="cifra-m">{{ plan.puntaje }}</strong><span class="pequeno"> de 1.000</span></span></div>
+  {{ c.pilares_filas(plan.pilares) }}
+</section>
+<section class="tarjeta verde">
+  {{ c.piezas(b11.piezas, b11.textos, False) }}
+</section>
+<a class="boton" href="/plan">Ver el orden de mi plan</a>
+<p class="pequeno">Las reglas de cada pilar son del MVP y se calibran con los mejores consultores antes de un piloto.</p>
+{% endblock %}

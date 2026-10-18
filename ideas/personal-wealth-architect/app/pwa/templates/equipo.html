@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Tu equipo{% endblock %}
+{% block contenido %}
+<h1>Tu equipo</h1>
+<section class="tarjeta" aria-label="Tu consultora">
+  <div class="fila" style="justify-content:flex-start">{{ c.avatar(cons.iniciales, 'cons', 52) }}
+    <span class="columna"><strong style="font-size:16px">{{ cons.nombre }}{{ ' · tu consultora' if consultor_con_nombre }}</strong>
+    <span class="pequeno">Certificada por el Autorregulador del Mercado de Valores e inscrita en el Registro Nacional de Profesionales del Mercado de Valores · datos ficticios</span></span></div>
+  <p style="font-size:13.5px">Ve tu mismo plan y tu historia: no tienes que repetirle nada. Agenda 15 minutos por video:</p>
+  <div class="opciones">
+  {% for o in ['Mañana 10:00 a. m.', 'Mañana 4:00 p. m.'] %}
+    <a class="boton chico {{ '' if slot == o else 'secundario' }}" href="/equipo?slot={{ o|urlencode }}">{{ o }}</a>
+  {% endfor %}
+  </div>
+  {% if slot %}<strong style="color:var(--accion);font-size:13.5px" role="status">Agendado: {{ slot }}. {{ cons.corto }} ya tiene tu plan a la vista.</strong>{% endif %}
+  {% if not consultor_con_nombre %}<span class="pequeno">Supuesto por decidir: si el consultor con nombre aplica a la renta masiva.</span>{% endif %}
+</section>
+<section class="tarjeta" aria-label="Tu arquitecto digital">
+  <div class="fila" style="justify-content:flex-start">{{ c.avatar('A', 'arq', 40) }}<span class="columna"><strong>Tu arquitecto digital</strong><span class="pequeno">Herramienta de tu administradora de fondos, supervisada por la entidad</span></span></div>
+  <p style="font-size:13px">Arma y vigila tu plan y te avisa antes de los momentos que importan. Te propone; nunca decide por ti. Asesoría no independiente: te recomienda alternativas nuestras y recibimos una comisión.</p>
+</section>
+<section class="tarjeta ambar" aria-label="Cuándo entra tu consultora">
+  <strong>Cuándo te proponemos hablar con {{ cons.corto }}</strong>
+  {% for t in ['Siempre que lo pidas', 'Aportes que solo sirven para tu pensión, como el voluntario a tu pensión obligatoria', 'Traslados y tu forma de pensionarte', 'Un retiro que te hace perder un beneficio', 'Cuando algo no queda claro'] %}
+  <span class="fila" style="justify-content:flex-start;gap:8px;font-size:13px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accion)" stroke-width="2.5" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>{{ t }}</span>
+  {% endfor %}
+</section>
+<nav class="tarjeta" style="padding:0 16px" aria-label="Tus ajustes">
+  <a class="fila fila-borde" style="min-height:48px;text-decoration:none;color:var(--tinta)" href="/perfil"><span>Tu perfil: {{ perfil_clase }}</span><strong style="color:var(--accion)">Ver o cambiar</strong></a>
+  <a class="fila fila-borde" style="min-height:48px;text-decoration:none;color:var(--tinta)" href="/reglas"><span>Mis reglas y permisos</span><strong style="color:var(--accion)">Ver</strong></a>
+  <a class="fila fila-borde" style="min-height:48px;text-decoration:none;color:var(--tinta)" href="/como-funciona"><span>Cómo funciona tu arquitecto</span><strong style="color:var(--accion)">Ver</strong></a>
+</nav>
+{% endblock %}

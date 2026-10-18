@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Agenda con tu consultora{% endblock %}
+{% block contenido %}
+{{ c.volver(volver) }}
+<div class="fila" style="justify-content:flex-start">{{ c.avatar(cons.iniciales, 'cons', 56) }}
+  <span class="columna"><strong style="font-size:17px">{{ cons.nombre }} · {{ 'tu consultora' if consultor_con_nombre else 'consultor' }}</strong>
+  <span class="pequeno">Certificada por el Autorregulador del Mercado de Valores e inscrita en el Registro Nacional de Profesionales del Mercado de Valores · datos ficticios</span></span></div>
+<h1 class="carta">Agenda con {{ cons.corto }}</h1>
+<p class="parrafo">{% if desde == 'plan' %}Ya tiene tu plan del 1 de junio a la vista. Revísenlo juntas antes de guardarlo; no tienes que repetirle nada.{% else %}Hacen juntas tu primera reunión: te pregunta lo mismo que yo y arma tu plan contigo. Lo que ya sabemos lo tiene a la vista.{% endif %}</p>
+<div class="tarjeta">
+  <strong>15 minutos por video</strong>
+  <div class="opciones">
+  {% for o in ['Mañana 10:00 a. m.', 'Mañana 4:00 p. m.', 'Jueves 8:00 a. m.'] %}
+    <a class="boton chico {{ '' if slot == o else 'secundario' }}" href="/agenda?desde={{ desde }}&slot={{ o|urlencode }}" {% if slot == o %}aria-current="true"{% endif %}>{{ o }}</a>
+  {% endfor %}
+  </div>
+  {% if slot %}<div class="tarjeta verde" role="status"><strong style="color:var(--accion)">Agendado: {{ slot }}. Te llega la invitación a tu correo.</strong></div>{% endif %}
+</div>
+<a class="enlace" href="{{ volver }}">Volver</a>
+{% endblock %}

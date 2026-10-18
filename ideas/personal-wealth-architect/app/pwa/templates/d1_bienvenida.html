@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Tu primera reunión{% endblock %}
+{% block contenido %}
+{% set sabe = af.lo_que_sabemos %}
+<div class="fila"><span class="fecha">Lunes 1 de junio</span><span style="display:flex">{{ c.avatar('A') }}<span style="margin-left:-10px;display:flex">{{ c.avatar(cons.iniciales, 'cons') }}</span></span></div>
+<h1>{{ af.nombre }}, armemos tu plan como en una primera reunión con tu asesor</h1>
+<p class="parrafo">Así empieza una buena asesoría: primero tu vida, después los productos, y solo si te sirven. Son cuatro temas y unos 7 minutos.</p>
+<form method="post" action="/d/bienvenida" class="columna" style="gap:12px">
+<div class="tarjeta">
+  <strong>Lo que ya sabemos, para no preguntártelo</strong>
+  <div class="fila fila-borde"><span>Tu pensión obligatoria</span><strong>{{ millones(sabe.saldo_pension_obligatoria) }} · {{ sabe.anios_cotizados }} años cotizados</strong></div>
+  <div class="fila fila-borde"><span>Tus cesantías</span><strong>{{ millones(sabe.cesantias) }}</strong></div>
+  <div class="fila fila-borde"><span>Tu salario de cotización</span><strong>unos {{ millones(sabe.salario_cotizacion) }} al mes</strong></div>
+  <div class="fila fila-borde"><span>Tus primas</span><strong>junio y diciembre</strong></div>
+  <label class="casilla"><input type="checkbox" name="autoriza" value="si" {% if s.consentimientos.autoriza_uso_salario %}checked{% endif %} required>
+    <span>Autorizo usar mi salario de cotización, mis primas y mis cesantías para armar mi plan. Puedo retirar este permiso con una frase.</span></label>
+  {% if request.query_params.get('falta') %}<span class="etiqueta alerta" role="alert">Sin tu autorización armamos tu plan solo con lo que nos cuentes.</span>{% endif %}
+</div>
+<div class="tarjeta">
+  <strong>De qué vamos a hablar</strong>
+  {% for t in ['Lo que quieres lograr, con números', 'Tu vida y tu dinero hoy', 'Cómo te sientes con el riesgo', 'Lo que entendí de ti'] %}
+  <div class="paso"><strong>{{ loop.index }}</strong><span>{{ t }}</span></div>
+  {% endfor %}
+</div>
+<button class="boton" type="submit">Empecemos</button>
+</form>
+<a class="enlace" href="/agenda?desde=bienvenida">{{ c.avatar(cons.iniciales, 'cons', 28) }}Prefiero hacerla con {{ cons.corto if consultor_con_nombre else 'un consultor' }} por video</a>
+{% endblock %}
