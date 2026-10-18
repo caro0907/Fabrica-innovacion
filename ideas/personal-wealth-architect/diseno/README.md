@@ -1,4 +1,4 @@
-# Diseño: Personal Wealth Architect · v4
+# Diseño: Personal Wealth Architect · v5
 
 **17 de octubre de 2026 · Especialista: diseñador de la fábrica** · Parte del brief v3.2 (`../brief.md`). Todos los datos son ficticios.
 
@@ -135,3 +135,25 @@ Revisión de las 15 pantallas contra la definición de Carolina: *"un wealth arc
 **Recorridos v4:** Laura L1 a L8 (aviso → diagnóstico → patrimonio → puntaje → plan de vida → siguiente paso → recomendación → mis reglas → cómo funciona). Juliana J1 a J5 (aviso → su plan → impuesto → cada peso a su meta → confirmar y regla). Vista del consultor, motor por dentro y modo servicio.
 
 **Pendiente:** revisión visual en el lienzo de L4 (cuatro metas), L6 (recomendación con el colchón como paso del plan) y S1 (un mensaje más), que crecieron en contenido.
+
+## 11. Versión 5 del prototipo (17 de octubre de 2026, noche): la app del arquitecto
+**Observación de Carolina sobre v4:** todavía no se sentía como un Personal Wealth Architect, sino como una IA que guía en un chat. **Aprobado por Carolina:** el colchón fuera de los productos de la entidad y el asesor que entra por regla.
+
+**Qué cambió:** con el benchmark de `benchmark-experiencia.md` (Nu Smart Invest, J.P. Morgan Wealth Plan, Wealthfront Path, Arta Finance, Origin, Range, Facet, Vanguard, Caixinhas y NAV Planner), la experiencia pasa del chat a la app como "hogar del plan". Fila nueva en el lienzo, ocho pantallas:
+
+| Pantalla | Qué hace sentir un asesor |
+|---|---|
+| V1 · Inicio | Patrimonio total con pensión y cesantías, salud del plan, nota de tu arquitecto, tus metas y tu equipo visible arriba |
+| V2 · Tu revisión de junio | La carta del banquero privado: cómo vas, qué cambió, lo que te propongo y lo que no te propongo todavía |
+| V3 · Mi plan de vida | La pensión como ancla, metas con estado y "tu año en dinero" (el calendario de primas y cesantías) |
+| V4 · Tu casa | Meta que se toca: lo que la construye y un simulador "¿y si separas cada mes…?" (con $100 mil al mes llega hacia 2036; estimado) |
+| V5 · Tu propuesta para la prima | El paso del plan y la recomendación profesional, separados; aprobar no mueve dinero; Daniela a un toque |
+| V6 · Mi patrimonio | Todo lo tuyo con lo que sabemos, lo que nos contaste y lo que falta |
+| V7 · Tu equipo | Tu consultora con nombre, certificación y agenda de 15 minutos; tu arquitecto digital y qué hace; cuándo te proponemos hablar con ella |
+| V8 · Inicio de Juliana | La misma casa, otro momento: su revisión de cierre de año |
+
+El chat queda como una superficie (la barra "Pregúntale algo a tu arquitecto" y las filas v4 de mensajería), no como la casa.
+
+**Supuestos nuevos y ficticios:** consultora "Daniela R." para Laura y consultor "Camilo V." para Juliana; patrimonio de Juliana de $257 M. La pantalla "Cómo funciona tu arquitecto" queda enlazada desde "Tu equipo".
+
+**Pendiente:** revisión visual de Carolina en el lienzo; decidir si el modelo de "consultor con nombre" aplica a toda la renta masiva o solo a la media (capacidad del equipo).

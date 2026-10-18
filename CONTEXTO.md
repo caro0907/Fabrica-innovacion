@@ -1,4 +1,4 @@
-# CONTEXTO · 17 de octubre de 2026 (v2, noche) — Revisión regulatoria lista y prototipo v4 fiel al concepto
+# CONTEXTO · 17 de octubre de 2026 (v2, noche) — Revisión regulatoria lista y prototipo v5: la app del arquitecto
 
 > El contexto anterior está en `historial-contextos/CONTEXTO-2026-10-17-v1.md`.
 
@@ -22,7 +22,7 @@
 | **Concepto regulatorio y catálogo de lo que se puede decir v1 (nuevo)** | `ideas/personal-wealth-architect/regulatorio.md` |
 | 27 referentes y matriz | `ideas/personal-wealth-architect/referentes.md` |
 | Diseño y copia del prototipo | `ideas/personal-wealth-architect/diseno/` |
-| Prototipo editable (v4) | Artefacto de diseño "Personal Wealth Architect · Prototipo": https://claude.ai/artifact/9MVrnadPTUq5rhxkSjFxAR (17 pantallas; copia en `diseno/prototipo/`, v3 en `diseno/versiones-anteriores/`) |
+| Prototipo editable (v4) | Artefacto de diseño "Personal Wealth Architect · Prototipo": https://claude.ai/artifact/9MVrnadPTUq5rhxkSjFxAR (v5: fila nueva de 8 pantallas de app sobre las 17 de v4; copia en `diseno/prototipo/`, v3 en `diseno/versiones-anteriores/`) |
 
 ## 2. Lo trabajado en esta sesión
 - **Experto financiero:** revisó los textos sensibles del prototipo v3 y creó `regulatorio.md` v1: 27 ajustes de texto (7 de prioridad alta), catálogo de lo que se puede decir (plan antes que producto, beneficios, condiciones, advertencias, lo que la IA nunca dice, reglas de cálculo), mandatos viables hoy, retiro informado, escenarios restrictivos regulatorios y 11 preguntas para validar con personas.
@@ -30,8 +30,11 @@
 - `empresa/beneficios-tributarios.md` pasó a v2 con lo verificado.
 - Se leyeron como contexto los 9 archivos de la carpeta de Drive de la fábrica.
 - **Diseñador:** prototipo v4 fiel a la definición del concepto: Juliana empieza por su plan (pantalla nueva), el colchón de Laura es un paso del plan y no un producto, el asesor entra por regla cuando la decisión lo pide, marcas de información o recomendación y pantalla nueva "Cómo funciona tu arquitecto". Aplicados los ajustes regulatorios a las pantallas.
+- **Diseñador:** benchmark de experiencia (`diseno/benchmark-experiencia.md`) y prototipo v5, la app del arquitecto: inicio con patrimonio y plan, revisión periódica, metas, simulador, propuesta, patrimonio y tu equipo con consultora con nombre.
 
 ## 3. Decisiones tomadas (no se revisitan)
+- **Aprobado por Carolina (17 de octubre):** el colchón es un paso del plan fuera de los productos de la entidad; el asesor certificado entra por regla cuando la decisión lo pide (por ejemplo, el aporte voluntario a la pensión obligatoria).
+- **La experiencia principal es la app como hogar del plan, no el chat** (observación de Carolina sobre v4).
 - Solo datos públicos o simulados en el repositorio y en los entregables. Los documentos internos de Carolina se usan como contexto y viven solo en su Drive.
 - Segmentos: renta masiva (hasta unos $6 millones) y renta media ($8 a $9 millones al mes). Foco: ahorro e inversión.
 - Siempre evaluar beneficios tributarios como gancho, sin depender de ellos.
@@ -39,8 +42,8 @@
 - Principio: el plan primero, el producto después.
 
 ## 4. Pendientes, en orden
-1. **Carolina:** revisar el prototipo v4 en el lienzo (fiel a la definición del concepto y con los ajustes regulatorios; ver `diseno/README.md`, sección 10), en especial el alto de L4, L6, S1 y "Mi puntaje".
-2. **Diseñador:** ajustar lo que Carolina observe en v4.
+1. **Carolina:** revisar la v5 en el lienzo (fila superior, "La app del arquitecto"; ver `diseno/README.md`, sección 11 y `diseno/benchmark-experiencia.md`). Decidir si el consultor con nombre aplica a la renta masiva.
+2. **Diseñador:** ajustar lo que Carolina observe en v5; luego preparar la prueba con usuarios sobre la app (no sobre el chat).
 3. Prueba con 5 usuarios por segmento (plan en `diseno/README.md`).
 4. **Estratega:** en la siguiente versión del concepto, cerrar el "a verificar" de la prima de diciembre (verificado) y bajar a medio el riesgo de la asesoría automatizada (control crítico #2), según `regulatorio.md` sección 10.
 5. **Desarrollador:** MVP solo cuando Carolina apruebe el diseño.
