@@ -1,9 +1,9 @@
-# CONTEXTO · 17 de octubre de 2026 (v3, noche) — Prototipo v5.2 después de dos rondas del revisor independiente; listo para que Carolina lo revise
+# CONTEXTO · 18 de octubre de 2026 (v4) — Diseño v5.2 aprobado por Carolina; sigue el desarrollo del MVP
 
-> El contexto anterior está en `historial-contextos/CONTEXTO-2026-10-17-v2.md`.
+> El contexto anterior está en `historial-contextos/CONTEXTO-2026-10-17-v3.md`.
 
 ## 0. Leer primero
-- La fábrica funciona: 4 especialistas guardados en la cuenta de Claude de Carolina (estratega, diseñador, desarrollador, experto financiero), este repositorio como memoria y la carpeta de Drive "Fabrica de diseno y desarrollo".
+- La fábrica funciona: 5 especialistas guardados en la cuenta de Claude de Carolina, con sus mejoras al día el 18 de octubre (estratega, diseñador, experto financiero, revisor independiente y desarrollador), este repositorio como memoria y la carpeta de Drive "Fabrica de diseno y desarrollo".
 - Todo especialista lee `empresa/forma-de-trabajo.md` (el documento de Carolina, v2) antes de empezar y pasa su lista de verificación (sección 6) antes de entregar.
 - **La definición que manda en todo diseño** (palabras de Carolina): *"En la banca privada, un wealth architect es el asesor que diseña el plan completo del patrimonio de una persona a partir de sus metas de vida, y no a partir de los productos que vende. Hasta hoy era un servicio reservado a pocos. La IA permite ponerlo en el bolsillo de cada afiliado, y el asesor lo completa cuando la decisión lo pide."* Antes de entregar cualquier pantalla o texto, revisar que el plan va antes que el producto y que está claro cuándo entra el asesor (`regulatorio.md`, sección 1B).
 - **Trabajo previo de Carolina:** síntesis en el Google Doc "BASE DE CONOCIMIENTO — Trabajo previo de Carolina" de la carpeta de Drive de la fábrica (https://docs.google.com/document/d/1At0uLPCUv8-b6u7XO4R8IBjPtuaNt8gRbeNzA5VmX8k/edit) y originales en la subcarpeta "Documentos arquitectura 2026 y vision 2027" (arquitectura 2026 v6, visión 2027 v9, pitch al comité v2, análisis de tendencias v3, Pronto Contextual v4.1). Se leen como contexto; no se copian a este repositorio.
@@ -35,6 +35,7 @@
 - **Fábrica v2 en uso:** el revisor independiente devolvió la v5 (7 que bloquean) y la v5.1 (2 que bloquean); el diseñador corrigió todo en v5.2 (`diseno/README.md`, sección 12). Nueva herramienta de verificación mecánica (enlaces, persona, momento, alturas, toques, marcadores, siglas) y componentes reutilizables en `empresa/activos/plantillas/`. Criterios nuevos B10, B11, C8, C9 y E4.
 
 ## 3. Decisiones tomadas (no se revisitan)
+- **Aprobado por Carolina (18 de octubre): el diseño v5.2 "quedó perfecto".** Es la base del desarrollo; no se rediseña sin una observación nueva de ella.
 - **Aprobado por Carolina (17 de octubre):** el colchón es un paso del plan fuera de los productos de la entidad; el asesor certificado entra por regla cuando la decisión lo pide (por ejemplo, el aporte voluntario a la pensión obligatoria).
 - **La experiencia principal es la app como hogar del plan, no el chat** (observación de Carolina sobre v4).
 - Solo datos públicos o simulados en el repositorio y en los entregables. Los documentos internos de Carolina se usan como contexto y viven solo en su Drive.
@@ -44,15 +45,14 @@
 - Principio: el plan primero, el producto después.
 
 ## 4. Pendientes, en orden
-0. **Carolina:** guardar las mejoras propuestas de los especialistas (diseñador y revisor en esta sesión; estratega, experto financiero y desarrollador desde la sesión anterior, si aún no se guardaron).
-1. **Carolina:** revisar la v5.2 en el lienzo. Laura empieza en "Bienvenida", arriba a la izquierda; Juliana, en su inicio, en la tercera fila (`diseno/README.md`, sección 12). Decidir si el consultor con nombre aplica a la renta masiva. Lo que ella corrija y el revisor no vio se vuelve criterio nuevo.
-2. **Diseñador:** ajustar lo que Carolina observe; luego vistas de Daniela y de los equipos comercial, remoto y de servicio, y la pantalla "Mis documentos".
-3. Prueba con 5 usuarios por segmento (plan en `diseno/README.md`, sección 12.4).
-4. **Experto financiero:** validar si el retiro de pensión voluntaria para una segunda vivienda conserva el beneficio; cerrar los cuatro puntos abiertos de `empresa/beneficios-tributarios.md`.
-5. **Estratega:** en la siguiente versión del concepto, cerrar el "a verificar" de la prima de diciembre y bajar a medio el riesgo de la asesoría automatizada, según `regulatorio.md` sección 10.
-6. **Desarrollador:** MVP solo cuando Carolina apruebe el diseño.
+1. **Desarrollador (siguiente paso):** construir el MVP a partir del diseño v5.2 aprobado (`ideas/personal-wealth-architect/diseno/`, sección 12 del README, y el lienzo), sobre `empresa/activos/` (sistema de diseño, componentes, catálogo regulatorio como datos versionados). Pasa por el experto financiero (reglas de cálculo, consentimientos, trazabilidad) y por el revisor independiente antes de llegar a Carolina.
+2. **Carolina:** decidir si el consultor con nombre aplica a la renta masiva o solo a la renta media (el MVP puede dejarlo como una opción configurable mientras tanto).
+3. **Experto financiero:** validar si el retiro de pensión voluntaria para una segunda vivienda conserva el beneficio; cerrar los cuatro puntos abiertos de `empresa/beneficios-tributarios.md`.
+4. **Diseñador (cuando el MVP lo necesite):** vistas de Daniela y de los equipos comercial, remoto y de servicio, y la pantalla "Mis documentos".
+5. Prueba con 5 usuarios por segmento (plan en `diseno/README.md`, sección 12.4), idealmente sobre el MVP.
+6. **Estratega:** en la siguiente versión del concepto, cerrar el "a verificar" de la prima de diciembre y bajar a medio el riesgo de la asesoría automatizada, según `regulatorio.md` sección 10.
 7. Validar con personas (no con la fábrica) las 11 preguntas de `regulatorio.md`, sección 9; las 6 de prioridad alta antes de cualquier piloto real.
 8. Actualizar la base de conocimiento en Drive a v2 después del deep dive del 23 de octubre.
 
 ## 5. Frase para retomar en una conversación nueva
-"Retomemos la fábrica: lee CONTEXTO.md del repositorio caro0907/Fabrica-innovacion y empecemos por el pendiente 1."
+"Retomemos la fábrica: lee CONTEXTO.md del repositorio caro0907/Fabrica-innovacion y empecemos por el pendiente 1, el desarrollo del MVP."

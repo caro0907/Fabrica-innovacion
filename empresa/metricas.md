@@ -28,7 +28,9 @@
 ## Detectado por Carolina después de pasar por el revisor
 | Fecha | Entregable | Observación | Criterio agregado |
 |---|---|---|---|
+| 18 oct 2026 | Prototipo v5.2 | Ninguna: "el prototipo quedó perfecto". Aprobado sin rondas de corrección | — |
 
 ## Lectura después del primer proyecto (17 de octubre de 2026)
 - **Detectado por la fábrica vs. por Carolina en el diseño:** desde que existe el revisor, 9 hallazgos que bloquean los encontró la fábrica y 0 Carolina (hasta su próxima revisión). Antes del revisor, los 4 desvíos de fondo los había encontrado ella.
 - **Cifras:** la segunda ronda encontró una cifra que el diseñador inventó en la corrección (la pensión de Juliana). Por eso los generadores calculan las cifras derivadas y el revisor las recalcula en código.
+- **Primer resultado medible (18 de octubre de 2026):** el diseño necesitó 4 rondas de Carolina antes del revisor y 0 después. Es un solo caso; la meta se confirma si se repite en el desarrollo y en el próximo proyecto.
