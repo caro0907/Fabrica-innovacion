@@ -27,6 +27,38 @@ La fábrica crea soluciones innovadoras: no copiamos lo que existe. Estudiamos a
 ## Activos de la fábrica
 Antes de crear algo desde cero, parte de `empresa/activos/` del repositorio: sistema de diseño (`tokens.json` y `README.md`), plantillas de pantallas de asesoría (`plantillas/`) y catálogo regulatorio base (`catalogo-regulatorio-base.md`). Si un activo no sirve, mejóralo ahí para el siguiente proyecto.
 
+## Mercado objetivo y referentes (v3 · 19 de octubre de 2026)
+**El mercado es el ahorro y la inversión de las personas, no las pensiones.** La visión de Protección es competir en el mercado ampliado de ahorro e inversión: neobancos, bancos, plataformas de inversión, fintech, asesoría y planeación digital (decisión de Carolina, 18 de octubre de 2026, en `empresa/decisiones.md`). Por eso la investigación de cada concepto **parte del mercado objetivo** y no de las otras administradoras de pensiones. Las administradoras colombianas se **monitorean** (sus lanzamientos y la reforma pensional afectan al afiliado), pero no son el mercado objetivo directo, no se investigan a fondo y no se usan como referente principal.
+
+**Por dónde empiezas:**
+1. `empresa/activos/radar-fintech-ahorro-inversion.md`: el radar del mercado objetivo, con datos y fuentes. Las cinco fintech que se investigan a fondo primero son **Nu Colombia, tyba, Lulo Bank, Nequi y trii**; en monitoreo cercano, el ahorro en dólares (Littio, Wenia, Global66, Bitso) y las cuentas y CDT de alta tasa (Ualá, Pibank, KOA); como nuevos competidores, Revolut Colombia (operación prevista desde 2027) y Mercado Pago. La sección 2 del radar trae candidatos de Brasil, México, Estados Unidos y Europa **sin verificar**: verificarlos es parte de tu trabajo.
+2. La investigación previa de Carolina en la carpeta de Drive "Fabrica de diseno y desarrollo": base de conocimiento, análisis de tendencias v3 (6 fuentes y 32 tendencias con veredicto), PRAGMA de Revolut v3, referente AFP Capital v2 y visión 2027 v9. Es el estándar de rigor y amplitud que debes igualar o superar. **Lo interno se queda en Drive:** de esos documentos, de AFP Capital y de BCG solo se cita el nombre y la lección; ninguna cifra, sistema o persona interna va al repositorio ni a un entregable.
+3. `ideas/<proyecto>/referentes.md` del proyecto anterior más cercano y los informes del vigía en `vigia/`.
+
+**Los seis grupos de referentes que siempre cubres** (en este orden; si un grupo no aplica al concepto, dilo):
+
+| Grupo | Referentes de partida | Qué buscas en cada uno |
+|---|---|---|
+| **1. Mercado objetivo: ahorro e inversión en Colombia** | Los del radar: Nu Colombia, tyba (Credicorp Capital), Lulo Bank, Nequi, trii, Hapi, Littio, Wenia, Global66, Bitso, Ualá, Pibank, KOA, DaviPlata, Bancolombia, Davivienda, BBVA Colombia, Mercado Pago, Revolut Colombia, comisionistas y fiduciarias con fondos de inversión colectiva | Cómo compiten por el ahorro y la inversión (tasa visible, bolsillos y metas, dólares, inversión de un toque) y qué tan cerca están de asesorar o planear. Es la competencia real del concepto |
+| **2. Mercado objetivo: asesoría, planeación e inversión digital en el mundo** | Nu Smart Invest e ia.i de Itaú (Brasil), BTG, XP y fintech brasileñas, Origin, Betterment, Wealthfront, Cleo, Robinhood Strategies, Wealthsimple con Conquest, DBS NAV Planner, Maxiaocai de Ant Group, Morgan Stanley, Wealth Architect, Fintual, y los candidatos de la sección 2 del radar (Trade Republic, Acorns, Klar, entre otros) | El mecanismo que hace funcionar la asesoría o la planeación a escala, si recomienda o ejecuta, y cómo maneja la idoneidad y el conflicto de interés |
+| **3. Agentes, mandatos y agentes de terceros** | El asistente AIR y el modelo PRAGMA de Revolut, el protocolo de pagos con agentes de Google (AP2), finanzas personales en ChatGPT (OpenAI), agentes de Meta en WhatsApp, Blue, The Frame y BBVA Contigo | Si un agente externo puede ver o mover el dinero del cliente, y cómo se diseñan los permisos y los límites de lo que el agente hace solo |
+| **4. Evidencia y consultoras** | BCG "Distribution Leap" (interno), Vanguard (valor del acompañamiento del comportamiento), "Save More Tomorrow", Gartner sobre proyectos con agentes | Cifras de impacto: se citan como las reporta la fuente, nunca como meta |
+| **5. Brechas a cubrir** | "Apoyo focalizado" de la Autoridad de Conducta Financiera británica (FCA, vigente desde abril de 2026), superannuation de Australia (por ejemplo, AustralianSuper), Nest y los tableros de pensiones (Pensions Dashboards) del Reino Unido, administradoras de fondos para el retiro de México (AFORES), reglas de asesoría automatizada de la Comisión para el Mercado Financiero de Chile (CMF) y la Comisión de Valores Mobiliarios de Brasil (CVM), desacumulación e ingreso para el retiro | Lo que la investigación previa aún no cubre. El apoyo focalizado británico es el referente regulatorio más cercano para la renta masiva y está pendiente de estudiar a fondo |
+| **6. Monitoreo, no mercado objetivo: administradoras de pensiones** | Porvenir, Colfondos, Skandia, Colpensiones, AFP Capital (Chile, interno), Fondo E de las AFP chilenas (lección de riesgo) | Solo si lanzan algo que cambie lo que el cliente espera (asesoría digital, puntaje, agente). Una línea en el documento si no hay novedad |
+
+**Reglas de rigor que se suman** (salen de la investigación previa de Carolina y de la revisión del 18 de octubre):
+- **Anuncio no es lanzamiento:** di si cada referente está en producción, en piloto, anunciado o solo declarado por un directivo.
+- **Lo que no se encontró es un supuesto,** no un hecho ("no aparece en las fuentes públicas revisadas").
+- **Busca los fracasos y límites** de cada referente (qué no resolvió, qué tuvo que abandonar), no solo sus logros.
+- **Explica qué mide cada cifra** (por ejemplo, una mejora relativa sobre una métrica de evento raro) antes de usarla como argumento.
+- **Lo interno se cita como "documento de Drive"**, sin cifras, con su fecha.
+- **Las tasas y precios cambian seguido:** cítalos con fecha y vuelve a consultarlos antes de usarlos.
+- **Si una oferta no está vigilada por la Superintendencia Financiera** (por ejemplo, dólares digitales), el concepto puede reconocerla como patrimonio externo con su advertencia, nunca recomendarla.
+- **Siglas:** en el documento, toda sigla va con su nombre completo la primera vez (certificado de depósito a término, CDT; inteligencia artificial, IA; administradora de fondos de pensiones, AFP; Superintendencia Financiera de Colombia; Autorregulador del Mercado de Valores) y, para el comité, sin siglas.
+- **El concepto no compite con tasa:** en Colombia el ahorro se pelea con rendimiento visible; el diferencial de la fábrica es el plan con las metas de vida de la persona.
+
+**Mantén vivo el radar:** cada fintech nueva con dato público verificado y fecha entra a `empresa/activos/radar-fintech-ahorro-inversion.md` (sección 1), y cada candidato que verifiques pasa de la sección 2 a la 1. Si un referente es del grupo 2 o 3, súmalo a `referentes.md` del proyecto.
+
 ## El método de Carolina (léelo antes de empezar)
 Lee completo `empresa/forma-de-trabajo.md` del repositorio de la fábrica antes del primer entregable: es el documento de Carolina sobre cómo piensa, escribe y decide, con sus marcos (ecuación de relevancia, motor de tres dimensiones, cerebro de seis capacidades, gemelo foto-simulación-película, modelo 3×5, escalera de delegación, journey de ocho fases, olas, OKR, horizontes), sus errores corregidos y su lista de verificación. Lo esencial:
 - **Criterio propio.** Las tendencias, consultoras y expertos complementan y retan la propuesta; no deciden. Lo que no tiene valor queda "sin aplicar", con la razón.
@@ -46,7 +78,7 @@ Lee completo `empresa/forma-de-trabajo.md` del repositorio de la fábrica antes 
 ## Estándar mínimo de profundidad (no negociable)
 
 **Investigación**
-- Mínimo 15 referentes, distribuidos en los cinco frentes. Al menos 4 deben ser **retadores**: neobancos, bancos que se reinventan, big tech o super apps, y gigantes asiáticos (por ejemplo, Revolut, Nubank, BBVA, DBS, Ant Group, Robinhood, Wealthsimple, Mercado Pago).
+- Mínimo 15 referentes, distribuidos en los cinco frentes y en los grupos 1 a 5 de la sección "Mercado objetivo y referentes" (el grupo 6 va en una línea). **Al menos la mitad deben ser del mercado objetivo** (grupos 1 y 2: fintech, neobancos, plataformas de inversión, asesoría y planeación digital), y al menos 5 del mercado colombiano de ahorro e inversión (radar). Al menos 4 deben ser **retadores**: neobancos, bancos que se reinventan, big tech o super apps, y gigantes asiáticos (por ejemplo, Revolut, Nubank, Itaú, BBVA, DBS, Ant Group, Robinhood, Wealthsimple, Mercado Pago). Las administradoras de pensiones del grupo 6 no cuentan para el mínimo.
 - Lee las fuentes primarias completas (WebFetch). No concluyas desde fragmentos de búsqueda. Haz búsquedas separadas por referente y por frente; triangula las cifras clave con al menos dos fuentes cuando sea posible.
 - Cada referente lleva: **cifra de resultado** (usuarios, activos, conversión, adopción), **mecanismo** (por qué funciona, no qué parece), **qué valida** de nuestro concepto, **qué no aplica** aquí, y **fuente con fecha**. Prioriza lanzamientos de los últimos 12 a 24 meses.
 - Si un referente no tiene cifra pública, dilo; no lo rellenes.
@@ -80,7 +112,7 @@ Lee completo `empresa/forma-de-trabajo.md` del repositorio de la fábrica antes 
 ## Flujo
 
 ### 1. Entender la necesidad
-Define quién tiene la necesidad, en qué momento, qué intenta lograr, qué se lo impide y qué hace hoy en su lugar (incluida la competencia no obvia: neobancos, informalidad, no hacer nada). Si falta algo esencial, haz máximo 3 preguntas. Si no, avanza y declara los supuestos.
+Define quién tiene la necesidad, en qué momento, qué intenta lograr, qué se lo impide y qué hace hoy en su lugar (incluida la competencia no obvia: neobancos, bolsillos y cajitas de alta tasa, ahorro en dólares, apps de inversión de un toque, asistentes de IA generales, informalidad, no hacer nada). Si falta algo esencial, haz máximo 3 preguntas. Si no, avanza y declara los supuestos.
 
 ### 2. Investigación de referentes globales
 Cubre los cinco frentes con búsquedas separadas:
@@ -88,7 +120,7 @@ Cubre los cinco frentes con búsquedas separadas:
 - **Retadores**: neobancos, bancos que se reinventan, big tech y super apps.
 - **Industrias adyacentes**: quién resolvió un problema equivalente en otro sector (salud, retail, telecomunicaciones, gaming, movilidad). Ahí suelen estar las ideas más originales.
 - **Startups y lanzamientos recientes** (12 a 24 meses), con rondas de inversión como señal de mercado.
-- **Tendencias, tecnologías y regulación habilitadora**, y **Colombia y LatAm**: qué existe localmente.
+- **Tendencias, tecnologías y regulación habilitadora**, y **Colombia y América Latina**: qué existe localmente, empezando por el radar de fintech de ahorro e inversión. Las administradoras de pensiones van al final, solo como monitoreo.
 
 Entrega la **tabla de referentes** con el estándar de arriba y la **matriz de piezas**.
 
@@ -120,6 +152,11 @@ Cambia de rol a abogado del diablo:
 ### 7. Autoevaluación antes de entregar
 Revisa contra esta lista y corrige lo que falle:
 - ¿Hay al menos 15 referentes con cifra, mecanismo, qué valida y fuente con fecha?
+- ¿La investigación partió del mercado objetivo (ahorro e inversión) y no de las administradoras de pensiones? ¿Al menos la mitad de los referentes son de los grupos 1 y 2, y al menos 5 del radar colombiano?
+- ¿Cubrí los seis grupos de referentes (o dije por qué uno no aplica)? Es el criterio A6 del revisor.
+- ¿Partí del radar y de la investigación previa en Drive, sin copiar al repositorio nada interno?
+- ¿Marqué en cada referente si está en producción, en piloto o solo anunciado, y sus límites o fracasos?
+- ¿Actualicé el radar con las fintech nuevas que verifiqué?
 - ¿Leí las fuentes primarias o me quedé en titulares?
 - ¿Cada afirmación importante tiene fuente o está marcada como supuesto?
 - ¿El concepto tiene principio rector, rasgos, promesas, frase con números y journey con diálogos?
@@ -132,7 +169,7 @@ Revisa contra esta lista y corrige lo que falle:
 - ¿Carolina aprendería algo que no sabía? Si no, no está terminado.
 
 ### 8. Entregar
-Guarda en el repositorio de la fábrica (`ideas/<nombre-corto>/`): `concepto.md` (documento de concepto), `brief.md` (brief táctico), `referentes.md` (tabla, matriz y fuentes). Versiona: cada iteración relevante sube de versión y deja una línea con qué cambió. Si el documento se va a presentar, ofrece una versión visual.
+Guarda en el repositorio de la fábrica (`ideas/<nombre-corto>/`): `concepto.md` (documento de concepto), `brief.md` (brief táctico), `referentes.md` (tabla, matriz y fuentes). Actualiza `empresa/activos/radar-fintech-ahorro-inversion.md` con lo que verificaste del mercado objetivo. Versiona: cada iteración relevante sube de versión y deja una línea con qué cambió. Si el documento se va a presentar, ofrece una versión visual.
 
 
 ## Compuerta del revisor (obligatoria antes de entregar a Carolina)
@@ -143,6 +180,12 @@ Guarda en el repositorio de la fábrica (`ideas/<nombre-corto>/`): `concepto.md`
 5. Si Carolina corrige algo que el revisor no vio, agrega un criterio a `empresa/criterios-de-revision.md` (pregunta, cómo se ve la falla, origen) y regístralo en `empresa/metricas.md` como "detectado por Carolina". Así su corrección cambia la fábrica, no solo el documento.
 
 Si no hay herramienta de subagentes, dilo en la entrega: la revisión se hizo en la misma conversación y vale menos.
+
+## Pendientes heredados para el próximo concepto (del vigía y la revisión del 18 y 19 de octubre de 2026)
+- Sumar a `referentes.md` del Personal Wealth Architect: el agente de inversiones e ia.i de Itaú (recomienda y ejecuta con idoneidad), finanzas personales en ChatGPT (agentes de terceros ya masivos en Estados Unidos) y Blue y The Frame de BBVA.
+- Investigar a fondo las cinco fintech prioritarias del radar y verificar los candidatos de su sección 2.
+- Estudiar el "apoyo focalizado" británico como figura regulatoria intermedia entre información y recomendación, frente a los productos simples masivos de la Circular Externa 14 de 2025.
+- Actualizar la fila de Nu Smart Invest con lo verificado el 15 de octubre (gratis, desde R$1, no ejecuta, conectará otras entidades por finanzas abiertas).
 
 ## Siguiente paso
 Si el veredicto es AVANZAR y Carolina lo aprueba, el brief pasa al especialista `fabrica-disenador`.

@@ -31,6 +31,7 @@
 | 19 oct 2026 | MVP v1.1 (segunda ronda, última) | DEVUELVE → va a Carolina con lo abierto a la vista | 2 (6 que no bloquean) | De los 14 que bloqueaban o eran de prioridad alta, 12 resueltos y 2 parciales: textos fijos que suponen la casa como prioridad (A7) y error al retirar el permiso después de aprobar (C10). Ambos aparecen solo fuera del camino de demostración. Corregidos después, sin tercera ronda, con 3 pruebas de caminos alternos. Propuso C11 (`revisiones/2026-10-19-mvp-v1.1.md`) |
 | 19 oct 2026 | Radar de fintech de ahorro e inversión v1 y experto financiero v5 | DEVUELVE | 2 (5 que no bloquean) | Revolut sin fuente ni fecha; ronda de Ualá sin fecha. Faltaba el orden de prioridad |
 | 19 oct 2026 | Radar de fintech v1.1 (segunda ronda) | PASA | 0 (2 que no bloquean, aplicados) | — |
+| 19 oct 2026 | Skill del estratega v3 | PASA | 0 (6 que no bloquean, aplicados) | Nada de la v2 se perdió; se igualó la tabla de referentes con la del experto financiero |
 
 ## Detectado por Carolina después de pasar por el revisor
 | Fecha | Entregable | Observación | Criterio agregado |
