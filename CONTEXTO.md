@@ -1,12 +1,13 @@
-# CONTEXTO · 18 de octubre de 2026 (v4) — Diseño v5.2 aprobado por Carolina; sigue el desarrollo del MVP
+# CONTEXTO · 19 de octubre de 2026 (v5) — Diseño v5.2 aprobado; el mercado objetivo es el ahorro y la inversión; sigue el desarrollo del MVP
 
-> El contexto anterior está en `historial-contextos/CONTEXTO-2026-10-17-v3.md`.
+> El contexto anterior está en `historial-contextos/CONTEXTO-2026-10-18-v4.md`.
 
 ## 0. Leer primero
 - La fábrica funciona: 5 especialistas guardados en la cuenta de Claude de Carolina, con sus mejoras al día el 18 de octubre (estratega, diseñador, experto financiero, revisor independiente y desarrollador), este repositorio como memoria y la carpeta de Drive "Fabrica de diseno y desarrollo".
 - Todo especialista lee `empresa/forma-de-trabajo.md` (el documento de Carolina, v2) antes de empezar y pasa su lista de verificación (sección 6) antes de entregar.
 - **La definición que manda en todo diseño** (palabras de Carolina): *"En la banca privada, un wealth architect es el asesor que diseña el plan completo del patrimonio de una persona a partir de sus metas de vida, y no a partir de los productos que vende. Hasta hoy era un servicio reservado a pocos. La IA permite ponerlo en el bolsillo de cada afiliado, y el asesor lo completa cuando la decisión lo pide."* Antes de entregar cualquier pantalla o texto, revisar que el plan va antes que el producto y que está claro cuándo entra el asesor (`regulatorio.md`, sección 1B).
 - **Trabajo previo de Carolina:** síntesis en el Google Doc "BASE DE CONOCIMIENTO — Trabajo previo de Carolina" de la carpeta de Drive de la fábrica (https://docs.google.com/document/d/1At0uLPCUv8-b6u7XO4R8IBjPtuaNt8gRbeNzA5VmX8k/edit) y originales en la subcarpeta "Documentos arquitectura 2026 y vision 2027" (arquitectura 2026 v6, visión 2027 v9, pitch al comité v2, análisis de tendencias v3, Pronto Contextual v4.1). Se leen como contexto; no se copian a este repositorio.
+- **El mercado objetivo es el ahorro y la inversión ampliados** (decisión de Carolina, 18 y 19 de octubre): neobancos, bancos, plataformas de inversión, fintech y asesoría digital. Las administradoras de pensiones colombianas solo se monitorean. Toda investigación parte de `empresa/activos/radar-fintech-ahorro-inversion.md` (prioridad: Nu Colombia, tyba, Lulo Bank, Nequi y trii).
 - **Al retomar:** leer este archivo, preguntar a Carolina qué definió desde la última sesión y seguir con el pendiente 1. (En la sesión del 17 de octubre en la noche se le preguntó y no alcanzó a responder antes de que se hiciera la revisión.)
 
 ## 1. Documentos vigentes
@@ -23,6 +24,8 @@
 | 27 referentes y matriz | `ideas/personal-wealth-architect/referentes.md` |
 | Diseño y copia del prototipo | `ideas/personal-wealth-architect/diseno/` |
 | Prototipo editable (v5.2) | Artefacto de diseño "Personal Wealth Architect · Prototipo v5.2": https://claude.ai/artifact/9MVrnadPTUq5rhxkSjFxAR (38 pantallas en 4 filas: Laura el 1 de junio, Laura el 15 de junio, Juliana el 23 de noviembre y vistas internas; copia en `diseno/prototipo/`; v3, v5.0 y v5.1 en `diseno/versiones-anteriores/`) |
+| **Radar de fintech de ahorro e inversión v1.1 (nuevo)** | `empresa/activos/radar-fintech-ahorro-inversion.md` |
+| **Informes del vigía semanal (nuevo)** | `vigia/` (primero: `vigia/2026-10-18.md`) |
 | Criterios del revisor, métricas y verificador | `empresa/criterios-de-revision.md`, `empresa/metricas.md`, `empresa/activos/plantillas/verificar-prototipo.py` |
 
 ## 2. Lo trabajado en esta sesión
@@ -34,6 +37,12 @@
 - **Diseñador:** benchmark de experiencia (`diseno/benchmark-experiencia.md`) y prototipo v5, la app del arquitecto: inicio con patrimonio y plan, revisión periódica, metas, simulador, propuesta, patrimonio y tu equipo con consultora con nombre.
 - **Fábrica v2 en uso:** el revisor independiente devolvió la v5 (7 que bloquean) y la v5.1 (2 que bloquean); el diseñador corrigió todo en v5.2 (`diseno/README.md`, sección 12). Nueva herramienta de verificación mecánica (enlaces, persona, momento, alturas, toques, marcadores, siglas) y componentes reutilizables en `empresa/activos/plantillas/`. Criterios nuevos B10, B11, C8, C9 y E4.
 
+## 2B. Lo trabajado el 18 y 19 de octubre (vigía y especialistas)
+- **Primer vigía semanal** (`vigia/2026-10-18.md`): nada exige decisión ni cambia el diseño v5.2. La fecha de la reforma pensional (1 de abril de 2027) sigue en firme pero está en duda (incidente de impacto fiscal abierto el 14 de octubre; Colpensiones pidió aplazar a 2028; la Cámara corrige 9 artículos hasta el 29 de octubre). Recomendación para el MVP: fecha y reglas de la reforma como datos versionados del catálogo. Finanzas abiertas: el Decreto 1489 de 2026 corrió el cronograma de la Superintendencia al 7 de abril de 2027. Nu Smart Invest se lanzó en Brasil el 15 de octubre.
+- **Experto financiero v5 y estratega v3** (guardados en la cuenta de Carolina; respaldo en `empresa/especialistas/`): seis grupos de referentes con el mercado objetivo primero, estándar de rigor tomado de la investigación previa en Drive, radar de fintech y vigía por grupo.
+- **Revisión de la investigación previa en Drive:** amplia y rigurosa; le faltan referentes de pensiones fuera de América Latina, de desacumulación y de reguladores de otros países.
+- **Criterio nuevo A6** (detectado por Carolina): toda comparación con el mercado cubre todos los grupos de referentes.
+
 ## 3. Decisiones tomadas (no se revisitan)
 - **Aprobado por Carolina (18 de octubre): el diseño v5.2 "quedó perfecto".** Es la base del desarrollo; no se rediseña sin una observación nueva de ella.
 - **Aprobado por Carolina (17 de octubre):** el colchón es un paso del plan fuera de los productos de la entidad; el asesor certificado entra por regla cuando la decisión lo pide (por ejemplo, el aporte voluntario a la pensión obligatoria).
@@ -43,6 +52,7 @@
 - Siempre evaluar beneficios tributarios como gancho, sin depender de ellos.
 - Supuesto de trabajo: asesoría completamente automatizada (a validar con el Autorregulador del Mercado de Valores; ahora con base en la Circular Externa 14 de 2025).
 - Principio: el plan primero, el producto después.
+- **Mercado objetivo (18 y 19 de octubre):** ahorro e inversión ampliados; las administradoras de pensiones son monitoreo, no mercado objetivo. El arquitecto no compite con tasa.
 
 ## 4. Pendientes, en orden
 1. **Desarrollador (siguiente paso):** construir el MVP a partir del diseño v5.2 aprobado (`ideas/personal-wealth-architect/diseno/`, sección 12 del README, y el lienzo), sobre `empresa/activos/` (sistema de diseño, componentes, catálogo regulatorio como datos versionados). Pasa por el experto financiero (reglas de cálculo, consentimientos, trazabilidad) y por el revisor independiente antes de llegar a Carolina.
@@ -53,6 +63,9 @@
 6. **Estratega:** en la siguiente versión del concepto, cerrar el "a verificar" de la prima de diciembre y bajar a medio el riesgo de la asesoría automatizada, según `regulatorio.md` sección 10.
 7. Validar con personas (no con la fábrica) las 11 preguntas de `regulatorio.md`, sección 9; las 6 de prioridad alta antes de cualquier piloto real.
 8. Actualizar la base de conocimiento en Drive a v2 después del deep dive del 23 de octubre.
+9. **Estratega (próximo concepto):** investigar a fondo las cinco fintech prioritarias del radar, verificar los candidatos de otros países, estudiar el "apoyo focalizado" británico y sumar Itaú, ChatGPT finanzas y BBVA a `referentes.md` (pendientes heredados en su skill).
+10. **Vigía:** el 30 de octubre, ver si la Cámara corrigió la reforma pensional a tiempo; a comienzos de diciembre, si Hacienda sustentó el incidente de impacto fiscal. Confirmar con fuente primaria el cierre de la ventana de traslado (16 de julio de 2026) antes del MVP.
+11. **Desarrollador:** en el MVP, la fecha y el umbral del régimen de transición de la reforma pensional salen del catálogo como datos versionados; un inventario de agentes con su límite de acción (referente: The Frame de BBVA).
 
 ## 5. Frase para retomar en una conversación nueva
 "Retomemos la fábrica: lee CONTEXTO.md del repositorio caro0907/Fabrica-innovacion y empecemos por el pendiente 1, el desarrollo del MVP."
