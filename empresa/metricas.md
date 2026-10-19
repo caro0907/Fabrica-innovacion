@@ -27,6 +27,8 @@
 | 18 oct 2026 | Vigía semanal `vigia/2026-10-18.md` | PASA | 0 (5 que no bloquean, aplicados) | Primera revisión de un informe del vigía |
 | 18 oct 2026 | Experto financiero v3 y sección 2.3 del vigía (referentes ampliados) | DEVUELVE | 1 (5 que no bloquean) | La revisión ampliada dejaba fuera, sin decirlo, 2 de los 6 grupos de referentes |
 | 18 oct 2026 | Experto financiero v3 y sección 2.3 (segunda ronda) | PASA | 0 (3 que no bloquean, aplicados) | — |
+| 19 oct 2026 | Radar de fintech de ahorro e inversión v1 y experto financiero v5 | DEVUELVE | 2 (5 que no bloquean) | Revolut sin fuente ni fecha; ronda de Ualá sin fecha. Faltaba el orden de prioridad |
+| 19 oct 2026 | Radar de fintech v1.1 (segunda ronda) | PASA | 0 (2 que no bloquean, aplicados) | — |
 
 ## Detectado por Carolina después de pasar por el revisor
 | Fecha | Entregable | Observación | Criterio agregado |
