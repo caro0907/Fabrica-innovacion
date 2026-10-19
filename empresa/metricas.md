@@ -29,6 +29,7 @@
 | 18 oct 2026 | Experto financiero v3 y sección 2.3 (segunda ronda) | PASA | 0 (3 que no bloquean, aplicados) | — |
 | 19 oct 2026 | Radar de fintech de ahorro e inversión v1 y experto financiero v5 | DEVUELVE | 2 (5 que no bloquean) | Revolut sin fuente ni fecha; ronda de Ualá sin fecha. Faltaba el orden de prioridad |
 | 19 oct 2026 | Radar de fintech v1.1 (segunda ronda) | PASA | 0 (2 que no bloquean, aplicados) | — |
+| 19 oct 2026 | Skill del estratega v3 | PASA | 0 (6 que no bloquean, aplicados) | Nada de la v2 se perdió; se igualó la tabla de referentes con la del experto financiero |
 
 ## Detectado por Carolina después de pasar por el revisor
 | Fecha | Entregable | Observación | Criterio agregado |
