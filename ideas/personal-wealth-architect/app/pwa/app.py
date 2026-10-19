@@ -115,6 +115,7 @@ def vars_catalogo(e: dict) -> dict:
         "edad": p["pension"]["edad_pension"],
         "brecha": p["pension"]["brecha_txt"],
         "reglas": "las reglas de hoy, porque conservarías el régimen de transición" if p["pension"]["conserva_reglas_de_hoy"] else "las reglas de la reforma pensional",
+        "fecha_reforma": S.REFORMA_PENSIONAL["fecha_texto"],
         "puntaje": f"{p['puntaje']}",
         "accion": p["lo_que_mas_mueve"]["accion"].lower(),
     }

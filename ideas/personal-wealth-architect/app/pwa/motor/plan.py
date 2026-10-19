@@ -12,7 +12,7 @@ from . import calculos as C
 from . import supuestos as S
 from .formato import millones, pesos, miles, meses_txt
 
-FECHA_REFORMA = date(2027, 4, 1)
+FECHA_REFORMA = S.REFORMA_PENSIONAL["fecha_vigencia"]
 
 
 def _anios_plazo(texto: str) -> int | None:

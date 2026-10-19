@@ -7,8 +7,9 @@ Estado: propuestos por la fábrica para el MVP con datos ficticios. Los valores 
 rentabilidad, comisión y caída en un mal año los debe aprobar cumplimiento
 (regulatorio.md, sección 9, pregunta 8) antes de cualquier piloto real.
 """
+from datetime import date
 
-VERSION = "supuestos-2026.10-mvp1"
+VERSION = "supuestos-2026.10-mvp1.1"
 
 # Pensión obligatoria (ahorro individual) -----------------------------------
 EDAD_PENSION = {"mujer": 57, "hombre": 62}
@@ -17,8 +18,18 @@ PORCENTAJE_A_CUENTA_INDIVIDUAL = 0.115
 RENTABILIDAD_REAL_ANUAL = 0.04          # neta de comisiones, en pesos de hoy
 MESADAS_POR_ANIO = 13
 ANIOS_DE_PENSION = 30
-SEMANAS_TRANSICION = {"mujer": 750, "hombre": 900}   # al 1 de abril de 2027
-FECHA_REFORMA = "1 de abril de 2027"
+SEMANAS_TRANSICION = {"mujer": 750, "hombre": 900}   # a la fecha de entrada en vigor de la reforma
+# Reforma pensional como dato versionado (recomendación de la vigía del 18 de octubre de 2026):
+# si la fecha o las reglas cambian, se cambia aquí y todas las pantallas y textos del catálogo se actualizan.
+REFORMA_PENSIONAL = {
+    "norma": "Ley 2381 de 2024",
+    "fecha_vigencia": date(2027, 4, 1),
+    "fecha_texto": "1 de abril de 2027",
+    "fuente": "Sentencia C-264 de 2026 (regulatorio.md, sección 1)",
+    "estado_al": "2026-10-18",
+    "vigilar": "Incidente de impacto fiscal abierto el 14 de octubre de 2026; por sí solo no cambia la fecha (vigia/2026-10-18.md)",
+}
+FECHA_REFORMA = REFORMA_PENSIONAL["fecha_texto"]
 
 # Colchón ---------------------------------------------------------------------
 MESES_COLCHON_SANO = 3

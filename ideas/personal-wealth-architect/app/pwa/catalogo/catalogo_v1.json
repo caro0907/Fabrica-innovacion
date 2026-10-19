@@ -1,5 +1,5 @@
 {
-  "version": "catalogo-1.0-2026-10-17",
+  "version": "catalogo-1.1-2026-10-18",
   "fuente": "ideas/personal-wealth-architect/regulatorio.md, sección 5 (v1, 17 de octubre de 2026)",
   "estado": "Propuesto por la fábrica, pendiente de aprobación de cumplimiento",
   "piezas": {
@@ -196,7 +196,7 @@
     },
     "A4": {
       "tipo": "advertencia",
-      "texto": "Las reglas de la pensión cambian con la reforma pensional desde el 1 de abril de 2027; este cálculo usa {reglas}."
+      "texto": "Las reglas de la pensión cambian con la reforma pensional desde el {fecha_reforma}; este cálculo usa {reglas}."
     },
     "A5": {
       "tipo": "advertencia",
