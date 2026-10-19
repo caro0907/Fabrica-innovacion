@@ -27,6 +27,8 @@
 | 18 oct 2026 | Vigía semanal `vigia/2026-10-18.md` | PASA | 0 (5 que no bloquean, aplicados) | Primera revisión de un informe del vigía |
 | 18 oct 2026 | Experto financiero v3 y sección 2.3 del vigía (referentes ampliados) | DEVUELVE | 1 (5 que no bloquean) | La revisión ampliada dejaba fuera, sin decirlo, 2 de los 6 grupos de referentes |
 | 18 oct 2026 | Experto financiero v3 y sección 2.3 (segunda ronda) | PASA | 0 (3 que no bloquean, aplicados) | — |
+| 18 oct 2026 | MVP v1 del Personal Wealth Architect (revisor y experto financiero, agentes aparte) | DEVUELVE | 4 del revisor (10 que no bloquean) y 10 de prioridad alta del experto (14 media, 3 baja) | Primera revisión de código. Las cifras de Laura cuadraban; fallaban coherencia de textos, consentimientos, idoneidad y el permiso del salario. Propuso A7, B12 y C10 (`ideas/personal-wealth-architect/revisiones/2026-10-18-mvp-v1.md`) |
+| 19 oct 2026 | MVP v1.1 (segunda ronda, última) | DEVUELVE → va a Carolina con lo abierto a la vista | 2 (6 que no bloquean) | De los 14 que bloqueaban o eran de prioridad alta, 12 resueltos y 2 parciales: textos fijos que suponen la casa como prioridad (A7) y error al retirar el permiso después de aprobar (C10). Ambos aparecen solo fuera del camino de demostración. Corregidos después, sin tercera ronda, con 3 pruebas de caminos alternos. Propuso C11 (`revisiones/2026-10-19-mvp-v1.1.md`) |
 | 19 oct 2026 | Radar de fintech de ahorro e inversión v1 y experto financiero v5 | DEVUELVE | 2 (5 que no bloquean) | Revolut sin fuente ni fecha; ronda de Ualá sin fecha. Faltaba el orden de prioridad |
 | 19 oct 2026 | Radar de fintech v1.1 (segunda ronda) | PASA | 0 (2 que no bloquean, aplicados) | — |
 
@@ -35,6 +37,10 @@
 |---|---|---|---|
 | 18 oct 2026 | Prototipo v5.2 | Ninguna: "el prototipo quedó perfecto". Aprobado sin rondas de corrección | — |
 | 18 oct 2026 | Vigía semanal | La evaluación debía usar todos los referentes de su investigación previa en Drive, no solo los nombrados en la instrucción | A6 |
+
+## Lectura del desarrollo (19 de octubre de 2026)
+- **Lo que aprendió la fábrica:** en el código, los errores ya no están en las cifras (cuadraron en las dos rondas) sino en los caminos que la demostración no recorre: otra prioridad, otro perfil, un permiso retirado. Por eso C11 pide probar caminos alternos, y el revisor los encontró escribiendo sus propios recorridos.
+- **Pendiente de medir:** si Carolina encuentra algo que las dos rondas no vieron, se registra arriba como "detectado por Carolina".
 
 ## Lectura después del primer proyecto (17 de octubre de 2026)
 - **Detectado por la fábrica vs. por Carolina en el diseño:** desde que existe el revisor, 9 hallazgos que bloquean los encontró la fábrica y 0 Carolina (hasta su próxima revisión). Antes del revisor, los 4 desvíos de fondo los había encontrado ella.

@@ -30,9 +30,15 @@
 </section>
 <section class="tarjeta ambar">
   <span class="cejilla">Lo que no te propongo todavía</span>
+  {% if plan.casa and plan.casa.es_prioridad %}
   <span style="font-size:14px">Invertir para tu pensión. Tu casa sí avanza porque es tu meta más importante y su plazo es largo. Tu pensión la vemos en diciembre, con tu colchón más completo.</span>
+  {% else %}
+  <span style="font-size:14px">Invertir el resto de tu prima: queda en tu cuenta. Tu meta más importante, {{ plan.prioridad_txt }}, la vemos en tu revisión de diciembre con tu colchón más completo{% if plan.casa %}; tu casa espera mientras tanto{% endif %}.</span>
+  {% endif %}
 </section>
-<a class="boton" href="/propuesta">Ver mi propuesta</a>
+{% if 'casa_con_prima' in dec.cola|map(attribute='accion')|list %}<a class="boton" href="/propuesta">Ver mi propuesta</a>{% endif %}
+{% elif restr %}
+<div class="tarjeta ambar">{{ c.piezas(restr.piezas, restr.textos, False) }}</div>
 {% else %}
 <div class="tarjeta verde"><strong style="color:var(--accion)">Nada que proponerte hoy: tu plan va en orden.</strong></div>
 {% endif %}

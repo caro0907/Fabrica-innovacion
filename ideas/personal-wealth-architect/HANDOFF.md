@@ -1,6 +1,6 @@
 # Traspaso a producción: el MVP prueba que un arquitecto de patrimonio puede armar el plan primero y recomendar después, con reglas que se cumplen en el código
 
-**Personal Wealth Architect · MVP v1.1 · 19 de octubre de 2026 · Especialista: desarrollador de la fábrica.** Parte del diseño v5.2 aprobado por Carolina (`diseno/README.md`, sección 12), del concepto v5.1 y de `regulatorio.md` v1. Código en `app/`. La v1.1 corrige lo que devolvieron el revisor y el experto financiero el 18 de octubre (`revisiones/2026-10-18-mvp-v1.md`); el detalle está en la sección 9.
+**Personal Wealth Architect · MVP v1.1 · 19 de octubre de 2026 · Especialista: desarrollador de la fábrica.** Revisión independiente: dos rondas; la segunda devolvió 2 hallazgos en caminos alternos, corregidos después sin tercera ronda (`revisiones/2026-10-19-mvp-v1.1.md`). Parte del diseño v5.2 aprobado por Carolina (`diseno/README.md`, sección 12), del concepto v5.1 y de `regulatorio.md` v1. Código en `app/`. La v1.1 corrige lo que devolvieron el revisor y el experto financiero el 18 de octubre (`revisiones/2026-10-18-mvp-v1.md`); el detalle está en la sección 9.
 
 > **Estado:** MVP para pruebas con usuarios. Nada está en operación, ninguna persona ni cifra es real y nada mueve dinero. Las cifras ficticias (comisión, caída en un mal año) están marcadas en pantalla.
 
@@ -16,7 +16,7 @@ Un afiliado ficticio recorre la asesoría integral como en banca privada, y el m
 | Vistas internas | El consultor ve el mismo plan, el brief de enganche y el de profundización; el motor muestra los cinco campos, la cola, la traza capa por capa, los escenarios con su ciclo de vida, el freno y el registro | Todo queda registrado con versiones de motor, supuestos y catálogo |
 
 ## 2. Cómo correrlo
-**Local:** ver `app/README.md` (`PWA_INTERNO_ABIERTO=1 uvicorn pwa.app:app`, `python -m pytest`: 71 pruebas que pasan).
+**Local:** ver `app/README.md` (`PWA_INTERNO_ABIERTO=1 uvicorn pwa.app:app`, `python -m pytest`: 74 pruebas que pasan).
 
 **Railway (lo conecta Carolina, una vez):**
 1. En Railway, *New Project → Deploy from GitHub repo* → `caro0907/Fabrica-innovacion`, rama `main` (después de aprobar el pull request).
@@ -127,4 +127,6 @@ El prototipo mostraba cifras ilustrativas; el MVP las calcula. Ninguna cambia el
 | Prioridad media | H11 registro del diagnóstico y del texto de cada permiso · H12 sin promesas de correo · H13 quién hace la recomendación (A9) · H14 "frases del catálogo, pendientes de aprobación" · H15 patrones prohibidos ampliados y cifras en letras en los puentes · H16 festivos de 2026 y conteo semanal de contactos · H18 sin penalizar la comisión de la obligatoria · H19 escenario malo con la caída de un mal año · H20 probable obligación de declarar (Laura, $100.400 por encima del tope) · H21 constancia de terminación y condición del Mecanismo de Protección al Cesante · H22 sin régimen de transición no hay mesada · H23 supuestos completos de la pensión | Una prueba por hallazgo en `tests/` |
 | Prioridad baja y no bloqueantes | H24 sin "al año" repetido · H25 la pensión propuesta y el deslizador arrancan en la misma cifra ($3,0 M) · H26 tono sin "cifras redondas" · H27 y revisor: vistas internas cerradas sin clave y cookie sin la clave · porqué del brief según la acción · canal sin aviso no enviado · fechas en español · huella visible · precios con cita y fecha de consulta | Pruebas de flujo y revisión en navegador (29 pantallas, 0 problemas) |
 
-**Lo que sigue abierto:** vistas de los equipos comercial, remoto y de servicio y "Mis documentos" (pendiente 4, diseñador); textos fijos de plantillas que no salen del catálogo (las pruebas los revisan contra las frases prohibidas, pero no son piezas versionadas); la pregunta 12 a jurídico sobre el vehículo.
+**Después de la segunda ronda del revisor (sin tercera revisión):** la inversión para la casa solo se recomienda si la casa es la meta más importante, y todos los textos salen de la prioridad real; con un restrictivo, la persona ve el motivo con una pieza del catálogo (P4 o P11); retirar el permiso después de aprobar ya no rompe nada, pausa la regla y lo dice; el inicio muestra el siguiente paso del motor. Pruebas de caminos alternos (criterio C11): otra prioridad, deuda cara y permiso retirado después de aprobar.
+
+**Lo que sigue abierto:** el tope de $1.000.000 está implementado y probado (`propuesta_de_la_regla`), pero la regla no se dispara en el MVP porque diciembre no se simula; vistas de los equipos comercial, remoto y de servicio y "Mis documentos" (pendiente 4, diseñador); textos fijos de plantillas que no salen del catálogo (las pruebas los revisan contra las frases prohibidas, pero no son piezas versionadas); la pregunta 12 a jurídico sobre el vehículo.

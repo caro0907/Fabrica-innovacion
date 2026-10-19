@@ -7,7 +7,7 @@ Aplicación web del arquitecto de patrimonio con datos ficticios: la primera reu
 cd ideas/personal-wealth-architect/app
 pip install -r requirements-dev.txt
 PWA_INTERNO_ABIERTO=1 uvicorn pwa.app:app --reload --port 8000   # abre http://localhost:8000
-python -m pytest                              # 71 pruebas
+python -m pytest                              # 74 pruebas
 ```
 Revisión en navegador real (capturas y toques de 44 px):
 ```bash

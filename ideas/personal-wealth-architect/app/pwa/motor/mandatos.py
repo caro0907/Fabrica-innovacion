@@ -31,6 +31,7 @@ PAUSAS_AUTOMATICAS = [
     "Pérdida de empleo o fin de la cotización",
     "Queja abierta",
     "Perfil vencido",
+    "Sin permiso para estimar tu prima",
 ]
 PAUSAS_PARA_PRODUCCION = [
     "Cambio de la ley que afecte el beneficio",
@@ -139,6 +140,8 @@ def revisar_pausas(m: Mandato, estado_afiliado: dict, perfil_vigente: bool, hoy:
         return pausar(m, PAUSAS_AUTOMATICAS[1], hoy)
     if not perfil_vigente:
         return pausar(m, PAUSAS_AUTOMATICAS[2], hoy)
+    if estado_afiliado.get("sin_ingreso"):
+        return pausar(m, PAUSAS_AUTOMATICAS[3], hoy)
     return m
 
 

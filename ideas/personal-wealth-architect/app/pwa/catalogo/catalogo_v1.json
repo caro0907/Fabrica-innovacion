@@ -1,5 +1,5 @@
 {
-  "version": "catalogo-1.2-2026-10-19",
+  "version": "catalogo-1.3-2026-10-19",
   "fuente": "ideas/personal-wealth-architect/regulatorio.md, sección 5 (v1, 17 de octubre de 2026), con los ajustes de la revisión del MVP v1 (revisiones/2026-10-18-mvp-v1.md)",
   "estado": "Propuesto por la fábrica, pendiente de aprobación de cumplimiento",
   "piezas": {
@@ -260,6 +260,11 @@
     "A9": {
       "tipo": "advertencia",
       "texto": "Te la hace una herramienta tecnológica de tu administradora de fondos, que la entidad autorizó y supervisa, con tu perfil del {fecha_perfil}. {consultor} puede revisarla contigo antes de que decidas."
+    },
+    "P11": {
+      "tipo": "plan",
+      "texto": "Hoy no te proponemos nada nuevo: primero lo que necesitas. Si quieres, pregúntame o habla con {consultor}.",
+      "cuando": "Un restrictivo activo distinto de la deuda cara"
     }
   },
   "nunca": [

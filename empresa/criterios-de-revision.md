@@ -46,6 +46,7 @@
 | C7 | ¿Las proyecciones son netas de comisiones y muestran un escenario malo? | Rangos solo optimistas | No | Regulatorio v1 |
 | C8 | ¿La caída en pesos de un mal año de cada recomendación cabe en la pérdida que la persona dijo tolerar en su perfil? | El perfil dice "hasta 10%" y la recomendación "caída de 12%" | Sí | Revisor, 17 oct 2026 (prototipo v5.1) |
 | C9 | ¿Cada estimado sale, recalculado en código, de los supuestos que la misma pantalla muestra, con el mismo método para todas las personas? | Pensión de $5,6 M con un saldo que, con esos supuestos, da unos $3,0 M | Sí | Revisor, 17 oct 2026 (prototipo v5.1) |
+| C11 | ¿Las pruebas y la revisión en pantalla recorren, además del camino de demostración, caminos alternos: otra meta como prioridad, perfil conservador, deuda cara y un permiso retirado después de aprobar? | Con los datos de demostración todo cuadra; con otra respuesta del diagnóstico aparecen textos fijos falsos o errores | Sí | Revisor, 19 oct 2026 (MVP v1.1) |
 | C10 | ¿Retirar un permiso cambia de verdad lo que se muestra? Ninguna pantalla muestra cifras derivadas del dato sin permiso, y el texto lo dice | El motor deja de proponer, pero Mi plan, el inicio y el puntaje siguen con cifras del salario "que usamos porque nos autorizaste" | Sí | Revisor, 18 oct 2026 (MVP v1) |
 
 ## D. Forma de Carolina
@@ -69,6 +70,7 @@
 | E4 | ¿Cada enlace lleva a una pantalla de la misma persona, la misma versión y el mismo momento, sin botones muertos ni salidas a versiones anteriores o a vistas internas? Se comprueba con `empresa/activos/plantillas/verificar-prototipo.py` (cada pantalla declara su momento) y, a mano, que cada salto de momento marcado tenga sentido | El inicio de Juliana abre el plan y la consultora de Laura; la bienvenida del 1 de junio abre la app del 15 de junio | Sí | Revisor, 17 oct 2026 (prototipos v5 y v5.1) |
 
 ## Historial de criterios agregados
+- 19 de octubre de 2026: C11, propuesto por el revisor en la segunda ronda del MVP (v1.1).
 - 19 de octubre de 2026: A7, B12 y C10, propuestos por el revisor en la primera revisión del MVP v1 (el que llamó A6 se numeró A7 porque A6 ya existía).
 - 18 de octubre de 2026: A6, por una observación de Carolina sobre el vigía semanal (detectado por Carolina).
 - 17 de octubre de 2026: C8 y C9, y E4 ampliado a "el mismo momento", propuestos por el revisor en la segunda ronda (prototipo v5.1).

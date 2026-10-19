@@ -5,7 +5,11 @@
 <div class="fila">{{ c.volver('/inicio', 'Inicio') }}{{ c.info() }}</div>
 <h1>Listo, {{ af.nombre }}. Tu prima ya tiene rumbo</h1>
 <div class="tarjeta">
+  {% if plan.prima %}
   <div class="paso"><strong>1</strong><span>El 30 de junio te pedimos confirmar las transferencias: {{ plan.prima.al_colchon_txt }} a tu colchón y {{ plan.prima.a_la_meta_txt }} a tu casa. Nada se mueve sin tu confirmación.</span></div>
+  {% else %}
+  <div class="paso"><strong>1</strong><span>Tu propuesta aprobada queda en espera. {{ p10.textos[0] }} Nada se mueve sin tu confirmación.</span></div>
+  {% endif %}
   <div class="paso"><strong>2</strong><span>La recomendación queda en tu historial, con su costo y su riesgo.</span></div>
 </div>
 

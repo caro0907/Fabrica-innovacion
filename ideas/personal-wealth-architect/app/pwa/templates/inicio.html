@@ -25,8 +25,14 @@
 </section>
 {% endif %}
 
-{% if dec.modo == 'servicio' %}
-<div class="tarjeta alerta"><strong>Hoy no te proponemos nada.</strong><span>{{ dec.restrictivos[0].efecto }}. Si necesitas algo, pregúntame o habla con {{ cons.corto }}.</span></div>
+{% if restr %}
+<div class="tarjeta ambar">{{ c.piezas(restr.piezas, restr.textos, False) }}<a class="enlace" style="justify-content:flex-start" href="/equipo">Hablar con {{ cons.corto }}</a></div>
+{% elif siguiente %}
+<section class="tarjeta" aria-label="Tu siguiente paso">
+  <div class="fila"><span class="fila" style="gap:8px">{{ c.avatar('A', 'arq', 28) }}<strong>Tu siguiente paso</strong></span>{{ c.info() }}</div>
+  <strong>{{ siguiente.titulo }}</strong><span style="font-size:13.5px">{{ siguiente.texto }}</span>
+  <form method="post" action="/accion/beneficiaria"><input type="hidden" name="volver" value="/plan"><button class="boton chico" type="submit">{{ siguiente.boton }}</button></form>
+</section>
 {% elif nota %}
 <section class="tarjeta" aria-label="Nota de tu arquitecto">
   <div class="fila"><span class="fila" style="gap:8px">{{ c.avatar('A', 'arq', 28) }}<strong>Tu arquitecto</strong></span>{{ c.info() }}</div>
@@ -34,8 +40,10 @@
   {{ c.piezas(nota.piezas, nota.textos) }}
   <a class="boton" href="/revision">Ver mi revisión</a>
 </section>
-{% elif 'propuesta_confirmada' in s.hechos %}
+{% elif 'propuesta_confirmada' in s.hechos and plan.prima %}
 <section class="tarjeta verde"><strong style="color:var(--accion)">Tu prima ya tiene rumbo.</strong><span>El 30 de junio te pedimos confirmar cada transferencia. Lo ves en Mis reglas.</span><a class="enlace" style="justify-content:flex-start" href="/reglas">Ver mis reglas</a></section>
+{% elif 'propuesta_confirmada' in s.hechos %}
+<section class="tarjeta ambar"><strong>Tu propuesta aprobada queda en espera.</strong><span style="font-size:13.5px">Sin tu permiso para usar tu salario no estimamos tu prima, y tu regla se pausó. Nada se mueve sin tu confirmación.</span><a class="enlace" style="justify-content:flex-start" href="/reglas#permisos">Ver mis permisos</a></section>
 {% endif %}
 
 <section class="tarjeta" aria-label="Tus metas">

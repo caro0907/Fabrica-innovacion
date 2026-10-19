@@ -106,9 +106,10 @@ def armar_plan(af: dict, diagnostico: dict, hoy: date, hechos: set[str] | None =
         plazo = _anios_plazo(d.get("plazo_casa", "")) or 10
         inicial = sabe["cesantias"]
         primas_estimadas = reparto is not None
-        aporte_primas = reparto["a_la_meta"] * 2 / 12 if primas_estimadas and d.get("prioridad") == "Comprar mi casa" else 0
+        es_prioridad = d.get("prioridad") == "Comprar mi casa"
+        aporte_primas = reparto["a_la_meta"] * 2 / 12 if primas_estimadas and es_prioridad else 0
         meses_solo_primas = (C.meses_para_meta(d["cuota_inicial_casa"], inicial, aporte_primas, S.RENTABILIDAD_ESCENARIO_BUENO)
-                             if primas_estimadas else None)
+                             if primas_estimadas and aporte_primas > 0 else None)
         necesario = C.aporte_para_llegar(d["cuota_inicial_casa"], inicial, plazo * 12, S.RENTABILIDAD_ESCENARIO_BUENO)
         extra = max(0.0, necesario - aporte_primas)
         casa = {
@@ -118,6 +119,7 @@ def armar_plan(af: dict, diagnostico: dict, hoy: date, hechos: set[str] | None =
             "llevas": inicial,
             "avance": inicial / d["cuota_inicial_casa"],
             "primas_estimadas": primas_estimadas,
+            "es_prioridad": es_prioridad,
             "aporte_primas_mensual": aporte_primas,
             "anio_solo_primas": (hoy.year + math.ceil(meses_solo_primas / 12)) if meses_solo_primas else None,
             "extra_mensual_a_tiempo": math.ceil(extra / 10_000) * 10_000,   # un faltante se redondea hacia arriba
@@ -189,6 +191,9 @@ def armar_plan(af: dict, diagnostico: dict, hoy: date, hechos: set[str] | None =
         "dependiente": _persona_dependiente(d) if _con_dependientes(d) else None,
         "dependiente_hijos": _dependiente_hijos(d),
         "prioridad": d.get("prioridad"),
+        "prioridad_txt": {"Pensionarme bien": "tu pensión", "Comprar mi casa": "tu casa", "Tener tranquilidad": "tu tranquilidad",
+                          "Educar a mis hijos": "la educación de tus hijos", "Salir de deudas": "salir de tus deudas",
+                          "Viajar": "viajar", "Emprender": "emprender"}.get(d.get("prioridad"), "tu plan"),
         "beneficiarios_confirmados": beneficiarios_ok,
         "deuda_cara": _deuda_cara(d),
     }
@@ -237,7 +242,7 @@ def _pilares(af, d, mesada, deseada, col, casa, beneficiarios_ok, hechos):
     if mesada is not None:
         partes.append(min(100, round(mesada / deseada * 100)) if deseada else 100)
     ritmo = None
-    if casa and casa["primas_estimadas"]:
+    if casa and casa["primas_estimadas"] and casa["es_prioridad"]:
         if casa["a_tiempo_solo_con_primas"]:
             ritmo = 100
         elif casa["anio_solo_primas"]:
@@ -289,7 +294,8 @@ def _pilares(af, d, mesada, deseada, col, casa, beneficiarios_ok, hechos):
     if casa and sin_vehiculo >= 1:
         texto_riesgo += "; tu casa aún no tiene un ahorro según su plazo"
     elif casa and sin_vehiculo > 0:
-        texto_riesgo += "; parte de lo que va a tu casa ya tiene un ahorro según su plazo"
+        texto_riesgo += ("; aprobaste darle a parte de lo de tu casa un ahorro según su plazo "
+                         "(cuenta desde tu aprobación; el dinero se mueve cuando confirmes la transferencia)")
 
     # Eficiencia: usar las cesantías y los beneficios con propósito. La comisión de la pensión
     # obligatoria sale de la cotización, no del saldo, y no depende de la persona (H18).
@@ -338,11 +344,14 @@ def _metas(d, col, casa, mesada, deseada, brecha_pension, beneficiarios_ok, pen)
         texto = f"Cuota inicial de {millones(casa['cuota'])} · llevas {millones(casa['llevas'])} en tus cesantías."
         if not casa["primas_estimadas"]:
             texto += " Sin tu permiso para usar tu salario no estimamos cuánto le aportan tus primas."
+        elif not casa["es_prioridad"]:
+            texto += " Hoy tus primas van a tu meta más importante, no a tu casa."
         elif not casa["a_tiempo_solo_con_primas"] and casa["anio_solo_primas"]:
             texto += f" Solo con tus primas llegas hacia {casa['anio_solo_primas']}; a tiempo, con unos {miles(casa['extra_mensual_a_tiempo'])} más al mes"
         metas.append({
             "id": "casa", "nombre": f"Tu casa en {casa['plazo_anios']} años" + (" · tu meta más importante" if prioridad else ""),
-            "estado": "En camino" if casa["a_tiempo_solo_con_primas"] else ("Por estimar" if not casa["primas_estimadas"] else "Con brecha"),
+            "estado": ("En camino" if casa["a_tiempo_solo_con_primas"] else "Por estimar" if not casa["primas_estimadas"]
+                       else "Con brecha" if casa["es_prioridad"] else "En espera"),
             "texto": texto, "avance": casa["avance"],
             "nota": "Tus cesantías se pueden usar para tu vivienda; si las usas, dejan de ser tu respaldo si pierdes el empleo. Por eso tu colchón va aparte.",
             "catalogo": ["P7", "B8"],

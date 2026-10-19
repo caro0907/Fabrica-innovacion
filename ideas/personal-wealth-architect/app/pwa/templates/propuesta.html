@@ -32,8 +32,8 @@
 </form>
 <form method="post" action="/propuesta/no"><button class="boton secundario" type="submit">No, gracias</button></form>
 {% else %}
-<div class="tarjeta ambar"><strong>Para tu casa, mejor con {{ cons.corto }}.</strong>
-  <span>{% if not pr.idoneo %}Con tu perfil de hoy no te recomendamos aquí un portafolio cuyo valor puede bajar.{% else %}Nos dijiste que no, y lo respetamos.{% endif %} {{ cons.corto[0]|upper }}{{ cons.corto[1:] }} lo ve contigo, con tu plan a la vista.</span>
+<div class="tarjeta ambar"><strong>Para tu casa, hoy no hay una recomendación aquí.</strong>
+  <span>{{ pr.motivo_no }} {{ cons.corto[0]|upper }}{{ cons.corto[1:] }} lo ve contigo, con tu plan a la vista.</span>
   <a class="boton" href="/equipo">Hablar con {{ cons.corto }}</a></div>
 {% endif %}
 <a class="enlace" href="/equipo">{{ c.avatar(cons.iniciales, 'cons', 28) }}Verla con {{ cons.corto }} antes de decidir</a>

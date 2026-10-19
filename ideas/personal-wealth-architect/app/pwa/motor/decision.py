@@ -147,6 +147,8 @@ def decidir(ctx: dict, metricas_servicio: dict | None = None, contactos_esta_sem
                 motivo = "bloqueada por un restrictivo"
             elif not restrictivos and a.meta not in metas_con_brecha:
                 motivo = f"no cierra una brecha del plan ({a.meta})"
+            elif a.meta == "casa" and plan.get("prioridad") != "Comprar mi casa":
+                motivo = "la casa no es su meta más importante: su prima va primero a su prioridad"
             elif a.portafolio:
                 idoneo, motivos = PF.idoneidad(a.portafolio, ctx.get("perfil") or {}, ctx.get("plazo_meta_anios"))
                 if not idoneo:
@@ -268,7 +270,7 @@ def _recomendacion(p: dict, plan: dict, modo: str) -> str:
     if a.id == "servicio_cesantias":
         return "Entregar sus cesantías en el plazo legal, contarle del Mecanismo de Protección al Cesante y pausar sus reglas."
     if a.id == "confirmar_beneficiarios":
-        return f"Registrar a {plan['dependiente']} en su grupo familiar (no es un producto)."
+        return f"Registrar a {tercera(plan['dependiente'])} en su grupo familiar (no es un producto)."
     return a.nombre
 
 
@@ -300,7 +302,12 @@ def porque(decision: dict, plan: dict, afiliado: dict) -> str:
             texto += f"; su meta más importante es su casa, a {plan['casa']['plazo_anios']} años"
         return texto + "."
     if accion == "confirmar_beneficiarios":
-        return f"{plan['dependiente']} no está registrada en su grupo familiar; es el pilar más bajo de su plan."
+        return f"{tercera(plan['dependiente'])} no está en su grupo familiar; la protección es el pilar más bajo de su plan."
     if accion == "revisar_pension" and plan["pension"]["mostrar_mesada"]:
         return f"su pensión estimada es {plan['pension']['mesada_txt']} y quiere {plan['pension']['deseada_txt']}."
     return plan["lo_que_mas_mueve"]["texto"].lower() + "."
+
+
+def tercera(texto: str) -> str:
+    """'tu hija' → 'su hija': el brief del consultor habla de la persona, no a la persona."""
+    return " ".join({"tu": "su", "tus": "sus"}.get(w, w) for w in (texto or "").split(" "))

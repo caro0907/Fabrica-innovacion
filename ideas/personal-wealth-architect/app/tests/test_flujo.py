@@ -314,3 +314,62 @@ def test_el_brief_del_consultor_sale_de_la_accion(cliente):
     c.post("/plan/guardar")
     r = c.get("/interno/consultor")
     assert "Porqué: su colchón cubre 1,2 meses de 3 y su prima de $2.600.000 llega el 30 de junio" in r.text
+
+
+# Caminos alternos (segunda ronda del revisor, criterio C11) --------------------------------------
+def _laura_con(c, metas_prioridad=None, deudas="Tarjeta que pago completa"):
+    c.post("/demo/laura")
+    c.post("/d/bienvenida", data={"autoriza": "si"})
+    metas, prioridad = metas_prioridad or (["Tener tranquilidad", "Comprar mi casa", "Pensionarme bien"], "Comprar mi casa")
+    c.post("/d/metas", data={"metas": metas, "prioridad": prioridad})
+    c.post("/d/numeros", data={"plazo_casa": "En 10 años", "cuota_inicial_casa": "45000000", "pension_deseada": "3000000"})
+    c.post("/d/vida", data={"depende": "Mi hija", "edad_dependiente": "8", "vivienda": "En arriendo", "deudas": deudas})
+    c.post("/d/dinero", data={"gastos_mensuales": "2500000", "ahorro": "3000000", "donde_ahorro": "En mi cuenta de ahorros", "seguro_vida": "No sé"})
+    c.post("/d/riesgo", data=PERFIL_LAURA)
+    c.post("/d/entendi")
+    c.post("/accion/beneficiaria", data={"volver": "/plan-inicial"})
+    c.post("/plan/guardar")
+
+
+def test_con_otra_prioridad_ninguna_pantalla_dice_que_la_casa_es_lo_mas_importante(cliente):
+    c = cliente
+    _laura_con(c, (["Tener tranquilidad", "Comprar mi casa", "Pensionarme bien"], "Pensionarme bien"))
+    for url in ("/inicio", "/revision", "/propuesta", "/meta/casa", "/plan"):
+        r = c.get(url)
+        assert r.status_code == 200, url
+        assert "porque es tu meta más importante" not in r.text and "tu casa es tu meta más importante" not in r.text, url
+        assert "pensionarme" not in r.text.lower(), url
+        assert "Seguir: confirmar con mi huella" not in r.text, url
+    assert "Tu casa no es tu meta más importante" in c.get("/propuesta").text
+    assert "Solo con tus primas llegas hacia" not in c.get("/meta/casa").text
+    assert "Hoy tus primas van a tu meta más importante, no a tu casa" in c.get("/plan").text
+
+
+def test_con_deuda_cara_el_afiliado_ve_el_motivo_del_catalogo(cliente):
+    c = cliente
+    _laura_con(c, deudas="Tarjeta o crédito que pago a cuotas")
+    r = c.get("/inicio")
+    assert "No recomendar inversión" not in r.text                 # texto interno del motor
+    assert "te cuesta más de lo que ganarías invirtiendo" in r.text
+    r = c.get("/revision")
+    assert "tu plan va en orden" not in r.text and "te cuesta más de lo que ganarías invirtiendo" in r.text
+    r = c.get("/propuesta")
+    assert "Nos dijiste que no" not in r.text and "Hoy no te recomendamos invertir" in r.text
+
+
+def test_retirar_el_permiso_despues_de_aprobar_no_rompe_nada_y_pausa_la_regla(cliente):
+    c = cliente
+    _laura_con(c)
+    _aprobar_propuesta(c)
+    c.post("/regla/nueva", data={"acepto": "si"})
+    c.post("/huella", data={"para": "regla"})
+    c.post("/permisos/autoriza_uso_salario", data={"valor": "no"})
+    for url in ("/inicio", "/revision", "/propuesta", "/propuesta/lista", "/reglas", "/plan", "/meta/casa",
+                "/patrimonio", "/pilares", "/interno/consultor", "/interno/motor"):
+        r = c.get(url)
+        assert r.status_code == 200, url
+        for cifra in ("$2.600.000", "$1.820.000", "$1,83 M", "nos autorizaste"):
+            assert cifra not in r.text or url.startswith("/interno"), (url, cifra)
+    assert "Tu prima ya tiene rumbo" not in c.get("/inicio").text
+    r = c.get("/reglas")
+    assert "Pausado" in r.text and "Sin permiso para estimar tu prima" in r.text

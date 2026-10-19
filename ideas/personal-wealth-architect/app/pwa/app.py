@@ -77,7 +77,7 @@ def estado(s: dict) -> dict:
     p = PLAN.armar_plan(af, d, hoy, s["hechos"])
     perf = d.get("perfil") or {}
     vigente = PF.vigente(perf, d.get("perfil_fecha"), hoy)
-    _revisar_mandatos(s, af, vigente, hoy)
+    _revisar_mandatos(s, {**af["estado"], "sin_ingreso": p["ingreso"]["valor"] is None}, vigente, hoy)
     ctx = decision.contexto(af, p, hoy, perfil_vigente=vigente, perfil=perf,
                             perdida_tolerada=PF.perdida_tolerada(perf),
                             plazo_meta_anios=p["casa"]["plazo_anios"] if p["casa"] else None,
@@ -94,12 +94,12 @@ def estado(s: dict) -> dict:
             "consultor_con_nombre": consultor_nombre, "modo_ia": redactor.modo(), "momento": momento}
 
 
-def _revisar_mandatos(s: dict, af: dict, perfil_vigente: bool, hoy: date) -> None:
+def _revisar_mandatos(s: dict, estado_afiliado: dict, perfil_vigente: bool, hoy: date) -> None:
     """Las pausas automáticas corren de verdad (H10): se revisan en cada pantalla y queda registro."""
     for md in registro.mandatos(s["id"]):
         m = mandatos.desde_dict(md)
         antes = m.estado
-        mandatos.revisar_pausas(m, af["estado"], perfil_vigente, hoy)
+        mandatos.revisar_pausas(m, estado_afiliado, perfil_vigente, hoy)
         if m.estado != antes:
             registro.guardar_mandato(s["id"], m.dict())
             registro.registrar(s["afiliado_id"], sesion_id=s["id"], fecha_simulada=s["fecha_simulada"], canal="motor",
@@ -171,6 +171,16 @@ def contexto_catalogo(e: dict, recomienda_inversion: bool = False) -> dict:
             "dependiente_hijos": p["dependiente_hijos"], "recomienda_inversion": recomienda_inversion}
 
 
+def nota_restrictivo(e: dict):
+    """En modo servicio la persona ve una pieza del catálogo con el motivo correcto, nunca el texto interno del motor."""
+    if e["dec"]["modo"] != "servicio":
+        return None
+    ids = [r["id"] for r in e["dec"]["restrictivos"]]
+    if "R-DEUDA" in ids:
+        return CAT.componer(["P4"], {"tipo": "tarjeta o crédito que pagas a cuotas"}, {})
+    return CAT.componer(["P11"], vars_catalogo(e), {})
+
+
 def recomienda_inversion(e: dict) -> bool:
     """¿La decisión de hoy lleva a una recomendación de inversión?"""
     return (e["dec"]["modo"] == "asesoria" and "casa_con_prima" in [x["accion"] for x in e["dec"]["cola"]]
@@ -221,7 +231,7 @@ def iniciar_demo(afiliado_id: str):
         s["hechos"] |= {"plan_guardado", "diagnostico_listo"}
         registro.guardar_sesion(s)
         registro.guardar_mandato(sid, mandatos.pausar(
-            mandatos.prima_con_rumbo("andres", date(2026, 1, 10), 0.7, 2_050_000), mandatos.PAUSAS_AUTOMATICAS[0],
+            mandatos.prima_con_rumbo("andres", date(2026, 1, 10), 0.7), mandatos.PAUSAS_AUTOMATICAS[0],
             FECHA_REVISION).dict())
         destino = "/servicio"
     r = _a(destino)
@@ -484,13 +494,18 @@ def inicio(request: Request, vuelves: int = 0):
         # Coherencia (hallazgo 1 del revisor, H3): si la decisión lleva a invertir para la casa, la nota dice la
         # regla real (P9: colchón primero con el 70%, la casa con el resto), nunca "antes de invertir".
         reco = recomienda_inversion(e)
-        piezas = ["B6", "P9"] if reco and e["plan"]["casa"] and e["plan"]["prima"]["al_colchon"] > 0 else ["B6", "P3"]
+        casa = e["plan"]["casa"]
+        piezas = (["B6", "P9"] if reco and casa and casa["es_prioridad"] and e["plan"]["prima"]["al_colchon"] > 0
+                  else ["B6", "P3"])
         nota = redactor.nota_del_arquitecto(piezas_permitidas(e, piezas, reco), vars_catalogo(e),
                                             contexto_catalogo(e, reco), e["af"]["nombre"])
     sin_ingreso = None
     if e["plan"]["ingreso"]["valor"] is None:
         sin_ingreso = CAT.componer(["P10"], {}, {})
-    return render(request, "inicio.html", e, nota=nota, vuelves=vuelves, pestana="inicio", sin_ingreso=sin_ingreso)
+    siguiente = next((o for o in e["plan"]["orden"] if o["id"] == "beneficiaria"), None) \
+        if (e["dec"]["principal"] or {}).get("accion") == "confirmar_beneficiarios" else None
+    return render(request, "inicio.html", e, nota=nota, vuelves=vuelves, pestana="inicio", sin_ingreso=sin_ingreso,
+                  restr=nota_restrictivo(e), siguiente=siguiente)
 
 
 @app.get("/revision", response_class=HTMLResponse)
@@ -507,7 +522,7 @@ def revision(request: Request):
                        angulo="tranquilidad", argumento=nota["piezas"], texto_mostrado=nota["texto"], tipo="informacion",
                        version_catalogo=CAT.VERSION, version_motor=decision.VERSION_MOTOR, version_supuestos=S.VERSION,
                        perfil_usado=e["perfil_txt"], grupo=e["dec"]["grupo"], quien=e["dec"]["quien_lo_hace"])
-    return render(request, "revision.html", e, nota=nota)
+    return render(request, "revision.html", e, nota=nota, restr=nota_restrictivo(e))
 
 
 PORTAFOLIO_CASA = ACCIONES["casa_con_prima"].portafolio
@@ -528,8 +543,20 @@ def _propuesta(e: dict) -> dict:
     elegible = "casa_con_prima" in [x["accion"] for x in e["dec"]["cola"]]
     plazo = p["casa"]["plazo_anios"] if p["casa"] else None
     idoneo, motivos = PF.idoneidad(PORTAFOLIO_CASA, e["d"].get("perfil") or {}, plazo)
+    # Por qué no se recomienda, con el motivo real (revisor, segunda ronda): nunca "nos dijiste que no" si no lo dijo.
+    if e["dec"]["modo"] == "servicio":
+        motivo_no = "Hoy no te recomendamos invertir: " + nota_restrictivo(e).textos[0][0].lower() + nota_restrictivo(e).textos[0][1:]
+    elif "casa_con_prima" in e["s"]["rechazos"]:
+        motivo_no = "Nos dijiste que no, y lo respetamos."
+    elif not (p["casa"] and p["casa"]["es_prioridad"]):
+        motivo_no = "Tu casa no es tu meta más importante: hoy no te proponemos invertir para ella."
+    elif not idoneo:
+        motivo_no = "Con tu perfil de hoy no te recomendamos aquí un portafolio cuyo valor puede bajar."
+    else:
+        motivo_no = "Hoy no hay una recomendación para tu casa."
     return {"monto": monto, "portafolio": port, "caida": caida, "costo": costo, "textos": textos,
-            "piezas": comp.piezas, "elegible": elegible and idoneo, "idoneo": idoneo, "motivos_no_idoneo": motivos}
+            "piezas": comp.piezas, "elegible": elegible and idoneo, "idoneo": idoneo, "motivos_no_idoneo": motivos,
+            "motivo_no": motivo_no}
 
 
 @app.get("/propuesta", response_class=HTMLResponse)
@@ -606,6 +633,9 @@ def huella_post(request: Request, para: str = Form("propuesta")):
                            perfil_usado=e["perfil_txt"], grupo=e["dec"]["grupo"], quien=e["dec"]["quien_lo_hace"])
         registro.guardar_sesion(s)
         return _a("/propuesta/lista")
+    if not e["plan"]["prima"]:
+        registro.guardar_sesion(s)
+        return _a("/propuesta/lista")
     m = mandatos.prima_con_rumbo(s["afiliado_id"], e["hoy"], e["plan"]["prima"]["porcentaje_colchon"])
     registro.guardar_mandato(s["id"], m.dict())
     s["hechos"].add("regla_prima")
@@ -624,7 +654,7 @@ def regla_nueva(request: Request, acepto: str = Form("")):
     s, r = requiere_sesion(request, "app")
     if r:
         return r
-    if "propuesta_confirmada" not in s["hechos"] or "regla_prima" in s["hechos"]:
+    if "propuesta_confirmada" not in s["hechos"] or "regla_prima" in s["hechos"] or not estado(s)["plan"]["prima"]:
         return _a("/propuesta/lista")
     if acepto != "si":
         return _a("/propuesta/lista?falta=acepto")
@@ -654,6 +684,10 @@ def propuesta_lista(request: Request, falta: str = ""):
     e = estado(s)
     if "propuesta_confirmada" not in s["hechos"]:
         return _a("/propuesta")
+    if not e["plan"]["prima"]:
+        # Retiró el permiso después de aprobar (criterio C10): no se estima la prima ni se ofrece la regla.
+        return render(request, "propuesta_lista.html", e, regla=None, ofrecer=False, falta="",
+                      p10=CAT.componer(["P10"], {}, {}), CONTROLES=mandatos.CONTROLES, fecha_txt=mandatos.fecha_txt)
     m = mandatos.prima_con_rumbo(s["afiliado_id"], e["hoy"], e["plan"]["prima"]["porcentaje_colchon"])
     ofrecer = "regla_prima" not in s["hechos"] and not any(x["estado"] != "cancelado" for x in registro.mandatos(s["id"]))
     if ofrecer and not falta:
