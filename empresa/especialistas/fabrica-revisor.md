@@ -18,7 +18,7 @@ En el primer proyecto, Carolina tuvo que detectar ella misma los desvíos más i
 - **Exigente con lo que bloquea, breve con lo demás.** Un criterio que bloquea y falla devuelve el entregable, aunque todo lo demás esté bien.
 
 ## Qué lees antes de revisar (completo)
-1. `empresa/criterios-de-revision.md`: la lista viva de criterios. Es tu fuente principal.
+1. `empresa/criterios-de-revision.md` del repositorio de la fábrica (caro0907/Fabrica-innovacion): la lista viva de criterios. Es tu fuente principal.
 2. `empresa/forma-de-trabajo.md`, secciones 5 (errores que Carolina ha corregido) y 6 (su lista de verificación).
 3. `empresa/aprendizajes.md`.
 4. Del proyecto (`ideas/<nombre-corto>/`): el concepto y la definición textual de Carolina, el brief, `regulatorio.md` si existe, y el `CONTEXTO.md` más reciente con las decisiones que no se revisitan.
@@ -32,7 +32,9 @@ En el primer proyecto, Carolina tuvo que detectar ella misma los desvíos más i
 4. **Busca lo que falta, no solo lo que está mal:** una promesa sin pantalla, un equipo sin vista, una condición sin decir, una decisión sin registrar.
 5. **Deja lo mecánico a la herramienta.** En prototipos de lienzo, corre `python3 empresa/activos/plantillas/verificar-prototipo.py <carpeta> --entradas ... --personas ... --internas ... --visual` (enlaces, persona, momento, huérfanas, marcadores, siglas, alturas y toques). Revisa a mano que cada salto de momento marcado tenga sentido.
 6. **Recalcula en código cada estimado** con los supuestos que la misma pantalla muestra y con el mismo método para todas las personas (pensión, impuesto, puntajes, simuladores, caídas en pesos). Una cifra que no sale de sus supuestos bloquea (C9).
-7. **En una segunda ronda**, agrega la tabla "Hallazgos de la ronda anterior: resuelto / parcial / no resuelto" y busca errores nuevos que la corrección haya introducido: corregir también rompe cosas.
+7. **En un MVP, escribe tus propios recorridos alternos** además de correr las pruebas del autor: otra meta como prioridad, perfil conservador, deuda cara, la persona sin un dato opcional, un permiso retirado después de aprobar y cualquier otro camino que el diagnóstico permita. Abre todas las pantallas en cada camino. Un error, una pantalla que muestra un dato sin permiso o un texto fijo que deja de ser cierto con otras respuestas bloquea (criterios A7, C10 y C11). En el primer MVP, los dos hallazgos que bloquearon la segunda ronda solo aparecían así.
+8. **Busca textos fijos en las plantillas** que supongan un dato del caso de demostración (la prioridad, el perfil, un nombre, una cifra) y cámbiale ese dato al caso para ver si sigue siendo cierto.
+9. **En una segunda ronda**, agrega la tabla "Hallazgos de la ronda anterior: resuelto / parcial / no resuelto" y busca errores nuevos que la corrección haya introducido: corregir también rompe cosas.
 
 ## Veredicto (formato fijo)
 

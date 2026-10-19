@@ -28,10 +28,20 @@ Cuando el MVP tenga recomendación, agentes o mandatos:
 - Construye sobre `empresa/activos/`: el sistema de diseño (`tokens.json`), las plantillas de pantallas y el catálogo regulatorio como datos versionados.
 - Respeta la experiencia aprobada: la app es el hogar del plan, el diagnóstico va antes del plan, el chat es secundario, el humano entra por regla y cada pantalla marca información o recomendación.
 
+## Lecciones del primer MVP (Personal Wealth Architect, 18 y 19 de octubre de 2026)
+Las cifras de la demostración cuadraron en las dos rondas de revisión. Lo que devolvió el MVP (16 hallazgos que bloqueaban o eran de prioridad alta) estaba en textos, permisos, idoneidad y caminos que la demostración no recorre. Por eso son reglas:
+- **Ningún texto para la persona va escrito fijo en una plantilla.** Sale del catálogo como pieza versionada, o de los datos del plan (la prioridad, el perfil, la acción que decidió el motor). Un texto fijo como "tu casa es tu meta más importante" se vuelve falso apenas la persona responde distinto. Marca en el catálogo las piezas que contradicen una acción (por ejemplo, "no te recomiendo invertir") y haz que el control las rechace en la pantalla que lleva a esa acción (criterio A7).
+- **Prueba los caminos alternos, no solo la demostración** (criterio C11). Antes de pasar al revisor, las pruebas y la revisión en navegador recorren al menos: otra meta como prioridad, perfil conservador, deuda cara, la persona sin un dato opcional (por ejemplo, sin permiso del salario) y un permiso retirado después de aprobar. En cada camino, abre todas las pantallas: ninguna falla y ninguna dice algo falso.
+- **Nada viene marcado ni contestado por defecto.** Permisos, mensajes comerciales, mandatos y respuestas del perfil empiezan vacíos; las condiciones (tope, vigencia, aviso, cómo cancelar) se ven antes de aceptar (criterio B12). Cada consentimiento se registra con el texto que se mostró.
+- **Retirar un permiso cambia de verdad lo que se muestra** (criterio C10): ninguna pantalla muestra cifras derivadas de un dato sin permiso, la pantalla dice por qué, y las reglas que dependían de ese dato se pausan solas.
+- **Un indicador solo se mueve cuando cambia lo que mide.** Crear una regla no sube la suficiencia de un plan; si algo suma por constancia, la pantalla lo dice.
+- **Lo que la persona ve dice la verdad sobre lo que pasa.** No prometas correos, avisos o documentos que el MVP no envía, ni digas "aviso por mensajería" en un canal donde nada se envió.
+- **Una sola memoria.** Antes de escribir `CONTEXTO.md` o de abrir una rama, trae lo último de `main` y de la rama en que trabajas: el 19 de octubre dos sesiones escribieron versiones distintas sin verse.
+
 ## Compuerta del revisor (obligatoria antes de entregar a Carolina)
-1. Lanza el revisor como **agente aparte** (herramienta de subagentes, tipo general), con la instrucción de cargar la skill `fabrica-revisor` y la lista de rutas del entregable y del contexto del proyecto. No le pases tu razonamiento: solo los archivos.
+1. Lanza el revisor como **agente aparte** (herramienta de subagentes, tipo general), con la instrucción de cargar la skill `fabrica-revisor` y la lista de rutas del entregable y del contexto del proyecto, y cómo correr las pruebas y la app. No le pases tu razonamiento: solo los archivos. Si el MVP recomienda productos o maneja consentimientos, pásalo también por el experto financiero como agente aparte (reglas de cálculo, consentimientos, trazabilidad).
 2. Si el veredicto es DEVUELVE, corrige los hallazgos que bloquean y vuelve a pasarlo. Máximo dos rondas.
-3. Entrega a Carolina con el veredicto del revisor y lo que quedó abierto.
+3. Entrega a Carolina con el veredicto del revisor y lo que quedó abierto. Si corriges algo después de la segunda ronda, dilo: esas correcciones no tuvieron una mirada independiente.
 4. Registra la revisión en `empresa/metricas.md`.
 5. Si Carolina corrige algo que el revisor no vio, agrega un criterio a `empresa/criterios-de-revision.md` (pregunta, cómo se ve la falla, origen) y regístralo en `empresa/metricas.md` como "detectado por Carolina". Así su corrección cambia la fábrica, no solo el documento.
 
