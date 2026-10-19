@@ -7,6 +7,7 @@
 | Sistema de diseño (colores, tipografías, tamaños, componentes) | `tokens.json` y la sección 1 de este archivo | Diseñador, desarrollador |
 | Plantillas de pantallas de asesoría | `plantillas/` y la sección 2 | Diseñador |
 | Catálogo regulatorio base | `catalogo-regulatorio-base.md` | Experto financiero, diseñador, desarrollador |
+| Radar de fintech de ahorro e inversión (el mercado objetivo) | `radar-fintech-ahorro-inversion.md` | Estratega, experto financiero (vigía semanal) |
 | Criterios de revisión | `../criterios-de-revision.md` | Revisor y todos los especialistas |
 
 ## 1. Sistema de diseño: "despacho del asesor"
