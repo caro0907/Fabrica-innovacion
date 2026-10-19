@@ -6,9 +6,30 @@
 <h1>Listo, {{ af.nombre }}. Tu prima ya tiene rumbo</h1>
 <div class="tarjeta">
   <div class="paso"><strong>1</strong><span>El 30 de junio te pedimos confirmar las transferencias: {{ plan.prima.al_colchon_txt }} a tu colchón y {{ plan.prima.a_la_meta_txt }} a tu casa. Nada se mueve sin tu confirmación.</span></div>
-  <div class="paso"><strong>2</strong><span>Te enviamos la recomendación y su costo a tu correo, para que la tengas por escrito.</span></div>
-  {% if 'regla_prima' in s.hechos %}<div class="paso"><strong>3</strong><span>Tu regla quedó activa: dos semanas antes de cada prima te propongo el mismo reparto y tú confirmas. La pausas o la cancelas en un toque.</span></div>{% endif %}
+  <div class="paso"><strong>2</strong><span>La recomendación queda en tu historial, con su costo y su riesgo.</span></div>
 </div>
-{% if 'regla_prima' in s.hechos %}<a class="boton" href="/reglas">Ver mis reglas</a>{% endif %}
-<a class="boton {{ 'secundario' if 'regla_prima' in s.hechos }}" href="/inicio">Volver al inicio</a>
+
+{% if ofrecer %}
+<section class="tarjeta" aria-label="Una regla para tus próximas primas">
+  <span class="cejilla">Opcional · una regla para tus próximas primas</span>
+  <strong style="font-size:16px">¿Quieres que en diciembre te lo proponga igual?</strong>
+  <div class="condiciones">
+    <div class="fila fila-borde"><span class="pequeno">Cuándo</span><span>Dos semanas antes de cada prima (junio y diciembre)</span></div>
+    <div class="fila fila-borde"><span class="pequeno">Qué te propongo</span><span>{{ plan.prima.porcentaje_colchon_txt }} a tu colchón, en tu cuenta, hasta llegar a 3 meses; el resto a tu casa</span></div>
+    <div class="fila fila-borde"><span class="pequeno">Tope</span><span>{{ pesos(regla.tope) }} a inversión por prima; lo que pase de ahí se queda en tu cuenta</span></div>
+    <div class="fila fila-borde"><span class="pequeno">Hasta</span><span>{{ fecha_txt(regla.vigencia_hasta) }}</span></div>
+    <div class="fila fila-borde"><span class="pequeno">Aviso</span><span>{{ regla.aviso }}</span></div>
+    <div class="fila fila-borde"><span class="pequeno">Quién controla</span><span>{{ CONTROLES[regla.control] }}</span></div>
+  </div>
+  {% if falta == 'acepto' %}<span class="etiqueta alerta" role="alert">Para dejar la regla, marca la autorización. Si no, no pasa nada: tu propuesta de hoy ya quedó.</span>{% endif %}
+  <form method="post" action="/regla/nueva" class="columna" style="gap:10px">
+    <label class="casilla"><input type="checkbox" name="acepto" value="si"><span>{{ regla.consentimiento }}</span></label>
+    <button class="boton" type="submit">Sí, déjalo como regla</button>
+  </form>
+  <a class="boton secundario" href="/inicio">No por ahora, volver a mi inicio</a>
+</section>
+{% else %}
+<a class="boton secundario" href="/reglas">Ver mis reglas</a>
+<a class="boton" href="/inicio">Volver al inicio</a>
+{% endif %}
 {% endblock %}

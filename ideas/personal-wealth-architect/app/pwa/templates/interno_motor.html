@@ -4,7 +4,7 @@
 <main class="interno" id="principal">
   <div class="fila"><span class="cejilla">El motor por dentro · {{ momento }}</span><span class="fila" style="gap:12px"><a href="/interno/consultor">Vista del consultor</a><a href="/">Portada</a></span></div>
   <h1>Una sola decisión para {{ af.nombre }}, con su porqué</h1>
-  <div class="estado-mvp" style="margin:10px 0 14px"><strong>Estado:</strong> MVP. El motor es determinista y auditable; el impacto incremental es simulado (en producción lo estima un modelo contra grupos de control). Versiones: motor {{ VERSION_MOTOR }} · supuestos {{ S.VERSION }} · catálogo {{ CAT.VERSION }} ({{ CAT.CATALOGO.estado|lower }}). Redacción: {{ modo_ia }}.{% if sin_clave %} Sin clave interna: solo local.{% endif %}</div>
+  <div class="estado-mvp" style="margin:10px 0 14px"><strong>Estado:</strong> MVP. El motor es determinista y auditable; el impacto incremental es simulado (en producción lo estima un modelo contra grupos de control). Versiones: motor {{ VERSION_MOTOR }} · supuestos {{ S.VERSION }} · catálogo {{ CAT.VERSION }} ({{ CAT.CATALOGO.estado|lower }}). Redacción: {{ modo_ia }}.{% if sin_clave %} Abierto sin clave porque PWA_INTERNO_ABIERTO=1: solo local.{% endif %}</div>
 
   <div class="rejilla">
     <section class="tarjeta" aria-label="Los cinco campos">
@@ -18,7 +18,7 @@
         <tr><th>¿Quién lo hace?</th><td>{{ dec.quien_lo_hace }}</td></tr>
         <tr><th>Modo</th><td>{{ 'Servicio (restrictivo activo)' if dec.modo == 'servicio' else 'Asesoría' }}</td></tr>
         <tr><th>Grupo</th><td>{{ dec.grupo }}</td></tr>
-        <tr><th>¿Inicia contacto?</th><td>{{ 'Sí' if dec.puede_iniciar_contacto else 'No' }}</td></tr>
+        <tr><th>¿Inicia contacto?</th><td>{{ 'Sí' if dec.puede_iniciar_contacto else 'No' }} · {{ dec.aviso_proactivo }}</td></tr>
       </tbody></table>
     </section>
     <section class="tarjeta" aria-label="Cola de acciones">

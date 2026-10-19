@@ -4,7 +4,8 @@
 {% block contenido %}
 <div class="fila">{{ c.volver('/equipo', 'Tu equipo') }}{{ c.info() }}</div>
 <h1>Mis reglas y permisos</h1>
-<p class="parrafo">Lo que dejaste andando solo, con su tope, su vigencia y su aviso. Lo pausas o lo cancelas en un toque, o escribiendo "cancela mi regla".</p>
+<p class="parrafo">Lo que dejaste andando solo, con su tope, su vigencia y su aviso. Lo pausas o lo cancelas en un toque.</p>
+{% if nueva %}<div class="tarjeta verde" role="status"><strong style="color:var(--accion)">Tu regla quedó activa.</strong><span style="font-size:13.5px">Cada vez confirmas tú; si no confirmas, no se mueve nada.</span></div>{% endif %}
 {% for m in lista %}
 <section class="tarjeta" aria-label="{{ m.nombre }}">
   <div class="fila"><strong style="font-size:16px">{{ m.nombre }}</strong>
@@ -13,8 +14,8 @@
   <div class="fila fila-borde"><span class="pequeno">Cuándo</span><span style="text-align:right">{{ m.disparador }}</span></div>
   <div class="fila fila-borde"><span class="pequeno">Qué hago</span><span style="text-align:right">{{ m.accion[0]|upper }}{{ m.accion[1:] }}</span></div>
   <div class="fila fila-borde"><span class="pequeno">A dónde</span><span style="text-align:right">{{ m.destino[0]|upper }}{{ m.destino[1:] }}</span></div>
-  <div class="fila fila-borde"><span class="pequeno">Tope</span><span>{{ pesos(m.tope) }} cada vez</span></div>
-  <div class="fila fila-borde"><span class="pequeno">Hasta</span><span>{{ m.vigencia_hasta }}</span></div>
+  <div class="fila fila-borde"><span class="pequeno">Tope</span><span style="text-align:right">{{ pesos(m.tope) }} a inversión por prima</span></div>
+  <div class="fila fila-borde"><span class="pequeno">Hasta</span><span>{{ fecha_txt(m.vigencia_hasta) }}</span></div>
   <div class="fila fila-borde"><span class="pequeno">Aviso</span><span style="text-align:right">{{ m.aviso }}</span></div>
   <div class="fila fila-borde"><span class="pequeno">Quién controla</span><span style="text-align:right">{{ CONTROLES[m.control] }}</span></div>
   <details><summary>Ver tu autorización</summary><p>{{ m.consentimiento }}</p></details>
@@ -29,20 +30,28 @@
 {% else %}
 <div class="tarjeta"><strong>Aún no tienes reglas.</strong><span class="pequeno">Cuando apruebes una propuesta, puedes dejarla como regla.</span></div>
 {% endfor %}
-<section class="tarjeta" aria-label="Tus permisos">
+<section class="tarjeta" id="permisos" aria-label="Tus permisos">
   <span class="cejilla">Tus permisos</span>
-  {% for k, t in [('autoriza_uso_salario', 'Usar mi salario de cotización para mi plan'), ('autoriza_mensajes_comerciales', 'Recibir propuestas por mensajería, en horario legal'), ('autoriza_agentes_externos', 'Que un asistente digital que yo autorice consulte mi plan (solo lectura)')] %}
+  {% for k, t, efecto in [
+    ('autoriza_uso_salario', 'Usar mi salario de cotización para mi plan', 'Sin este permiso no estimamos tu pensión, tu prima ni el ritmo de tu casa, salvo que nos cuentes tu ingreso. Todo lo demás de tu plan sigue.'),
+    ('autoriza_mensajes_comerciales', 'Recibir propuestas por mensajería, en horario legal', 'Sin este permiso solo ves las propuestas cuando abres la app.'),
+    ('autoriza_agentes_externos', 'Que un asistente digital que yo autorice consulte mi plan (solo lectura)', 'Sin este permiso nadie fuera de la app consulta tu plan.')] %}
   {% set on = af.estado[k] %}
-  <form method="post" action="/permisos/{{ k }}" class="fila fila-borde">
+  <div class="fila-borde columna">
+  <form method="post" action="/permisos/{{ k }}" class="fila">
     <span style="font-size:13.5px">{{ t }}</span>
     <input type="hidden" name="valor" value="{{ 'no' if on else 'si' }}">
-    <button class="boton chico {{ '' if on else 'secundario' }}" type="submit" aria-pressed="{{ 'true' if on else 'false' }}">{{ 'Sí' if on else 'No' }}</button>
+    <button class="boton chico {{ '' if on else 'secundario' }}" type="submit" aria-pressed="{{ 'true' if on else 'false' }}" aria-label="{{ t }}: {{ 'sí, retirar' if on else 'no, otorgar' }}">{{ 'Sí' if on else 'No' }}</button>
   </form>
+  <span class="pequeno">{{ efecto }}</span>
+  <details><summary>Ver el texto del permiso</summary><p class="pequeno">{{ TEXTOS_PERMISOS[k] }}</p></details>
+  </div>
   {% endfor %}
+  <a class="enlace" style="justify-content:flex-start" href="/privacidad">Cómo tratamos tus datos</a>
 </section>
 <section class="tarjeta ambar">
   <span class="cejilla">Tus reglas se pausan solas si</span>
   {% for p in PAUSAS %}<span style="font-size:13px">· {{ p }}</span>{% endfor %}
-  <span class="pequeno">Si una regla ejecuta algo distinto a lo que autorizaste, la entidad lo revierte.</span>
+  <span class="pequeno">Y termina sola en su fecha de vigencia.</span>
 </section>
 {% endblock %}

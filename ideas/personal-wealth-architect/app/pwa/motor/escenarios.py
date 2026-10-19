@@ -44,9 +44,12 @@ ESCENARIOS: list[Escenario] = [
     Escenario("R-DEUDA", "Deuda cara sin colchón", "restrictivo", "activo", "Deuda a cuotas y colchón menor a 3 meses",
               "No recomendar inversión; primero deuda y colchón",
               lambda c: c["plan"]["deuda_cara"] and not c["plan"]["colchon"]["completo"], ["pagar_deuda"]),
-    Escenario("R-AUTORIZACION", "Sin autorización de uso del salario", "restrictivo", "activo",
+    # Retirado el 19 de octubre de 2026 (revisión del MVP v1, H17): retirar el permiso del salario no
+    # es un restrictivo general. El plan deja de estimar lo que depende del ingreso (plan.py) y las
+    # acciones que lo necesitan, como la prima, dejan de ser elegibles.
+    Escenario("R-AUTORIZACION", "Sin autorización de uso del salario", "restrictivo", "retirado",
               "No autorizó usar su salario de cotización para su plan",
-              "Solo responde lo que pide; no usa el dato ni inicia contactos", lambda c: not _f(c)["autoriza_uso_salario"],
+              "Reemplazado: el plan no estima lo que depende del ingreso", lambda c: not _f(c)["autoriza_uso_salario"],
               norma="Ley 1581 de 2012"),
     Escenario("R-PERFIL", "Perfil vencido o inexistente", "restrictivo", "activo", "El perfil no cubre los seis criterios",
               "Pide actualizar el perfil antes de recomendar", lambda c: not c.get("perfil_vigente", False),
@@ -57,11 +60,11 @@ ESCENARIOS: list[Escenario] = [
               norma="Ley 1328 de 2009, art. 3"),
 
     # Oportunidad --------------------------------------------------------------------
-    Escenario("O-PRIMA", "Prima con rumbo", "oportunidad", "activo", "Prima en 2 semanas o menos",
+    Escenario("O-PRIMA", "Prima con rumbo", "oportunidad", "activo", "Prima en 2 semanas o menos y prima estimable",
               "Plan de la prima por metas y una regla para la siguiente",
-              lambda c: 0 <= c["dias_para_prima"] <= 15, ["colchon_con_prima", "casa_con_prima", "regla_prima"]),
-    Escenario("O-BENEFICIARIOS", "Beneficiarios por confirmar", "oportunidad", "activo",
-              "Dependientes declarados y beneficiarios sin confirmar", "Confirmar beneficiarios (no es un producto)",
+              lambda c: 0 <= c["dias_para_prima"] <= 15 and c["plan"]["prima"] is not None, ["colchon_con_prima", "casa_con_prima", "regla_prima"]),
+    Escenario("O-BENEFICIARIOS", "Grupo familiar por registrar", "oportunidad", "activo",
+              "Dependientes declarados y grupo familiar sin registrar", "Registrar el grupo familiar (no es un producto)",
               lambda c: bool(c["plan"]["dependiente"]) and not c["plan"]["beneficiarios_confirmados"], ["confirmar_beneficiarios"]),
     Escenario("O-PENSION", "Brecha pensional", "oportunidad", "activo", "Pensión estimada por debajo de la meta",
               "Revisión de la pensión en diciembre", lambda c: c["plan"]["pension"]["brecha"] > 0, ["revisar_pension"]),
@@ -91,12 +94,12 @@ class Accion:
 
 
 ACCIONES: dict[str, Accion] = {a.id: a for a in [
-    Accion("confirmar_beneficiarios", "Confirmar beneficiarios", False, False, "agente", "ejecuta",
+    Accion("confirmar_beneficiarios", "Registrar el grupo familiar", False, False, "agente", "ejecuta",
            "proteccion", "Relación y confianza", "proteger a su familia", ["P6"]),
     Accion("colchon_con_prima", "Separar parte de la prima para el colchón", False, False, "agente", "muestra",
-           "colchon", "Experiencia y conservación", "tranquilidad", ["P3", "P5"]),
+           "colchon", "Experiencia y conservación", "tranquilidad", ["P9", "P5"]),
     Accion("casa_con_prima", "Invertir parte de la prima para la casa", True, True, "agente", "recomienda",
-           "casa", "Depósito neto", "su casa", ["B14", "C3", "C4"], "fic_moderado"),
+           "casa", "Depósito neto", "su casa", ["B14", "C3", "C4", "C5", "A9"], "fpv_moderado"),
     Accion("regla_prima", "Regla para la próxima prima", False, True, "agente", "mandato",
            "casa", "Depósito neto", "su casa", ["B6"]),
     Accion("revisar_pension", "Revisar la pensión en diciembre", False, False, "agente_o_asesor", "muestra",

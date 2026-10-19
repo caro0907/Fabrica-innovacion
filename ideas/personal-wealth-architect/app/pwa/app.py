@@ -3,6 +3,7 @@
 La app es el hogar del plan: primero te conozco, después tu plan, y solo al final una
 recomendación si el plan la pide. Datos ficticios. Nada en operación.
 """
+import hashlib
 import os
 import secrets
 from contextlib import asynccontextmanager
@@ -22,7 +23,7 @@ from .motor import supuestos as S
 from .motor.escenarios import ACCIONES, ESCENARIOS
 from .motor.formato import millones, miles, pesos, porcentaje
 
-VERSION_APP = "1.0.0"
+VERSION_APP = "1.1.0"
 RAIZ = Path(__file__).resolve().parent
 FECHA_REUNION = date(2026, 6, 1)
 FECHA_REVISION = date(2026, 6, 15)
@@ -74,19 +75,38 @@ def estado(s: dict) -> dict:
     hoy = date.fromisoformat(s["fecha_simulada"])
     d = s["diagnostico"]
     p = PLAN.armar_plan(af, d, hoy, s["hechos"])
-    perf = d.get("perfil", {})
-    ctx = decision.contexto(af, p, hoy, perfil_vigente=PF.completo(perf),
+    perf = d.get("perfil") or {}
+    vigente = PF.vigente(perf, d.get("perfil_fecha"), hoy)
+    _revisar_mandatos(s, af, vigente, hoy)
+    ctx = decision.contexto(af, p, hoy, perfil_vigente=vigente, perfil=perf,
                             perdida_tolerada=PF.perdida_tolerada(perf),
+                            plazo_meta_anios=p["casa"]["plazo_anios"] if p["casa"] else None,
                             senales_no_comprende=s["senales_no_comprende"])
     hechas = {a for h in s["hechos"] for a in HECHOS_A_ACCIONES.get(h, [])}
-    dec = decision.decidir(ctx, registro.metricas(), s["contactos_semana"], hechas, s["rechazos"])
+    contactos = registro.contactos_comerciales_semana(s["id"], s["fecha_simulada"])
+    dec = decision.decidir(ctx, registro.metricas(), contactos, hechas, s["rechazos"])
     consultor_nombre = datos.CONSULTOR_CON_NOMBRE_POR_SEGMENTO.get(af["segmento"], False)
     cons = ({**af["consultor"], "corto": af["consultor"]["nombre"].split(" ")[0]} if consultor_nombre
             else {"nombre": "Un consultor certificado", "iniciales": "C", "corto": "un consultor"})
     momento = f"{af['nombre']} · {fecha_larga(hoy)}"
     return {"s": s, "af": af, "hoy": hoy, "d": d, "plan": p, "ctx": ctx, "dec": dec, "cons": cons,
-            "perfil_txt": PF.resumen(perf), "perfil_clase": PF.clasificar(perf),
+            "perfil_txt": PF.resumen(perf), "perfil_clase": PF.clasificar(perf), "perfil_vigente": vigente,
             "consultor_con_nombre": consultor_nombre, "modo_ia": redactor.modo(), "momento": momento}
+
+
+def _revisar_mandatos(s: dict, af: dict, perfil_vigente: bool, hoy: date) -> None:
+    """Las pausas automáticas corren de verdad (H10): se revisan en cada pantalla y queda registro."""
+    for md in registro.mandatos(s["id"]):
+        m = mandatos.desde_dict(md)
+        antes = m.estado
+        mandatos.revisar_pausas(m, af["estado"], perfil_vigente, hoy)
+        if m.estado != antes:
+            registro.guardar_mandato(s["id"], m.dict())
+            registro.registrar(s["afiliado_id"], sesion_id=s["id"], fecha_simulada=s["fecha_simulada"], canal="motor",
+                               accion="mandato_pausa_automatica", tipo="mandato", resultado=f"{m.estado}: {m.motivo_estado}")
+            if m.estado == "cancelado":
+                s["hechos"].discard("regla_prima")
+                registro.guardar_sesion(s)
 
 
 MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre",
@@ -104,31 +124,57 @@ plantillas.env.filters["fecha"] = lambda f: fecha_larga(f).split(" ", 1)[1] if f
 
 
 def vars_catalogo(e: dict) -> dict:
-    p, af = e["plan"], e["af"]
-    return {
+    p = e["plan"]
+    ing = p["ingreso"]
+    if ing["valor"] is None:
+        supuestos = "lo que nos contaste"
+    elif ing["origen"] == "sabemos":
+        supuestos = f"tu salario de cotización de hoy ({ing['txt']}) y la prima de medio salario"
+    else:
+        supuestos = f"el ingreso que nos contaste ({ing['txt']}) y la prima de medio salario"
+    rf = PLAN.registro_familiar(e["d"])
+    v = {
         "meses": p["colchon"]["meses_txt"],
         "persona": p["dependiente"] or "tu familia",
+        "ya_es": rf["ya_es"], "registrar": rf["registrar"],
         "mes": "junio" if e["hoy"].month <= 6 else "diciembre",
-        "prima": p["prima"]["monto_txt"],
-        "supuestos": f"tu salario de cotización de hoy ({millones(af['lo_que_sabemos']['salario_cotizacion'])}) y la prima de medio salario",
-        "pension": p["pension"]["mesada_txt"],
+        "supuestos": supuestos,
         "edad": p["pension"]["edad_pension"],
-        "brecha": p["pension"]["brecha_txt"],
         "reglas": "las reglas de hoy, porque conservarías el régimen de transición" if p["pension"]["conserva_reglas_de_hoy"] else "las reglas de la reforma pensional",
         "fecha_reforma": S.REFORMA_PENSIONAL["fecha_texto"],
         "puntaje": f"{p['puntaje']}",
         "accion": p["lo_que_mas_mueve"]["accion"].lower(),
+        "fecha_perfil": (e["d"].get("perfil_fecha") and fecha_larga(e["d"]["perfil_fecha"]).split(" ", 1)[1]) or "",
+        "consultor": e["cons"]["corto"][0].upper() + e["cons"]["corto"][1:],
     }
+    if p["prima"]:
+        v.update(prima=p["prima"]["monto_txt"], pct_colchon=p["prima"]["porcentaje_colchon_txt"])
+    if p["pension"]["mostrar_mesada"]:
+        v.update(pension=p["pension"]["mesada_txt"], brecha=p["pension"]["brecha_txt"])
+    if p["declarar"]:
+        v.update(ingresos=p["declarar"]["ingresos_txt"], anio_declara=p["declarar"]["anio_declara"],
+                 tope=p["declarar"]["tope_txt"])
+    return v
 
 
-def piezas_permitidas(e: dict, ids: list[str]) -> list[str]:
-    """Quita las piezas cuya condición el afiliado no cumple (por ejemplo, si retiró el permiso de usar su salario)."""
-    ctx = contexto_catalogo(e)
-    return [i for i in ids if not CAT.PIEZAS[i].get("condicion") or ctx.get(CAT.PIEZAS[i]["condicion"])] or ["P1"]
+def piezas_permitidas(e: dict, ids: list[str], recomienda_inversion: bool = False) -> list[str]:
+    """Quita las piezas cuya condición el afiliado no cumple (por ejemplo, si retiró el permiso de usar su
+    salario) y las que contradicen una recomendación de inversión en la misma pantalla (criterio A7)."""
+    ctx = contexto_catalogo(e, recomienda_inversion)
+    return [i for i in ids if CAT.permitida(i, ctx)] or ["P1"]
 
 
-def contexto_catalogo(e: dict) -> dict:
-    return {"paga_impuesto": False, "autoriza_uso_salario": e["af"]["estado"]["autoriza_uso_salario"]}
+def contexto_catalogo(e: dict, recomienda_inversion: bool = False) -> dict:
+    p = e["plan"]
+    return {"paga_impuesto": False, "autoriza_uso_salario": e["af"]["estado"]["autoriza_uso_salario"],
+            "tiene_ingreso": p["ingreso"]["valor"] is not None, "estima_pension": p["pension"]["mostrar_mesada"],
+            "dependiente_hijos": p["dependiente_hijos"], "recomienda_inversion": recomienda_inversion}
+
+
+def recomienda_inversion(e: dict) -> bool:
+    """¿La decisión de hoy lleva a una recomendación de inversión?"""
+    return (e["dec"]["modo"] == "asesoria" and "casa_con_prima" in [x["accion"] for x in e["dec"]["cola"]]
+            and "propuesta_confirmada" not in e["s"]["hechos"])
 
 
 def render(request: Request, plantilla: str, e: dict | None = None, **extra):
@@ -193,19 +239,43 @@ def d1(request: Request):
     return render(request, "d1_bienvenida.html", e)
 
 
+TEXTO_PERMISO_SALARIO = (
+    "Autorizo a mi administradora de fondos, como responsable de mis datos, a usar mi salario de cotización, "
+    "mis primas y mis cesantías con una sola finalidad: armar y revisar mi plan. Puedo conocer, actualizar y "
+    "rectificar mis datos, y retirar este permiso cuando quiera en Mis reglas y permisos.")
+TEXTO_PERMISO_MENSAJES = (
+    "Acepto que me envíen propuestas de mi plan por mensajería, máximo una vez por semana, de lunes a viernes "
+    "de 7 a. m. a 7 p. m. y los sábados de 8 a. m. a 3 p. m., nunca domingos ni festivos. Lo puedo retirar cuando quiera.")
+TEXTO_PERMISO_AGENTES = "Acepto que un asistente digital que yo autorice consulte mi plan, solo para leerlo."
+TEXTOS_PERMISOS = {"autoriza_uso_salario": TEXTO_PERMISO_SALARIO, "autoriza_mensajes_comerciales": TEXTO_PERMISO_MENSAJES,
+                   "autoriza_agentes_externos": TEXTO_PERMISO_AGENTES}
+
+
 @app.post("/d/bienvenida")
-def d1_post(request: Request, autoriza: str = Form("")):
+def d1_post(request: Request, autoriza: str = Form(""), mensajes: str = Form(""), ingreso: str = Form("")):
+    """El permiso del salario es opcional (H5): sin él, la persona puede contar su ingreso o seguir sin él."""
     s, r = requiere_sesion(request, "reunion")
     if r:
         return r
-    if autoriza != "si":
-        return _a("/d/bienvenida?falta=autorizacion")
-    s["consentimientos"]["autoriza_uso_salario"] = True
+    s["consentimientos"]["autoriza_uso_salario"] = autoriza == "si"
+    s["consentimientos"]["autoriza_mensajes_comerciales"] = mensajes == "si"
+    if autoriza != "si" and ingreso.strip().isdigit():
+        s["diagnostico"]["ingreso_declarado"] = max(0, min(int(ingreso), 100_000_000)) or None
+    else:
+        s["diagnostico"].pop("ingreso_declarado", None)
     registro.guardar_sesion(s)
-    registro.registrar(s["afiliado_id"], sesion_id=s["id"], fecha_simulada=s["fecha_simulada"], canal="app",
-                       accion="autorizar_uso_salario", tipo="consentimiento", respuesta="autorizó",
-                       texto_mostrado="Autorizo usar mi salario de cotización, mis primas y mis cesantías para armar mi plan.")
+    for permiso, valor in (("autoriza_uso_salario", autoriza == "si"), ("autoriza_mensajes_comerciales", mensajes == "si")):
+        registro.registrar(s["afiliado_id"], sesion_id=s["id"], fecha_simulada=s["fecha_simulada"], canal="app",
+                           accion=permiso, tipo="consentimiento", respuesta="otorgó" if valor else "no otorgó",
+                           texto_mostrado=TEXTOS_PERMISOS[permiso])
     return _a("/d/metas")
+
+
+@app.get("/privacidad", response_class=HTMLResponse)
+def privacidad(request: Request):
+    s = sesion_de(request)
+    e = estado(s) if s else {}
+    return render(request, "privacidad.html", e, volver=request.headers.get("referer", "/") if s else "/")
 
 
 @app.get("/d/metas", response_class=HTMLResponse)
@@ -233,7 +303,15 @@ async def d2_post(request: Request):
 @app.get("/d/numeros", response_class=HTMLResponse)
 def d2b(request: Request):
     s, r = requiere_sesion(request, "reunion")
-    return r or render(request, "d2b_numeros.html", estado(s))
+    if r:
+        return r
+    e = estado(s)
+    # La cifra que se propone es la misma con que arranca el deslizador (H25), en cifras redondas de $0,5 M.
+    ingreso = e["plan"]["ingreso"]["valor"]
+    propuesta = round(ingreso * 0.6 / 500_000) * 500_000 if ingreso else None
+    if propuesta and "pension_ajustada" not in s["hechos"]:
+        e["d"]["pension_deseada"] = propuesta
+    return render(request, "d2b_numeros.html", e, propuesta_pension=propuesta)
 
 
 @app.post("/d/numeros")
@@ -244,6 +322,7 @@ def d2b_post(request: Request, plazo_casa: str = Form("En 10 años"), cuota_inic
         return r
     s["diagnostico"].update(plazo_casa=plazo_casa, cuota_inicial_casa=max(0, min(cuota_inicial_casa, 300_000_000)),
                             pension_deseada=max(1_000_000, min(pension_deseada, 20_000_000)))
+    s["hechos"].add("pension_ajustada")
     registro.guardar_sesion(s)
     return _a("/d/vida")
 
@@ -293,11 +372,14 @@ def d4(request: Request):
     return r or render(request, "d4_riesgo.html", estado(s), accion_form="/d/riesgo", volver="/d/dinero", paso=3)
 
 
-def _leer_perfil(f) -> dict:
+def _leer_perfil(f) -> dict | None:
+    """Solo respuestas de la persona: si falta una, no hay perfil (H9). Nunca se completa por defecto."""
     perf = {}
     for k, _, _, opciones in PF.PREGUNTAS:
         v = f.get(k)
-        perf[k] = v if v in opciones else opciones[0]
+        if v not in opciones:
+            return None
+        perf[k] = v
     return perf
 
 
@@ -306,9 +388,14 @@ async def d4_post(request: Request):
     s, r = requiere_sesion(request, "reunion")
     if r:
         return r
-    s["diagnostico"]["perfil"] = _leer_perfil(await request.form())
+    perf = _leer_perfil(await request.form())
+    if perf is None:
+        return _a("/d/riesgo?falta=perfil")
+    s["diagnostico"]["perfil"] = perf
     s["diagnostico"]["perfil_fecha"] = s["fecha_simulada"]
     registro.guardar_sesion(s)
+    registro.registrar(s["afiliado_id"], sesion_id=s["id"], fecha_simulada=s["fecha_simulada"], canal="app",
+                       accion="perfil", tipo="perfil", argumento=perf, perfil_usado=PF.resumen(perf))
     return _a("/d/entendi")
 
 
@@ -325,6 +412,9 @@ def d5_post(request: Request):
         return r
     s["hechos"].add("diagnostico_listo")
     registro.guardar_sesion(s)
+    registro.registrar(s["afiliado_id"], sesion_id=s["id"], fecha_simulada=s["fecha_simulada"], canal="app",
+                       accion="diagnostico_confirmado", tipo="diagnostico", argumento=s["diagnostico"],
+                       perfil_usado=PF.resumen(s["diagnostico"].get("perfil") or {}), respuesta="confirmó lo que entendimos")
     return _a("/plan-inicial")
 
 
@@ -366,8 +456,8 @@ def confirmar_beneficiaria(request: Request, volver: str = Form("/plan-inicial")
     registro.guardar_sesion(s)
     registro.registrar(s["afiliado_id"], sesion_id=s["id"], fecha_simulada=s["fecha_simulada"], canal="app",
                        accion="confirmar_beneficiarios", escenario="O-BENEFICIARIOS", angulo="proteger a su familia",
-                       argumento=["P6"], tipo="paso del plan", respuesta="confirmó", resultado="beneficiaria confirmada",
-                       quien="El arquitecto digital")
+                       argumento=[PLAN.registro_familiar(s["diagnostico"])["pieza"]], tipo="paso del plan",
+                       respuesta="registró", resultado="grupo familiar registrado (simulado)", quien="El arquitecto digital")
     return _a(volver if volver in ("/plan-inicial", "/plan") else "/plan-inicial")
 
 
@@ -391,8 +481,16 @@ def inicio(request: Request, vuelves: int = 0):
     e = estado(s)
     nota = None
     if "propuesta_confirmada" not in s["hechos"] and e["dec"]["principal"] and e["dec"]["principal"]["escenario"] == "O-PRIMA":
-        nota = redactor.nota_del_arquitecto(piezas_permitidas(e, ["B6", "P3"]), vars_catalogo(e), contexto_catalogo(e), e["af"]["nombre"])
-    return render(request, "inicio.html", e, nota=nota, vuelves=vuelves, pestana="inicio")
+        # Coherencia (hallazgo 1 del revisor, H3): si la decisión lleva a invertir para la casa, la nota dice la
+        # regla real (P9: colchón primero con el 70%, la casa con el resto), nunca "antes de invertir".
+        reco = recomienda_inversion(e)
+        piezas = ["B6", "P9"] if reco and e["plan"]["casa"] and e["plan"]["prima"]["al_colchon"] > 0 else ["B6", "P3"]
+        nota = redactor.nota_del_arquitecto(piezas_permitidas(e, piezas, reco), vars_catalogo(e),
+                                            contexto_catalogo(e, reco), e["af"]["nombre"])
+    sin_ingreso = None
+    if e["plan"]["ingreso"]["valor"] is None:
+        sin_ingreso = CAT.componer(["P10"], {}, {})
+    return render(request, "inicio.html", e, nota=nota, vuelves=vuelves, pestana="inicio", sin_ingreso=sin_ingreso)
 
 
 @app.get("/revision", response_class=HTMLResponse)
@@ -401,29 +499,37 @@ def revision(request: Request):
     if r:
         return r
     e = estado(s)
-    nota = redactor.nota_del_arquitecto(piezas_permitidas(e, ["B6", "P5"]), vars_catalogo(e), contexto_catalogo(e), e["af"]["nombre"])
+    reco = recomienda_inversion(e)
+    nota = redactor.nota_del_arquitecto(piezas_permitidas(e, ["B6", "P5"], reco), vars_catalogo(e),
+                                        contexto_catalogo(e, reco), e["af"]["nombre"])
     registro.registrar(s["afiliado_id"], sesion_id=s["id"], fecha_simulada=s["fecha_simulada"],
-                       canal=e["dec"]["cinco_campos"]["canal"], accion="revision_periodica", escenario="O-PRIMA",
+                       canal="app (la persona abrió su revisión)", accion="revision_periodica", escenario="O-PRIMA",
                        angulo="tranquilidad", argumento=nota["piezas"], texto_mostrado=nota["texto"], tipo="informacion",
                        version_catalogo=CAT.VERSION, version_motor=decision.VERSION_MOTOR, version_supuestos=S.VERSION,
                        perfil_usado=e["perfil_txt"], grupo=e["dec"]["grupo"], quien=e["dec"]["quien_lo_hace"])
     return render(request, "revision.html", e, nota=nota)
 
 
+PORTAFOLIO_CASA = ACCIONES["casa_con_prima"].portafolio
+
+
 def _propuesta(e: dict) -> dict:
     p = e["plan"]
     monto = p["prima"]["a_la_meta"]
-    port = S.PORTAFOLIOS["fic_moderado"]
-    caida = C.redondear_riesgo(C.caida_mal_anio(monto, "fic_moderado"))
-    costo = C.costo_anual(monto, "fic_moderado")
-    v = {"caida": pesos(caida), "metodo": f"una caída de {porcentaje(port['caida_mal_anio'])} en un mal año (método por aprobar)",
-         "comision": f"{porcentaje(port['comision_anual'], 1)} ({pesos(costo)} al año sobre {pesos(monto)}, ficticia)",
-         "alternativas": "dejarlo en tu cuenta de ahorros, un CDT o fondos de otras entidades"}
-    comp = CAT.componer(["B14", "C3", "C4"], v, contexto_catalogo(e))
+    port = S.PORTAFOLIOS[PORTAFOLIO_CASA]
+    caida = C.redondear_riesgo(C.caida_mal_anio(monto, PORTAFOLIO_CASA))
+    costo = C.costo_anual(monto, PORTAFOLIO_CASA)
+    v = {**vars_catalogo(e), "caida": pesos(caida),
+         "metodo": f"una caída de {porcentaje(port['caida_mal_anio'])} en un mal año (método por aprobar)",
+         "comision": f"{porcentaje(port['comision_anual'], 1)} al año, unos {pesos(costo)} sobre {pesos(monto)} (tarifa ficticia)",
+         "alternativas": "dejarlo en tu cuenta de ahorros, un certificado de depósito a término o fondos de otras entidades"}
+    comp = CAT.componer(ACCIONES["casa_con_prima"].piezas, v, contexto_catalogo(e, True))
     textos = dict(zip(comp.piezas, comp.textos))
     elegible = "casa_con_prima" in [x["accion"] for x in e["dec"]["cola"]]
+    plazo = p["casa"]["plazo_anios"] if p["casa"] else None
+    idoneo, motivos = PF.idoneidad(PORTAFOLIO_CASA, e["d"].get("perfil") or {}, plazo)
     return {"monto": monto, "portafolio": port, "caida": caida, "costo": costo, "textos": textos,
-            "piezas": comp.piezas, "elegible": elegible, "cabe_en_perfil": port["caida_mal_anio"] <= PF.perdida_tolerada(e["d"].get("perfil", {}))}
+            "piezas": comp.piezas, "elegible": elegible and idoneo, "idoneo": idoneo, "motivos_no_idoneo": motivos}
 
 
 @app.get("/propuesta", response_class=HTMLResponse)
@@ -432,6 +538,8 @@ def propuesta(request: Request, falta: str = ""):
     if r:
         return r
     e = estado(s)
+    if not e["plan"]["prima"] or not e["plan"]["casa"]:
+        return _a("/revision")
     pr = _propuesta(e)
     if "propuesta_confirmada" not in s["hechos"]:
         registro.registrar(s["afiliado_id"], sesion_id=s["id"], fecha_simulada=s["fecha_simulada"], canal="app",
@@ -443,11 +551,11 @@ def propuesta(request: Request, falta: str = ""):
 
 
 @app.post("/propuesta/confirmar")
-def propuesta_confirmar(request: Request, entiendo: str = Form(""), regla: str = Form(""), huella: str = Form("")):
+def propuesta_confirmar(request: Request, entiendo: str = Form("")):
+    """Paso 1: la comprensión. Paso 2, visible: la huella (simulada) en /huella."""
     s, r = requiere_sesion(request, "app")
     if r:
         return r
-    e = estado(s)
     if entiendo != "si":
         s["senales_no_comprende"] += 1
         registro.guardar_sesion(s)
@@ -455,24 +563,74 @@ def propuesta_confirmar(request: Request, entiendo: str = Form(""), regla: str =
                            accion="casa_con_prima", tipo="recomendacion profesional", respuesta="no marcó la comprensión",
                            resultado=f"señal de no comprender #{s['senales_no_comprende']}")
         return _a("/propuesta?falta=entiendo")
-    if huella != "si":
-        return _a("/propuesta?falta=huella")
-    s["hechos"].add("propuesta_confirmada")
-    registro.registrar(s["afiliado_id"], sesion_id=s["id"], fecha_simulada=s["fecha_simulada"], canal="app",
-                       accion="casa_con_prima", escenario="O-PRIMA", angulo="su casa", argumento=["B14", "C3", "C4", "A8"],
-                       tipo="recomendacion profesional", respuesta="aceptó con confirmación biométrica (simulada)",
-                       resultado="aprobado; sin movimiento de dinero: se pedirá cada transferencia el 30 de junio",
-                       version_catalogo=CAT.VERSION, version_motor=decision.VERSION_MOTOR, version_supuestos=S.VERSION,
-                       perfil_usado=e["perfil_txt"], grupo=e["dec"]["grupo"], quien=e["dec"]["quien_lo_hace"])
-    if regla == "si":
-        m = mandatos.prima_con_rumbo(s["afiliado_id"], e["hoy"], e["plan"]["prima"]["porcentaje_colchon"], e["plan"]["prima"]["monto"])
-        registro.guardar_mandato(s["id"], m.dict())
-        s["hechos"].add("regla_prima")
-        registro.registrar(s["afiliado_id"], sesion_id=s["id"], fecha_simulada=s["fecha_simulada"], canal="app",
-                           accion="regla_prima", escenario="O-PRIMA", tipo="mandato", texto_mostrado=m.consentimiento,
-                           respuesta="aceptó el consentimiento", resultado="regla activa, proponer y confirmar")
+    s["hechos"].add("huella_pendiente:propuesta")
     registro.guardar_sesion(s)
-    return _a("/propuesta/lista")
+    return _a("/huella?para=propuesta")
+
+
+QUE_SE_APRUEBA = {"propuesta": "Aprobar tu propuesta para la prima", "regla": "Dejar tu regla Prima con rumbo"}
+
+
+@app.get("/huella", response_class=HTMLResponse)
+def huella(request: Request, para: str = "propuesta"):
+    """Paso visible de la confirmación con la huella del celular (simulada en el MVP)."""
+    s, r = requiere_sesion(request, "app")
+    if r:
+        return r
+    if para not in QUE_SE_APRUEBA or f"huella_pendiente:{para}" not in s["hechos"]:
+        return _a("/propuesta" if para == "propuesta" else "/propuesta/lista")
+    return render(request, "huella.html", estado(s), para=para, que=QUE_SE_APRUEBA[para])
+
+
+@app.post("/huella")
+def huella_post(request: Request, para: str = Form("propuesta")):
+    s, r = requiere_sesion(request, "app")
+    if r:
+        return r
+    if para not in QUE_SE_APRUEBA or f"huella_pendiente:{para}" not in s["hechos"]:
+        return _a("/inicio")
+    e = estado(s)
+    s["hechos"].discard(f"huella_pendiente:{para}")
+    if para == "propuesta":
+        pr = _propuesta(e)
+        if not pr["elegible"]:
+            registro.guardar_sesion(s)
+            return _a("/propuesta")
+        s["hechos"].add("propuesta_confirmada")
+        registro.registrar(s["afiliado_id"], sesion_id=s["id"], fecha_simulada=s["fecha_simulada"], canal="app",
+                           accion="casa_con_prima", escenario="O-PRIMA", angulo="su casa", argumento=pr["piezas"],
+                           texto_mostrado=" ".join(pr["textos"].values()),
+                           tipo="recomendacion profesional", respuesta="aprobó con su huella (simulada)",
+                           resultado="aprobado; sin movimiento de dinero: se pedirá confirmar cada transferencia el 30 de junio",
+                           version_catalogo=CAT.VERSION, version_motor=decision.VERSION_MOTOR, version_supuestos=S.VERSION,
+                           perfil_usado=e["perfil_txt"], grupo=e["dec"]["grupo"], quien=e["dec"]["quien_lo_hace"])
+        registro.guardar_sesion(s)
+        return _a("/propuesta/lista")
+    m = mandatos.prima_con_rumbo(s["afiliado_id"], e["hoy"], e["plan"]["prima"]["porcentaje_colchon"])
+    registro.guardar_mandato(s["id"], m.dict())
+    s["hechos"].add("regla_prima")
+    registro.guardar_sesion(s)
+    registro.registrar(s["afiliado_id"], sesion_id=s["id"], fecha_simulada=s["fecha_simulada"], canal="app",
+                       accion="regla_prima", escenario="O-PRIMA", tipo="mandato", texto_mostrado=m.consentimiento,
+                       respuesta="marcó la autorización, que vio antes de aceptar, y confirmó con su huella (simulada)",
+                       resultado="regla activa: te propongo y tú confirmas")
+    return _a("/reglas?nueva=1")
+
+
+@app.post("/regla/nueva")
+def regla_nueva(request: Request, acepto: str = Form("")):
+    """La regla se ofrece después de aprobar (diseño v5.2), con condiciones y autorización visibles y la casilla
+    desmarcada (criterio B12). Sin la casilla no se crea."""
+    s, r = requiere_sesion(request, "app")
+    if r:
+        return r
+    if "propuesta_confirmada" not in s["hechos"] or "regla_prima" in s["hechos"]:
+        return _a("/propuesta/lista")
+    if acepto != "si":
+        return _a("/propuesta/lista?falta=acepto")
+    s["hechos"].add("huella_pendiente:regla")
+    registro.guardar_sesion(s)
+    return _a("/huella?para=regla")
 
 
 @app.post("/propuesta/no")
@@ -489,9 +647,21 @@ def propuesta_no(request: Request):
 
 
 @app.get("/propuesta/lista", response_class=HTMLResponse)
-def propuesta_lista(request: Request):
+def propuesta_lista(request: Request, falta: str = ""):
     s, r = requiere_sesion(request, "app")
-    return r or render(request, "propuesta_lista.html", estado(s))
+    if r:
+        return r
+    e = estado(s)
+    if "propuesta_confirmada" not in s["hechos"]:
+        return _a("/propuesta")
+    m = mandatos.prima_con_rumbo(s["afiliado_id"], e["hoy"], e["plan"]["prima"]["porcentaje_colchon"])
+    ofrecer = "regla_prima" not in s["hechos"] and not any(x["estado"] != "cancelado" for x in registro.mandatos(s["id"]))
+    if ofrecer and not falta:
+        registro.registrar(s["afiliado_id"], sesion_id=s["id"], fecha_simulada=s["fecha_simulada"], canal="app",
+                           accion="regla_prima", escenario="O-PRIMA", tipo="mandato", texto_mostrado=m.consentimiento,
+                           respuesta="se le mostró la autorización antes de aceptar")
+    return render(request, "propuesta_lista.html", e, regla=m, ofrecer=ofrecer, falta=falta,
+                  CONTROLES=mandatos.CONTROLES, fecha_txt=mandatos.fecha_txt)
 
 
 @app.get("/plan", response_class=HTMLResponse)
@@ -500,12 +670,14 @@ def mi_plan(request: Request):
     if r:
         return r
     e = estado(s)
-    sabe = e["af"]["lo_que_sabemos"]
-    calendario = [("30 jun", "Prima de mitad de año", e["plan"]["prima"]["monto_corto"]),
-                  ("20 dic", "Prima de fin de año (primeros 20 días de diciembre)", e["plan"]["prima"]["monto_corto"]),
-                  ("31 ene", "Intereses de tus cesantías (12% de lo del año)", miles(sabe["salario_cotizacion"] * 0.12)),
-                  ("14 feb", "Tu empresa consigna tus cesantías del año", millones(sabe["salario_cotizacion"]))]
-    return render(request, "plan.html", e, calendario=calendario, pestana="plan")
+    ingreso = e["plan"]["ingreso"]["valor"]
+    sin = "Sin estimar"
+    calendario = [("30 jun", "Prima de mitad de año", e["plan"]["prima"]["monto_corto"] if ingreso else sin),
+                  ("20 dic", "Prima de fin de año (primeros 20 días de diciembre)", e["plan"]["prima"]["monto_corto"] if ingreso else sin),
+                  ("31 ene", "Intereses de tus cesantías (12% de lo del año)", miles(ingreso * S.TASA_INTERESES_CESANTIAS) if ingreso else sin),
+                  ("14 feb", "Tu empresa consigna tus cesantías del año", millones(ingreso) if ingreso else sin)]
+    p10 = CAT.componer(["P10"], {}, {}) if not ingreso else None
+    return render(request, "plan.html", e, calendario=calendario, pestana="plan", p10=p10)
 
 
 @app.get("/meta/casa", response_class=HTMLResponse)
@@ -520,18 +692,23 @@ def meta_casa(request: Request, mensual: int = 100_000):
 
 
 def simular_casa(e: dict, mensual: int) -> dict:
+    """Dos escenarios con los supuestos versionados (H19): el bueno con la rentabilidad real supuesta y el malo
+    sin rentabilidad, más la caída en pesos de un mal año sobre lo que habrías puesto en un año."""
     casa = e["plan"]["casa"]
     mensual = max(0, min(int(mensual), 2_000_000))
     aporte = casa["aporte_primas_mensual"] + mensual
     bueno = C.meses_para_meta(casa["cuota"], casa["llevas"], aporte, S.RENTABILIDAD_ESCENARIO_BUENO)
     malo = C.meses_para_meta(casa["cuota"], casa["llevas"], aporte, S.RENTABILIDAD_ESCENARIO_MALO)
     inicio = e["hoy"].year + (e["hoy"].month - 1) / 12
+    caida = C.redondear_riesgo(C.caida_mal_anio(aporte * 12, PORTAFOLIO_CASA)) if aporte else 0
 
     def anio(m):
         return int(inicio + m / 12) if m is not None else None
     return {"mensual": mensual, "mensual_txt": miles(mensual) if mensual else "$0", "aporte_total": aporte,
             "anio_bueno": anio(bueno), "anio_malo": anio(malo), "a_tiempo": bueno is not None and bueno <= casa["plazo_anios"] * 12,
-            "puesto_10": pesos(aporte * casa["plazo_anios"] * 12)}
+            "puesto_10": pesos(aporte * casa["plazo_anios"] * 12),
+            "rent_buena_txt": porcentaje(S.RENTABILIDAD_ESCENARIO_BUENO), "caida_txt": pesos(caida),
+            "caida_pct_txt": porcentaje(S.PORTAFOLIOS[PORTAFOLIO_CASA]["caida_mal_anio"])}
 
 
 @app.get("/api/simular/casa")
@@ -566,8 +743,9 @@ def reglas(request: Request):
     s, r = requiere_sesion(request, "app")
     if r:
         return r
-    return render(request, "reglas.html", estado(s), lista=registro.mandatos(s["id"]),
-                  CONTROLES=mandatos.CONTROLES, PAUSAS=mandatos.PAUSAS_AUTOMATICAS, pestana="equipo")
+    return render(request, "reglas.html", estado(s), lista=registro.mandatos(s["id"]), nueva=request.query_params.get("nueva"),
+                  CONTROLES=mandatos.CONTROLES, PAUSAS=mandatos.PAUSAS_AUTOMATICAS, fecha_txt=mandatos.fecha_txt,
+                  TEXTOS_PERMISOS=TEXTOS_PERMISOS, pestana="equipo")
 
 
 @app.post("/reglas/{mandato_id}/{accion}")
@@ -605,8 +783,9 @@ def permisos(request: Request, permiso: str, valor: str = Form("no")):
     s["consentimientos"][permiso] = valor == "si"
     registro.guardar_sesion(s)
     registro.registrar(s["afiliado_id"], sesion_id=s["id"], fecha_simulada=s["fecha_simulada"], canal="app",
-                       accion=permiso, tipo="consentimiento", respuesta="otorgó" if valor == "si" else "retiró")
-    return _a("/reglas")
+                       accion=permiso, tipo="consentimiento", respuesta="otorgó" if valor == "si" else "retiró",
+                       texto_mostrado=TEXTOS_PERMISOS[permiso])
+    return _a("/reglas#permisos")
 
 
 @app.get("/equipo", response_class=HTMLResponse)
@@ -638,11 +817,14 @@ async def cambiar_perfil_post(request: Request):
     s, r = requiere_sesion(request, "app")
     if r:
         return r
-    s["diagnostico"]["perfil"] = _leer_perfil(await request.form())
+    perf = _leer_perfil(await request.form())
+    if perf is None:
+        return _a("/perfil/cambiar?falta=perfil")
+    s["diagnostico"]["perfil"] = perf
     s["diagnostico"]["perfil_fecha"] = s["fecha_simulada"]
     registro.guardar_sesion(s)
     registro.registrar(s["afiliado_id"], sesion_id=s["id"], fecha_simulada=s["fecha_simulada"], canal="app",
-                       accion="actualizar_perfil", tipo="perfil", perfil_usado=PF.resumen(s["diagnostico"]["perfil"]))
+                       accion="actualizar_perfil", tipo="perfil", argumento=perf, perfil_usado=PF.resumen(perf))
     return _a("/perfil")
 
 
@@ -672,9 +854,9 @@ def responder(e: dict, q: str) -> dict:
     v, ctx = vars_catalogo(e), contexto_catalogo(e)
     mapa = {
         "colchon": (["P3", "P5"], "/plan", "Ver tu plan"),
-        "casa": (["B8"], "/meta/casa", "Ver tu casa con el simulador"),
+        "casa": (["B8"], "/meta/casa" if e["plan"]["casa"] else "/plan", "Ver tu casa con el simulador" if e["plan"]["casa"] else "Ver tu plan"),
         "pension": (["B12"], "/plan", "Ver tu pensión y sus supuestos"),
-        "prima": (["B6"], "/revision", "Ver tu revisión de junio"),
+        "prima": (["B6"] if e["plan"]["prima"] else ["P10"], "/revision", "Ver tu revisión de junio"),
         "cesantias": (["B8"], "/patrimonio", "Ver tu patrimonio"),
         "asesor": (["P8"], "/equipo", f"Hablar con {e['cons']['nombre']}"),
         "impuesto": ([], "/equipo", f"Verlo con {e['cons']['nombre']}"),
@@ -682,11 +864,13 @@ def responder(e: dict, q: str) -> dict:
     }
     piezas, enlace, enlace_txt = mapa[it]
     if it == "impuesto":
-        texto = ("Con tu salario, el cálculo del impuesto lo ve un asesor con tu certificado de ingresos: "
-                 "pagar impuesto y tener que declarar son dos cosas distintas, y la obligación de declarar la confirma un asesor contigo.")
-        return {"intencion": it, "texto": texto, "piezas": ["A2"], "enlace": enlace, "enlace_txt": enlace_txt}
-    if it == "pension" and e["plan"]["pension"]["brecha"] <= 0:
-        piezas = ["B12"]
+        decl = e["plan"]["declarar"]
+        piezas = ["B15"] if decl and decl["probable"] else ["A2"]
+        nota = redactor.nota_del_arquitecto(piezas_permitidas(e, piezas), v, ctx, e["af"]["nombre"])
+        return {"intencion": it, "texto": nota["texto"], "piezas": nota["piezas"], "enlace": enlace,
+                "enlace_txt": enlace_txt, "textos": nota["textos"]}
+    if it == "pension" and not e["plan"]["pension"]["mostrar_mesada"]:
+        piezas = ["P10"] if not e["plan"]["pension"]["estimable"] else ["A4"]
     nota = redactor.nota_del_arquitecto(piezas_permitidas(e, piezas), v, ctx, e["af"]["nombre"])
     return {"intencion": it, "texto": nota["texto"], "piezas": nota["piezas"], "enlace": enlace, "enlace_txt": enlace_txt,
             "textos": nota["textos"]}
@@ -731,11 +915,17 @@ def servicio_solicitar(request: Request):
 
 
 # Vistas internas ------------------------------------------------------------------------------------
+def _ficha_interna(clave: str) -> str:
+    """La cookie guarda una ficha derivada de la clave, nunca la clave en claro."""
+    return hashlib.sha256(f"pwa-interno:{clave}".encode()).hexdigest()
+
+
 def acceso_interno(request: Request) -> bool:
+    """Cerradas por defecto: sin PWA_CLAVE_INTERNA solo se abren si PWA_INTERNO_ABIERTO=1 (uso local)."""
     clave = os.environ.get("PWA_CLAVE_INTERNA")
     if not clave:
-        return True
-    return secrets.compare_digest(request.cookies.get(COOKIE_INTERNA, ""), clave)
+        return os.environ.get("PWA_INTERNO_ABIERTO") == "1"
+    return secrets.compare_digest(request.cookies.get(COOKIE_INTERNA, ""), _ficha_interna(clave))
 
 
 @app.get("/interno/entrar", response_class=HTMLResponse)
@@ -749,7 +939,8 @@ def interno_entrar_post(clave: str = Form(""), siguiente: str = Form("/interno/m
     if not esperada or not secrets.compare_digest(clave, esperada):
         return _a("/interno/entrar?error=1")
     r = _a(siguiente if siguiente.startswith("/interno/") else "/interno/motor")
-    r.set_cookie(COOKIE_INTERNA, clave, httponly=True, samesite="strict", secure=os.environ.get("PWA_COOKIE_SEGURA") == "1")
+    r.set_cookie(COOKIE_INTERNA, _ficha_interna(clave), httponly=True, samesite="strict",
+                 secure=os.environ.get("PWA_COOKIE_SEGURA") == "1")
     return r
 
 
@@ -768,10 +959,10 @@ def interno_consultor(request: Request):
     if r:
         return r
     enganche = decision.brief_enganche(e["dec"], e["plan"], e["af"])
-    pr = _propuesta(e) if e["dec"]["modo"] == "asesoria" else None
-    return render(request, "interno_consultor.html", e, enganche=enganche, pr=pr,
+    pr = _propuesta(e) if (e["dec"]["modo"] == "asesoria" and e["plan"]["prima"] and e["plan"]["casa"]) else None
+    return render(request, "interno_consultor.html", e, enganche=enganche, pr=pr if (pr and e["plan"]["prima"]) else None,
                   historia=registro.interacciones(e["s"]["id"], 30), lista=registro.mandatos(e["s"]["id"]),
-                  sin_clave=not os.environ.get("PWA_CLAVE_INTERNA"))
+                  sin_clave=not os.environ.get("PWA_CLAVE_INTERNA"), fecha_txt=mandatos.fecha_txt)
 
 
 @app.get("/interno/motor", response_class=HTMLResponse)

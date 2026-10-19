@@ -59,11 +59,14 @@ with sync_playwright() as p:
     captura(page, "d3b-dinero")
     page.click("button:has-text('Siguiente')")
     captura(page, "d4-riesgo")
+    for nombre, valor in [("horizonte", "Más de 5 años"), ("objetivo", "Que crezca para mi meta"), ("conocimiento", "Lo básico"),
+                          ("experiencia", "Nunca"), ("perdida", "Hasta 15 de cada 100 pesos"), ("reaccion", "Espero")]:
+        page.check(f"input[name={nombre}][value='{valor}']")
     page.click("button:has-text('Siguiente')")
     captura(page, "d5-entendi")
     page.click("text=Ver mi plan")
     captura(page, "plan-inicial")
-    page.click("button:has-text('Confirmar a tu hija')")
+    page.click("button:has-text('Registrar a tu hija')")
     page.click("text=Guardar mi plan")
     captura(page, "inicio")
     page.click("text=Ver mi revisión")
@@ -71,13 +74,17 @@ with sync_playwright() as p:
     page.click("text=Ver mi propuesta")
     captura(page, "propuesta")
     page.check("input[name=entiendo]")
-    page.click("text=Aprobar con mi huella")
+    page.click("text=Seguir: confirmar con mi huella")
+    captura(page, "huella")
+    page.click("text=Confirmar con mi huella (simulado)")
     captura(page, "propuesta-lista")
-    page.click("text=Ver mis reglas")
+    page.check("input[name=acepto]")
+    page.click("text=Sí, déjalo como regla")
+    page.click("text=Confirmar con mi huella (simulado)")
     captura(page, "reglas")
     for url, nombre in [("/plan", "plan"), ("/meta/casa", "meta-casa"), ("/patrimonio", "patrimonio"), ("/pilares", "pilares"),
                         ("/equipo", "equipo"), ("/perfil", "perfil"), ("/como-funciona", "como-funciona"),
-                        ("/pregunta?q=¿Cuándo llego a mi casa?", "pregunta")]:
+                        ("/pregunta?q=¿Cuándo llego a mi casa?", "pregunta"), ("/privacidad", "privacidad")]:
         page.goto(BASE + url)
         captura(page, nombre)
     page.set_viewport_size({"width": 1280, "height": 900})
@@ -89,6 +96,20 @@ with sync_playwright() as p:
     page.goto(BASE + "/")
     page.click("text=Entrar como Andrés")
     captura(page, "servicio-andres")
+    # Laura sin el permiso del salario (criterio C10)
+    page.goto(BASE + "/")
+    page.click("text=Empezar como Laura")
+    page.click("text=Empecemos")
+    for _ in range(4):
+        page.click("button:has-text('Siguiente')")
+    for nombre, valor in [("horizonte", "Más de 5 años"), ("objetivo", "Que crezca para mi meta"), ("conocimiento", "Lo básico"),
+                          ("experiencia", "Nunca"), ("perdida", "Hasta 15 de cada 100 pesos"), ("reaccion", "Espero")]:
+        page.check(f"input[name={nombre}][value='{valor}']")
+    page.click("button:has-text('Siguiente')")
+    page.click("text=Ver mi plan")
+    captura(page, "plan-inicial-sin-permiso")
+    page.click("text=Guardar mi plan")
+    captura(page, "inicio-sin-permiso")
     nav.close()
 
 total = 0

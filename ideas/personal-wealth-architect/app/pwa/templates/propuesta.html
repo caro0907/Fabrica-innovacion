@@ -18,24 +18,23 @@
 {% elif pr.elegible %}
 <div class="bloque-reco">
   <div class="fila"><strong>{{ plan.prima.a_la_meta_txt }} a tu casa</strong><span class="marca-tipo" style="color:var(--atencion-texto)">{{ pr.portafolio.nombre }}</span></div>
-  <span style="font-size:13.5px"><strong>Por qué:</strong> tu casa es tu meta más importante y su plazo es de {{ plan.casa.plazo_anios }} años; este fondo es para metas de más de {{ pr.portafolio.horizonte_minimo_anios }} años y coincide con tu perfil {{ perfil_clase }}, del {{ d.get('perfil_fecha', '2026-06-01')|fecha }}.</span>
+  <span style="font-size:13.5px"><strong>Por qué:</strong> tu casa es tu meta más importante y su plazo es de {{ plan.casa.plazo_anios }} años; este portafolio es para metas de más de {{ pr.portafolio.horizonte_minimo_anios }} años, y con tu perfil {{ perfil_clase }} del {{ d.perfil_fecha|fecha }} aceptas bajas como la de un mal año.</span>
   <span class="riesgo">{{ pr.textos.B14 }} {{ pr.textos.A8 }}</span>
-  <span style="font-size:13px"><strong>Cuánto cuesta:</strong> {{ pr.textos.C4 }}</span>
+  <span style="font-size:13px"><strong>Retiro y beneficio:</strong> {{ pr.textos.C5 }}</span>
+  <span style="font-size:13px"><strong>Quién te asesora y cuánto cuesta:</strong> {{ pr.textos.A9 }} {{ pr.textos.C4 }}</span>
   <span class="pequeno">{{ pr.textos.C3 }}</span>
 </div>
 {% if falta == 'entiendo' %}<span class="etiqueta alerta" role="alert">Marca que entiendes la recomendación para seguir, o habla con {{ cons.corto }}.</span>{% endif %}
-{% if falta == 'huella' %}<span class="etiqueta alerta" role="alert">Falta confirmar con tu huella.</span>{% endif %}
 <form method="post" action="/propuesta/confirmar" class="tarjeta">
-  <label class="casilla"><input type="checkbox" name="entiendo" value="si"><span>Entiendo que es una recomendación de un fondo cuyo valor puede bajar, su costo y que hay otras opciones.</span></label>
-  <label class="casilla"><input type="checkbox" name="regla" value="si" checked><span>Además, deja una regla: en cada prima, propónmelo de nuevo con el mismo reparto. Yo confirmo cada vez y la cancelo cuando quiera.</span></label>
-  <input type="hidden" name="huella" value="si">
-  <button class="boton" type="submit">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" style="margin-right:8px"><path d="M12 11v4M8 9a4 4 0 0 1 8 0v4a8 8 0 0 1-1 4M6 14a10 10 0 0 0 1 5M12 3a7 7 0 0 1 7 7v2"/></svg>Aprobar con mi huella</button>
-  <span class="pequeno">Aprobar no mueve dinero de otra cuenta: el 30 de junio te pedimos confirmar cada transferencia. La huella es del celular; no recibimos tu dato biométrico. Te enviamos esta recomendación a tu correo.</span>
+  <label class="casilla"><input type="checkbox" name="entiendo" value="si"><span>Entiendo que es una recomendación de un portafolio cuyo valor puede bajar, cuánto cuesta y que hay otras opciones.</span></label>
+  <button class="boton" type="submit">Seguir: confirmar con mi huella</button>
+  <span class="pequeno">Aprobar no mueve dinero de otra cuenta: el 30 de junio te pedimos confirmar cada transferencia. La recomendación queda guardada en tu historial con su costo y su riesgo.</span>
 </form>
 <form method="post" action="/propuesta/no"><button class="boton secundario" type="submit">No, gracias</button></form>
 {% else %}
-<div class="tarjeta ambar"><strong>Para tu casa, mejor con {{ cons.corto }}.</strong><span>Lo que tienes en tu perfil no coincide con un fondo cuyo valor puede bajar, o nos dijiste que no. No te recomendamos nada aquí.</span><a class="boton" href="/equipo">Hablar con {{ cons.corto }}</a></div>
+<div class="tarjeta ambar"><strong>Para tu casa, mejor con {{ cons.corto }}.</strong>
+  <span>{% if not pr.idoneo %}Con tu perfil de hoy no te recomendamos aquí un portafolio cuyo valor puede bajar.{% else %}Nos dijiste que no, y lo respetamos.{% endif %} {{ cons.corto[0]|upper }}{{ cons.corto[1:] }} lo ve contigo, con tu plan a la vista.</span>
+  <a class="boton" href="/equipo">Hablar con {{ cons.corto }}</a></div>
 {% endif %}
 <a class="enlace" href="/equipo">{{ c.avatar(cons.iniciales, 'cons', 28) }}Verla con {{ cons.corto }} antes de decidir</a>
 {% endblock %}

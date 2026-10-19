@@ -22,6 +22,19 @@
       });
     });
   });
+  // Perfil: el botón se activa solo con las seis respuestas (H9). Sin JavaScript, el servidor lo valida.
+  document.querySelectorAll('form[data-perfil]').forEach(function (f) {
+    var boton = f.querySelector('[data-requiere-todas]');
+    var ayuda = f.querySelector('[data-ayuda-perfil]');
+    var nombres = Array.from(new Set(Array.from(f.querySelectorAll('input[type=radio]')).map(function (i) { return i.name; })));
+    var revisar = function () {
+      var completo = nombres.every(function (n) { return f.querySelector('input[name="' + n + '"]:checked'); });
+      boton.disabled = !completo;
+      if (ayuda) ayuda.hidden = completo;
+    };
+    f.addEventListener('change', revisar);
+    revisar();
+  });
   var sim = document.getElementById('simulador');
   if (sim) {
     var rango = sim.querySelector('input[type=range]');
@@ -33,6 +46,8 @@
           document.getElementById('sim-bueno').textContent = d.anio_bueno || 'más de 50 años';
           document.getElementById('sim-malo').textContent = d.anio_malo || 'más de 50 años';
           document.getElementById('sim-estado').textContent = d.a_tiempo ? 'Llegas a tiempo (estimado)' : 'Aún no llegas a tiempo';
+          var caida = document.getElementById('sim-caida');
+          if (caida) caida.textContent = d.caida_txt;
         });
     });
   }

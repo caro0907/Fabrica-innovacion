@@ -15,7 +15,7 @@
     <a class="boton chico {{ '' if slot == o else 'secundario' }}" href="/agenda?desde={{ desde }}&slot={{ o|urlencode }}" {% if slot == o %}aria-current="true"{% endif %}>{{ o }}</a>
   {% endfor %}
   </div>
-  {% if slot %}<div class="tarjeta verde" role="status"><strong style="color:var(--accion)">Agendado: {{ slot }}. Te llega la invitación a tu correo.</strong></div>{% endif %}
+  {% if slot %}<div class="tarjeta verde" role="status"><strong style="color:var(--accion)">Agendado: {{ slot }}. Queda en tu agenda de la app (simulado: en el MVP no se envía correo).</strong></div>{% endif %}
 </div>
 <a class="enlace" href="{{ volver }}">Volver</a>
 {% endblock %}

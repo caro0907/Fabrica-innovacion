@@ -8,7 +8,16 @@ En el MVP ningún mandato mueve dinero: la ejecución es simulada.
 from dataclasses import dataclass, asdict, field
 from datetime import date
 
+from . import supuestos as S
 from .formato import pesos
+
+MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre",
+         "noviembre", "diciembre"]
+
+
+def fecha_txt(iso: str) -> str:
+    f = date.fromisoformat(iso)
+    return f"{f.day} de {MESES[f.month - 1]} de {f.year}"
 
 CONTROLES = {
     "informar": "Te aviso; tú decides y actúas",
@@ -16,10 +25,14 @@ CONTROLES = {
     "ejecutar_dentro_de_limites": "Lo hago solo dentro del tope y te aviso después",
 }
 
+# Las pausas que el MVP de verdad revisa en cada pantalla (revisar_pausas). Solo estas se muestran
+# al afiliado (H10). Las otras dos del concepto quedan para producción.
 PAUSAS_AUTOMATICAS = [
     "Pérdida de empleo o fin de la cotización",
-    "Queja abierta sobre la regla",
+    "Queja abierta",
     "Perfil vencido",
+]
+PAUSAS_PARA_PRODUCCION = [
     "Cambio de la ley que afecte el beneficio",
     "Dos ejecuciones fallidas seguidas",
 ]
@@ -33,7 +46,7 @@ class Mandato:
     disparador: str
     accion: str
     destino: str
-    tope: float
+    tope: float                             # lo que va a inversión en cada prima no pasa de aquí
     vigencia_hasta: str
     aviso: str
     control: str
@@ -47,31 +60,45 @@ class Mandato:
         return asdict(self)
 
 
-def texto_consentimiento(nombre_entidad: str, m: "Mandato", origen: str) -> str:
-    """Texto propuesto en regulatorio.md, sección 6, pendiente de aprobación de jurídico."""
-    return (f"Autorizo a {nombre_entidad} a {m.accion} a {m.destino} cada vez que {m.disparador.lower()}, "
-            f"desde {origen}, con un tope de {pesos(m.tope)} cada vez y hasta el {m.vigencia_hasta}. "
-            f"Me avisará {m.aviso.lower()}. Puedo pausar o cancelar esta regla en cualquier momento escribiendo "
-            "'cancela mi regla' o desde Mis reglas. Si la regla ejecuta algo distinto a lo que autorizo, la entidad lo revierte.")
+def texto_consentimiento(m: "Mandato", pct_colchon: int) -> str:
+    """Texto de la revisión del experto financiero (H7), en primera persona, pendiente de aprobación de jurídico.
+    En "te propongo y tú confirmas" no hay nada que revertir: si la persona no confirma, no se mueve nada."""
+    return (f"Autorizo a mi administradora de fondos a proponerme, dos semanas antes de cada prima (junio y diciembre) "
+            f"y hasta el {fecha_txt(m.vigencia_hasta)}, separar el {pct_colchon}% para mi colchón en mi cuenta de ahorros, "
+            f"mientras no llegue a {S.MESES_COLCHON_SANO} meses de mis gastos, y el resto para mi casa, sin pasar de "
+            f"{pesos(m.tope)} a inversión por prima. Un día antes de que llegue la prima me recuerdan confirmar. "
+            "Cada vez confirmo yo; si no confirmo, no se mueve nada. La cancelo en Mis reglas.")
 
 
-def prima_con_rumbo(afiliado_id: str, hoy: date, porcentaje_colchon: float, tope: float) -> Mandato:
+def prima_con_rumbo(afiliado_id: str, hoy: date, porcentaje_colchon: float,
+                    tope: float = S.TOPE_INVERSION_POR_PRIMA) -> Mandato:
+    pct = round(porcentaje_colchon * 100)
+    fin = hoy.month - 1 + S.VIGENCIA_MANDATO_MESES
     m = Mandato(
         id=f"{afiliado_id}-prima-con-rumbo",
         afiliado_id=afiliado_id,
         nombre="Prima con rumbo",
         disparador="Llegue tu prima (junio y diciembre)",
-        accion=(f"proponerte separar el {round(porcentaje_colchon * 100)}% para tu colchón y el "
-                f"{100 - round(porcentaje_colchon * 100)}% para tu casa"),
-        destino="tu colchón, en tu cuenta de ahorros, y tu meta de casa",
+        accion=(f"proponerte separar el {pct}% para tu colchón, hasta llegar a {S.MESES_COLCHON_SANO} meses, "
+                f"y el resto para tu casa"),
+        destino="tu colchón, en tu cuenta de ahorros, y tu casa",
         tope=tope,
-        vigencia_hasta=date(hoy.year + 1, hoy.month, hoy.day).isoformat(),
-        aviso="Dos semanas antes de cada prima, con la opción de saltarla esa vez",
+        vigencia_hasta=date(hoy.year + fin // 12, fin % 12 + 1, hoy.day).isoformat(),
+        aviso="Te propongo dos semanas antes y te recuerdo confirmar un día antes, con opción de saltar esa vez",
         control="proponer_y_confirmar",
         creado=hoy.isoformat(),
     )
-    m.consentimiento = texto_consentimiento("tu administradora", m, "la cuenta donde recibes tu prima")
+    m.consentimiento = texto_consentimiento(m, pct)
     return m
+
+
+def propuesta_de_la_regla(m: Mandato, prima: float, brecha_colchon: float, porcentaje_colchon: float) -> dict:
+    """Lo que la regla propone en una prima: el tope limita lo que va a inversión; lo que lo pasa
+    se queda en la cuenta de la persona, sin moverse (tope que limita de verdad, hallazgo 3 del revisor)."""
+    al_colchon = min(brecha_colchon, prima * porcentaje_colchon)
+    a_la_casa = prima - al_colchon
+    a_inversion = min(a_la_casa, m.tope)
+    return {"al_colchon": al_colchon, "a_inversion": a_inversion, "queda_en_tu_cuenta": a_la_casa - a_inversion}
 
 
 def pausar(m: Mandato, motivo: str, hoy: date) -> Mandato:
@@ -98,8 +125,13 @@ def cancelar(m: Mandato, hoy: date) -> Mandato:
 
 
 def revisar_pausas(m: Mandato, estado_afiliado: dict, perfil_vigente: bool, hoy: date) -> Mandato:
-    """Se pausa sola ante los eventos de la sección 6 del concepto regulatorio."""
+    """Se pausa sola ante los eventos de la sección 6 del concepto regulatorio. Se llama en cada pantalla."""
     if m.estado != "activo":
+        return m
+    if hoy.isoformat() > m.vigencia_hasta:
+        m.estado = "cancelado"
+        m.motivo_estado = "Terminó su vigencia"
+        m.historial.append({"fecha": hoy.isoformat(), "evento": "vencido"})
         return m
     if estado_afiliado.get("perdida_empleo"):
         return pausar(m, PAUSAS_AUTOMATICAS[0], hoy)

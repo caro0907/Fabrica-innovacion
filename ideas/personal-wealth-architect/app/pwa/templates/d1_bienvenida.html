@@ -11,12 +11,22 @@
   <strong>Lo que ya sabemos, para no preguntártelo</strong>
   <div class="fila fila-borde"><span>Tu pensión obligatoria</span><strong>{{ millones(sabe.saldo_pension_obligatoria) }} · {{ sabe.anios_cotizados }} años cotizados</strong></div>
   <div class="fila fila-borde"><span>Tus cesantías</span><strong>{{ millones(sabe.cesantias) }}</strong></div>
-  <div class="fila fila-borde"><span>Tu salario de cotización</span><strong>unos {{ millones(sabe.salario_cotizacion) }} al mes</strong></div>
+  <div class="fila fila-borde"><span>Tu salario de cotización</span><strong>lo tenemos por tu cotización</strong></div>
   <div class="fila fila-borde"><span>Tus primas</span><strong>junio y diciembre</strong></div>
-  <label class="casilla"><input type="checkbox" name="autoriza" value="si" {% if s.consentimientos.autoriza_uso_salario %}checked{% endif %} required>
-    <span>Autorizo usar mi salario de cotización, mis primas y mis cesantías para armar mi plan. Puedo retirar este permiso con una frase.</span></label>
-  {% if request.query_params.get('falta') %}<span class="etiqueta alerta" role="alert">Sin tu autorización armamos tu plan solo con lo que nos cuentes.</span>{% endif %}
 </div>
+<fieldset class="tarjeta" style="border:0;margin:0">
+  <legend class="oculto">Tus permisos</legend>
+  <strong>Tus permisos, opcionales</strong>
+  <label class="casilla"><input type="checkbox" name="autoriza" value="si" {% if s.consentimientos.autoriza_uso_salario %}checked{% endif %}>
+    <span>Autorizo a mi administradora de fondos, como responsable de mis datos, a usar mi salario de cotización, mis primas y mis cesantías con una sola finalidad: armar y revisar mi plan. Puedo conocer, actualizar y rectificar mis datos, y retirar este permiso cuando quiera en Mis reglas y permisos.</span></label>
+  <div class="campo">
+    <label for="ingreso"><span class="pequeno">Si prefieres no autorizarlo, cuéntanos tu ingreso mensual aproximado (opcional). Sin ninguno de los dos, tu plan no estima tu pensión ni tu prima.</span></label>
+    <input type="number" id="ingreso" name="ingreso" inputmode="numeric" min="0" step="100000" placeholder="Por ejemplo, 5000000" value="{{ d.get('ingreso_declarado') or '' }}">
+  </div>
+  <label class="casilla"><input type="checkbox" name="mensajes" value="si" {% if s.consentimientos.autoriza_mensajes_comerciales %}checked{% endif %}>
+    <span>Acepto que me envíen propuestas de mi plan por mensajería, máximo una vez por semana, de lunes a viernes de 7 a. m. a 7 p. m. y los sábados de 8 a. m. a 3 p. m., nunca domingos ni festivos. Lo puedo retirar cuando quiera.</span></label>
+  <a class="enlace" style="justify-content:flex-start" href="/privacidad">Cómo tratamos tus datos</a>
+</fieldset>
 <div class="tarjeta">
   <strong>De qué vamos a hablar</strong>
   {% for t in ['Lo que quieres lograr, con números', 'Tu vida y tu dinero hoy', 'Cómo te sientes con el riesgo', 'Lo que entendí de ti'] %}

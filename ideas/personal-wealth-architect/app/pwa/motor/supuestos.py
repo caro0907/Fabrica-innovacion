@@ -9,7 +9,7 @@ rentabilidad, comisión y caída en un mal año los debe aprobar cumplimiento
 """
 from datetime import date
 
-VERSION = "supuestos-2026.10-mvp1.1"
+VERSION = "supuestos-2026.10-mvp1.2"
 
 # Pensión obligatoria (ahorro individual) -----------------------------------
 EDAD_PENSION = {"mujer": 57, "hombre": 62}
@@ -42,17 +42,40 @@ PARTE_PRIMA_AL_COLCHON = 0.70
 
 # Meta con simulador ------------------------------------------------------------
 RENTABILIDAD_ESCENARIO_BUENO = 0.04     # real, neta de comisiones
-RENTABILIDAD_ESCENARIO_MALO = 0.0       # sin rentabilidad
+RENTABILIDAD_ESCENARIO_MALO = 0.0       # sin rentabilidad, después de un mal año (ver CAIDA_ESCENARIO_MALO)
 
 # Portafolios (ficticios) -------------------------------------------------------
+# Opción A del experto financiero (revisión del 18 de octubre de 2026, H2): una administradora de
+# fondos de pensiones y cesantías no administra fondos de inversión colectiva, así que la
+# recomendación es un portafolio de su propio fondo de pensiones voluntarias. Lectura a validar
+# con jurídico (regulatorio.md, sección 9, pregunta 12).
 PORTAFOLIOS = {
-    "fic_moderado": {
-        "nombre": "Fondo de inversión colectiva moderado",
+    "fpv_moderado": {
+        "nombre": "Portafolio moderado de tu fondo de pensiones voluntarias",
+        "nombre_corto": "portafolio moderado de pensiones voluntarias",
         "comision_anual": 0.012,          # ficticia, hasta tener tarifa pública
         "caida_mal_anio": 0.12,           # método por aprobar (pregunta 8)
         "horizonte_minimo_anios": 3,
         "perfil_minimo": "moderado",
     },
+}
+
+# Mandato "Prima con rumbo" (diseño v5.2, pantalla Mis reglas) -------------------
+TOPE_INVERSION_POR_PRIMA = 1_000_000     # lo que va a inversión en cada prima no pasa de aquí
+VIGENCIA_MANDATO_MESES = 12
+
+# Obligación de declarar renta (empresa/beneficios-tributarios.md, v2) ----------------
+UVT = {2026: 52_374}                      # DIAN, año gravable 2026
+TOPE_INGRESOS_DECLARAR_UVT = 1_400
+TASA_INTERESES_CESANTIAS = 0.12
+
+# Festivos de Colombia (Ley 51 de 1983). Sin contacto comercial en festivos (Ley 2300 de 2023).
+# Fuente: calendario oficial de festivos 2026, consultado el 19 de octubre de 2026.
+FESTIVOS = {
+    date(2026, 1, 1), date(2026, 1, 12), date(2026, 3, 23), date(2026, 4, 2), date(2026, 4, 3),
+    date(2026, 5, 1), date(2026, 5, 18), date(2026, 6, 8), date(2026, 6, 15), date(2026, 6, 29),
+    date(2026, 7, 20), date(2026, 8, 7), date(2026, 8, 17), date(2026, 10, 12), date(2026, 11, 2),
+    date(2026, 11, 16), date(2026, 12, 8), date(2026, 12, 25),
 }
 
 # Perfil ------------------------------------------------------------------------

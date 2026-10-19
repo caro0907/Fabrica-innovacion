@@ -1,6 +1,6 @@
 {
-  "version": "catalogo-1.1-2026-10-18",
-  "fuente": "ideas/personal-wealth-architect/regulatorio.md, sección 5 (v1, 17 de octubre de 2026)",
+  "version": "catalogo-1.2-2026-10-19",
+  "fuente": "ideas/personal-wealth-architect/regulatorio.md, sección 5 (v1, 17 de octubre de 2026), con los ajustes de la revisión del MVP v1 (revisiones/2026-10-18-mvp-v1.md)",
   "estado": "Propuesto por la fábrica, pendiente de aprobación de cumplimiento",
   "piezas": {
     "P1": {
@@ -15,13 +15,14 @@
     },
     "P3": {
       "tipo": "plan",
-      "texto": "Tu colchón cubre {meses} meses de gastos; lo sano son 3. Antes de invertir, eso va primero.",
+      "texto": "Tu colchón cubre {meses} meses de gastos; lo sano son 3. Por eso la mayor parte de lo que te llegue va primero a tu colchón.",
       "cuando": "Colchón menor a 3 meses"
     },
     "P4": {
       "tipo": "plan",
       "texto": "Tu deuda de {tipo} te cuesta más de lo que ganarías invirtiendo. Te conviene pagarla primero; no te recomiendo invertir todavía.",
-      "cuando": "Deuda cara declarada"
+      "cuando": "Deuda cara declarada",
+      "contradice_recomendacion": true
     },
     "P5": {
       "tipo": "plan",
@@ -30,8 +31,10 @@
     },
     "P6": {
       "tipo": "plan",
-      "texto": "Revisa quiénes son tus beneficiarios: es lo que protege a {persona} si algo te pasa.",
-      "cuando": "Dependientes declarados y beneficiarios por confirmar"
+      "texto": "{ya_es} por ley en tu pensión obligatoria. {registrar} en tu grupo familiar agiliza el trámite si algo te pasa.",
+      "cuando": "Hijos declarados y grupo familiar sin registrar",
+      "condicion": "dependiente_hijos",
+      "norma": "Ley 100 de 1993, arts. 47 y 74"
     },
     "P7": {
       "tipo": "plan",
@@ -96,11 +99,15 @@
       "tipo": "beneficio",
       "texto": "A finales de {mes} te llega la prima: unos {prima}.",
       "requiere": [
-        "A1",
-        "A5"
+        "A1"
       ],
-      "condicion": "autoriza_uso_salario",
-      "norma": "Código Sustantivo del Trabajo, art. 306"
+      "condicion": "tiene_ingreso",
+      "norma": "Código Sustantivo del Trabajo, art. 306",
+      "requiere_si": {
+        "autoriza_uso_salario": [
+          "A5"
+        ]
+      }
     },
     "B7": {
       "tipo": "beneficio",
@@ -108,8 +115,13 @@
       "requiere": [
         "A1"
       ],
-      "condicion": "autoriza_uso_salario",
-      "norma": "Ley 50 de 1990"
+      "condicion": "tiene_ingreso",
+      "norma": "Ley 50 de 1990",
+      "requiere_si": {
+        "autoriza_uso_salario": [
+          "A5"
+        ]
+      }
     },
     "B8": {
       "tipo": "beneficio",
@@ -119,13 +131,13 @@
     },
     "B9": {
       "tipo": "beneficio",
-      "texto": "Puedes retirar tus cesantías completas porque terminó tu contrato. Te las entregamos dentro de los 5 días siguientes a tu solicitud.",
+      "texto": "Puedes retirar tus cesantías completas porque terminó tu contrato. Solo necesito la carta o la constancia de terminación de tu contrato, y te las entregamos dentro de los 5 días siguientes a tu solicitud.",
       "requiere": [],
       "norma": "Ley 50 de 1990, art. 102"
     },
     "B10": {
       "tipo": "beneficio",
-      "texto": "Pregunta en tu caja de compensación por el Mecanismo de Protección al Cesante.",
+      "texto": "Si aportaste a una caja de compensación al menos un año en los últimos tres, pregunta en tu caja por el Mecanismo de Protección al Cesante.",
       "requiere": [
         "A6"
       ],
@@ -147,7 +159,8 @@
         "A4",
         "A7"
       ],
-      "norma": "Ley 2381 de 2024"
+      "norma": "Ley 2381 de 2024",
+      "condicion": "estima_pension"
     },
     "B13": {
       "tipo": "beneficio",
@@ -180,7 +193,7 @@
     },
     "C4": {
       "tipo": "condicion",
-      "texto": "Asesoría no independiente: te recomendamos alternativas nuestras y recibimos una comisión de {comision} al año por administrarlas. Otras opciones: {alternativas}."
+      "texto": "Asesoría no independiente: te recomendamos alternativas nuestras y recibimos por administrarlas una comisión de {comision}. Otras opciones: {alternativas}."
     },
     "A1": {
       "tipo": "advertencia",
@@ -200,7 +213,7 @@
     },
     "A5": {
       "tipo": "advertencia",
-      "texto": "Usamos tu salario de cotización porque nos autorizaste. Puedes retirar ese permiso con una frase."
+      "texto": "Usamos tu salario de cotización porque nos autorizaste, solo para armar tu plan. Puedes retirar ese permiso en Mis reglas y permisos."
     },
     "A6": {
       "tipo": "advertencia",
@@ -213,17 +226,51 @@
     "A8": {
       "tipo": "advertencia",
       "texto": "Calculado con {metodo} para este portafolio. Por eso tu colchón no va ahí."
+    },
+    "P6b": {
+      "tipo": "plan",
+      "texto": "Registra a {persona} en tu grupo familiar: si dependen de ti, agiliza el trámite si algo te pasa.",
+      "cuando": "Otros dependientes declarados y grupo familiar sin registrar"
+    },
+    "P9": {
+      "tipo": "plan",
+      "texto": "Tu colchón va primero: el {pct_colchon} de tu prima. Tu casa avanza con el resto porque es tu meta más importante y su plazo es largo.",
+      "cuando": "Prima con colchón incompleto y la casa como meta más importante",
+      "requiere": []
+    },
+    "P10": {
+      "tipo": "plan",
+      "texto": "Sin tu permiso para usar tu salario de cotización no estimamos esto. Puedes darlo en Mis reglas y permisos, o contarnos tu ingreso.",
+      "cuando": "Cifras que dependen del ingreso, sin permiso ni ingreso contado"
+    },
+    "B15": {
+      "tipo": "beneficio",
+      "texto": "Con tus ingresos estimados de este año, unos {ingresos}, probablemente debas declarar renta en {anio_declara}: el tope es de {tope}. Declarar no es lo mismo que pagar impuesto.",
+      "requiere": [
+        "A1",
+        "A2"
+      ],
+      "condicion": "tiene_ingreso",
+      "norma": "Estatuto Tributario, arts. 592 y 593"
+    },
+    "C5": {
+      "tipo": "condicion",
+      "texto": "En tu caso no hay beneficio tributario: este aporte no lo usas para bajar tu impuesto. Lo puedes retirar cuando lo necesites, en pocos días hábiles; las condiciones del retiro están en el reglamento del fondo."
+    },
+    "A9": {
+      "tipo": "advertencia",
+      "texto": "Te la hace una herramienta tecnológica de tu administradora de fondos, que la entidad autorizó y supervisa, con tu perfil del {fecha_perfil}. {consultor} puede revisarla contigo antes de que decidas."
     }
   },
   "nunca": [
     {
       "id": "N2",
-      "patron": "sin riesgo|garantizad[oa]s?|rentabilidad asegurada|es seguro invertir",
+      "patron": "sin riesgo|garantizad[oa]s?|rentabilidad asegurada|es seguro invertir|sin p[eé]rdidas?|seguro que (gan|sub)",
       "motivo": "Promesa de seguridad o rentabilidad"
     },
     {
       "id": "N3",
-      "patron": "no (debes|tienes que|necesitas) declarar|no declaras",
+      "patron": "no (debes|tienes que|necesitas) declarar|no declaras|no te toca declarar|no tienes obligaci[oó]n de declarar|exent[oa] de declarar",
       "motivo": "Decir que alguien no debe declarar renta"
     },
     {
@@ -233,7 +280,7 @@
     },
     {
       "id": "N5",
-      "patron": "como nuestro mejor consultor|igual que un asesor",
+      "patron": "como nuestro mejor consultor|igual que un asesor|mejor que un asesor|reemplaza a tu asesor|como un asesor humano",
       "motivo": "Hipótesis de paridad no probada"
     },
     {
@@ -250,5 +297,6 @@
   "frases_permitidas_que_contienen_patrones": [
     "no es una promesa ni una rentabilidad garantizada",
     "no es una rentabilidad garantizada"
-  ]
+  ],
+  "incompatibles_con_recomendacion": "Una pieza con \"contradice_recomendacion\" no sale en una pantalla que lleva a una recomendación de inversión (criterio A7)"
 }

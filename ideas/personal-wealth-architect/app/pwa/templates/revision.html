@@ -9,9 +9,10 @@
 <section class="tarjeta carta">
   <span class="cejilla">Cómo vas desde tu plan del 1 de junio</span>
   <p>Tu colchón cubre {{ plan.colchon.meses_txt }} meses de tus gastos; lo sano son 3.</p>
-  {% if plan.casa %}<p>Tu casa va en {{ (plan.casa.avance * 100)|round|int }}%: {{ plan.casa.llevas_txt }} de tus {{ plan.casa.cuota_txt }}.{% if plan.casa.anio_solo_primas and not plan.casa.a_tiempo_solo_con_primas %} Solo con tus primas llegarías hacia {{ plan.casa.anio_solo_primas }}, no en {{ plan.casa.plazo_anios }} años.{% endif %}</p>{% endif %}
-  <p>Tu pensión va para unos {{ plan.pension.mesada_txt }} de los {{ plan.pension.deseada_txt }} que quieres (estimado).</p>
-  {% if plan.beneficiarios_confirmados and plan.dependiente %}<p>{{ plan.dependiente[0]|upper }}{{ plan.dependiente[1:] }} ya es tu beneficiaria.</p>{% endif %}
+  {% if plan.casa %}<p>Tu casa va en {{ (plan.casa.avance * 100)|round|int }}%: {{ plan.casa.llevas_txt }} de tus {{ plan.casa.cuota_txt }}.{% if plan.casa.primas_estimadas and plan.casa.anio_solo_primas and not plan.casa.a_tiempo_solo_con_primas %} Solo con tus primas llegarías hacia {{ plan.casa.anio_solo_primas }}, no en {{ plan.casa.plazo_anios }} años.{% endif %}</p>{% endif %}
+  {% if plan.pension.mostrar_mesada %}<p>Tu pensión va para unos {{ plan.pension.mesada_txt }} de los {{ plan.pension.deseada_txt }} que quieres (estimado).</p>
+  {% else %}<p>{{ plan.pension.motivo_sin_mesada }}</p>{% endif %}
+  {% if plan.beneficiarios_confirmados and plan.dependiente %}<p>{{ plan.dependiente[0]|upper }}{{ plan.dependiente[1:] }} ya está en tu grupo familiar.</p>{% endif %}
 </section>
 
 <section class="tarjeta">
@@ -23,7 +24,9 @@
 <section class="tarjeta">
   <span class="cejilla">Lo que te propongo para tu prima</span>
   {% if plan.prima.al_colchon > 0 %}<div class="paso"><strong>1</strong><span>Separa <strong>{{ plan.prima.al_colchon_txt }}</strong>, el {{ (plan.prima.porcentaje_colchon * 100)|round|int }}%, para tu colchón en tu cuenta de ahorros. Es un paso de tu plan, no un producto.</span></div>{% endif %}
-  {% if plan.casa and d.prioridad == 'Comprar mi casa' %}<div class="paso"><strong>{{ 2 if plan.prima.al_colchon > 0 else 1 }}</strong><span>Pon <strong>{{ plan.prima.a_la_meta_txt }}</strong> a tu casa. Para eso te hago una recomendación profesional, con su porqué, su riesgo y su costo: la ves en el siguiente paso.</span></div>{% endif %}
+  {% if plan.casa and d.prioridad == 'Comprar mi casa' %}<div class="paso"><strong>{{ 2 if plan.prima.al_colchon > 0 else 1 }}</strong><span>Pon <strong>{{ plan.prima.a_la_meta_txt }}</strong> a tu casa.
+  {% if 'casa_con_prima' in dec.cola|map(attribute='accion')|list %}Para eso te hago una recomendación profesional, con su porqué, su riesgo y su costo: la ves en el siguiente paso.
+  {% else %}Cómo ahorrarlo lo ves con {{ cons.corto }}: con tu perfil de hoy no te recomendamos aquí un fondo cuyo valor puede bajar.{% endif %}</span></div>{% endif %}
 </section>
 <section class="tarjeta ambar">
   <span class="cejilla">Lo que no te propongo todavía</span>

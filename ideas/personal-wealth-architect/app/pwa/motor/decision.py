@@ -14,10 +14,11 @@ lo estima un modelo de impacto incremental entrenado contra grupos de control.
 import hashlib
 from datetime import date, datetime, timedelta
 
+from . import perfil as PF
 from . import supuestos as S
 from .escenarios import ACCIONES, evaluar
 
-VERSION_MOTOR = "motor-mvp-1.0"
+VERSION_MOTOR = "motor-mvp-1.1"
 # Experimento de la prima: la asignación al grupo de control depende de este nombre.
 EXPERIMENTO = "prima-con-rumbo-2026-06"
 
@@ -33,7 +34,7 @@ IMPACTO_SIMULADO = {
 
 # Valor para la persona según su plan: lo que más mueve su salud del plan va primero.
 TONO_POR_ARQUETIPO = {
-    "pragmatica": "Cercano y directo: cifras redondas, una acción a la vez",
+    "pragmatica": "Cercano y directo: una acción a la vez, con la cifra exacta de lo que se mueve",
     "pragmatico": "Empático y sereno: primero resolver, nada de venta",
     "inversora": "Preciso: cifras exactas y condiciones a la vista",
 }
@@ -53,12 +54,29 @@ def en_grupo_control(afiliado_id: str, experimento: str) -> bool:
     return int(h[:8], 16) / 0xFFFFFFFF < S.PORCENTAJE_GRUPO_CONTROL
 
 
-def en_horario_de_contacto(momento: datetime, festivo: bool = False) -> bool:
-    """Ley 2300 de 2023: lunes a viernes de 7 a. m. a 7 p. m., sábados de 8 a. m. a 3 p. m., sin domingos ni festivos."""
+def es_festivo(dia: date) -> bool:
+    return dia in S.FESTIVOS
+
+
+def en_horario_de_contacto(momento: datetime, festivo: bool | None = None) -> bool:
+    """Ley 2300 de 2023: lunes a viernes de 7 a. m. a 7 p. m., sábados de 8 a. m. a 3 p. m., sin domingos ni festivos.
+    Los festivos salen del calendario de supuestos.py (H16)."""
+    if festivo is None:
+        festivo = es_festivo(momento.date())
     if festivo or momento.weekday() == 6:
         return False
     desde, hasta = S.HORARIO_CONTACTO["sabado" if momento.weekday() == 5 else "lunes_a_viernes"]
     return desde <= momento.hour < hasta
+
+
+def siguiente_momento_de_contacto(momento: datetime) -> datetime:
+    """El primer momento dentro del horario legal desde 'momento' (inclusive)."""
+    m = momento.replace(minute=0, second=0, microsecond=0) if not en_horario_de_contacto(momento) else momento
+    for _ in range(24 * 14):
+        if en_horario_de_contacto(m):
+            return m
+        m += timedelta(hours=1)
+    return m
 
 
 def freno_activo(metricas: dict) -> tuple[bool, list[str]]:
@@ -129,15 +147,17 @@ def decidir(ctx: dict, metricas_servicio: dict | None = None, contactos_esta_sem
                 motivo = "bloqueada por un restrictivo"
             elif not restrictivos and a.meta not in metas_con_brecha:
                 motivo = f"no cierra una brecha del plan ({a.meta})"
-            elif a.portafolio and S.PORTAFOLIOS[a.portafolio]["caida_mal_anio"] > ctx.get("perdida_tolerada", 0):
-                motivo = "la caída de un mal año supera lo que tolera su perfil: la ve con su consultor"
+            elif a.portafolio:
+                idoneo, motivos = PF.idoneidad(a.portafolio, ctx.get("perfil") or {}, ctx.get("plazo_meta_anios"))
+                if not idoneo:
+                    motivo = "no es idóneo (" + "; ".join(motivos) + "): lo ve con su consultor"
             candidatas.append((e, a, motivo))
     elegibles = [(e, a) for e, a, m in candidatas if m is None]
     traza.append({"capa": "Elegibilidad por el plan",
                   "detalle": [f"{a.nombre}: {'elegible' if m is None else 'no elegible, ' + m}" for _, a, m in candidatas]})
 
     # 3. Priorización entre elegibles
-    valor_meta = {p["id"]: 100 - p["valor"] for p in plan["pilares"]}
+    valor_meta = {p["id"]: 100 - p["valor"] for p in plan["pilares"] if p["valor"] is not None}
     pilar_de_meta = {"colchon": "colchon", "casa": "suficiencia", "pension": "suficiencia", "proteccion": "proteccion"}
     puntuadas = []
     for e, a in elegibles:
@@ -163,6 +183,7 @@ def decidir(ctx: dict, metricas_servicio: dict | None = None, contactos_esta_sem
     principal = contactables[0] if contactables else None
     puede_contactar = False
     bloqueos = []
+    siguiente = None
     if principal and modo == "asesoria":
         # Toda propuesta que inicia la entidad pasa por las cinco compuertas.
         if freno and any(p["accion"].comercial for p in contactables):
@@ -170,7 +191,10 @@ def decidir(ctx: dict, metricas_servicio: dict | None = None, contactos_esta_sem
         if control:
             bloqueos.append("Grupo de control: no recibe la propuesta proactiva (sí ve su plan)")
         if not horario:
-            bloqueos.append("Fuera del horario legal de contacto: espera la siguiente ventana")
+            siguiente = siguiente_momento_de_contacto(ctx["ahora"])
+            razon = "festivo" if es_festivo(ctx["ahora"].date()) else "fuera del horario legal"
+            bloqueos.append(f"Hoy es {razon}: el aviso esperaría al {DIAS[siguiente.weekday()]} {siguiente.day} "
+                            f"a las {siguiente.hour}:00")
         if not frecuencia_ok:
             bloqueos.append("Ya hubo un contacto comercial esta semana")
         if not autoriza:
@@ -182,7 +206,8 @@ def decidir(ctx: dict, metricas_servicio: dict | None = None, contactos_esta_sem
         bloqueos.append("Modo servicio: responde a lo que la persona pide, no inicia contactos")
     traza.append({"capa": "Activación", "detalle": [
         f"Grupo: {'control' if control else 'tratamiento'}",
-        f"Horario legal: {'sí' if horario else 'no'} ({DIAS[ctx['ahora'].weekday()]} {ctx['ahora']:%H:%M})",
+        f"Horario legal: {'sí' if horario else 'no'} ({DIAS[ctx['ahora'].weekday()]} {ctx['ahora']:%H:%M}"
+        + (", festivo" if es_festivo(ctx['ahora'].date()) else "") + ")",
         f"Contactos comerciales esta semana: {contactos_esta_semana} de {S.CONTACTOS_COMERCIALES_POR_SEMANA}",
         f"Freno de servicio: {'activo' if freno else 'inactivo'}",
     ] + bloqueos})
@@ -190,7 +215,8 @@ def decidir(ctx: dict, metricas_servicio: dict | None = None, contactos_esta_sem
     # 5. Salida con cinco campos
     if principal:
         a = principal["accion"]
-        canal = "App (inicio del plan)" + (" y aviso por mensajería" if puede_contactar else "")
+        # El canal es donde se muestra; el aviso proactivo es aparte y solo se registra si se envía (simulado).
+        canal = "App (inicio del plan)"
         if modo == "servicio":
             canal = "Donde la persona escribió (responde, no inicia)"
         vigencia = ctx["fecha_prima"] if principal["escenario"].id == "O-PRIMA" else ctx["hoy"] + timedelta(days=30)
@@ -222,6 +248,9 @@ def decidir(ctx: dict, metricas_servicio: dict | None = None, contactos_esta_sem
         "cinco_campos": cinco,
         "quien_lo_hace": quien,
         "puede_iniciar_contacto": puede_contactar,
+        "aviso_proactivo": ("Aviso por mensajería permitido hoy (en el MVP no se envía)" if puede_contactar
+                            else ("Sin aviso proactivo: " + bloqueos[0][0].lower() + bloqueos[0][1:] if bloqueos else "Sin aviso proactivo")),
+        "siguiente_contacto": siguiente.isoformat() if siguiente else None,
         "grupo": "control" if control else "tratamiento",
         "freno": {"activo": freno, "motivos": motivos_freno},
         "traza": traza,
@@ -231,12 +260,15 @@ def decidir(ctx: dict, metricas_servicio: dict | None = None, contactos_esta_sem
 def _recomendacion(p: dict, plan: dict, modo: str) -> str:
     a = p["accion"]
     if a.id == "colchon_con_prima" or a.id == "casa_con_prima":
-        return (f"Prima con rumbo: {plan['prima']['al_colchon_txt']} a su colchón (paso del plan, no es un producto) "
-                f"y {plan['prima']['a_la_meta_txt']} a su casa con una recomendación profesional.")
+        texto = f"Prima con rumbo: {plan['prima']['al_colchon_txt']} a su colchón (paso del plan, no es un producto)"
+        if a.id == "casa_con_prima":
+            texto += (f" y {plan['prima']['a_la_meta_txt']} a su casa con una recomendación profesional "
+                      f"({S.PORTAFOLIOS[a.portafolio]['nombre_corto']})")
+        return texto + "."
     if a.id == "servicio_cesantias":
         return "Entregar sus cesantías en el plazo legal, contarle del Mecanismo de Protección al Cesante y pausar sus reglas."
     if a.id == "confirmar_beneficiarios":
-        return f"Confirmar a {plan['dependiente']} como beneficiaria."
+        return f"Registrar a {plan['dependiente']} en su grupo familiar (no es un producto)."
     return a.nombre
 
 
@@ -247,8 +279,28 @@ def brief_enganche(decision: dict, plan: dict, afiliado: dict) -> list[str]:
                 "Resolver lo que pidió, sin ofertas.",
                 "El consultor queda a una frase."]
     lineas = [f"{afiliado['nombre']}: {decision['cinco_campos']['recomendacion']}",
-              f"Porqué: {plan['lo_que_mas_mueve']['texto'].lower()}; su meta más importante es su casa.",
+              f"Porqué: {porque(decision, plan, afiliado)}",
               f"Tono: {decision['cinco_campos']['tono'].lower()}."]
-    if plan["casa"] and not plan["casa"]["a_tiempo_solo_con_primas"]:
+    if plan["casa"] and plan["casa"]["primas_estimadas"] and not plan["casa"]["a_tiempo_solo_con_primas"]:
         lineas.append(f"Con solo sus primas llega a su casa hacia {plan['casa']['anio_solo_primas']}, no en {plan['casa']['plazo_anios']} años.")
     return lineas[:5]
+
+
+def porque(decision: dict, plan: dict, afiliado: dict) -> str:
+    """El porqué del brief sale de la acción principal y de los datos del plan, no de un texto fijo."""
+    principal = decision.get("principal")
+    if not principal:
+        return "su plan va en camino; nada que proponer."
+    accion = principal["accion"]
+    prioridad = (plan.get("prioridad") or "").lower()
+    if accion in ("colchon_con_prima", "casa_con_prima", "regla_prima") and plan["prima"]:
+        texto = (f"su colchón cubre {plan['colchon']['meses_txt']} meses de {S.MESES_COLCHON_SANO} y su prima de "
+                 f"{plan['prima']['monto_txt']} llega el 30 de junio")
+        if plan["casa"] and prioridad == "comprar mi casa":
+            texto += f"; su meta más importante es su casa, a {plan['casa']['plazo_anios']} años"
+        return texto + "."
+    if accion == "confirmar_beneficiarios":
+        return f"{plan['dependiente']} no está registrada en su grupo familiar; es el pilar más bajo de su plan."
+    if accion == "revisar_pension" and plan["pension"]["mostrar_mesada"]:
+        return f"su pensión estimada es {plan['pension']['mesada_txt']} y quiere {plan['pension']['deseada_txt']}."
+    return plan["lo_que_mas_mueve"]["texto"].lower() + "."

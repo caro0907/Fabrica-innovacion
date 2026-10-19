@@ -5,15 +5,13 @@
 <div class="fila"><h1>Mi plan de vida</h1>{{ c.info() }}</div>
 <section class="tarjeta tinta" aria-label="Tu pensión">
   <span class="cejilla" style="color:#B8CCC4">Tu pensión, el ancla</span>
-  <span style="font-size:15px">Vas para unos <strong>{{ plan.pension.mesada_txt }} al mes</strong> a los {{ plan.pension.edad_pension }} (estimado); quieres <strong>{{ plan.pension.deseada_txt }}</strong>.{% if plan.pension.brecha > 0 %} Te faltan unos {{ plan.pension.brecha_txt }}.{% endif %}</span>
-  {{ c.barra(plan.pension.avance, 'oro') }}
-  <details><summary style="color:var(--oro)">Ver supuestos</summary><p style="color:#DCE6E2">{{ plan.pension.supuestos_txt }}</p></details>
+  {{ c.pension(plan, True) }}
 </section>
 <section class="tarjeta" aria-label="Tus metas">
   <span class="cejilla">Tus metas</span>
   {% for m in plan.metas %}{{ c.meta(m, '/meta/casa' if m.id == 'casa' else None) }}{% endfor %}
   {% if plan.dependiente and not plan.beneficiarios_confirmados %}
-  <form method="post" action="/accion/beneficiaria"><input type="hidden" name="volver" value="/plan"><button class="boton chico" type="submit">Confirmar a {{ plan.dependiente }} como beneficiaria</button></form>
+  {% for o in plan.orden if o.id == 'beneficiaria' %}<form method="post" action="/accion/beneficiaria"><input type="hidden" name="volver" value="/plan"><button class="boton chico" type="submit">{{ o.boton }}</button></form>{% endfor %}
   {% endif %}
 </section>
 <section class="tarjeta" aria-label="El orden de tu plan">
@@ -23,6 +21,8 @@
 <section class="tarjeta" aria-label="Tu año en dinero">
   <span class="cejilla">Tu año en dinero</span>
   {% for f, t, v in calendario %}<div class="fila fila-borde"><span class="columna"><strong style="font-size:13.5px">{{ f }}</strong><span class="pequeno">{{ t }}</span></span><strong>{{ v }}</strong></div>{% endfor %}
-  <span class="pequeno">Estimados con tu salario de cotización, que usamos porque nos autorizaste. Las fechas son las legales.</span>
+  {% if p10 %}<span class="pequeno">{{ p10.textos[0] }}</span>
+  {% elif plan.ingreso.origen == 'sabemos' %}<span class="pequeno">Estimados con tu salario de cotización, que usamos porque nos autorizaste. Las fechas son las legales.</span>
+  {% else %}<span class="pequeno">Estimados con el ingreso que nos contaste. Las fechas son las legales.</span>{% endif %}
 </section>
 {% endblock %}

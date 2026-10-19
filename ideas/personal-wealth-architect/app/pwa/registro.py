@@ -139,3 +139,15 @@ def fijar_metrica(nombre: str, valor: float) -> None:
     with conexion() as con:
         con.execute("INSERT OR REPLACE INTO metricas_servicio (nombre, valor, actualizada) VALUES (?,?,?)",
                     (nombre, valor, _ahora()))
+
+
+def contactos_comerciales_semana(sesion_id: str, fecha_simulada: str) -> int:
+    """Contactos comerciales iniciados por la entidad en la semana (lunes a domingo) de la fecha simulada (H16)."""
+    from datetime import date, timedelta
+    f = date.fromisoformat(fecha_simulada)
+    lunes = f - timedelta(days=f.weekday())
+    domingo = lunes + timedelta(days=6)
+    with conexion() as con:
+        fila = con.execute("SELECT COUNT(*) AS n FROM interacciones WHERE sesion_id = ? AND tipo = 'contacto comercial' "
+                           "AND fecha_simulada BETWEEN ? AND ?", (sesion_id, lunes.isoformat(), domingo.isoformat())).fetchone()
+    return int(fila["n"])

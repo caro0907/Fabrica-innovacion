@@ -4,7 +4,7 @@ import pytest
 from pwa import redactor
 
 VARS = {"meses": "1,2", "mes": "junio", "prima": "$2.600.000", "supuestos": "tu salario de hoy"}
-CTX = {"autoriza_uso_salario": True}
+CTX = {"autoriza_uso_salario": True, "tiene_ingreso": True}
 
 
 @pytest.fixture()

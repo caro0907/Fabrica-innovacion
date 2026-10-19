@@ -14,8 +14,16 @@
     <span style="font-size:12.5px;color:#DCE6E2">Pensión {{ millones(af.lo_que_sabemos.saldo_pension_obligatoria) }} · Cesantías {{ millones(af.lo_que_sabemos.cesantias) }} · Ahorro {{ millones(d.ahorro) }}</span></span>
     <span class="anillo" style="--v: {{ (plan.puntaje / 10)|round|int }}" role="img" aria-label="Salud del plan: {{ plan.puntaje }} de 1.000"><span>{{ plan.puntaje }}</span></span>
   </div>
-  <span class="suave" style="font-size:12px">Salud de tu plan: {{ plan.puntaje }} de 1.000 · lo que más la mueve: {{ plan.lo_que_mas_mueve.accion|lower }}</span>
+  <span class="suave" style="font-size:12px">Salud de tu plan: {{ plan.puntaje }} de 1.000 · lo que más la mueve: {{ plan.lo_que_mas_mueve.accion|lower }}.{{ c.nota_puntaje(plan) }}</span>
 </a>
+
+{% if sin_ingreso %}
+<section class="tarjeta ambar" aria-label="Tus permisos">
+  {{ c.piezas(sin_ingreso.piezas, sin_ingreso.textos, False) }}
+  <span class="pequeno">Tu pensión, tu prima y el ritmo de tu casa quedan sin estimar. Tu colchón, tus metas y tu grupo familiar siguen igual.</span>
+  <a class="enlace" style="justify-content:flex-start" href="/reglas#permisos">Ver mis permisos</a>
+</section>
+{% endif %}
 
 {% if dec.modo == 'servicio' %}
 <div class="tarjeta alerta"><strong>Hoy no te proponemos nada.</strong><span>{{ dec.restrictivos[0].efecto }}. Si necesitas algo, pregúntame o habla con {{ cons.corto }}.</span></div>

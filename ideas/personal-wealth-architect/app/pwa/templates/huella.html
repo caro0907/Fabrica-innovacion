@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Confirma con tu huella{% endblock %}
+{% block contenido %}
+<div class="fila">{{ c.volver('/propuesta' if para == 'propuesta' else '/propuesta/lista') }}{{ c.reco() if para == 'propuesta' else c.info() }}</div>
+<h1>{{ que }}</h1>
+<form method="post" action="/huella" class="tarjeta huella">
+  <input type="hidden" name="para" value="{{ para }}">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 11v4M8 9a4 4 0 0 1 8 0v4a8 8 0 0 1-1 4M6 14a10 10 0 0 0 1 5M12 3a7 7 0 0 1 7 7v2M5 10a7 7 0 0 1 2-5"/></svg>
+  <strong>Pon tu dedo en el lector de tu celular</strong>
+  <span class="pequeno">La huella la lee tu celular; nosotros no recibimos tu dato biométrico. En esta demostración la huella está simulada.</span>
+  <button class="boton" type="submit">Confirmar con mi huella (simulado)</button>
+</form>
+<a class="enlace" href="{{ '/propuesta' if para == 'propuesta' else '/propuesta/lista' }}">Volver sin confirmar</a>
+{% endblock %}

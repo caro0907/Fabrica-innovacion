@@ -5,17 +5,19 @@
 {{ c.volver(volver) }}
 {% if paso %}{{ c.progreso(paso) }}{% endif %}
 <h1>{{ '¿Cómo te sientes con el riesgo?' if paso else 'Actualiza tu perfil' }}</h1>
-<p class="parrafo">Seis preguntas, una por cada cosa que un asesor debe conocer antes de recomendarte. {{ 'Te propongo respuestas según lo que me contaste: cámbialas si no son tuyas.' if paso else 'Cuando tu vida cambia, tu perfil también. Lo que cambies se usa desde hoy.' }}</p>
-<form method="post" action="{{ accion_form }}" class="columna" style="gap:10px">
+<p class="parrafo">Seis preguntas, una por cada cosa que un asesor debe conocer antes de recomendarte. {{ 'Contéstalas tú: no hay respuestas por defecto.' if paso else 'Cuando tu vida cambia, tu perfil también. Lo que cambies se usa desde hoy.' }}</p>
+{% if request.query_params.get('falta') %}<span class="etiqueta alerta" role="alert">Contesta las seis preguntas para seguir.</span>{% endif %}
+<form method="post" action="{{ accion_form }}" class="columna" style="gap:10px" data-perfil>
 {% for k, eti, preg, ops in PREGUNTAS_PERFIL %}
 <fieldset class="tarjeta" style="border:0;margin:0">
   <legend class="oculto">{{ eti }}</legend>
   <span class="cejilla">{{ eti }}</span>
   <strong style="font-size:14.5px">{{ preg }}</strong>
-  {{ c.opciones(k, ops, d.perfil.get(k, '')) }}
+  {{ c.opciones(k, ops, (d.perfil or {}).get(k, '') if not paso else (d.perfil or {}).get(k, '')) }}
 </fieldset>
 {% endfor %}
 <p class="pequeno">No hay respuestas buenas o malas. Con esto sabemos qué te podemos recomendar y qué no; lo cambias cuando tu vida cambie.</p>
-<button class="boton" type="submit">{{ 'Siguiente' if paso else 'Guardar mi perfil' }}</button>
+<button class="boton" type="submit" data-requiere-todas>{{ 'Siguiente' if paso else 'Guardar mi perfil' }}</button>
+<span class="pequeno" data-ayuda-perfil hidden>El botón se activa cuando contestes las seis.</span>
 </form>
 {% endblock %}

@@ -144,12 +144,15 @@ Son información y educación financiera del plan, no recomendación de un produ
 |---|---|---|
 | P1 | "Antes de hablar de productos, cuéntame qué quieres lograr: tu casa, tu pensión, la educación de tu familia, tu tranquilidad." | Inicio de todo plan |
 | P2 | "Con lo que sabemos y lo que me contaste, este es todo tu patrimonio: {dimensiones}. Lo que falta por completar: {faltantes}." | Foto del patrimonio |
-| P3 | "Tu colchón cubre {meses} meses de gastos; lo sano son 3. Antes de invertir, eso va primero." | Colchón menor a 3 meses |
-| P4 | "Tu deuda de {tipo} te cuesta más de lo que ganarías invirtiendo. Te conviene pagarla primero; no te recomiendo invertir todavía." | Deuda cara declarada |
+| P3 | "Tu colchón cubre {meses} meses de gastos; lo sano son 3. Por eso la mayor parte de lo que te llegue va primero a tu colchón." *(ajustado el 19 de octubre de 2026: la versión anterior, "antes de invertir, eso va primero", contradecía la recomendación de la casa en la misma decisión)* | Colchón menor a 3 meses |
+| P4 | "Tu deuda de {tipo} te cuesta más de lo que ganarías invirtiendo. Te conviene pagarla primero; no te recomiendo invertir todavía." No sale en una pantalla que lleva a una recomendación de inversión | Deuda cara declarada |
 | P5 | "Tu colchón puede quedarse en tu cuenta de ahorros: lo importante es que esté separado y disponible." | Siempre que el colchón sea la meta |
-| P6 | "Revisa quiénes son tus beneficiarios: es lo que protege a {persona} si algo te pasa." | Dependientes declarados y beneficiarios por confirmar |
+| P6 | "Tu hija ya es tu beneficiaria por ley en tu pensión obligatoria. Registrarla en tu grupo familiar agiliza el trámite si algo te pasa." *(ajustado el 19 de octubre de 2026: en la pensión obligatoria los hijos ya son beneficiarios por ley, Ley 100 de 1993, arts. 47 y 74; lo que la persona hace es registrar su grupo familiar)* | Hijos declarados y grupo familiar sin registrar |
+| P6b | "Registra a {persona} en tu grupo familiar: si dependen de ti, agiliza el trámite si algo te pasa." | Otros dependientes declarados |
 | P7 | "Para tu meta de {meta} te faltan {brecha}. Estas son las formas de cerrarla: {opciones}." | Plan de vida con brechas |
 | P8 | "Esta decisión es importante: ¿quieres verla con un asesor? Tiene tu mismo plan a la vista." | Decisiones de la tabla "cuándo entra el asesor" (sección 1B) |
+| P9 | "Tu colchón va primero: el {pct_colchon} de tu prima. Tu casa avanza con el resto porque es tu meta más importante y su plazo es largo." *(nuevo, 19 de octubre de 2026)* | Prima con colchón incompleto y la casa como meta más importante |
+| P10 | "Sin tu permiso para usar tu salario de cotización no estimamos esto. Puedes darlo en Mis reglas y permisos, o contarnos tu ingreso." *(nuevo)* | Cifras que dependen del ingreso, sin permiso ni ingreso contado |
 
 ### 5.1 Beneficios y cifras
 
@@ -279,6 +282,7 @@ La norma detrás: Estatuto Tributario, art. 126-1 (parágrafo 4 para aportes des
 9. **Producto:** plazo real de retiro de las alternativas de "liquidez diaria" y el texto sobre seguro de depósitos.
 10. **Jurídico:** si recomendar mover el colchón desde una cuenta de ahorros a un fondo de la entidad, en asesoría no independiente, exige mostrar como primera alternativa dejarlo donde está.
 11. **Una caja de compensación:** condiciones vigentes del Mecanismo de Protección al Cesante en 2026, incluido el incentivo por ahorro de cesantías.
+12. **Jurídico (nueva, 19 de octubre de 2026, de la revisión del MVP v1):** una administradora de fondos de pensiones y cesantías ¿puede recomendar un fondo de inversión colectiva, o solo portafolios de su fondo de pensiones voluntarias? Lectura del experto financiero: solo lo segundo, salvo que la recomendación nombre a la sociedad que administra el fondo de inversión colectiva y ajuste la condición C4. Mientras jurídico responde, el MVP recomienda el "Portafolio moderado de tu fondo de pensiones voluntarias", con su condición de retiro y "en tu caso no hay beneficio tributario" (pieza C5).
 
 ---
 

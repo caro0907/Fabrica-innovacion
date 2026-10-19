@@ -21,9 +21,7 @@
 
 <section class="tarjeta" aria-label="Tu pensión">
   <span class="cejilla">Tu pensión, el ancla</span>
-  <span style="font-size:15px">Vas para unos <strong>{{ plan.pension.mesada_txt }} al mes</strong> a los {{ plan.pension.edad_pension }} (estimado). Para la vida que quieres, <strong>{{ plan.pension.deseada_txt }}</strong>{% if plan.pension.brecha > 0 %}, te faltan unos {{ plan.pension.brecha_txt }}{% endif %}.</span>
-  {{ c.barra(plan.pension.avance, 'oro') }}
-  <details><summary>Ver supuestos</summary><p>{{ plan.pension.supuestos_txt }}</p></details>
+  {{ c.pension(plan) }}
 </section>
 
 <section class="tarjeta" aria-label="Tus metas">
@@ -38,7 +36,7 @@
 <section class="tarjeta" aria-label="La salud de tu plan">
   <div class="fila"><span class="cejilla">La salud de tu plan</span><span><strong class="cifra-m">{{ plan.puntaje }}</strong><span class="pequeno"> de 1.000</span></span></div>
   {{ c.pilares_filas(plan.pilares) }}
-  <span class="pequeno">Lo que más lo mueve hoy: {{ plan.lo_que_mas_mueve.accion|lower }}. Información de tu plan. No es una recomendación profesional ni una calificación de crédito.</span>
+  <span class="pequeno">Lo que más lo mueve hoy: {{ plan.lo_que_mas_mueve.accion|lower }}.{{ c.nota_puntaje(plan) }} Información de tu plan. No es una recomendación profesional ni una calificación de crédito.</span>
 </section>
 
 <section class="tarjeta" aria-label="El orden de tu plan">
@@ -46,12 +44,12 @@
   {% for o in plan.orden %}
   <div class="paso"><strong>{{ loop.index }}</strong><span class="columna" style="flex:1"><strong style="font-size:14px">{{ o.cuando }}: {{ o.titulo }}</strong><span class="pequeno">{{ o.texto }}</span>
   {% if o.id == 'beneficiaria' %}
-  <form method="post" action="/accion/beneficiaria"><input type="hidden" name="volver" value="/plan-inicial"><button class="boton chico" type="submit">Confirmar a {{ plan.dependiente }}</button></form>
+  <form method="post" action="/accion/beneficiaria"><input type="hidden" name="volver" value="/plan-inicial"><button class="boton chico" type="submit">{{ o.boton }}</button></form>
   {% endif %}
   </span></div>
   {% endfor %}
   {% if plan.beneficiarios_confirmados and plan.dependiente %}
-  <div class="tarjeta verde" role="status"><strong style="color:var(--accion)">Listo: {{ plan.dependiente }} quedó como tu beneficiaria. Tu plan ya está más protegido.</strong></div>
+  <div class="tarjeta verde" role="status"><strong style="color:var(--accion)">Listo: {{ plan.dependiente }} quedó en tu grupo familiar. Tu plan ya está más protegido.</strong></div>
   {% endif %}
 </section>
 

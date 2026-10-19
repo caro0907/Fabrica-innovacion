@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "_c.html" as c %}
+{% block titulo %}Cómo tratamos tus datos{% endblock %}
+{% block contenido %}
+<div class="fila">{{ c.volver(volver) }}<span class="etiqueta neutra">Borrador</span></div>
+<h1>Cómo tratamos tus datos</h1>
+<p class="parrafo">Resumen de la política de tratamiento de datos que aplicaría en producción (Ley 1581 de 2012). Es un borrador de la fábrica, pendiente de jurídico; en esta demostración todos los datos son ficticios.</p>
+<section class="tarjeta">
+{% for t, x in [
+  ('Quién es el responsable', 'Tu administradora de fondos de pensiones y cesantías, que trata tus datos para administrar tus productos.'),
+  ('Para qué usamos tu salario de cotización', 'Solo para armar y revisar tu plan: estimar tu pensión, tu prima y el ritmo de tus metas. Lo usamos solo si lo autorizas.'),
+  ('Qué datos de tu familia pedimos', 'Solo lo necesario para tu plan: si alguien depende de ti y, de un hijo o hija menor de edad, solo su edad.'),
+  ('Tu huella', 'La lee tu celular. Nosotros no recibimos tu dato biométrico.'),
+  ('Tus derechos', 'Conocer, actualizar y rectificar tus datos, pedir prueba de tu autorización, saber cómo los usamos, retirar tu autorización y pedir que los borremos cuando no haya un deber legal de conservarlos.'),
+  ('Cómo retirar un permiso', 'En Mis reglas y permisos, en un toque. Desde ese momento dejamos de usar ese dato para tu plan.'),
+  ('Contacto comercial', 'Solo si lo aceptas: máximo una vez por semana, de lunes a viernes de 7 a. m. a 7 p. m. y sábados de 8 a. m. a 3 p. m., nunca domingos ni festivos (Ley 2300 de 2023).')
+] %}
+<div class="fila-borde columna"><strong style="font-size:14px">{{ t }}</strong><span style="font-size:13px;color:var(--texto-cuerpo)">{{ x }}</span></div>
+{% endfor %}
+</section>
+{% endblock %}

@@ -49,3 +49,38 @@ def resumen(perfil: dict) -> str:
     return (f"{clase.capitalize()}: tu meta es a {perfil['horizonte'].lower()}, quieres "
             f"{OBJETIVO_TXT[perfil['objetivo']]}, en un mal año aceptas bajas de {perfil['perdida'].lower()} "
             f"y {REACCION_TXT[perfil['reaccion']]} cuando el mercado baja.")
+
+
+# Vigencia del perfil (H10) ----------------------------------------------------------------
+def vigente(perfil: dict, fecha_perfil: str | None, hoy) -> bool:
+    """Completo y respondido hace menos de VIGENCIA_PERFIL_DIAS."""
+    from datetime import date
+    from . import supuestos as S
+    if not completo(perfil) or not fecha_perfil:
+        return False
+    return (hoy - date.fromisoformat(fecha_perfil)).days <= S.VIGENCIA_PERFIL_DIAS
+
+
+# Idoneidad completa (H1, Decreto 2555, art. 2.40.1.1.5) -------------------------------------
+def idoneidad(portafolio_id: str, perfil: dict, plazo_meta_anios: int | None) -> tuple[bool, list[str]]:
+    """¿El portafolio es idóneo para esta persona y esta meta? Devuelve (idóneo, motivos de no idoneidad).
+
+    No es idóneo si: no hay perfil; la clase de la persona está por debajo del mínimo del portafolio;
+    su horizonte es "menos de 2 años"; el plazo de la meta es menor o igual al horizonte mínimo del
+    portafolio; o la caída de un mal año supera la pérdida que tolera.
+    """
+    from . import supuestos as S
+    port = S.PORTAFOLIOS[portafolio_id]
+    clase = clasificar(perfil)
+    if clase == "sin perfil":
+        return False, ["no tiene perfil completo"]
+    motivos = []
+    if S.PERFILES_ORDEN.index(clase) < S.PERFILES_ORDEN.index(port["perfil_minimo"]):
+        motivos.append(f"su perfil es {clase} y el portafolio pide al menos {port['perfil_minimo']}")
+    if perfil.get("horizonte") == "Menos de 2 años":
+        motivos.append("necesita el dinero en menos de 2 años")
+    if plazo_meta_anios is None or plazo_meta_anios <= port["horizonte_minimo_anios"]:
+        motivos.append(f"el plazo de la meta no supera los {port['horizonte_minimo_anios']} años del portafolio")
+    if port["caida_mal_anio"] > perdida_tolerada(perfil):
+        motivos.append("la caída de un mal año supera lo que tolera")
+    return not motivos, motivos

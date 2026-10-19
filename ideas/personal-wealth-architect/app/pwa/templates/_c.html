@@ -37,6 +37,19 @@
 
 {% macro estado(t) %}<span class="etiqueta {{ 'info' if t in ('Completo', 'En camino') else ('reco' if t in ('Lo primero', 'Con brecha') else 'neutra') }}">{{ t }}</span>{% endmacro %}
 
+{% macro pension(plan, oscuro=False) %}
+{% if plan.pension.mostrar_mesada %}
+<span style="font-size:15px">Vas para unos <strong>{{ plan.pension.mesada_txt }} al mes</strong> a los {{ plan.pension.edad_pension }} (estimado). Para la vida que quieres, <strong>{{ plan.pension.deseada_txt }}</strong>{% if plan.pension.brecha > 0 %}: te faltan unos {{ plan.pension.brecha_txt }}{% endif %}.</span>
+{{ barra(plan.pension.avance, 'oro') }}
+<details><summary {% if oscuro %}style="color:var(--oro)"{% endif %}>Ver supuestos</summary><p {% if oscuro %}style="color:#DCE6E2"{% endif %}>{{ plan.pension.supuestos_txt }}</p></details>
+{% else %}
+<span style="font-size:15px">Quieres <strong>{{ plan.pension.deseada_txt }} al mes</strong> a los {{ plan.pension.edad_pension }}. {{ plan.pension.motivo_sin_mesada }}</span>
+{% if not plan.pension.estimable %}<a class="enlace" style="justify-content:flex-start{% if oscuro %};color:var(--oro){% endif %}" href="/reglas#permisos">Ver mis permisos</a>{% endif %}
+{% endif %}
+{% endmacro %}
+
+{% macro nota_puntaje(plan) %}{% if plan.pilares_estimados < 6 %} Con {{ plan.pilares_estimados }} de 6 pilares: los que dependen de tu ingreso no se estiman sin tu permiso.{% endif %}{% endmacro %}
+
 {% macro piezas(ids, textos, grande=True) %}
 {% for pid in ids %}{% set t = textos[loop.index0] %}
 {% if tipo_pieza(pid) in ('plan', 'beneficio') %}<p {% if grande %}style="font-family:var(--t-carta);font-size:17px;line-height:1.45"{% endif %}>{{ t }}</p>{% endif %}
@@ -47,7 +60,11 @@
 
 {% macro pilares_filas(lista) %}
 {% for x in lista %}
+{% if x.valor is none %}
+<div class="pilar"><span style="font-size:13px;font-weight:700">{{ x.nombre }}</span>{{ barra(0, 'ambar') }}<strong style="font-size:12.5px;text-align:right">—</strong></div>
+{% else %}
 <div class="pilar"><span style="font-size:13px;font-weight:700">{{ x.nombre }}</span>{{ barra(x.valor / 100, '' if x.valor >= 65 else 'ambar') }}<strong style="font-size:12.5px;text-align:right">{{ x.valor }}</strong></div>
+{% endif %}
 <span class="pequeno" style="margin:-4px 0 4px">{{ x.texto }}</span>
 {% endfor %}
 {% endmacro %}

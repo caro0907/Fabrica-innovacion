@@ -42,14 +42,8 @@ AFILIADOS = {
             "ahorro": 3_000_000,
             "donde_ahorro": ["En mi cuenta de ahorros"],
             "seguro_vida": "No sé",
-            "perfil": {
-                "horizonte": "Más de 5 años",
-                "objetivo": "Que crezca para mi meta",
-                "conocimiento": "Lo básico",
-                "experiencia": "Nunca",
-                "perdida": "Hasta 15 de cada 100 pesos",
-                "reaccion": "Espero",
-            },
+            # Sin perfil precargado (H9): las seis preguntas llegan vacías y las contesta ella.
+            "perfil": {},
         },
         "estado": {
             "queja_abierta": False,
@@ -58,7 +52,7 @@ AFILIADOS = {
             "coyuntura_critica": False,
             "evento_sensible": False,
             "autoriza_uso_salario": False,
-            "autoriza_mensajes_comerciales": True,
+            "autoriza_mensajes_comerciales": False,   # se pregunta; nunca viene marcado (H8)
             "autoriza_agentes_externos": False,
         },
         "consultor": {"nombre": "Daniela R.", "iniciales": "DR"},
@@ -104,6 +98,7 @@ AFILIADOS = {
                 "perdida": "Hasta 5 de cada 100 pesos",
                 "reaccion": "Lo saco todo",
             },
+            "perfil_fecha": "2026-01-10",       # lo contestó él en su primera reunión
         },
         "estado": {
             "queja_abierta": False,
@@ -112,7 +107,7 @@ AFILIADOS = {
             "coyuntura_critica": False,
             "evento_sensible": False,
             "autoriza_uso_salario": True,
-            "autoriza_mensajes_comerciales": True,
+            "autoriza_mensajes_comerciales": False,   # se pregunta; nunca viene marcado (H8)
             "autoriza_agentes_externos": False,
         },
         "consultor": {"nombre": "Daniela R.", "iniciales": "DR"},
