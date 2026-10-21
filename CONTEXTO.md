@@ -1,8 +1,11 @@
-# CONTEXTO · 20 de octubre de 2026 (v7) — El MVP v1.1 está en producción en Railway y aprobado por Carolina: la rama se unió a `main`
+# CONTEXTO · 20 de octubre de 2026 (v8) — Mañana: llevar el prototipo v20 "La historia del cliente" a la app real, con inteligencia real y bajo nuestra arquitectura
 
-> v7 actualiza la v6 (`historial-contextos/CONTEXTO-2026-10-19-v6.md`) con el despliegue en Railway y la aprobación del MVP v1.1. La v6 unía las dos versiones 5 del 19 de octubre.
+> v8 actualiza la v7 (`historial-contextos/CONTEXTO-2026-10-20-v7.md`) con el prototipo v20 que trajo Carolina y la tarea del 21 de octubre. La v7 registraba la aprobación del MVP v1.1 y su despliegue.
 
 ## 0. Leer primero
+- **La tarea del 21 de octubre (pedido de Carolina):** crear la nueva versión de la app a partir del prototipo v20 "La historia del cliente", **con inteligencia real** (hoy el v20 es un guion), llevándolo a la app real bajo nuestra arquitectura: *la IA conversa, el motor calcula, el control revisa*. Se desarrolla solo **lo que vive el cliente** (la columna del teléfono); la historia, la visión y "lo que pasa detrás" son contexto. Leer primero `ideas/personal-wealth-architect/diseno/v20-la-historia-del-cliente-analisis.md`.
+- **El prototipo v20 original** está en la carpeta de Drive "Fabrica de diseno y desarrollo" como `Arquitecto_V20_La_Historia.html` (Carolina lo sube; trae la marca de una entidad y no va a este repositorio). No tiene datos sensibles. Para revisarlo, abrirlo en un navegador sin conexión a internet y usar los botones de avanzar; en el análisis está el recorrido completo de Camilo.
+- **El repositorio parece público** (la sesión del 20 de octubre lo leyó sin credenciales). Hasta que Carolina lo confirme, no subir nada con marca, datos ni documentos internos.
 - **Dónde está el MVP:** aprobado por Carolina el 20 de octubre y unido a `main` (código en `ideas/personal-wealth-architect/app/`, traspaso en `ideas/personal-wealth-architect/HANDOFF.md`). En producción en Railway (proyecto `fulfilling-simplicity`, servicio `Fabrica-innovacion`): https://fabrica-innovacion-production.up.railway.app ; `/salud` responde versión 1.1.0 en modo plantillas. Volumen en `/data` para SQLite; tope de gasto USD 10 al mes con alerta en USD 5. La rama `mvp/personal-wealth-architect-v1` sigue existiendo; el trabajo nuevo parte de `main`.
 - La fábrica funciona: 5 especialistas guardados en la cuenta de Claude de Carolina, con sus mejoras al día el 18 de octubre (estratega, diseñador, experto financiero, revisor independiente y desarrollador), este repositorio como memoria y la carpeta de Drive "Fabrica de diseno y desarrollo".
 - Todo especialista lee `empresa/forma-de-trabajo.md` (el documento de Carolina, v2) antes de empezar y pasa su lista de verificación (sección 6) antes de entregar.
@@ -10,7 +13,7 @@
 - **Trabajo previo de Carolina:** síntesis en el Google Doc "BASE DE CONOCIMIENTO — Trabajo previo de Carolina" de la carpeta de Drive de la fábrica (https://docs.google.com/document/d/1At0uLPCUv8-b6u7XO4R8IBjPtuaNt8gRbeNzA5VmX8k/edit) y originales en la subcarpeta "Documentos arquitectura 2026 y vision 2027" (arquitectura 2026 v6, visión 2027 v9, pitch al comité v2, análisis de tendencias v3, Pronto Contextual v4.1). Se leen como contexto; no se copian a este repositorio.
 - **El mercado objetivo es el ahorro y la inversión ampliados** (decisión de Carolina, 18 y 19 de octubre): neobancos, bancos, plataformas de inversión, fintech y asesoría digital. Las administradoras de pensiones colombianas solo se monitorean. Toda investigación parte de `empresa/activos/radar-fintech-ahorro-inversion.md` (prioridad: Nu Colombia, tyba, Lulo Bank, Nequi y trii).
 - **Una sola memoria:** antes de escribir `CONTEXTO.md`, traer lo último de `main` y de la rama en que se trabaja. El 19 de octubre dos sesiones escribieron versiones distintas sin verse.
-- **Al retomar:** leer este archivo, preguntar a Carolina qué definió desde la última sesión y seguir con el pendiente 1. (Sigue pendiente su respuesta sobre el consultor con nombre, pendiente 2.)
+- **Al retomar:** leer este archivo y el análisis del v20, preguntar a Carolina qué definió desde la última sesión y seguir con el pendiente 00. (Sigue pendiente su respuesta sobre el consultor con nombre, pendiente 2.)
 
 ## 1. Documentos vigentes
 | Qué | Dónde |
@@ -29,6 +32,7 @@
 | Radar de fintech de ahorro e inversión v1.1 | `empresa/activos/radar-fintech-ahorro-inversion.md` |
 | Informes del vigía semanal | `vigia/` (`2026-10-18.md` y `2026-10-19.md`) |
 | **Pantallas del MVP v1.1** | Artefacto "Pantallas del Personal Wealth Architect": https://claude.ai/artifact/JCdkuEMXDR2uftuaT4DQEt |
+| **Prototipo v20 "La historia del cliente" (nuevo, 20 de octubre)** | Análisis: `ideas/personal-wealth-architect/diseno/v20-la-historia-del-cliente-analisis.md`. Original: Drive, carpeta "Fabrica de diseno y desarrollo", `Arquitecto_V20_La_Historia.html` |
 | **MVP v1.1 (en producción)** | `main`: `ideas/personal-wealth-architect/app/` y `HANDOFF.md` (sección 9: qué cambió). App: https://fabrica-innovacion-production.up.railway.app |
 | **Revisiones del MVP (nuevo)** | `ideas/personal-wealth-architect/revisiones/2026-10-18-mvp-v1.md` (primera ronda) y `2026-10-19-mvp-v1.1.md` (segunda ronda y lo corregido después) |
 | Criterios del revisor, métricas y verificador | `empresa/criterios-de-revision.md`, `empresa/metricas.md`, `empresa/activos/plantillas/verificar-prototipo.py` |
@@ -46,6 +50,11 @@
 - **Vigía del 19 de octubre** (`vigia/2026-10-19.md`): ninguna norma nueva toca a la fábrica. Hacienda y Colpensiones piden a la Corte que la reforma arranque el 1 de abril de 2028. Para el MVP: los datos versionados deben traer las dos fechas como escenarios con nombre y una afiliada de prueba que cambie de resultado entre ellas (a Laura no le cambia). Recomienda que Carolina confirme por dentro qué agentes de inversión ya están en producción antes de crecer la arquitectura del motor (eso se queda en Drive).
 - **Experto financiero v5 y estratega v3** (guardados en la cuenta de Carolina; respaldo en `empresa/especialistas/`): seis grupos de referentes con el mercado objetivo primero, estándar de rigor tomado de la investigación previa en Drive, radar de fintech y vigía por grupo. Criterio A6 (detectado por Carolina).
 
+## 2C. Lo trabajado el 20 de octubre
+- **MVP v1.1 aprobado por Carolina y unido a `main`** (avance rápido, sin conflictos; registrado en `empresa/decisiones.md`). Producción sigue en la v1.1.
+- **Prototipo v20 "La historia del cliente"**, de Carolina y su equipo: el cliente conversa por voz, video o texto con su arquitecto y su plan se llena mientras habla; contacto por WhatsApp, asesoría inicial de seis temas, "Mi vida" con la decisión de hoy en dos caminos, Mi plan (mes, ruta, ¿cumplo todo?), laboratorios de sueños y tributario, mandato del día de pago, yo futuro con pruebas de estrés y canales. Analizado completo con Camilo (108 pasos). Carolina: el cliente debería poder chatear o hablar con su arquitecto; probablemente no es la versión final, sino una aproximación a la experiencia imaginada.
+- **Se preparó para el jefe de Carolina** un resumen funcional y una ficha técnica del MVP v1.1 (en la conversación del 20 de octubre; no se guardaron como documento).
+
 ## 3. Decisiones tomadas (no se revisitan)
 - **Aprobado por Carolina (18 de octubre): el diseño v5.2 "quedó perfecto".** Es la base del desarrollo; no se rediseña sin una observación nueva de ella.
 - **Aprobado por Carolina (17 de octubre):** el colchón es un paso del plan fuera de los productos de la entidad; el asesor certificado entra por regla cuando la decisión lo pide (por ejemplo, el aporte voluntario a la pensión obligatoria).
@@ -58,6 +67,7 @@
 - **Mercado objetivo (18 y 19 de octubre):** ahorro e inversión ampliados; las administradoras de pensiones son monitoreo, no mercado objetivo. El arquitecto no compite con tasa.
 
 ## 4. Pendientes, en orden
+00. **El 21 de octubre, primero — v2.0 con inteligencia real (Ola 1 del análisis v20):** conseguir de Carolina las cuatro decisiones abiertas (sección 6 del análisis: alcance de la Ola 1, elenco del v20, voz del navegador para empezar, qué modelo conversa) y, con eso, seguir el flujo: diseñador → especificación de la v2.0; experto financiero → hallazgos 2, 3, 7 y 8 del análisis; revisor; Carolina; desarrollador (conversación real con salida estructurada validada en código, motor que recalcula con cada dato, control que revisa cada texto; voz; "Mi vida" con la decisión de hoy en dos caminos); revisor; despliegue. Toda decisión de modelo o de voz con precios verificados ese día. Trabajar en una rama nueva desde `main` (por ejemplo `v2/conversacion-real`).
 0. **Hecho (19 y 20 de octubre):** skills actualizadas (desarrollador v3, revisor v2) y MVP desplegado en Railway. **Pendiente de Carolina:** en Railway, cambiar la rama de despliegue del servicio a `main` (*Settings → Source*), para que cada cambio aprobado en `main` se despliegue solo; y confirmar en GitHub si el repositorio es privado (la sesión del 20 de octubre lo leyó sin credenciales, señal de que está público).
 1. **Hecho (20 de octubre):** Carolina aprobó el MVP v1.1 y la rama se unió a `main`. Lo corregido sin tercera ronda queda aprobado con esa aprobación.
 2. **Carolina:** decidir si el consultor con nombre aplica a la renta masiva o solo a la renta media (el MVP puede dejarlo como una opción configurable mientras tanto).
@@ -74,4 +84,4 @@
 11. **Desarrollador:** la fecha de la reforma ya es un dato versionado (v1.1); falta llevarla a dos escenarios con nombre (2027 vigente, 2028 solicitado) y una afiliada de prueba que cambie de resultado entre ellos (vigía del 19 de octubre). Inventario de agentes con su límite de acción (referente: The Frame de BBVA).
 
 ## 5. Frase para retomar en una conversación nueva
-"Retomemos la fábrica: lee CONTEXTO.md del repositorio caro0907/Fabrica-innovacion (rama `main`) y sigamos con el primer pendiente abierto."
+"Retomemos la fábrica: lee CONTEXTO.md del repositorio caro0907/Fabrica-innovacion (rama `main`) y el análisis del prototipo v20, y empecemos la v2.0 con inteligencia real."
