@@ -1,9 +1,9 @@
-# CONTEXTO · 19 de octubre de 2026 (v6) — El MVP v1.1 pasó por dos rondas del revisor; siguen las skills y el despliegue en Railway
+# CONTEXTO · 20 de octubre de 2026 (v7) — El MVP v1.1 está en producción en Railway y aprobado por Carolina: la rama se unió a `main`
 
-> Este contexto une dos versiones 5 que se escribieron en paralelo el 19 de octubre: la de la rama del MVP (`historial-contextos/CONTEXTO-2026-10-19-v5-rama-mvp.md`) y la de `main`, con el estratega v3 y el vigía (`historial-contextos/CONTEXTO-2026-10-19-v5-main.md`). La anterior a ambas es `CONTEXTO-2026-10-18-v4.md`.
+> v7 actualiza la v6 (`historial-contextos/CONTEXTO-2026-10-19-v6.md`) con el despliegue en Railway y la aprobación del MVP v1.1. La v6 unía las dos versiones 5 del 19 de octubre.
 
 ## 0. Leer primero
-- **Dónde está el MVP:** rama `mvp/personal-wealth-architect-v1` (código en `ideas/personal-wealth-architect/app/`, traspaso en `ideas/personal-wealth-architect/HANDOFF.md`). Para retomar: clonar el repositorio y cambiar a esa rama. Aún no está en `main` ni desplegado en Railway.
+- **Dónde está el MVP:** aprobado por Carolina el 20 de octubre y unido a `main` (código en `ideas/personal-wealth-architect/app/`, traspaso en `ideas/personal-wealth-architect/HANDOFF.md`). En producción en Railway (proyecto `fulfilling-simplicity`, servicio `Fabrica-innovacion`): https://fabrica-innovacion-production.up.railway.app ; `/salud` responde versión 1.1.0 en modo plantillas. Volumen en `/data` para SQLite; tope de gasto USD 10 al mes con alerta en USD 5. La rama `mvp/personal-wealth-architect-v1` sigue existiendo; el trabajo nuevo parte de `main`.
 - La fábrica funciona: 5 especialistas guardados en la cuenta de Claude de Carolina, con sus mejoras al día el 18 de octubre (estratega, diseñador, experto financiero, revisor independiente y desarrollador), este repositorio como memoria y la carpeta de Drive "Fabrica de diseno y desarrollo".
 - Todo especialista lee `empresa/forma-de-trabajo.md` (el documento de Carolina, v2) antes de empezar y pasa su lista de verificación (sección 6) antes de entregar.
 - **La definición que manda en todo diseño** (palabras de Carolina): *"En la banca privada, un wealth architect es el asesor que diseña el plan completo del patrimonio de una persona a partir de sus metas de vida, y no a partir de los productos que vende. Hasta hoy era un servicio reservado a pocos. La IA permite ponerlo en el bolsillo de cada afiliado, y el asesor lo completa cuando la decisión lo pide."* Antes de entregar cualquier pantalla o texto, revisar que el plan va antes que el producto y que está claro cuándo entra el asesor (`regulatorio.md`, sección 1B).
@@ -29,7 +29,7 @@
 | Radar de fintech de ahorro e inversión v1.1 | `empresa/activos/radar-fintech-ahorro-inversion.md` |
 | Informes del vigía semanal | `vigia/` (`2026-10-18.md` y `2026-10-19.md`) |
 | **Pantallas del MVP v1.1** | Artefacto "Pantallas del Personal Wealth Architect": https://claude.ai/artifact/JCdkuEMXDR2uftuaT4DQEt |
-| **MVP v1.1 (nuevo)** | Rama `mvp/personal-wealth-architect-v1`: `ideas/personal-wealth-architect/app/` y `HANDOFF.md` (sección 9: qué cambió) |
+| **MVP v1.1 (en producción)** | `main`: `ideas/personal-wealth-architect/app/` y `HANDOFF.md` (sección 9: qué cambió). App: https://fabrica-innovacion-production.up.railway.app |
 | **Revisiones del MVP (nuevo)** | `ideas/personal-wealth-architect/revisiones/2026-10-18-mvp-v1.md` (primera ronda) y `2026-10-19-mvp-v1.1.md` (segunda ronda y lo corregido después) |
 | Criterios del revisor, métricas y verificador | `empresa/criterios-de-revision.md`, `empresa/metricas.md`, `empresa/activos/plantillas/verificar-prototipo.py` |
 
@@ -58,8 +58,8 @@
 - **Mercado objetivo (18 y 19 de octubre):** ahorro e inversión ampliados; las administradoras de pensiones son monitoreo, no mercado objetivo. El arquitecto no compite con tasa.
 
 ## 4. Pendientes, en orden
-0. **En curso (19 de octubre, tarde):** actualizar las skills con lo aprendido en el desarrollo y desplegar el MVP en Railway (pedido de Carolina).
-1. **Carolina:** revisar el MVP v1.1 (`HANDOFF.md`, sección 9, y `revisiones/2026-10-19-mvp-v1.1.md`), en especial las cifras que cambiaron frente al prototipo y lo corregido sin tercera ronda. Si aprueba: unir la rama a `main` y desplegar en Railway (pasos en `HANDOFF.md`, sección 2). Si corrige algo que el revisor no vio, se agrega un criterio y se registra como "detectado por Carolina".
+0. **Hecho (19 y 20 de octubre):** skills actualizadas (desarrollador v3, revisor v2) y MVP desplegado en Railway. **Pendiente de Carolina:** en Railway, cambiar la rama de despliegue del servicio a `main` (*Settings → Source*), para que cada cambio aprobado en `main` se despliegue solo; y confirmar en GitHub si el repositorio es privado (la sesión del 20 de octubre lo leyó sin credenciales, señal de que está público).
+1. **Hecho (20 de octubre):** Carolina aprobó el MVP v1.1 y la rama se unió a `main`. Lo corregido sin tercera ronda queda aprobado con esa aprobación.
 2. **Carolina:** decidir si el consultor con nombre aplica a la renta masiva o solo a la renta media (el MVP puede dejarlo como una opción configurable mientras tanto).
 3. **Experto financiero:** validar si el retiro de pensión voluntaria para una segunda vivienda conserva el beneficio; cerrar los cuatro puntos abiertos de `empresa/beneficios-tributarios.md`.
 4. **Diseñador (cuando el MVP lo necesite):** vistas de Daniela y de los equipos comercial, remoto y de servicio, y la pantalla "Mis documentos" (ahí irían la recomendación y los consentimientos que hoy solo quedan en el registro).
@@ -74,4 +74,4 @@
 11. **Desarrollador:** la fecha de la reforma ya es un dato versionado (v1.1); falta llevarla a dos escenarios con nombre (2027 vigente, 2028 solicitado) y una afiliada de prueba que cambie de resultado entre ellos (vigía del 19 de octubre). Inventario de agentes con su límite de acción (referente: The Frame de BBVA).
 
 ## 5. Frase para retomar en una conversación nueva
-"Retomemos la fábrica: lee CONTEXTO.md del repositorio caro0907/Fabrica-innovacion (rama mvp/personal-wealth-architect-v1) y sigamos con el pendiente 1."
+"Retomemos la fábrica: lee CONTEXTO.md del repositorio caro0907/Fabrica-innovacion (rama `main`) y sigamos con el primer pendiente abierto."
